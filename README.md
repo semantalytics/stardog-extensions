@@ -1,23 +1,16 @@
 [![Build Status](https://travis-ci.org/semantalytics/stardog-kibbles.svg?branch=master)](https://travis-ci.org/semantalytics/stardog-kibbles)
 
-# Stardog Kibbles String Emoji
+# Stardog Kibbles
 
-A collection of [Stardog](http://stardog.com) plugins for working with emojis
+A  [Stardog](http://stardog.com) plugin for running javascript
 
-Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/string/emoji/
+Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/javascript/
 
-Suggested prefixes: e:, emj:, emoji:
+Suggested prefix: js: javascript:
 
-    aliases
-    count
-    decimalHtml
-    decimalHtmlShort
-    decimalSurrogateHtml
-    emojify
-    emoticon
-    hexHtmlify
-    htmlify
-    isEmoji
-    remove
-    shortCodify
-    unicode
+Functions:
+
+	exec	usage: javascript:exec("values[0].stringValue() + ' ' + values[1].stringValue()", "Hello", "world!")
+
+	The first argument is the javascript to execute and any remaining arguments are passed to the script in a global array called "values". The return value is the final value executed by the script
+

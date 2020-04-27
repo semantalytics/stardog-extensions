@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.semantalytics.stardog</groupId>
-    <artifactId>kibbles-string-emoji</artifactId>
-    <version>1.0.0</version>
+    <artifactId>kibbles-javascript</artifactId>
+    <version>1.0.1</version>
 
     <developers>
         <developer>
@@ -25,10 +25,10 @@
     </developers>
 
     <scm>
-        <url>http://github.com/semantalytics.com/stardog-kibbles</url>
+        <url>http://github.com/semantalytics-stardog/kibbles-javascript</url>
         <tag>HEAD</tag>
-        <connection>scm:git:http://github.com/semantalytics-stardog/kibbles-string-emoji</connection>
-        <developerConnection>scm:git:http://github.com/semantalytics-stardog/kibbles-string-emoji</developerConnection>
+        <connection>scm:git:http://github.com/semantalytics-stardog/kibbles-javascript</connection>
+        <developerConnection>scm:git:http://github.com/semantalytics-stardog/kibbles-javascript</developerConnection>
     </scm>
 
     <licenses>
@@ -47,16 +47,18 @@
     <properties>
         <stardog.major.version>5</stardog.major.version>
         <stardog.version>${stardog.major.version}.2.1</stardog.version>
-        <maven.version>3.3.9</maven.version>
-        <emoji4j.version>5.0</emoji4j.version>
         <junit.version>4.12</junit.version>
+        <slf4j.version>1.7.21</slf4j.version>
+        <maven.version>3.3.9</maven.version>
+        <xml-apis.version>1.4.01</xml-apis.version>
+        <nashorn-commonjs-modules.version>1.0.9</nashorn-commonjs-modules.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>com.kcthota</groupId>
-            <artifactId>emoji4j</artifactId>
-            <version>${emoji4j.version}</version>
+            <groupId>com.coveo</groupId>
+            <artifactId>nashorn-commonjs-modules</artifactId>
+            <version>${nashorn-commonjs-modules.version}</version>
         </dependency>
         <dependency>
             <groupId>com.complexible.stardog</groupId>
@@ -64,6 +66,12 @@
             <version>${stardog.version}</version>
             <type>pom</type>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -74,7 +82,7 @@
         <dependency>
             <groupId>xml-apis</groupId>
             <artifactId>xml-apis</artifactId>
-            <version>1.4.01</version>
+            <version>${xml-apis.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -152,7 +160,7 @@
                         <exclude>**/Test*</exclude>
                     </excludes>
                     <includes>
-                        <include>**/EmojiTestSuite.java</include>
+                        <include>**/JavascriptTestSuite.java</include>
                     </includes>
                 </configuration>
             </plugin>
