@@ -1,23 +1,6 @@
-[![Build Status](https://travis-ci.org/semantalytics/stardog-kibbles.svg?branch=master)](https://travis-ci.org/semantalytics/stardog-kibbles)
+[![Build Status](https://travis-ci.org/semantalytics/stardog-kibbles.svg?branch=master)](https://travis-ci.org/semantalytics-stardog/kibbles-phonenumber)
 
-# Stardog Kibbles String Emoji
+# Stardog Kibbles Phonenumber
 
-A collection of [Stardog](http://stardog.com) plugins for working with emojis
+A [Stardog](http://stardog.com) plugin providing functions for working with phone numbers
 
-Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/string/emoji/
-
-Suggested prefixes: e:, emj:, emoji:
-
-    aliases
-    count
-    decimalHtml
-    decimalHtmlShort
-    decimalSurrogateHtml
-    emojify
-    emoticon
-    hexHtmlify
-    htmlify
-    isEmoji
-    remove
-    shortCodify
-    unicode
