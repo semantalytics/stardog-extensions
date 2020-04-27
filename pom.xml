@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.semantalytics.stardog</groupId>
-    <artifactId>kibbles-string-emoji</artifactId>
-    <version>1.0.0</version>
+    <artifactId>kibbles-jdbc</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
 
     <developers>
         <developer>
@@ -27,8 +27,8 @@
     <scm>
         <url>http://github.com/semantalytics.com/stardog-kibbles</url>
         <tag>HEAD</tag>
-        <connection>scm:git:http://github.com/semantalytics-stardog/kibbles-string-emoji</connection>
-        <developerConnection>scm:git:http://github.com/semantalytics-stardog/kibbles-string-emoji</developerConnection>
+        <connection>scm:git:http://github.com/semantalytics-stardog/kibbles-jdbc</connection>
+        <developerConnection>scm:git:http://github.com/semantalytics-stardog/kibbles-jdbc</developerConnection>
     </scm>
 
     <licenses>
@@ -45,25 +45,41 @@
     </organization>
 
     <properties>
-        <stardog.major.version>5</stardog.major.version>
-        <stardog.version>${stardog.major.version}.2.1</stardog.version>
-        <maven.version>3.3.9</maven.version>
-        <emoji4j.version>5.0</emoji4j.version>
+        <stardog.version>[7]</stardog.version>
+        <icu4j.version>2.6.1</icu4j.version>
+        <slugify.version>2.1.9</slugify.version>
+        <moneta.version>1.1</moneta.version>
+        <threeten-extra.version>1.2</threeten-extra.version>
+        <tradukisto.version>1.0.0</tradukisto.version>
+        <natty.version>0.12</natty.version>
         <junit.version>4.12</junit.version>
+        <slf4j.version>1.7.21</slf4j.version>
+        <prettytime.version>4.0.0.Final</prettytime.version>
+        <prettytime-nlp.version>3.2.1.Final</prettytime-nlp.version>
+        <maven.version>3.3.9</maven.version>
+        <jansi.version>1.16</jansi.version>
+        <uima.version>2.8.1</uima.version>
+        <heideltime.version>2.2.1</heideltime.version>
+        <emoji4j.version>5.0</emoji4j.version>
+        <guava.version>23.3-jre</guava.version>
+        <jhardware.version>0.8.5</jhardware.version>
+        <oshi.version>3.4.4</oshi.version>
+        <xml-apis.version>1.4.01</xml-apis.version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.kcthota</groupId>
-            <artifactId>emoji4j</artifactId>
-            <version>${emoji4j.version}</version>
-        </dependency>
         <dependency>
             <groupId>com.complexible.stardog</groupId>
             <artifactId>server</artifactId>
             <version>${stardog.version}</version>
             <type>pom</type>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -74,7 +90,7 @@
         <dependency>
             <groupId>xml-apis</groupId>
             <artifactId>xml-apis</artifactId>
-            <version>1.4.01</version>
+            <version>${xml-apis.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -88,7 +104,7 @@
     </repositories>
 
     <build>
-        <finalName>${project.artifactId}-${project.version}-sd${stardog.major.version}</finalName>
+        <finalName>${project.artifactId}-${project.version}-sd${stardog.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -152,7 +168,7 @@
                         <exclude>**/Test*</exclude>
                     </excludes>
                     <includes>
-                        <include>**/EmojiTestSuite.java</include>
+                        <include>**/*TestSuite.java</include>
                     </includes>
                 </configuration>
             </plugin>

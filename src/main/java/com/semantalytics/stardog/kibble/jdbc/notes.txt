@@ -1,0 +1,2 @@
+http://db.apache.org/ddlutils/api/org/apache/ddlutils/PlatformUtils.html
+https://docs.oracle.com/javase/7/docs/api/java/sql/DatabaseMetaData.html
