@@ -1,23 +1,20 @@
 [![Build Status](https://travis-ci.org/semantalytics/stardog-kibbles.svg?branch=master)](https://travis-ci.org/semantalytics/stardog-kibbles)
 
-# Stardog Kibbles String Emoji
+# Stardog Kibbles
 
-A collection of [Stardog](http://stardog.com) plugins for working with emojis
+A collection of [Stardog](http://stardog.com) plugins for phonetic strings
 
-Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/string/emoji/
+Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/string/phonetic/
 
-Suggested prefixes: e:, emj:, emoji:
+Suggested prefixes: p, pho, phonetic
 
-    aliases
-    count
-    decimalHtml
-    decimalHtmlShort
-    decimalSurrogateHtml
-    emojify
-    emoticon
-    hexHtmlify
-    htmlify
-    isEmoji
-    remove
-    shortCodify
-    unicode
+Functions:
+
+    carverphone2
+    colognePhonetic
+    daitchMokotoffSoundex
+    doubleMetaphone
+    metaphone
+    nysiis
+    refinedSoundex
+    soundex
