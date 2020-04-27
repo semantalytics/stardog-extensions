@@ -8,7 +8,6 @@
 		<Console name="STDOUT" target="SYSTEM_OUT">
 			<PatternLayout pattern="${PATTERN}"/>
 		</Console>
-
 	</Appenders>
 	<Loggers>
 		<Root level="DEBUG">
