@@ -1,23 +1,63 @@
 [![Build Status](https://travis-ci.org/semantalytics/stardog-kibbles.svg?branch=master)](https://travis-ci.org/semantalytics/stardog-kibbles)
 
-# Stardog Kibbles String Emoji
+# Stardog Kibbles Console
 
-A collection of [Stardog](http://stardog.com) plugins for working with emojis
+A collection of [Stardog](http://stardog.com) plugins for writing ANSI console escape codes
 
-Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/string/emoji/
+Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/console/
 
-Suggested prefixes: e:, emj:, emoji:
+Suggested prefixes: c: , cons:, console:
 
-    aliases
-    count
-    decimalHtml
-    decimalHtmlShort
-    decimalSurrogateHtml
-    emojify
-    emoticon
-    hexHtmlify
-    htmlify
-    isEmoji
-    remove
-    shortCodify
-    unicode
+Functions:
+
+
+    backgroundBlack
+    backgroundBlue
+    backgroundBrightBlack
+    backgroundBrightBlue
+    backgroundBrightCyan
+    backgroundBrightGreen
+    backgroundBrightMagenta
+    backgroundBrightRed
+    backgroundBrightWhite
+    backgroundBrightYellow
+    backgroundCyan
+    backgroundDefault
+    backgroundGreen
+    backgroundMagenta
+    backgroundRed
+    backgroundWhite
+    backgroundYellow
+    blinkFast
+    blinkOff
+    blinkSlow
+    bold
+    boldOff
+    eraseScreen
+    eraseLine
+    conceal
+    concealOff
+    console
+    foregroundBlack
+    foregroundBlue
+    foregroundCyan
+    foregroundDefault
+    foregroundGreen
+    foregroundMagenta
+    foregroundRed
+    foregroundWhite
+    foregroundYellow
+    italic
+    italicOff
+    negative
+    negativeOff
+    render
+    reset
+    strikeThrough
+    strikeThroughOff
+    underline
+    underlineDouble
+    underlineOff
+
+
+
