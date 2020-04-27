@@ -1,66 +1,80 @@
-package com.semantalytics.stardog.kibble;
+package com.semantalytics.stardog.kibble.strings.comparison;
 
 import com.complexible.common.protocols.server.Server;
 import com.complexible.common.protocols.server.ServerException;
 import com.complexible.stardog.Stardog;
-import com.complexible.stardog.StardogException;
 import com.complexible.stardog.api.Connection;
-import com.complexible.stardog.api.ConnectionConfiguration;
 import com.complexible.stardog.api.admin.AdminConnection;
 import com.complexible.stardog.api.admin.AdminConnectionConfiguration;
 import com.google.common.io.Files;
-import com.google.common.io.Resources;
-import org.junit.After;
+import junit.framework.Test;
+import junit.framework.TestCase;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.URISyntaxException;
 
+@RunWith(Suite.class)
+@SuiteClasses({
+        TestCosineDistance.class,
+        TestCosineSimilarity.class,
+        TestDamerauDistance.class,
+        TestHammingDistance.class,
+        TestISub.class,
+        TestJaroWinklerDistance.class,
+        TestJaroWinklerSimilarity.class,
+        TestLevenshteinDistance.class,
+        TestLongestCommonSubsequence.class,
+        TestLongestCommonSubstring.class,
+        TestMetricLongestCommonSubsequence.class,
+        TestMongeElkan.class,
+        TestNeedlemanWunch.class,
+        TestNGram.class,
+        TestNormalizedLevenshteinDistance.class,
+        TestOverlapCoefficient.class,
+        TestQGram.class,
+        TestSift4.class,
+        TestSmithWaterman.class,
+        TestSmithWatermanGotoh.class,
+        TestSorensenDiceDistance.class,
+        TestSorensenDiceSimilarity.class,
+        TestWeightedLevenshteinDistance.class
+})
+public class StringMetricTestSuite extends TestCase {
 
-public abstract class AbstractStardogTest {
 
     private static Stardog STARDOG;
     private static Server SERVER;
-    private static final String DB = "test";
-    private static int TEST_PORT = 5888;
+    public static final String DB = "test";
+    public static final int TEST_PORT = 5888;
     private static final String STARDOG_HOME = System.getenv("STARDOG_HOME");
     protected Connection connection;
     private static final String STARDOG_LICENCE_KEY_FILE_NAME = "stardog-license-key.bin";
 
     @BeforeClass
     public static void beforeClass() throws IOException, ServerException {
-       AdminConnection adminConnection;
-       try{
-           adminConnection = AdminConnectionConfiguration.toEmbeddedServer()
-                .credentials("admin", "admin")
-                .connect();
-       } catch(StardogException e) {
 
+        final File TEST_HOME;
 
-        final File TEST_HOME = Files.createTempDir();
+        TEST_HOME = Files.createTempDir();
         TEST_HOME.deleteOnExit();
 
         Files.copy(new File(STARDOG_HOME + "/" + STARDOG_LICENCE_KEY_FILE_NAME),
                 new File(TEST_HOME, STARDOG_LICENCE_KEY_FILE_NAME));
 
-        try {
-            Files.copy(new File(Resources.getResource("log4j2-test.xml").toURI()), new File(TEST_HOME, "log4j2.xml"));
-        } catch(URISyntaxException e1) {
-
-        }
-
         STARDOG = Stardog.builder().home(TEST_HOME).create();
 
         SERVER = STARDOG.newServer()
                 //.set(ServerOptions.SECURITY_DISABLED, true)
-                .bind(new InetSocketAddress("localhost", TEST_PORT)).start();
-       }
-     
-        adminConnection = AdminConnectionConfiguration.toEmbeddedServer()
+                .bind(new InetSocketAddress("localhost", TEST_PORT))
+                .start();
+
+        final AdminConnection adminConnection = AdminConnectionConfiguration.toEmbeddedServer()
                 .credentials("admin", "admin")
                 .connect();
 
@@ -75,19 +89,7 @@ public abstract class AbstractStardogTest {
     public static void afterClass() {
         if (SERVER != null) {
             SERVER.stop();
-            STARDOG.shutdown();
         }
-    }
-
-    @Before
-    public void setUp() {
-        connection = ConnectionConfiguration.to(DB)
-                .credentials("admin", "admin")
-                .connect();
-    }
-
-    @After
-    public void tearDown() {
-        connection.close();
+        STARDOG.shutdown();
     }
 }
