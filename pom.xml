@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.semantalytics.stardog</groupId>
-    <artifactId>kibbles-string-emoji</artifactId>
+    <artifactId>kibbles-string-escape</artifactId>
     <version>1.0.0</version>
 
     <developers>
@@ -27,8 +27,8 @@
     <scm>
         <url>http://github.com/semantalytics.com/stardog-kibbles</url>
         <tag>HEAD</tag>
-        <connection>scm:git:http://github.com/semantalytics-stardog/kibbles-string-emoji</connection>
-        <developerConnection>scm:git:http://github.com/semantalytics-stardog/kibbles-string-emoji</developerConnection>
+        <connection>scm:git:http://github.com/semantalytics-stardog/kibbles-string-escape</connection>
+        <developerConnection>scm:git:http://github.com/semantalytics-stardog/kibbles-string-escape</developerConnection>
     </scm>
 
     <licenses>
@@ -47,23 +47,31 @@
     <properties>
         <stardog.major.version>5</stardog.major.version>
         <stardog.version>${stardog.major.version}.2.1</stardog.version>
-        <maven.version>3.3.9</maven.version>
-        <emoji4j.version>5.0</emoji4j.version>
         <junit.version>4.12</junit.version>
+        <slf4j.version>1.7.21</slf4j.version>
+        <maven.version>3.3.9</maven.version>
+        <commons-text.version>1.1</commons-text.version>
+        <xml-apis.version>1.4.01</xml-apis.version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.kcthota</groupId>
-            <artifactId>emoji4j</artifactId>
-            <version>${emoji4j.version}</version>
-        </dependency>
         <dependency>
             <groupId>com.complexible.stardog</groupId>
             <artifactId>server</artifactId>
             <version>${stardog.version}</version>
             <type>pom</type>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>${commons-text.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -74,8 +82,8 @@
         <dependency>
             <groupId>xml-apis</groupId>
             <artifactId>xml-apis</artifactId>
-            <version>1.4.01</version>
-            <scope>test</scope>
+            <version>${xml-apis.version}</version>
+            <scope>text</scope>
         </dependency>
     </dependencies>
 
@@ -114,7 +122,6 @@
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>2.4.3</version>
                 <configuration>
-                    <minimizeJar/>
                     <filters>
                         <filter>
                             <artifact>*:*</artifact>
@@ -152,7 +159,7 @@
                         <exclude>**/Test*</exclude>
                     </excludes>
                     <includes>
-                        <include>**/EmojiTestSuite.java</include>
+                        <include>**/*TestSuite.java</include>
                     </includes>
                 </configuration>
             </plugin>
