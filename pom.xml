@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.semantalytics.stardog</groupId>
-    <artifactId>kibbles-string-emoji</artifactId>
-    <version>1.0.0</version>
+    <artifactId>kibbles-net-internetaddress</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
 
     <developers>
         <developer>
@@ -27,8 +27,8 @@
     <scm>
         <url>http://github.com/semantalytics.com/stardog-kibbles</url>
         <tag>HEAD</tag>
-        <connection>scm:git:http://github.com/semantalytics-stardog/kibbles-string-emoji</connection>
-        <developerConnection>scm:git:http://github.com/semantalytics-stardog/kibbles-string-emoji</developerConnection>
+        <connection>scm:git:http://github.com/semantalytics-stardog/kibbles-net-internetaddress</connection>
+        <developerConnection>scm:git:http://github.com/semantalytics-stardog/kibbles-net-internetaddress</developerConnection>
     </scm>
 
     <licenses>
@@ -47,16 +47,19 @@
     <properties>
         <stardog.major.version>5</stardog.major.version>
         <stardog.version>${stardog.major.version}.2.1</stardog.version>
-        <maven.version>3.3.9</maven.version>
-        <emoji4j.version>5.0</emoji4j.version>
         <junit.version>4.12</junit.version>
+        <slf4j.version>1.7.21</slf4j.version>
+        <maven.version>3.3.9</maven.version>
+        <guava.version>23.3-jre</guava.version>
+        <commons-validator.version>1.4.1</commons-validator.version>
+        <commons-net.version>3.6</commons-net.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>com.kcthota</groupId>
-            <artifactId>emoji4j</artifactId>
-            <version>${emoji4j.version}</version>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
         </dependency>
         <dependency>
             <groupId>com.complexible.stardog</groupId>
@@ -77,6 +80,16 @@
             <version>1.4.01</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>commons-validator</groupId>
+            <artifactId>commons-validator</artifactId>
+            <version>${commons-validator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>${commons-net.version}</version>
+        </dependency>
     </dependencies>
 
     <repositories>
@@ -88,7 +101,7 @@
     </repositories>
 
     <build>
-        <finalName>${project.artifactId}-${project.version}-sd${stardog.major.version}</finalName>
+        <finalName>${project.artifactId}-${project.version}-sd${stardog.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -152,7 +165,7 @@
                         <exclude>**/Test*</exclude>
                     </excludes>
                     <includes>
-                        <include>**/EmojiTestSuite.java</include>
+                        <include>**/*TestSuite.java</include>
                     </includes>
                 </configuration>
             </plugin>
