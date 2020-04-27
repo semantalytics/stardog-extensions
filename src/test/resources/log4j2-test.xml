@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="ERROR" name="default-config">
+	<Properties>
+		<Property name="PATTERN">%-5level %d [%t] %c:%M(%L): %m%n</Property>
+	</Properties>
+	<Appenders>
+		<Console name="STDOUT" target="SYSTEM_OUT">
+			<PatternLayout pattern="${PATTERN}"/>
+		</Console>
+
+	</Appenders>
+	<Loggers>
+		<Root level="DEBUG">
+			<AppenderRef ref="STDOUT"/>
+		</Root>
+		<Logger name="com.complexible.stardog" level="DEBUG" additivity="false">
+			<AppenderRef ref="STDOUT"/>
+		</Logger>
+		<!-- ignore minor warnings from PDFBox about mis-named Unicode symbols -->
+		<Logger name="org.apache.pdfbox.encoding.Encoding" level="ERROR" additivity="false">
+			<AppenderRef ref="STDOUT"/>
+		</Logger>
+		<!-- ignore warning from RIO about our replacing their TurtleWriter -->
+		<Logger name="org.openrdf.rio.RDFWriterRegistry" level="ERROR" additivity="false">
+			<AppenderRef ref="STDOUT"/>
+		</Logger>
+		<!-- redirect all zookeeper records to its own log file -->
+		<Logger name="org.apache.zookeeper" level="INFO" additivity="false">
+			<AppenderRef ref="STDOUT"/>
+		</Logger>
+
+		<!-- do not edit -->
+		<Logger name="com.complexible.stardog.Kernels" level="INFO" additivity="false">
+			<AppenderRef ref="STDOUT"/>
+		</Logger>
+	</Loggers>
+</Configuration>
