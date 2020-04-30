@@ -101,7 +101,7 @@
     </repositories>
 
     <build>
-        <finalName>${project.artifactId}-${project.version}-sd${stardog.major.version}</finalName>
+        <finalName>semantalytics-stardog-${project.artifactId}-${project.version}-sd${stardog.major.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -146,6 +146,13 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
+                            <artifactSet>
+                                <excludes>
+                                    <exclude>junit:junit</exclude>
+                                    <exclude>org.assertj:assertj-core</exclude>
+                                    <exclude>org.hamcrest:hamcrest-all</exclude>
+                                </excludes>
+                            </artifactSet>
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
