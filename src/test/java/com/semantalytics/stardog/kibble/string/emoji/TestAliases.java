@@ -2,9 +2,12 @@ package com.semantalytics.stardog.kibble.string.emoji;
 
 import com.semantalytics.stardog.kibble.AbstractStardogTest;
 import com.stardog.stark.Literal;
+import com.stardog.stark.Value;
 import com.stardog.stark.query.BindingSet;
 import com.stardog.stark.query.SelectQueryResult;
 import org.junit.*;
+
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
@@ -18,7 +21,7 @@ public class TestAliases extends AbstractStardogTest {
     public void testOneArgEmoji() {
 
             final String aQuery = EmojiVocabulary.sparqlPrefix("emoji") +
-                    "select ?result where { bind(emoji:aliases(\"\uD83D\uDC2D\") as ?result) }";
+                    "select ?result where { unnest(emoji:aliases(\"\uD83D\uDC2D\") as ?result) }";
 
             try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
@@ -26,8 +29,8 @@ public class TestAliases extends AbstractStardogTest {
 
                 final Literal aLiteral = (Literal)aResult.next().value("result").get();
 
-                assertEquals("mouse", aLiteral.label());
-                assertFalse("Should have no more results", aResult.hasNext());
+                assertThat(aLiteral.label()).isEqualTo("mouse");
+                assertThat(aResult).isExhausted();
             }
     }
 
@@ -35,16 +38,16 @@ public class TestAliases extends AbstractStardogTest {
     public void testEmptyString() {
 
         final String aQuery = EmojiVocabulary.sparqlPrefix("emoji") +
-                "select ?result where { bind(emoji:aliases(\"\") as ?result) }";
+                "select ?result where { unnest(emoji:aliases(\"\") as ?result) }";
 
         try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
             assertTrue("Should have a result", aResult.hasNext());
 
-            final Literal aLiteral = ((Literal)aResult.next().value("result").get());
+            Optional<Value> aPossibleValue = aResult.next().value("result");
 
-            assertEquals("", aLiteral.label());
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aPossibleValue).isNotPresent();
+            assertThat(aResult).isExhausted();
         }
     }
 
