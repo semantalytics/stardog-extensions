@@ -224,10 +224,10 @@
                         <exclude>**/Test*.java</exclude>
                     </excludes>
                     <includes>
-                        <include>**/StringTestSuite.java</include>
                         <include>**/EmojiTestSuite.java</include>
                         <include>**/StringMetricTestSuite.java</include>
                         <include>**/StringTestSuite.java</include>
+                        <include>**/PhoneticTestSuite.java</include>
                     </includes>
                 </configuration>
             </plugin>
