@@ -1,10 +1,12 @@
 package com.semantalytics.stardog.kibble.string.emoji;
 
 import com.semantalytics.stardog.kibble.AbstractStardogTest;
+import com.stardog.stark.Literal;
+import com.stardog.stark.query.BindingSet;
+import com.stardog.stark.query.SelectQueryResult;
 import org.junit.*;
-import org.openrdf.query.BindingSet;
-import org.openrdf.query.TupleQueryResult;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
 
 public class TestCount extends AbstractStardogTest {
@@ -15,13 +17,13 @@ public class TestCount extends AbstractStardogTest {
         final String aQuery = EmojiVocabulary.sparqlPrefix("emoji") +
                     "select ?result where { bind(emoji:count(\"\") as ?result) }";
 
-            try (final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+            try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
                 assertTrue("Should have a result", aResult.hasNext());
 
-                final String aValue = aResult.next().getValue("result").stringValue();
+                final Literal aLiteral = (Literal)aResult.next().value("result").get();
 
-                assertEquals("0", aValue);
+                assertEquals("0", aLiteral.label());
                 assertFalse("Should have no more results", aResult.hasNext());
             }
     }
@@ -32,13 +34,13 @@ public class TestCount extends AbstractStardogTest {
         final String aQuery = EmojiVocabulary.sparqlPrefix("emoji") +
                 "select ?result where { bind(emoji:count(\":star:\") as ?result) }";
 
-        try (final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+        try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
             assertTrue("Should have a result", aResult.hasNext());
 
-            final String aValue = aResult.next().getValue("result").stringValue();
+            final Literal aLiteral = ((Literal)aResult.next().value("result").get());
 
-            assertEquals("1", aValue);
+            assertEquals("1", aLiteral.label());
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }
@@ -49,13 +51,13 @@ public class TestCount extends AbstractStardogTest {
         final String aQuery = EmojiVocabulary.sparqlPrefix("emoji") +
                 "select ?result where { bind(emoji:count(\":star: :dog:\") as ?result) }";
 
-        try (final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+        try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
             assertTrue("Should have a result", aResult.hasNext());
 
-            final String aValue = aResult.next().getValue("result").stringValue();
+            final Literal aLiteral = (Literal)aResult.next().value("result").get();
 
-            assertEquals("2", aValue);
+            assertEquals("2", aLiteral.label());
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }
@@ -66,14 +68,14 @@ public class TestCount extends AbstractStardogTest {
         final String aQuery = EmojiVocabulary.sparqlPrefix("emoji") +
                 "select ?result where { bind(emoji:count(\"star\", \"dog\") as ?result) }";
 
-        try(final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+        try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
             assertTrue("Should have a result", aResult.hasNext());
 
             final BindingSet aBindingSet = aResult.next();
 
-            assertTrue("Should have no bindings", aBindingSet.getBindingNames().isEmpty());
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aBindingSet.size()).isZero();
+            assertThat(aResult.hasNext()).isFalse();
         }
     }
 
@@ -83,14 +85,14 @@ public class TestCount extends AbstractStardogTest {
         final String aQuery = EmojiVocabulary.sparqlPrefix("emoji") +
                 "select ?result where { bind(emoji:count() as ?result) }";
 
-        try(final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+        try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
             assertTrue("Should have a result", aResult.hasNext());
 
             final BindingSet aBindingSet = aResult.next();
 
-            assertTrue("Should have no bindings", aBindingSet.getBindingNames().isEmpty());
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aBindingSet.size()).isZero();
+            assertThat(aResult.hasNext()).isFalse();
         }
     }
 
@@ -100,14 +102,14 @@ public class TestCount extends AbstractStardogTest {
         final String aQuery = EmojiVocabulary.sparqlPrefix("emoji") +
                 "select ?result where { bind(emoji:count(1) as ?result) }";
 
-        try(final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+        try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
             assertTrue("Should have a result", aResult.hasNext());
 
             final BindingSet aBindingSet = aResult.next();
 
-            assertTrue("Should have no bindings", aBindingSet.getBindingNames().isEmpty());
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aBindingSet.size()).isZero();
+            assertThat(aResult.hasNext()).isFalse();
         }
     }
 

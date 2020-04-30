@@ -1,8 +1,11 @@
 [![Build Status](https://travis-ci.org/semantalytics/stardog-kibbles.svg?branch=master)](https://travis-ci.org/semantalytics/stardog-kibbles)
 
-# Stardog Kibbles String Emoji
+# Stardog Functions
 
-A collection of [Stardog](http://stardog.com) plugins for working with emojis
+A collection of [Stardog](http://stardog.com) functions
+
+
+# Emoji
 
 Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/string/emoji/
 
@@ -21,3 +24,6 @@ Suggested prefixes: e:, emj:, emoji:
     remove
     shortCodify
     unicode
+    
+## Examples
+
