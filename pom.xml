@@ -47,11 +47,15 @@
     <properties>
         <stardog.major.version>7</stardog.major.version>
         <stardog.version>${stardog.major.version}.2.1</stardog.version>
-        <maven.version>3.3.9</maven.version>
-        <emoji4j.version>5.0</emoji4j.version>
         <junit.version>4.12</junit.version>
         <assertj.version>3.15.0</assertj.version>
         <xmlapis.version>1.4.01</xmlapis.version>
+        <slf4j.version>1.7.21</slf4j.version>
+        <maven.version>3.3.9</maven.version>
+        <guava.version>23.3-jre</guava.version>
+        <commons-text.version>1.7</commons-text.version>
+        <commons-lang3.version>3.9</commons-lang3.version>
+        <emoji4j.version>5.0</emoji4j.version>
     </properties>
 
     <dependencies>
@@ -74,6 +78,21 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>${commons-text.version}</version>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
@@ -83,6 +102,12 @@
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>${assertj.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>xml-apis</groupId>
@@ -128,6 +153,16 @@
                 <version>2.4.3</version>
                 <configuration>
                     <minimizeJar/>
+                    <relocations>
+                        <relocation>
+                            <pattern>org.apache.commons.lang3</pattern>
+                            <shadedPattern>shaded.org.apache.commons.lang3</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>org.apache.commons.text</pattern>
+                            <shadedPattern>shaded.org.apache.commons.text</shadedPattern>
+                        </relocation>
+                    </relocations>
                     <filters>
                         <filter>
                             <artifact>*:*</artifact>
@@ -138,6 +173,10 @@
                             </excludes>
                         </filter>
                     </filters>
+                    <artifactSet>
+                        <excludes>
+                        </excludes>
+                    </artifactSet>
                 </configuration>
                 <executions>
                     <execution>
@@ -173,10 +212,37 @@
                         <exclude>**/Test*</exclude>
                     </excludes>
                     <includes>
+                        <include>**/StringTestSuite.java</include>
                         <include>**/EmojiTestSuite.java</include>
                     </includes>
                 </configuration>
             </plugin>
+            <!--
+            <plugin>
+                <groupId>com.github.wvengen</groupId>
+                <artifactId>proguard-maven-plugin</artifactId>
+                <version>2.2.0</version>
+                <executions>
+                   <execution>
+                       <phase>package</phase>
+                       <goals><goal>proguard</goal></goals>
+                   </execution>
+                </executions>
+                <configuration>
+                    <options>
+                        <option>-allowaccessmodification</option>
+                        <option>-keep public class * extends com.complexible.stardog.plan.filter.functions.AbstractFunction { *; }</option>
+                    </options>
+                    <outjar>${project.build.finalName}.jar</outjar>
+                    <outjar>${project.build.finalName}-small.jar</outjar>
+                    <proguardInclude>${basedir}/proguard.conf</proguardInclude>
+                    <libs>
+                        <lib>${java.home}/lib/rt.jar</lib>
+                        <lib>${java.home}/lib/jsse.jar</lib>
+                    </libs>
+                </configuration>
+            </plugin>
+            -->
         </plugins>
     </build>
 </project>

@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.semantalytics.stardog.kibble.string.StringTestSuite
+-------------------------------------------------------------------------------
+Tests run: 823, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 103.954 sec
