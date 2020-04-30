@@ -56,14 +56,11 @@
         <commons-text.version>1.7</commons-text.version>
         <commons-lang3.version>3.9</commons-lang3.version>
         <emoji4j.version>5.0</emoji4j.version>
+        <simmetrics-core.version>4.1.1</simmetrics-core.version>
+        <java-sting-similarity.version>0.24</java-sting-similarity.version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.kcthota</groupId>
-            <artifactId>emoji4j</artifactId>
-            <version>${emoji4j.version}</version>
-        </dependency>
         <dependency>
             <groupId>com.complexible.stardog</groupId>
             <artifactId>server</artifactId>
@@ -76,6 +73,11 @@
             <artifactId>stardog-cache-core</artifactId>
             <version>${stardog.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.kcthota</groupId>
+            <artifactId>emoji4j</artifactId>
+            <version>${emoji4j.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -91,6 +93,16 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-text</artifactId>
             <version>${commons-text.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>info.debatty</groupId>
+            <artifactId>java-string-similarity</artifactId>
+            <version>${java-sting-similarity.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.mpkorstanje</groupId>
+            <artifactId>simmetrics-core</artifactId>
+            <version>${simmetrics-core.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -209,11 +221,12 @@
                 <configuration>
                     <argLine>-Djava.library.path=${env.STARDOG}/lib</argLine>
                     <excludes>
-                        <exclude>**/Test*</exclude>
+                        <exclude>**/Test*.java</exclude>
                     </excludes>
                     <includes>
                         <include>**/StringTestSuite.java</include>
                         <include>**/EmojiTestSuite.java</include>
+                        <include>**/StringMetricTestSuite.java</include>
                     </includes>
                 </configuration>
             </plugin>
