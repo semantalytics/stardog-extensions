@@ -46,13 +46,13 @@
 
     <properties>
         <stardog.major.version>7</stardog.major.version>
-        <stardog.version>${stardog.major.version}.0.1</stardog.version>
+        <stardog.version>${stardog.major.version}.2.1</stardog.version>
         <junit.version>4.12</junit.version>
         <slf4j.version>1.7.21</slf4j.version>
         <maven.version>3.3.9</maven.version>
         <simmetrics-core.version>4.1.1</simmetrics-core.version>
         <java-sting-similarity.version>0.24</java-sting-similarity.version>
-        <xml-apis.version>1.4.01</xml-apis.version>
+        <xmlapis.version>1.4.01</xmlapis.version>
     </properties>
 
     <dependencies>
@@ -94,7 +94,7 @@
         <dependency>
             <groupId>xml-apis</groupId>
             <artifactId>xml-apis</artifactId>
-            <version>${xml-apis.version}</version>
+            <version>${xmlapis.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
