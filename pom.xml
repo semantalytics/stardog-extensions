@@ -227,6 +227,7 @@
                         <include>**/StringTestSuite.java</include>
                         <include>**/EmojiTestSuite.java</include>
                         <include>**/StringMetricTestSuite.java</include>
+                        <include>**/StringTestSuite.java</include>
                     </includes>
                 </configuration>
             </plugin>

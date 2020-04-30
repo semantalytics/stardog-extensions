@@ -155,8 +155,6 @@ Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/string/emoji/
 
 Suggested prefixes: e:, emj:, emoji:
 
-Functions:
-
     aliases
     count
     decimalHtml
@@ -200,3 +198,20 @@ Suggested prefixes: sm: , strm:, stringmetric:
     sorensenDiceSimilarity
     sorensenDiceDistance
     weightedLevenshteinDistance
+    
+# phonetic
+
+Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/string/phonetic/
+
+Suggested prefixes: p, pho, phonetic
+
+Functions:
+
+    carverphone2
+    colognePhonetic
+    daitchMokotoffSoundex
+    doubleMetaphone
+    metaphone
+    nysiis
+    refinedSoundex
+    soundex
