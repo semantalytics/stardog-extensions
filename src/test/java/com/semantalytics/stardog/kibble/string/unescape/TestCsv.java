@@ -1,11 +1,14 @@
 package com.semantalytics.stardog.kibble.string.unescape;
 
 import com.semantalytics.stardog.kibble.AbstractStardogTest;
+import com.stardog.stark.Literal;
+import com.stardog.stark.Value;
+import com.stardog.stark.query.BindingSet;
+import com.stardog.stark.query.SelectQueryResult;
 import org.junit.Test;
-import org.openrdf.query.BindingSet;
-import org.openrdf.query.TupleQueryResult;
 
-import static org.junit.Assert.*;
+import static junit.framework.TestCase.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestCsv extends AbstractStardogTest {
 
@@ -17,14 +20,18 @@ public class TestCsv extends AbstractStardogTest {
         final String aQuery = sparqlPrefix +
                 "select ?result where { bind(unescape:csv(\"\\\"\\\"\\\"Star,dog\\\"\\\"\\\"\") AS ?result) }";
 
-        try (final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+        try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
-            assertTrue("Should have a result", aResult.hasNext());
+            assertThat(aResult).hasNext().withFailMessage("Should have a result");
 
-            final String aValue = aResult.next().getValue("result").stringValue();
+            final Value aValue = aResult.next().get("result");
 
-            assertEquals("\"Star,dog\"", aValue);
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aValue).isInstanceOf(Literal.class);
+
+            final Literal aLiteralValue = (Literal)aValue;
+
+            assertThat(aLiteralValue.label()).isEqualTo("\"Star,dog\"");
+            assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
     }
 
@@ -34,14 +41,18 @@ public class TestCsv extends AbstractStardogTest {
         final String aQuery = sparqlPrefix +
                 "select ?result where { bind(unescape:csv(\"\") as ?result) }";
 
-        try(final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+        try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
-            assertTrue("Should have a result", aResult.hasNext());
+            assertThat(aResult).hasNext().withFailMessage("Should have a result");
 
-            final String aValue = aResult.next().getValue("result").stringValue();
+            final Value aValue = aResult.next().get("result");
 
-            assertEquals("", aValue);
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aValue).isInstanceOf(Literal.class);
+
+            final Literal aLiteralValue = (Literal)aValue;
+
+            assertThat(aLiteralValue.label()).isEqualTo("");
+            assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
     }
 
@@ -51,14 +62,14 @@ public class TestCsv extends AbstractStardogTest {
         final String aQuery = sparqlPrefix +
                 "select ?result where { bind(unescape:csv() as ?result) }";
 
-        try(final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+        try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
             assertTrue("Should have a result", aResult.hasNext());
 
             final BindingSet aBindingSet = aResult.next();
 
-            assertTrue("Should have no bindings", aBindingSet.getBindingNames().isEmpty());
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aBindingSet).isEmpty();
+            assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
     }
 
@@ -68,14 +79,14 @@ public class TestCsv extends AbstractStardogTest {
         final String aQuery = sparqlPrefix +
                 "select ?result where { bind(unescape:csv(\"one\", \"two\") as ?result) }";
 
-        try(final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+        try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
             assertTrue("Should have a result", aResult.hasNext());
 
             final BindingSet aBindingSet = aResult.next();
 
-            assertTrue("Should have no bindings", aBindingSet.getBindingNames().isEmpty());
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aBindingSet).isEmpty();
+            assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
     }
 
@@ -85,14 +96,14 @@ public class TestCsv extends AbstractStardogTest {
         final String aQuery = sparqlPrefix +
                 "select ?result where { bind(unescape:csv(1) as ?result) }";
 
-        try(final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+        try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
             assertTrue("Should have a result", aResult.hasNext());
 
             final BindingSet aBindingSet = aResult.next();
 
-            assertTrue("Should have no bindings", aBindingSet.getBindingNames().isEmpty());
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aBindingSet).isEmpty();
+            assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
     }
 }

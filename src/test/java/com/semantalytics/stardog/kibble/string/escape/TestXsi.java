@@ -1,11 +1,14 @@
 package com.semantalytics.stardog.kibble.string.escape;
 
 import com.semantalytics.stardog.kibble.AbstractStardogTest;
+import com.stardog.stark.Literal;
+import com.stardog.stark.Value;
 import org.junit.Test;
-import org.openrdf.query.BindingSet;
-import org.openrdf.query.TupleQueryResult;
+import com.stardog.stark.query.BindingSet;
+import com.stardog.stark.query.SelectQueryResult;
 
-import static org.junit.Assert.*;
+import static junit.framework.TestCase.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestXsi extends AbstractStardogTest {
 
@@ -17,15 +20,17 @@ public class TestXsi extends AbstractStardogTest {
         final String aQuery = sparqlPrefix +
                 "select ?result where { bind(escape:xsi(\"He didn't say, \\\"Stop!\\\"\") AS ?result) }";
 
-        try (final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+        try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
+            assertThat(aResult).hasNext().withFailMessage("Should have a result");
 
-            assertTrue("Should have a result", aResult.hasNext());
+            final Value aValue = aResult.next().get("result");
 
-            final String aValue = aResult.next().getValue("result").stringValue();
+            assertThat(aValue).isInstanceOf(Literal.class);
 
-            assertEquals("He\\ didn\\'t\\ say,\\ \\\"Stop!\\\"", aValue);
+            final Literal aLiteralValue = (Literal)aValue;
 
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aLiteralValue.label()).isEqualTo("He\\ didn\\'t\\ say,\\ \\\"Stop!\\\"");
+            assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
     }
 
@@ -35,14 +40,17 @@ public class TestXsi extends AbstractStardogTest {
         final String aQuery = sparqlPrefix +
                 "select ?result where { bind(escape:xsi(\"\") as ?result) }";
 
-        try(final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+        try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
+            assertThat(aResult).hasNext().withFailMessage("Should have a result");
 
-            assertTrue("Should have a result", aResult.hasNext());
+            final Value aValue = aResult.next().get("result");
 
-            final String aValue = aResult.next().getValue("result").stringValue();
+            assertThat(aValue).isInstanceOf(Literal.class);
 
-            assertEquals("", aValue);
-            assertFalse("Should have no more results", aResult.hasNext());
+            final Literal aLiteralValue = (Literal)aValue;
+
+            assertThat(aLiteralValue.label()).isEqualTo("");
+            assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
     }
 
@@ -52,14 +60,13 @@ public class TestXsi extends AbstractStardogTest {
         final String aQuery = sparqlPrefix +
                 "select ?result where { bind(escape:xsi() as ?result) }";
 
-        try(final TupleQueryResult aResult = connection.select(aQuery).execute()) {
-
+        try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
             assertTrue("Should have a result", aResult.hasNext());
 
             final BindingSet aBindingSet = aResult.next();
 
-            assertTrue("Should have no bindings", aBindingSet.getBindingNames().isEmpty());
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aBindingSet).isEmpty();
+            assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
     }
 
@@ -69,14 +76,13 @@ public class TestXsi extends AbstractStardogTest {
         final String aQuery = sparqlPrefix +
                 "select ?result where { bind(escape:xsi(\"one\", \"two\") as ?result) }";
 
-        try(final TupleQueryResult aResult = connection.select(aQuery).execute()) {
-
+        try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
             assertTrue("Should have a result", aResult.hasNext());
 
             final BindingSet aBindingSet = aResult.next();
 
-            assertTrue("Should have no bindings", aBindingSet.getBindingNames().isEmpty());
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aBindingSet).isEmpty();
+            assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
     }
 
@@ -86,14 +92,13 @@ public class TestXsi extends AbstractStardogTest {
         final String aQuery = sparqlPrefix +
                 "select ?result where { bind(escape:xsi(1) as ?result) }";
 
-        try(final TupleQueryResult aResult = connection.select(aQuery).execute()) {
-
+        try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
             assertTrue("Should have a result", aResult.hasNext());
 
             final BindingSet aBindingSet = aResult.next();
 
-            assertTrue("Should have no bindings", aBindingSet.getBindingNames().isEmpty());
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aBindingSet).isEmpty();
+            assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
     }
 }

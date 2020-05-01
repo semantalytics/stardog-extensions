@@ -1,7 +1,7 @@
 package com.semantalytics.stardog.kibble.string.escape;
 
-import com.complexible.common.rdf.model.StardogValueFactory;
-import org.openrdf.model.IRI;
+import com.stardog.stark.IRI;
+import com.stardog.stark.Values;
 
 public enum EscapeVocabulary {
 
@@ -19,7 +19,7 @@ public enum EscapeVocabulary {
     public final IRI iri;
 
     EscapeVocabulary() {
-        iri = StardogValueFactory.instance().createIRI(NAMESPACE, name());
+        iri = Values.iri(NAMESPACE, name());
     }
 
     public static String sparqlPrefix(String prefixName) {
@@ -27,6 +27,6 @@ public enum EscapeVocabulary {
     }
 
     public String stringValue() {
-        return iri.stringValue();
+        return iri.toString();
     }
 }

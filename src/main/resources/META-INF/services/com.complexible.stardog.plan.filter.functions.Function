@@ -192,5 +192,4 @@ com.semantalytics.stardog.kibble.string.unescape.Html4
 com.semantalytics.stardog.kibble.string.unescape.Java
 com.semantalytics.stardog.kibble.string.unescape.Json
 com.semantalytics.stardog.kibble.string.unescape.Xml
-com.semantalytics.stardog.kibble.string.unescape.Xml11
 com.semantalytics.stardog.kibble.string.unescape.Xsi

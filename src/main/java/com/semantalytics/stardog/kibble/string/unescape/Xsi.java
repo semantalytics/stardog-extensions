@@ -1,13 +1,13 @@
 package com.semantalytics.stardog.kibble.string.unescape;
 
-import com.complexible.stardog.plan.filter.ExpressionEvaluationException;
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
+import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.string.StringFunction;
-import org.openrdf.model.Value;
+import com.stardog.stark.Literal;
+import com.stardog.stark.Value;
 
-import static com.complexible.common.rdf.model.Values.literal;
-import static org.apache.commons.text.StringEscapeUtils.escapeXSI;
+import static com.stardog.stark.Values.literal;
 import static org.apache.commons.text.StringEscapeUtils.unescapeXSI;
 
 public final class Xsi extends AbstractFunction implements StringFunction {
@@ -21,11 +21,15 @@ public final class Xsi extends AbstractFunction implements StringFunction {
     }
 
     @Override
-    protected Value internalEvaluate(final Value... values) throws ExpressionEvaluationException {
+    protected ValueOrError internalEvaluate(final Value... values) {
 
-        final String string = assertStringLiteral(values[0]).stringValue();
+        if(assertStringLiteral(values[0])) {
+            final String string = ((Literal)values[0]).label();
 
-        return literal(unescapeXSI(string));
+            return ValueOrError.General.of(literal(unescapeXSI(string)));
+        } else {
+            return ValueOrError.Error;
+        }
     }
 
     @Override
