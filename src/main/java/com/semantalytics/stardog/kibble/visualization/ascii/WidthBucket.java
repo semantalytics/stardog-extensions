@@ -1,12 +1,13 @@
 package com.semantalytics.stardog.kibble.visualization.ascii;
 
-import com.complexible.stardog.plan.filter.ExpressionEvaluationException;
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
+import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.string.StringFunction;
-import org.openrdf.model.Value;
+import com.stardog.stark.Value;
+import org.openrdf.model.impl.NumericLiteral;
 
-import static com.complexible.common.rdf.model.Values.*;
+import static com.stardog.stark.Values.literal;
 
 public final class WidthBucket extends AbstractFunction implements StringFunction {
 
@@ -19,22 +20,29 @@ public final class WidthBucket extends AbstractFunction implements StringFunctio
     }
 
     @Override
-    protected Value internalEvaluate(final Value... values) throws ExpressionEvaluationException {
+    protected ValueOrError internalEvaluate(final Value... values) {
+        if(assertNumericLiteral(values[0]) &&
+           assertNumericLiteral(values[1]) &&
+           assertNumericLiteral(values[2]) &&
+           assertNumericLiteral(values[3])) {
 
-        final long value = assertNumericLiteral(values[0]).longValue();
-        final long min = assertNumericLiteral(values[1]).longValue();
-        final long max = assertNumericLiteral(values[2]).longValue();
-        final int bucketCount = assertNumericLiteral(values[3]).intValue();
+            final long value = ((NumericLiteral)values[0]).longValue();
+            final long min = ((NumericLiteral)values[1]).longValue();
+            final long max = ((NumericLiteral)values[2]).longValue();
+            final int bucketCount = ((NumericLiteral)values[3]).intValue();
 
-        if(min > max) {
-            throw new ExpressionEvaluationException("Max must be greater than Min. Found Max: " + max + ", Min: " + min);
+            if (min > max) {
+                return ValueOrError.Error;
+            }
+
+            final long bucketWidth = (max - min) / bucketCount;
+
+            final long bucket = Math.floorDiv(value - min, bucketWidth);
+
+            return ValueOrError.General.of(literal(bucket));
+        } else {
+            return ValueOrError.Error;
         }
-
-        final long bucketWidth = (max - min) / bucketCount;
-
-        final long bucket = Math.floorDiv(value - min, bucketWidth);
-
-        return literal(bucket);
     }
 
     @Override

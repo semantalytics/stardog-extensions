@@ -1,12 +1,13 @@
 package com.semantalytics.stardog.kibble.visualization.ascii;
 
-import com.complexible.stardog.plan.filter.ExpressionEvaluationException;
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
+import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.string.StringFunction;
-import org.openrdf.model.Value;
+import com.stardog.stark.Literal;
+import com.stardog.stark.Value;
 
-import static com.complexible.common.rdf.model.Values.literal;
+import static com.stardog.stark.Values.literal;
 
 public final class QRCode extends AbstractFunction implements StringFunction {
 
@@ -19,16 +20,15 @@ public final class QRCode extends AbstractFunction implements StringFunction {
     }
 
     @Override
-    protected Value internalEvaluate(final Value... values) throws ExpressionEvaluationException {
+    protected ValueOrError internalEvaluate(final Value... values) {
 
-        final String string = assertStringLiteral(values[0]).stringValue();
+        if(assertStringLiteral(values[0])) {
+            final String string = ((Literal)values[0]).label();
 
-        return literal(net.glxn.qrgen.javase.QRCode.from(string).toString());
-    }
-
-    public Value evaluate(final Value... values) throws ExpressionEvaluationException {
-        this.assertRequiredArgs(values.length);
-        return this.internalEvaluate(values);
+            return ValueOrError.General.of(literal(net.glxn.qrgen.javase.QRCode.from(string).toString()));
+        } else {
+            return ValueOrError.Error;
+        }
     }
 
     @Override

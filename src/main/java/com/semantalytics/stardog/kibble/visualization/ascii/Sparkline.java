@@ -1,16 +1,16 @@
 package com.semantalytics.stardog.kibble.visualization.ascii;
 
-import com.complexible.common.rdf.model.Values;
 import com.complexible.stardog.plan.filter.EvalUtil;
-import com.complexible.stardog.plan.filter.ExpressionEvaluationException;
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
+import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.string.StringFunction;
 import com.google.common.collect.Range;
-import org.openrdf.model.Literal;
-import org.openrdf.model.Value;
+import com.stardog.stark.Literal;
+import com.stardog.stark.Value;
+import com.stardog.stark.Values;
 
-import static com.complexible.common.rdf.model.Values.literal;
+import static com.stardog.stark.Values.literal;
 import static java.util.stream.Collectors.toList;
 
 public final class Sparkline extends AbstractFunction implements StringFunction {
@@ -29,26 +29,22 @@ public final class Sparkline extends AbstractFunction implements StringFunction 
     }
 
     @Override
-    protected Value internalEvaluate(final Value... values) throws ExpressionEvaluationException {
+    protected ValueOrError internalEvaluate(final Value... values) {
 
         for(final Value value : values) {
-            final Literal literal = assertLiteral(value);
-            if (literal.getDatatype() != null && EvalUtil.isNumericDatatype(literal.getDatatype())) {
+            assertLiteral(value);
+            final Literal literal = ((Literal)value);
+            if (literal.datatype() != null && EvalUtil.isNumericDatatype(literal.datatype())) {
                 stringBuffer.append(spark.internalEvaluate(value).stringValue());
             } else if (EvalUtil.isStringLiteral(literal)) {
-                for (final Literal l : value.stringValue().chars().mapToObj(Character::getNumericValue).map(Values::literal).collect(toList())) {
+                for (final Literal l : ((Literal)value).label().chars().mapToObj(Character::getNumericValue).map(Values::literal).collect(toList())) {
                     stringBuffer.append(spark.internalEvaluate(l).stringValue());
                 }
             } else {
-                throw new ExpressionEvaluationException("Arguments to function spark must be either a string or an int");
+                return ValueOrError.Error;
             }
         }
-        return literal(stringBuffer.toString());
-    }
-
-    public Value evaluate(final Value... values) throws ExpressionEvaluationException {
-        this.assertRequiredArgs(values.length);
-        return this.internalEvaluate(values);
+        return ValueOrError.General.of(literal(stringBuffer.toString()));
     }
 
     @Override

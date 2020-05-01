@@ -1,15 +1,16 @@
 package com.semantalytics.stardog.kibble.visualization.ascii;
 
-import com.complexible.stardog.plan.filter.ExpressionEvaluationException;
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
+import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.string.StringFunction;
-import org.openrdf.model.Value;
+import com.stardog.stark.Literal;
+import com.stardog.stark.Value;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static com.complexible.common.rdf.model.Values.*;
+import static com.stardog.stark.Values.literal;
 
 public final class Spark extends AbstractFunction implements StringFunction {
 
@@ -24,20 +25,19 @@ public final class Spark extends AbstractFunction implements StringFunction {
     }
 
     @Override
-    protected Value internalEvaluate(final Value... values) throws ExpressionEvaluationException {
+    protected ValueOrError internalEvaluate(final Value... values) {
 
-        final int i = assertNumericLiteral(values[0]).intValue();
+        if(assertNumericLiteral(values[0])) {
+            final int i = Literal.intValue((Literal)values[0]);
 
-        if(i >= ticks.size() || i < 0) {
-            throw new ExpressionEvaluationException("Spark function takes arguments between 0 and 7. Found " + i);
+            if (i >= ticks.size() || i < 0) {
+                return ValueOrError.Error;
+            }
+
+            return ValueOrError.General.of(literal(ticks.get(i).toString()));
+        } else {
+            return ValueOrError.Error;
         }
-
-        return literal(ticks.get(i).toString());
-    }
-
-    public Value evaluate(final Value... values) throws ExpressionEvaluationException {
-        this.assertRequiredArgs(values.length);
-        return this.internalEvaluate(values);
     }
 
     @Override

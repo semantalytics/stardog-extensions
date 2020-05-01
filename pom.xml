@@ -59,7 +59,7 @@
         <simmetrics-core.version>4.1.1</simmetrics-core.version>
         <java-sting-similarity.version>0.24</java-sting-similarity.version>
         <qrgen.version>2.4.0</qrgen.version>
-        <textplots.version>1.0-SNAPSHOT</textplots.version>
+        <textplots.version>master</textplots.version>
     </properties>
 
     <dependencies>
@@ -76,7 +76,7 @@
             <version>${qrgen.version}</version>
         </dependency>
         <dependency>
-            <groupId>de.davidm</groupId>
+            <groupId>com.github.dvdmllr</groupId>
             <artifactId>textplots</artifactId>
             <version>${textplots.version}</version>
         </dependency>
@@ -244,8 +244,9 @@
                         <include>**/StringMetricTestSuite.java</include>
                         <include>**/StringTestSuite.java</include>
                         <include>**/PhoneticTestSuite.java</include>
-                        <include>**/*EscapeTestSuite.java</include>
-                        <include>**/*UnescapeTestSuite.java</include>
+                        <include>**/EscapeTestSuite.java</include>
+                        <include>**/UnescapeTestSuite.java</include>
+                        <include>**/VisualizationTestSuite.java</include>
                     </includes>
                 </configuration>
             </plugin>

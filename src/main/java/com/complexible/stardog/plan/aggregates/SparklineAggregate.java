@@ -1,15 +1,15 @@
 package com.complexible.stardog.plan.aggregates;
 
 import com.complexible.stardog.plan.filter.Expression;
-import com.complexible.stardog.plan.filter.ExpressionEvaluationException;
+import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.google.common.base.Preconditions;
 import com.semantalytics.stardog.kibble.visualization.ascii.Spark;
 import com.semantalytics.stardog.kibble.visualization.ascii.AsciiVisualizationVocabulary;
-import org.openrdf.model.Value;
+import com.stardog.stark.Value;
 
 import java.util.List;
 
-import static com.complexible.common.rdf.model.Values.literal;
+import static com.stardog.stark.Values.literal;
 
 public final class SparklineAggregate extends AbstractAggregate {
 
@@ -37,13 +37,15 @@ public final class SparklineAggregate extends AbstractAggregate {
     }
 
     @Override
-    protected Value _getValue() throws ExpressionEvaluationException {
-        return literal(stringBuffer.toString());
+    protected ValueOrError _getValue() {
+        return ValueOrError.General.of(literal(stringBuffer.toString()));
     }
 
     @Override
-    protected void aggregate(final long multiplicity, final Value value, Value... otherValues) throws ExpressionEvaluationException {
+    protected ValueOrError aggregate(final long multiplicity, final Value value, Value... otherValues) {
         stringBuffer.append(spark.evaluate(value));
+        //???
+        return null;
     }
 
     @Override
