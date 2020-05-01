@@ -228,6 +228,8 @@
                         <include>**/StringMetricTestSuite.java</include>
                         <include>**/StringTestSuite.java</include>
                         <include>**/PhoneticTestSuite.java</include>
+                        <include>**/*EscapeTestSuite.java</include>
+                        <include>**/*UnescapeTestSuite.java</include>
                     </includes>
                 </configuration>
             </plugin>

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 com.semantalytics.stardog.kibble.string.Abbreviate
 com.semantalytics.stardog.kibble.string.AbbreviateMiddle
 com.semantalytics.stardog.kibble.string.AbbreviateWithMarker
@@ -177,3 +176,21 @@ com.semantalytics.stardog.kibble.string.phonetic.Metaphone
 com.semantalytics.stardog.kibble.string.phonetic.Nysiis
 com.semantalytics.stardog.kibble.string.phonetic.RefinedSoundex
 com.semantalytics.stardog.kibble.string.phonetic.Soundex
+com.semantalytics.stardog.kibble.string.escape.Csv
+com.semantalytics.stardog.kibble.string.escape.EcmaScript
+com.semantalytics.stardog.kibble.string.escape.Html3
+com.semantalytics.stardog.kibble.string.escape.Html4
+com.semantalytics.stardog.kibble.string.escape.Java
+com.semantalytics.stardog.kibble.string.escape.Json
+com.semantalytics.stardog.kibble.string.escape.Xml10
+com.semantalytics.stardog.kibble.string.escape.Xml11
+com.semantalytics.stardog.kibble.string.escape.Xsi
+com.semantalytics.stardog.kibble.string.unescape.Csv
+com.semantalytics.stardog.kibble.string.unescape.EcmaScript
+com.semantalytics.stardog.kibble.string.unescape.Html3
+com.semantalytics.stardog.kibble.string.unescape.Html4
+com.semantalytics.stardog.kibble.string.unescape.Java
+com.semantalytics.stardog.kibble.string.unescape.Json
+com.semantalytics.stardog.kibble.string.unescape.Xml
+com.semantalytics.stardog.kibble.string.unescape.Xml11
+com.semantalytics.stardog.kibble.string.unescape.Xsi
