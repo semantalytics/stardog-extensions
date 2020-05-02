@@ -1,10 +1,12 @@
 package com.semantalytics.stardog.kibble.console;
 
 import com.semantalytics.stardog.kibble.AbstractStardogTest;
+import com.stardog.stark.Literal;
+import com.stardog.stark.Value;
+import com.stardog.stark.query.SelectQueryResult;
 import org.junit.Test;
-import org.openrdf.query.BindingSet;
-import org.openrdf.query.TupleQueryResult;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
 
 public class TestReset extends AbstractStardogTest {
@@ -17,11 +19,11 @@ public class TestReset extends AbstractStardogTest {
         final String aQuery = consoleSparqlPrefix +
                 "select ?result where { bind(console:reset() AS ?result) }";
 
-        try (final TupleQueryResult aResult = connection.select(aQuery).execute()) {
-
-            assertTrue("Should have a result", aResult.hasNext());
-
-            final String aValue = aResult.next().getValue("result").stringValue();
+        try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
+            assertThat(aResult).hasNext().withFailMessage("Should have a result");
+            final Value aValue = aResult.next().get("result");
+            assertThat(aValue).isInstanceOf(Literal.class);
+            final Literal aLiteralValue = (Literal)aValue;
 
             assertEquals("\u001b[m", aValue);
             assertFalse("Should have no more results", aResult.hasNext());
@@ -34,12 +36,13 @@ public class TestReset extends AbstractStardogTest {
         final String aQuery = consoleSparqlPrefix +
                 "select ?result where { bind(console:reset(\"Stardog\") AS ?result) }";
 
-        try (final TupleQueryResult aResult = connection.select(aQuery).execute()) {
-            assertTrue("Should have a result", aResult.hasNext());
+        try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
+            assertThat(aResult).hasNext().withFailMessage("Should have a result");
+            final Value aValue = aResult.next().get("result");
+            assertThat(aValue).isInstanceOf(Literal.class);
+            final Literal aLiteralValue = (Literal)aValue;
 
-            final BindingSet aBindingSet = aResult.next();
-
-            assertTrue("Should have no bindings", aBindingSet.getBindingNames().isEmpty());
+            assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }

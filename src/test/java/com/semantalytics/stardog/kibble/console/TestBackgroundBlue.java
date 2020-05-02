@@ -1,10 +1,12 @@
 package com.semantalytics.stardog.kibble.console;
 
 import com.semantalytics.stardog.kibble.AbstractStardogTest;
+import com.stardog.stark.Literal;
+import com.stardog.stark.Value;
+import com.stardog.stark.query.SelectQueryResult;
 import org.junit.*;
-import org.openrdf.query.TupleQueryResult;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestBackgroundBlue extends AbstractStardogTest {
 
@@ -16,14 +18,14 @@ public class TestBackgroundBlue extends AbstractStardogTest {
         final String aQuery = consoleSparqlPrefix +
                 "select ?result where { bind(console:backgroundBlue() AS ?result) }";
 
-        try (final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+        try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
+            assertThat(aResult).hasNext().withFailMessage("Should have a result");
+            final Value aValue = aResult.next().get("result");
+            assertThat(aValue).isInstanceOf(Literal.class);
+            final Literal aLiteralValue = (Literal)aValue;
 
-            assertTrue("Should have a result", aResult.hasNext());
-
-            final String aValue = aResult.next().getValue("result").stringValue();
-
-            assertEquals("\u001b[44m", aValue);
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[44m");
+            assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
     }
 
@@ -33,14 +35,14 @@ public class TestBackgroundBlue extends AbstractStardogTest {
         final String aQuery = consoleSparqlPrefix +
                 "select ?result where { bind(console:backgroundBlue(\"Stardog\") AS ?result) }";
 
-        try (final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+        try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
+            assertThat(aResult).hasNext().withFailMessage("Should have a result");
+            final Value aValue = aResult.next().get("result");
+            assertThat(aValue).isInstanceOf(Literal.class);
+            final Literal aLiteralValue = (Literal)aValue;
 
-            assertTrue("Should have a result", aResult.hasNext());
-
-            final String aValue = aResult.next().getValue("result").stringValue();
-
-            assertEquals("\u001b[44mStardog\u001b[49m", aValue);
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[44mStardog\u001b[49m");
+            assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
     }
 
@@ -50,14 +52,14 @@ public class TestBackgroundBlue extends AbstractStardogTest {
         final String aQuery = consoleSparqlPrefix +
                 "select ?result where { bind(console:backgroundBlue(\"one\", \"two\") AS ?result) }";
 
-        try (final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+        try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
+            assertThat(aResult).hasNext().withFailMessage("Should have a result");
+            final Value aValue = aResult.next().get("result");
+            assertThat(aValue).isInstanceOf(Literal.class);
+            final Literal aLiteralValue = (Literal)aValue;
 
-            assertTrue("Should have a result", aResult.hasNext());
-
-            final String aValue = aResult.next().getValue("result").stringValue();
-
-            assertEquals("\u001b[44monetwo\u001b[49m", aValue);
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[44monetwo\u001b[49m");
+            assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
     }
 
@@ -67,14 +69,14 @@ public class TestBackgroundBlue extends AbstractStardogTest {
         final String aQuery = consoleSparqlPrefix +
                 "select ?result where { bind(console:backgroundBlue(\"\") as ?result) }";
 
-        try (final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+        try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
+            assertThat(aResult).hasNext().withFailMessage("Should have a result");
+            final Value aValue = aResult.next().get("result");
+            assertThat(aValue).isInstanceOf(Literal.class);
+            final Literal aLiteralValue = (Literal)aValue;
 
-            assertTrue("Should have a result", aResult.hasNext());
-
-            final String aValue = aResult.next().getValue("result").stringValue();
-
-            assertEquals("\u001b[44m\u001b[49m", aValue);
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[44m\u001b[49m");
+            assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
     }
 
@@ -84,14 +86,14 @@ public class TestBackgroundBlue extends AbstractStardogTest {
         final String aQuery = consoleSparqlPrefix +
                 "select ?result where { bind(console:backgroundBlue(1) AS ?result) }";
 
-        try (final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+        try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
+            assertThat(aResult).hasNext().withFailMessage("Should have a result");
+            final Value aValue = aResult.next().get("result");
+            assertThat(aValue).isInstanceOf(Literal.class);
+            final Literal aLiteralValue = (Literal)aValue;
 
-            assertTrue("Should have a result", aResult.hasNext());
-
-            final String aValue = aResult.next().getValue("result").stringValue();
-
-            assertEquals("\u001b[44m1\u001b[49m", aValue);
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[44m1\u001b[49m");
+            assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
     }
 }
