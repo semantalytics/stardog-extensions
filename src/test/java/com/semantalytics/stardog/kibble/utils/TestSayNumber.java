@@ -1,10 +1,9 @@
-package com.semantalytics.stardog.function.utils;
+package com.semantalytics.stardog.kibble.utils;
 
-import com.semantalytics.stardog.function.FunctionName;
+import com.semantalytics.stardog.kibble.AbstractStardogTest;
 import com.stardog.stark.Literal;
 import com.stardog.stark.Value;
 import com.stardog.stark.query.SelectQueryResult;
-import com.semantalytics.stardog.AbstractStardogTest;
 import org.junit.*;
 
 import java.util.Optional;

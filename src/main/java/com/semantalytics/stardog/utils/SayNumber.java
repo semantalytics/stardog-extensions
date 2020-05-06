@@ -1,11 +1,10 @@
-package com.semantalytics.stardog.function.utils;
+package com.semantalytics.stardog.utils;
 
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
 import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
 import com.ibm.icu.text.RuleBasedNumberFormat;
-import com.semantalytics.stardog.function.FunctionName;
 import com.stardog.stark.Literal;
 import com.stardog.stark.Value;
 import com.stardog.stark.Values;
