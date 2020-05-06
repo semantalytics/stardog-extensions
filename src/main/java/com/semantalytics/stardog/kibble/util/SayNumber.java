@@ -7,15 +7,14 @@ import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
 import com.ibm.icu.text.RuleBasedNumberFormat;
 import com.stardog.stark.Literal;
 import com.stardog.stark.Value;
+import com.stardog.stark.Values;
 
 import java.util.Locale;
-
-import static com.stardog.stark.Values.literal;
 
 public class SayNumber extends AbstractFunction implements UserDefinedFunction {
 
     public SayNumber() {
-        super(1, UtilVocabulary.sayNumber.stringValue());
+        super(1, UtilVocabulary.sayNumber.toString());
     }
 
     private SayNumber(final SayNumber sayNumber) {
@@ -25,13 +24,13 @@ public class SayNumber extends AbstractFunction implements UserDefinedFunction {
     @Override
     protected ValueOrError internalEvaluate(Value... values) {
         if(assertNumericLiteral(values[0])) {
-            final int value = Literal.intValue((Literal) values[0]);
+            final int value = Literal.intValue((Literal)values[0]);
 
             //TODO Handle language tag
 
             final String number = new RuleBasedNumberFormat(Locale.US, RuleBasedNumberFormat.SPELLOUT).format(value);
 
-            return ValueOrError.General.of(literal(number));
+            return ValueOrError.General.of(Values.literal(number));
         } else {
             return ValueOrError.Error;
         }

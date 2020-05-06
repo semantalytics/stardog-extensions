@@ -1,4 +1,4 @@
-package com.semantalytics.stardog.kibble.utils;
+package com.semantalytics.stardog.kibble.util;
 
 import com.semantalytics.stardog.kibble.AbstractStardogTest;
 import com.stardog.stark.Literal;
@@ -15,7 +15,7 @@ public class TestSayNumber extends AbstractStardogTest {
     @Test
     public void testFromSpokenTime() {
 
-            final String aQuery = "prefix util: <" + FunctionName.Utils.sayNumber.NAMESPACE + ">" +
+            final String aQuery = "prefix util: <" + UtilVocabulary.NAMESPACE + ">" +
                     "select ?result where { bind(util:sayNumber(532) as ?result) }";
 
             try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {

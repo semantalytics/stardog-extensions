@@ -194,4 +194,4 @@ com.semantalytics.stardog.kibble.string.unescape.Json
 com.semantalytics.stardog.kibble.string.unescape.Xml
 com.semantalytics.stardog.kibble.string.unescape.Xsi
 com.semantalytics.stardog.kibble.util.Ordinalize
-com.semantalytics.stardog.utils.SayNumber
+com.semantalytics.stardog.kibble.util.SayNumber
