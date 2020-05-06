@@ -1,7 +1,7 @@
 package com.semantalytics.stardog.kibble.date;
 
-import com.complexible.common.rdf.model.StardogValueFactory;
-import org.openrdf.model.IRI;
+import com.stardog.stark.IRI;
+import com.stardog.stark.Values;
 
 public enum DateVocabulary {
 
@@ -15,10 +15,10 @@ public enum DateVocabulary {
     public final IRI iri;
 
     DateVocabulary() {
-        iri = StardogValueFactory.instance().createIRI(NAMESPACE, name());
+        iri = Values.iri(NAMESPACE, name());
     }
 
     public String stringValue() {
-        return iri.stringValue();
+        return iri.toString();
     }
 }

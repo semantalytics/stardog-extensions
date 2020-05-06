@@ -1,13 +1,12 @@
 
 package com.semantalytics.stardog.kibble.xml;
 
-import com.complexible.stardog.plan.filter.ExpressionEvaluationException;
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
+import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.Function;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
-import com.semantalytics.stardog.kibble.file.FileVocabulary;
-import org.openrdf.model.Value;
+import com.stardog.stark.Value;
 
 public class Xpath extends AbstractFunction implements UserDefinedFunction {
 
@@ -20,7 +19,7 @@ public class Xpath extends AbstractFunction implements UserDefinedFunction {
     }
 
     @Override
-    protected Value internalEvaluate(final Value... values) throws ExpressionEvaluationException {
+    protected ValueOrError internalEvaluate(final Value... values) {
 
         return null;
     }
@@ -37,6 +36,6 @@ public class Xpath extends AbstractFunction implements UserDefinedFunction {
 
     @Override
     public String toString() {
-        return FileVocabulary.contentType.name();
+        return XmlVocabulary.xPath.name();
     }
 }
