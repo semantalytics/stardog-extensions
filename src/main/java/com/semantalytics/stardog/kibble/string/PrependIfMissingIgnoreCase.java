@@ -1,0 +1,56 @@
+package com.semantalytics.stardog.kibble.string;
+
+import com.complexible.stardog.plan.filter.ExpressionVisitor;
+import com.complexible.stardog.plan.filter.expr.ValueOrError;
+import com.complexible.stardog.plan.filter.functions.AbstractFunction;
+import com.complexible.stardog.plan.filter.functions.string.StringFunction;
+import com.google.common.collect.Range;
+import com.stardog.stark.Literal;
+import com.stardog.stark.Value;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.Arrays;
+
+import static com.stardog.stark.Values.literal;
+
+public final class PrependIfMissingIgnoreCase extends AbstractFunction implements StringFunction {
+
+    protected PrependIfMissingIgnoreCase() {
+        super(Range.atLeast(2), StringVocabulary.prependIfMissingIgnoreCase.toString());
+    }
+
+    private PrependIfMissingIgnoreCase(final PrependIfMissingIgnoreCase prependIfMissingIgnoreCase) {
+        super(prependIfMissingIgnoreCase);
+    }
+
+    @Override
+    protected ValueOrError internalEvaluate(final Value... values) {
+
+        for (final Value value : values) {
+            if(!assertStringLiteral(value)) {
+                return ValueOrError.Error;
+            }
+        }
+
+        final String string = ((Literal)values[0]).label();
+        final String suffix = ((Literal)values[1]).label();
+        final String[] suffixes = Arrays.stream(values).skip(2).map(v -> (Literal)v).map(Literal::label).toArray(String[]::new);
+
+        return ValueOrError.General.of(literal(StringUtils.prependIfMissingIgnoreCase(string, suffix, suffixes)));
+    }
+
+    @Override
+    public PrependIfMissingIgnoreCase copy() {
+        return new PrependIfMissingIgnoreCase(this);
+    }
+
+    @Override
+    public void accept(final ExpressionVisitor expressionVisitor) {
+        expressionVisitor.visit(this);
+    }
+
+    @Override
+    public String toString() {
+        return StringVocabulary.prependIfMissingIgnoreCase.name();
+    }
+}
