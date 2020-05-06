@@ -1,15 +1,16 @@
 package com.semantalytics.stardog.kibble.net.internetaddress;
 
-import com.complexible.stardog.plan.filter.ExpressionEvaluationException;
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
+import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.Function;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
 import com.google.common.net.InetAddresses;
 import com.google.common.primitives.UnsignedInts;
-import org.openrdf.model.Value;
+import com.stardog.stark.Literal;
+import com.stardog.stark.Value;
 
-import static com.complexible.common.rdf.model.Values.literal;
+import static com.stardog.stark.Values.literal;
 
 public class InternetAddressToNumber extends AbstractFunction implements UserDefinedFunction {
 
@@ -22,11 +23,15 @@ public class InternetAddressToNumber extends AbstractFunction implements UserDef
     }
 
     @Override
-    protected Value internalEvaluate(final Value... values) throws ExpressionEvaluationException {
+    public ValueOrError internalEvaluate(final Value... values) {
 
-        final String ip = assertStringLiteral(values[0]).stringValue();
+        if(assertStringLiteral(values[0])) {
+            final String ip = ((Literal)values[0]).label();
 
-        return literal(UnsignedInts.toLong(InetAddresses.coerceToInteger(InetAddresses.forString(ip))));
+            return ValueOrError.General.of(literal(UnsignedInts.toLong(InetAddresses.coerceToInteger(InetAddresses.forString(ip)))));
+        } else {
+            return ValueOrError.Error;
+        }
     }
 
     @Override

@@ -5,20 +5,19 @@ import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.Function;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
-import com.google.common.net.InetAddresses;
 import com.stardog.stark.Literal;
 import com.stardog.stark.Value;
 
 import static com.google.common.net.InetAddresses.*;
 import static com.stardog.stark.Values.literal;
 
-public class Increment extends AbstractFunction implements UserDefinedFunction {
+public class IsUriInetAddress extends AbstractFunction implements UserDefinedFunction {
 
-    public Increment() {
-        super(1, InternetAddressVocabulary.isIp4MappedAddress.stringValue());
+    public IsUriInetAddress() {
+        super(1, InternetAddressVocabulary.isUriInetAddress.stringValue());
     }
 
-    private Increment(final Increment internetAddressToNumber) {
+    private IsUriInetAddress(final IsUriInetAddress internetAddressToNumber) {
         super(internetAddressToNumber);
     }
 
@@ -28,7 +27,7 @@ public class Increment extends AbstractFunction implements UserDefinedFunction {
         if(assertStringLiteral(values[0])) {
             final String ip = ((Literal)values[0]).label();
 
-        return ValueOrError.General.of(literal(InetAddresses.increment(InetAddresses.forString(ip)).toString()));
+            return ValueOrError.General.of(literal(isUriInetAddress(ip)));
         } else {
             return ValueOrError.Error;
         }
@@ -36,7 +35,7 @@ public class Increment extends AbstractFunction implements UserDefinedFunction {
 
     @Override
     public Function copy() {
-        return new Increment(this);
+        return new IsUriInetAddress(this);
     }
 
     @Override
@@ -46,7 +45,7 @@ public class Increment extends AbstractFunction implements UserDefinedFunction {
 
     @Override
     public String toString() {
-        return InternetAddressVocabulary.isIp4MappedAddress.name();
+        return InternetAddressVocabulary.isUriInetAddress.name();
     }
 
 }

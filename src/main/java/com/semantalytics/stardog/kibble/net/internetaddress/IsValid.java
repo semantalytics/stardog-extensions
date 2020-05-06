@@ -1,14 +1,15 @@
 package com.semantalytics.stardog.kibble.net.internetaddress;
 
-import com.complexible.stardog.plan.filter.ExpressionEvaluationException;
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
+import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.Function;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
+import com.stardog.stark.Literal;
+import com.stardog.stark.Value;
 import org.apache.commons.validator.routines.InetAddressValidator;
-import org.openrdf.model.Value;
 
-import static com.complexible.common.rdf.model.Values.literal;
+import static com.stardog.stark.Values.literal;
 
 public class IsValid extends AbstractFunction implements UserDefinedFunction {
 
@@ -21,11 +22,15 @@ public class IsValid extends AbstractFunction implements UserDefinedFunction {
     }
 
     @Override
-    protected Value internalEvaluate(final Value... values) throws ExpressionEvaluationException {
+    protected ValueOrError internalEvaluate(final Value... values) {
 
-        final String ip = assertStringLiteral(values[0]).stringValue();
+        if(assertStringLiteral(values[0])) {
+            final String ip = ((Literal)values[0]).label();
 
-        return literal(InetAddressValidator.getInstance().isValid(ip));
+            return ValueOrError.General.of(literal(InetAddressValidator.getInstance().isValid(ip)));
+        } else {
+            return ValueOrError.Error;
+        }
     }
 
     @Override

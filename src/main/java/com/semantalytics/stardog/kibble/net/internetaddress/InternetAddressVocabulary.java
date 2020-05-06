@@ -1,13 +1,14 @@
 package com.semantalytics.stardog.kibble.net.internetaddress;
 
-import com.complexible.common.rdf.model.StardogValueFactory;
-import org.openrdf.model.IRI;
+import com.stardog.stark.IRI;
+import com.stardog.stark.Values;
 
 public enum InternetAddressVocabulary {
 
     toNumber,
     toAddress,
     isIp4MappedAddress,
+    isUriInetAddress,
     isLinkLocal,
     isValid,
     isValidIp6,
@@ -17,7 +18,7 @@ public enum InternetAddressVocabulary {
     public final IRI iri;
 
     InternetAddressVocabulary() {
-        iri = StardogValueFactory.instance().createIRI(NAMESPACE, name());
+        iri = Values.iri(NAMESPACE, name());
     }
 
     public static String sparqlPrefix(String prefixName) {
@@ -25,6 +26,6 @@ public enum InternetAddressVocabulary {
     }
 
     public String stringValue() {
-        return iri.stringValue();
+        return iri.toString();
     }
 }

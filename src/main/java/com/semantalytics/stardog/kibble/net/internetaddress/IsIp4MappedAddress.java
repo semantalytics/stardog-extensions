@@ -1,36 +1,41 @@
 package com.semantalytics.stardog.kibble.net.internetaddress;
 
-import com.complexible.stardog.plan.filter.ExpressionEvaluationException;
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
+import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.Function;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
-import org.openrdf.model.Value;
+import com.stardog.stark.Literal;
+import com.stardog.stark.Value;
 
-import static com.complexible.common.rdf.model.Values.literal;
 import static com.google.common.net.InetAddresses.*;
+import static com.stardog.stark.Values.literal;
 
-public class CoercedIp4Address extends AbstractFunction implements UserDefinedFunction {
+public class IsIp4MappedAddress extends AbstractFunction implements UserDefinedFunction {
 
-    public CoercedIp4Address() {
+    public IsIp4MappedAddress() {
         super(1, InternetAddressVocabulary.isIp4MappedAddress.stringValue());
     }
 
-    private CoercedIp4Address(final CoercedIp4Address internetAddressToNumber) {
+    private IsIp4MappedAddress(final IsIp4MappedAddress internetAddressToNumber) {
         super(internetAddressToNumber);
     }
 
     @Override
-    protected Value internalEvaluate(final Value... values) throws ExpressionEvaluationException {
+    public ValueOrError internalEvaluate(final Value... values) {
 
-        final String ip = assertStringLiteral(values[0]).stringValue();
+        if(assertStringLiteral(values[0])) {
+            final String ip = ((Literal)values[0]).label();
 
-        return literal(isMappedIPv4Address(ip));
+            return ValueOrError.General.of(literal(isMappedIPv4Address(ip)));
+        } else {
+            return ValueOrError.Error;
+        }
     }
 
     @Override
     public Function copy() {
-        return new CoercedIp4Address(this);
+        return new IsIp4MappedAddress(this);
     }
 
     @Override
