@@ -10,8 +10,6 @@ import com.stardog.stark.Value;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import static com.stardog.stark.Values.literal;
-
 public class DateTimeFormat extends AbstractFunction implements UserDefinedFunction {
 
     public DateTimeFormat() {

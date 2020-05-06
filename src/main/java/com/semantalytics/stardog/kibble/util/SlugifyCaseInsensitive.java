@@ -1,12 +1,12 @@
 package com.semantalytics.stardog.function.util;
 
-import com.complexible.stardog.plan.filter.ExpressionEvaluationException;
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
+import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.Function;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
 import com.semantalytics.stardog.kibble.util.UtilVocabulary;
-import org.openrdf.model.Value;
+import com.stardog.stark.Value;
 
 public class SlugifyCaseInsensitive extends AbstractFunction implements UserDefinedFunction {
 
@@ -26,7 +26,7 @@ public class SlugifyCaseInsensitive extends AbstractFunction implements UserDefi
     }
 
     @Override
-    protected Value internalEvaluate(final Value... values) throws ExpressionEvaluationException {
+    protected ValueOrError internalEvaluate(final Value... values) {
 
         return null;
     }
@@ -43,6 +43,6 @@ public class SlugifyCaseInsensitive extends AbstractFunction implements UserDefi
 
     @Override
     public String toString() {
-        return "slugify";
+        return UtilVocabulary.slugifyCaseInsensitive.name();
     }
 }

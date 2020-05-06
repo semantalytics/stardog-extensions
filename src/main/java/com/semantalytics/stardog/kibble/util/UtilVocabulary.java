@@ -1,13 +1,10 @@
 package com.semantalytics.stardog.kibble.util;
 
-import com.complexible.common.rdf.model.StardogValueFactory;
-import org.openrdf.model.IRI;
+import com.stardog.stark.IRI;
+import com.stardog.stark.Values;
 
 public enum UtilVocabulary {
 
-    index,
-    inetAddressToNumber,
-    inetNumberToAddress,
     ordinalize,
     pluralize,
     bindPrev,
@@ -24,17 +21,16 @@ public enum UtilVocabulary {
     dateTimeFormat,
     fromSpokenTime,
     timeFromNow,
-    user,
-    databaseName;
+    user;
 
     public static final String NAMESPACE = "http://semantalytics.com/2017/09/ns/stardog/kibble/util/";
     public final IRI iri;
 
     UtilVocabulary() {
-        iri = StardogValueFactory.instance().createIRI(NAMESPACE, name());
+        iri = Values.iri(NAMESPACE, name());
     }
 
     public String stringValue() {
-        return iri.stringValue();
+        return iri.toString();
     }
 }

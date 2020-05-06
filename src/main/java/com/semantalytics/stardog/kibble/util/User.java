@@ -1,14 +1,14 @@
 package com.semantalytics.stardog.kibble.util;
 
-import com.complexible.stardog.plan.filter.ExpressionEvaluationException;
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
+import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.Function;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
+import com.stardog.stark.Value;
 import org.apache.shiro.SecurityUtils;
-import org.openrdf.model.Value;
 
-import static com.complexible.common.rdf.model.Values.literal;
+import static com.stardog.stark.Values.literal;
 
 public final class User extends AbstractFunction implements UserDefinedFunction {
 
@@ -21,12 +21,12 @@ public final class User extends AbstractFunction implements UserDefinedFunction 
     }
 
     @Override
-    protected Value internalEvaluate(final Value... values) throws ExpressionEvaluationException {
+    protected ValueOrError internalEvaluate(final Value... values) {
 
         if(SecurityUtils.getSubject() != null) {
-            return literal(SecurityUtils.getSubject().getPrincipal().toString());
+            return ValueOrError.General.of(literal(SecurityUtils.getSubject().getPrincipal().toString()));
         } else {
-            throw ExpressionEvaluationException.notBound("Security disabled");
+            return ValueOrError.Error;
         }
     }
 

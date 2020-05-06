@@ -4,9 +4,13 @@ import com.complexible.stardog.plan.filter.ExpressionVisitor;
 import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
+import com.stardog.stark.Literal;
 import com.stardog.stark.Value;
 import org.ocpsoft.prettytime.nlp.PrettyTimeParser;
 
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -24,17 +28,27 @@ public class FromSpokenTime extends AbstractFunction implements UserDefinedFunct
     }
 
     @Override
-    protected ValueOrError internalEvaluate(Value... values) {
+    protected ValueOrError internalEvaluate(final Value... values) {
         
-        final String time = assertStringLiteral(values[0]).stringValue();
-        final List<Date> dates = parser.parse(time);
-        
-        if(dates.isEmpty() || dates.size() > 1) {
-            throw new ExpressionEvaluationException("Only a single date can be returned. Found " + dates.size());
+        if(assertStringLiteral(values[0])) {
+            final String time = ((Literal)values[0]).label();
+            final List<Date> dates = parser.parse(time);
+
+            if (dates.isEmpty() || dates.size() > 1) {
+                return ValueOrError.Error;
+            }
+            final GregorianCalendar calendar = new GregorianCalendar();
+            calendar.setTimeInMillis(dates.get(0).getTime());
+            final XMLGregorianCalendar date;
+            try {
+                date = DatatypeFactory.newInstance().newXMLGregorianCalendar(calendar);
+                return ValueOrError.Calendar.of(date);
+            } catch (DatatypeConfigurationException e) {
+                return ValueOrError.Error;
+            }
+        } else {
+            return ValueOrError.Error;
         }
-        GregorianCalendar calendar = new GregorianCalendar();
-        calendar.setTimeInMillis(dates.get(0).getTime());
-            return literal(calendar);
     }
 
     @Override

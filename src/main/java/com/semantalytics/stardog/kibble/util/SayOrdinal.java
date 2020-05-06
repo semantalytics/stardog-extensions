@@ -1,14 +1,16 @@
 package com.semantalytics.stardog.kibble.util;
 
-import com.complexible.common.rdf.model.Values;
-import com.complexible.stardog.plan.filter.ExpressionEvaluationException;
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
+import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
 import com.ibm.icu.text.RuleBasedNumberFormat;
-import org.openrdf.model.Value;
+import com.stardog.stark.Literal;
+import com.stardog.stark.Value;
 
 import java.util.Locale;
+
+import static com.stardog.stark.Values.literal;
 
 public class SayOrdinal extends AbstractFunction implements UserDefinedFunction {
 
@@ -21,12 +23,16 @@ public class SayOrdinal extends AbstractFunction implements UserDefinedFunction 
     }
 
     @Override
-    protected Value internalEvaluate(Value... values) throws ExpressionEvaluationException {
-        int number = assertNumericLiteral(values[0]).intValue();
-        
-        String ordinal = new RuleBasedNumberFormat(Locale.US, RuleBasedNumberFormat.ORDINAL).format(number);
+    protected ValueOrError internalEvaluate(final Value... values) {
+        if(assertNumericLiteral(values[0])) {
+            int number = Literal.intValue((Literal)values[0]);
 
-        return Values.literal(ordinal);
+            final String ordinal = new RuleBasedNumberFormat(Locale.US, RuleBasedNumberFormat.ORDINAL).format(number);
+
+            return ValueOrError.General.of(literal(ordinal));
+        } else {
+            return ValueOrError.Error;
+        }
     }
 
     @Override

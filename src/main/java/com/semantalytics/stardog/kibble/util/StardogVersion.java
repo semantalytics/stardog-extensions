@@ -1,13 +1,12 @@
 package com.semantalytics.stardog.kibble.util;
 
-import com.complexible.stardog.plan.filter.ExpressionEvaluationException;
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
+import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
-import com.complexible.stardog.plan.filter.functions.Function;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
-import org.openrdf.model.Value;
+import com.stardog.stark.Value;
 
-import static com.complexible.common.rdf.model.Values.literal;
+import static com.stardog.stark.Values.literal;
 
 public class StardogVersion extends AbstractFunction implements UserDefinedFunction {
 
@@ -20,8 +19,8 @@ public class StardogVersion extends AbstractFunction implements UserDefinedFunct
     }
 
     @Override
-    protected Value internalEvaluate(final Value... values) throws ExpressionEvaluationException {
-        return literal(com.complexible.stardog.StardogVersion.VERSION);
+    protected ValueOrError internalEvaluate(final Value... values) {
+        return ValueOrError.General.of(literal(com.complexible.stardog.StardogVersion.VERSION));
     }
 
     @Override

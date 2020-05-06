@@ -1,11 +1,11 @@
 package com.semantalytics.stardog.kibble.util;
 
-import com.complexible.stardog.plan.filter.ExpressionEvaluationException;
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
+import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.Function;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
-import org.openrdf.model.Value;
+import com.stardog.stark.Value;
 
 public class PrevBinding extends AbstractFunction implements UserDefinedFunction {
 
@@ -20,15 +20,15 @@ public class PrevBinding extends AbstractFunction implements UserDefinedFunction
     }
 
     @Override
-    protected Value internalEvaluate(final Value... values) throws ExpressionEvaluationException {
+    protected ValueOrError internalEvaluate(final Value... values) {
 
         Value curr = prev;
         prev = values[0];
 
         if(curr == null) {
-            throw ExpressionEvaluationException.notBound("No previous binding");
+            return ValueOrError.Error;
         } else {
-            return curr;
+            return ValueOrError.General.of(curr);
         }
     }
 

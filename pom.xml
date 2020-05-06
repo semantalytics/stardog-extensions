@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.semantalytics.stardog</groupId>
-    <artifactId>kibbles-util</artifactId>
+    <artifactId>functions</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <developers>
@@ -25,15 +25,15 @@
     </developers>
 
     <scm>
-        <url>http://github.com/semantalytics-stardog</url>
+        <url>http://github.com/semantalytics/stardog-functions</url>
         <tag>HEAD</tag>
-        <connection>scm:git:http://github.com/semantalytics-stardog/kibbles-util</connection>
-        <developerConnection>scm:git:http://github.com/semantalytics-stardog/kibbles-util</developerConnection>
+        <connection>scm:git:http://github.com/semantalytics/stardog-functions</connection>
+        <developerConnection>scm:git:http://github.com/semantalytics/stardog-functions</developerConnection>
     </scm>
 
     <licenses>
         <license>
-            <name>MIT</name>
+            <name>APL2</name>
             <url>https://opensource.org/licenses/Apache-2.0</url>
             <distribution>repo</distribution>
         </license>
@@ -46,7 +46,6 @@
 
     <properties>
         <stardog.major.version>7</stardog.major.version>
-        <stardog.version>${stardog.major.version}.0.2</stardog.version>
         <icu4j.version>2.6.1</icu4j.version>
         <slugify.version>2.1.9</slugify.version>
         <moneta.version>1.1</moneta.version>
@@ -54,21 +53,49 @@
         <tradukisto.version>1.0.0</tradukisto.version>
         <natty.version>0.12</natty.version>
         <junit.version>4.12</junit.version>
-        <slf4j.version>1.7.21</slf4j.version>
-        <prettytime.version>4.0.0.Final</prettytime.version>
+        <prettytime.version>4.0.4.Final</prettytime.version>
         <prettytime-nlp.version>3.2.1.Final</prettytime-nlp.version>
-        <maven.version>3.3.9</maven.version>
         <jansi.version>1.16</jansi.version>
         <uima.version>2.8.1</uima.version>
         <heideltime.version>2.2.1</heideltime.version>
         <emoji4j.version>5.0</emoji4j.version>
-        <guava.version>23.3-jre</guava.version>
         <jhardware.version>0.8.5</jhardware.version>
         <oshi.version>3.4.4</oshi.version>
         <evo-inflector.version>1.2.2</evo-inflector.version>
+        <stardog.version>${stardog.major.version}.2.1</stardog.version>
+        <junit.version>4.12</junit.version>
+        <assertj.version>3.15.0</assertj.version>
+        <xmlapis.version>1.4.01</xmlapis.version>
+        <slf4j.version>1.7.21</slf4j.version>
+        <maven.version>3.3.9</maven.version>
+        <guava.version>23.3-jre</guava.version>
+        <commons-text.version>1.7</commons-text.version>
+        <commons-lang3.version>3.9</commons-lang3.version>
+        <emoji4j.version>5.0</emoji4j.version>
+        <simmetrics-core.version>4.1.1</simmetrics-core.version>
+        <java-sting-similarity.version>0.24</java-sting-similarity.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.complexible.stardog</groupId>
+            <artifactId>server</artifactId>
+            <version>${stardog.version}</version>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.complexible.stardog.core</groupId>
+            <artifactId>stardog</artifactId>
+            <version>${stardog.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.complexible.stardog.cache</groupId>
+            <artifactId>stardog-cache-core</artifactId>
+            <version>${stardog.version}</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.atteo</groupId>
             <artifactId>evo-inflector</artifactId>
@@ -78,11 +105,6 @@
             <groupId>org.jhardware</groupId>
             <artifactId>jHardware</artifactId>
             <version>${jhardware.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${guava.version}</version>
         </dependency>
         <dependency>
             <groupId>com.kcthota</groupId>
@@ -125,13 +147,6 @@
             <version>${icu4j.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.complexible.stardog</groupId>
-            <artifactId>server</artifactId>
-            <version>${stardog.version}</version>
-            <type>pom</type>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>pl.allegro.finance</groupId>
             <artifactId>tradukisto</artifactId>
             <version>${tradukisto.version}</version>
@@ -157,11 +172,6 @@
             <version>${prettytime-nlp.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.complexible.stardog.core</groupId>
-            <artifactId>stardog</artifactId>
-            <version>${stardog.version}</version>
-        </dependency>
-        <dependency>
             <groupId>info.debatty</groupId>
             <artifactId>java-string-similarity</artifactId>
             <version>0.24</version>
@@ -172,9 +182,19 @@
             <version>0.7.1</version>
         </dependency>
         <dependency>
+            <groupId>com.kcthota</groupId>
+            <artifactId>emoji4j</artifactId>
+            <version>${emoji4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.6</version>
+            <version>${commons-lang3.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -197,15 +217,37 @@
             <version>${stardog.version}</version>
         </dependency>
         <dependency>
+            <groupId>info.debatty</groupId>
+            <artifactId>java-string-similarity</artifactId>
+            <version>${java-sting-similarity.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.mpkorstanje</groupId>
+            <artifactId>simmetrics-core</artifactId>
+            <version>${simmetrics-core.version}</version>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>xml-apis</groupId>
             <artifactId>xml-apis</artifactId>
-            <version>1.4.01</version>
+            <version>${xmlapis.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -219,7 +261,7 @@
     </repositories>
 
     <build>
-        <finalName>${project.artifactId}-${project.version}-sd${stardog.version}</finalName>
+        <finalName>semantalytics-stardog-${project.artifactId}-${project.version}-sd${stardog.major.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -246,6 +288,16 @@
                 <version>2.4.3</version>
                 <configuration>
                     <minimizeJar/>
+                    <relocations>
+                        <relocation>
+                            <pattern>org.apache.commons.lang3</pattern>
+                            <shadedPattern>shaded.org.apache.commons.lang3</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>org.apache.commons.text</pattern>
+                            <shadedPattern>shaded.org.apache.commons.text</shadedPattern>
+                        </relocation>
+                    </relocations>
                     <filters>
                         <filter>
                             <artifact>*:*</artifact>
@@ -256,6 +308,10 @@
                             </excludes>
                         </filter>
                     </filters>
+                    <artifactSet>
+                        <excludes>
+                        </excludes>
+                    </artifactSet>
                 </configuration>
                 <executions>
                     <execution>
@@ -264,6 +320,13 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
+                            <artifactSet>
+                                <excludes>
+                                    <exclude>junit:junit</exclude>
+                                    <exclude>org.assertj:assertj-core</exclude>
+                                    <exclude>org.hamcrest:hamcrest-all</exclude>
+                                </excludes>
+                            </artifactSet>
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
@@ -279,14 +342,46 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.12.4</version>
                 <configuration>
+                    <argLine>-Djava.library.path=${env.STARDOG}/lib</argLine>
                     <excludes>
-                        <exclude>**/Test*</exclude>
+                        <exclude>**/Test*.java</exclude>
                     </excludes>
                     <includes>
-                        <include>**/*TestSuite.java</include>
+                        <include>**/EmojiTestSuite.java</include>
+                        <include>**/StringMetricTestSuite.java</include>
+                        <include>**/StringTestSuite.java</include>
+                        <include>**/PhoneticTestSuite.java</include>
+                        <include>**/*EscapeTestSuite.java</include>
+                        <include>**/*UnescapeTestSuite.java</include>
                     </includes>
                 </configuration>
             </plugin>
+            <!--
+            <plugin>
+                <groupId>com.github.wvengen</groupId>
+                <artifactId>proguard-maven-plugin</artifactId>
+                <version>2.2.0</version>
+                <executions>
+                   <execution>
+                       <phase>package</phase>
+                       <goals><goal>proguard</goal></goals>
+                   </execution>
+                </executions>
+                <configuration>
+                    <options>
+                        <option>-allowaccessmodification</option>
+                        <option>-keep public class * extends com.complexible.stardog.plan.filter.functions.AbstractFunction { *; }</option>
+                    </options>
+                    <outjar>${project.build.finalName}.jar</outjar>
+                    <outjar>${project.build.finalName}-small.jar</outjar>
+                    <proguardInclude>${basedir}/proguard.conf</proguardInclude>
+                    <libs>
+                        <lib>${java.home}/lib/rt.jar</lib>
+                        <lib>${java.home}/lib/jsse.jar</lib>
+                    </libs>
+                </configuration>
+            </plugin>
+            -->
         </plugins>
     </build>
 </project>

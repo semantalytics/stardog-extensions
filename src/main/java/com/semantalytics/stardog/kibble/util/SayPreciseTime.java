@@ -1,16 +1,17 @@
 package com.semantalytics.stardog.kibble.util;
 
-import com.complexible.stardog.plan.filter.ExpressionEvaluationException;
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
+import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
 import com.google.common.collect.Range;
+import com.stardog.stark.Literal;
+import com.stardog.stark.Value;
 import org.ocpsoft.prettytime.PrettyTime;
-import org.openrdf.model.Value;
 
 import java.util.Date;
 
-import static com.complexible.common.rdf.model.Values.literal;
+import static com.stardog.stark.Values.literal;
 
 public class SayPreciseTime extends AbstractFunction implements UserDefinedFunction {
 
@@ -23,14 +24,18 @@ public class SayPreciseTime extends AbstractFunction implements UserDefinedFunct
     }
 
     @Override
-    protected Value internalEvaluate(Value... values) throws ExpressionEvaluationException {
+    protected ValueOrError internalEvaluate(final Value... values) {
 
-        final Date from = new Date(assertLiteral(values[0]).calendarValue().getMillisecond());
-        final Date date = new Date(assertLiteral(values[1]).calendarValue().getMillisecond());
+        if(assertLiteral(values[0]) && assertLiteral(values[1])) {
+            final Date from = new Date(Literal.calendarValue((Literal) values[0]).getMillisecond());
+            final Date date = new Date(Literal.calendarValue((Literal) values[1]).getMillisecond());
 
-        final PrettyTime prettyTime = new PrettyTime(from);
+            final PrettyTime prettyTime = new PrettyTime(from);
 
-        return literal(prettyTime.format(prettyTime.calculatePreciseDuration(date)));
+            return ValueOrError.General.of(literal(prettyTime.format(prettyTime.calculatePreciseDuration(date))));
+        } else {
+            return ValueOrError.Error;
+        }
     }
 
     @Override

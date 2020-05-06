@@ -1,14 +1,16 @@
 package com.semantalytics.stardog.kibble.util;
 
-import com.complexible.common.rdf.model.Values;
-import com.complexible.stardog.plan.filter.ExpressionEvaluationException;
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
+import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
 import com.ibm.icu.text.RuleBasedNumberFormat;
-import org.openrdf.model.Value;
+import com.stardog.stark.Literal;
+import com.stardog.stark.Value;
 
 import java.util.Locale;
+
+import static com.stardog.stark.Values.literal;
 
 public class SayNumber extends AbstractFunction implements UserDefinedFunction {
 
@@ -21,14 +23,18 @@ public class SayNumber extends AbstractFunction implements UserDefinedFunction {
     }
 
     @Override
-    protected Value internalEvaluate(Value... values) throws ExpressionEvaluationException {
-        final int value = assertNumericLiteral(values[0]).intValue();
-        
-        //TODO Handle language tag
-        
-        final String number = new RuleBasedNumberFormat(Locale.US, RuleBasedNumberFormat.SPELLOUT).format(value);
+    protected ValueOrError internalEvaluate(Value... values) {
+        if(assertNumericLiteral(values[0])) {
+            final int value = Literal.intValue((Literal) values[0]);
 
-        return Values.literal(number);
+            //TODO Handle language tag
+
+            final String number = new RuleBasedNumberFormat(Locale.US, RuleBasedNumberFormat.SPELLOUT).format(value);
+
+            return ValueOrError.General.of(literal(number));
+        } else {
+            return ValueOrError.Error;
+        }
     }
 
     @Override
