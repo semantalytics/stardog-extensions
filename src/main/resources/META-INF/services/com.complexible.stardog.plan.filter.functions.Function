@@ -193,4 +193,4 @@ com.semantalytics.stardog.kibble.string.unescape.Java
 com.semantalytics.stardog.kibble.string.unescape.Json
 com.semantalytics.stardog.kibble.string.unescape.Xml
 com.semantalytics.stardog.kibble.string.unescape.Xsi
-com.semantalytics.stardog.kibble.string.Diff
+com.semantalytics.stardog.kibble.file.Diff

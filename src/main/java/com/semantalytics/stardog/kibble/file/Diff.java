@@ -1,6 +1,8 @@
-package com.semantalytics.stardog.kibble.string;
+package com.semantalytics.stardog.kibble.file;
 
 import com.complexible.common.rdf.model.ArrayLiteral;
+import com.complexible.stardog.docs.BitesVocabulary;
+import com.complexible.stardog.docs.db.BitesDbModule;
 import com.complexible.stardog.index.dictionary.MappingDictionary;
 import com.complexible.stardog.plan.filter.AbstractExpression;
 import com.complexible.stardog.plan.filter.Expression;
@@ -53,6 +55,8 @@ public final class Diff extends AbstractExpression implements StringFunction {
 
     @Override
     public ValueOrError evaluate(ValueSolution valueSolution) {
+
+         
 
         final int max;
         final String separator;

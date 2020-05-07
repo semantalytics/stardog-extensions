@@ -1,4 +1,4 @@
-package com.semantalytics.stardog.kibble.string;
+package com.semantalytics.stardog.kibble.file;
 
 import com.stardog.stark.IRI;
 import com.stardog.stark.Values;
