@@ -7,7 +7,6 @@ import com.stardog.stark.query.SelectQueryResult;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.*;
 
 public class TestBackgroundBrightGreen extends AbstractStardogTest {
 
@@ -25,8 +24,8 @@ public class TestBackgroundBrightGreen extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertEquals("\u001b[102m", aValue);
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[102m");
+            assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
     }
 
@@ -42,8 +41,8 @@ public class TestBackgroundBrightGreen extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertEquals("\u001b[102mStardog\u001b[109m", aValue);
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[102mStardog\u001b[109m");
+            assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
     }
 
@@ -59,8 +58,8 @@ public class TestBackgroundBrightGreen extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertEquals("\u001b[102monetwo\u001b[109m", aValue);
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[102monetwo\u001b[109m");
+            assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
     }
 
@@ -76,8 +75,8 @@ public class TestBackgroundBrightGreen extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertEquals("\u001b[102m\u001b[109m", aValue);
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[102m\u001b[109m");
+            assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
     }
 
@@ -93,8 +92,8 @@ public class TestBackgroundBrightGreen extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertEquals("\u001b[102m1\u001b[109m", aValue);
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[102m1\u001b[109m");
+            assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
     }
 }

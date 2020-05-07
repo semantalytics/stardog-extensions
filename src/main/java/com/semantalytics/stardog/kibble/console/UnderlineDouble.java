@@ -5,6 +5,7 @@ import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
 import com.google.common.collect.Range;
+import com.stardog.stark.Literal;
 import com.stardog.stark.Value;
 import org.fusesource.jansi.Ansi;
 
@@ -28,7 +29,7 @@ public class UnderlineDouble extends AbstractFunction implements UserDefinedFunc
         final Ansi ansi = ansi();
         ansi.a(Ansi.Attribute.UNDERLINE_DOUBLE);
 
-        Stream.of(values).forEach(v -> ansi.a(v.toString()));
+        Stream.of(values).map(v -> assertLiteral(v) ? ((Literal)v).label() : v.toString()).forEach(s -> ansi.a(s));
 
         if(values.length != 0) {
             ansi.a(Ansi.Attribute.UNDERLINE_OFF);

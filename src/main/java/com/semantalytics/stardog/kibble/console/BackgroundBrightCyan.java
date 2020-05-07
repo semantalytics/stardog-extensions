@@ -5,6 +5,7 @@ import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
 import com.google.common.collect.Range;
+import com.stardog.stark.Literal;
 import com.stardog.stark.Value;
 import org.fusesource.jansi.Ansi;
 
@@ -30,7 +31,7 @@ public class BackgroundBrightCyan extends AbstractFunction implements UserDefine
         final Ansi ansi = ansi();
         ansi.bgBright(Color.CYAN);
 
-        Stream.of(values).forEach(v -> ansi.a(v.toString()));
+        Stream.of(values).map(v -> assertLiteral(v) ? ((Literal)v).label() : v.toString()).forEach(s -> ansi.a(s));
 
         if(values.length != 0) {
             ansi.bgBright(DEFAULT);
