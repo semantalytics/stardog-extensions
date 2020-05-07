@@ -18,7 +18,7 @@ public class TestAbbreviate extends AbstractStardogTest {
     @Test
     public void testAbbreviate() {
     
-        final String aQuery = DiffVocabulary.sparqlPrefix("string") +
+        final String aQuery = StringVocabulary.sparqlPrefix("string") +
                     "select ?result where { bind(string:abbreviate(\"Stardog graph database\", 8) AS ?result) }";
 
             try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -37,7 +37,7 @@ public class TestAbbreviate extends AbstractStardogTest {
     @Test
     public void testAbbreviateWithOffset() {
   
-        final String aQuery = DiffVocabulary.sparqlPrefix("string") +
+        final String aQuery = StringVocabulary.sparqlPrefix("string") +
                     "select ?result where { bind(string:abbreviate(\"Stardog graph database\", 15, 5) AS ?result) }";
 
             try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -54,7 +54,7 @@ public class TestAbbreviate extends AbstractStardogTest {
     @Test
     public void testEmptyString() {
   
-        final String aQuery = DiffVocabulary.sparqlPrefix("string") +
+        final String aQuery = StringVocabulary.sparqlPrefix("string") +
                     "select ?result where { bind(string:abbreviate(\"\", 5) as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -71,7 +71,7 @@ public class TestAbbreviate extends AbstractStardogTest {
     @Test
     public void testTooFewArgs() {
     
-        final String aQuery = DiffVocabulary.sparqlPrefix("string") +
+        final String aQuery = StringVocabulary.sparqlPrefix("string") +
                     "select ?result where { bind(string:abbreviate(\"one\") as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -88,7 +88,7 @@ public class TestAbbreviate extends AbstractStardogTest {
     @Test
     public void testTooManyArgs() {
 
-        final String aQuery = DiffVocabulary.sparqlPrefix("string") +
+        final String aQuery = StringVocabulary.sparqlPrefix("string") +
                     "select ?result where { bind(string:abbreviate(\"one\", 9, \"three\", \"four\") as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -105,7 +105,7 @@ public class TestAbbreviate extends AbstractStardogTest {
     @Test
     public void testWrongTypeFirstArg() {
      
-        final String aQuery = DiffVocabulary.sparqlPrefix("string") +
+        final String aQuery = StringVocabulary.sparqlPrefix("string") +
                     "select ?result where { bind(string:abbreviate(4, 5) as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -122,7 +122,7 @@ public class TestAbbreviate extends AbstractStardogTest {
     @Test
     public void testWrongTypeSecondArg() {
 
-        final String aQuery = DiffVocabulary.sparqlPrefix("string") +
+        final String aQuery = StringVocabulary.sparqlPrefix("string") +
                     "select ?result where { bind(string:abbreviate(\"one\", \"two\") as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -139,7 +139,7 @@ public class TestAbbreviate extends AbstractStardogTest {
     @Test
     public void testWrongTypeThirdArg() {
  
-        final String aQuery = DiffVocabulary.sparqlPrefix("string") +
+        final String aQuery = StringVocabulary.sparqlPrefix("string") +
                     "select ?result where { bind(string:abbreviate(\"one\", 9, \"three\") as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -156,7 +156,7 @@ public class TestAbbreviate extends AbstractStardogTest {
     @Test
     public void testLengthTooShort() {
      
-        final String aQuery = DiffVocabulary.sparqlPrefix("string") +
+        final String aQuery = StringVocabulary.sparqlPrefix("string") +
                     "select ?result where { bind(string:abbreviate(\"Stardog\", 3) as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
