@@ -1,15 +1,15 @@
 package com.semantalytics.stardog.kibble.money;
 
-import com.complexible.stardog.plan.filter.ExpressionEvaluationException;
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
+import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
-import com.semantalytics.stardog.kibble.money.MoneyVocabulary;
-import org.openrdf.model.Value;
+import com.stardog.stark.Literal;
+import com.stardog.stark.Value;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import static com.complexible.common.rdf.model.Values.literal;
+import static com.stardog.stark.Values.literal;
 
 public class Subtract extends AbstractFunction implements UserDefinedFunction {
 
@@ -22,12 +22,15 @@ public class Subtract extends AbstractFunction implements UserDefinedFunction {
         }
 
         @Override
-        protected Value internalEvaluate(final Value... values) throws ExpressionEvaluationException {
+        protected ValueOrError internalEvaluate(final Value... values) {
 
+            if(assertLiteral(values[0])) {
+                final XMLGregorianCalendar calendar = Literal.calendarValue((Literal)values[0]);
 
-            final XMLGregorianCalendar calendar = assertLiteral(values[0]).calendarValue();
-
-            return literal(calendar.toGregorianCalendar().getTimeInMillis());
+                return ValueOrError.Calendar.of(literal(calendar.toGregorianCalendar().getTimeInMillis()));
+            } else {
+                return ValueOrError.Error;
+            }
         }
 
         @Override

@@ -71,9 +71,15 @@
         <tradukisto.version>1.0.0</tradukisto.version>
         <uima.version>2.8.1</uima.version>
         <xmlapis.version>1.4.01</xmlapis.version>
+        <moneta.version>1.1</moneta.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.javamoney</groupId>
+            <artifactId>moneta</artifactId>
+            <version>${moneta.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.complexible.stardog</groupId>
             <artifactId>server</artifactId>

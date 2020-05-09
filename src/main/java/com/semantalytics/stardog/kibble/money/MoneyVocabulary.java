@@ -1,7 +1,7 @@
 package com.semantalytics.stardog.kibble.money;
 
-import com.complexible.common.rdf.model.StardogValueFactory;
-import org.openrdf.model.IRI;
+import com.stardog.stark.IRI;
+import com.stardog.stark.Values;
 
 public enum MoneyVocabulary {
 
@@ -11,10 +11,10 @@ public enum MoneyVocabulary {
     public final IRI iri;
 
     MoneyVocabulary() {
-        iri = StardogValueFactory.instance().createIRI(NAMESPACE, name());
+        iri = Values.iri(NAMESPACE, name());
     }
 
     public String stringValue() {
-        return iri.stringValue();
+        return iri.toString();
     }
 }
