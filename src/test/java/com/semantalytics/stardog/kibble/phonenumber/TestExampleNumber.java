@@ -1,10 +1,12 @@
 package com.semantalytics.stardog.kibble.phonenumber;
 
 import com.semantalytics.stardog.kibble.AbstractStardogTest;
+import com.stardog.stark.Literal;
+import com.stardog.stark.query.BindingSet;
+import com.stardog.stark.query.SelectQueryResult;
 import org.junit.Test;
-import org.openrdf.query.BindingSet;
-import org.openrdf.query.TupleQueryResult;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
 
 public class TestExampleNumber extends AbstractStardogTest {
@@ -17,14 +19,14 @@ public class TestExampleNumber extends AbstractStardogTest {
         final String aQuery = sparqlPrefix +
                 "select ?result where { bind(phonenumber:exampleNumber(\"US\") AS ?result) }";
 
-        try (final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+        try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
             assertTrue("Should have a result", aResult.hasNext());
 
-            final String aValue = aResult.next().getValue("result").stringValue();
+            final String aValue = ((Literal)aResult.next().get("result")).label();
 
             assertEquals("gbsuv7ztgzpm", aValue);
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aResult).isExhausted();
         }
     }
 
@@ -34,14 +36,14 @@ public class TestExampleNumber extends AbstractStardogTest {
         final String aQuery = sparqlPrefix +
                 "select ?result where { bind(phonenumber:exampleNumber() as ?result) }";
 
-        try(final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+        try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
             assertTrue("Should have a result", aResult.hasNext());
 
             final BindingSet aBindingSet = aResult.next();
 
-            assertTrue("Should have no bindings", aBindingSet.getBindingNames().isEmpty());
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aBindingSet).isEmpty();
+            assertThat(aResult).isExhausted();
         }
     }
 
@@ -51,14 +53,14 @@ public class TestExampleNumber extends AbstractStardogTest {
         final String aQuery = sparqlPrefix +
                 "select ?result where { bind(phonenumber:exampleNumber(\"one\", \"two\") as ?result) }";
 
-        try(final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+        try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
             assertTrue("Should have a result", aResult.hasNext());
 
             final BindingSet aBindingSet = aResult.next();
 
-            assertTrue("Should have no bindings", aBindingSet.getBindingNames().isEmpty());
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aBindingSet).isEmpty();
+            assertThat(aResult).isExhausted();
         }
     }
 
@@ -68,14 +70,14 @@ public class TestExampleNumber extends AbstractStardogTest {
         final String aQuery = sparqlPrefix +
                 "select ?result where { bind(phonenumber:exampleNumber(1) as ?result) }";
 
-        try(final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+        try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
             assertTrue("Should have a result", aResult.hasNext());
 
             final BindingSet aBindingSet = aResult.next();
 
-            assertTrue("Should have no bindings", aBindingSet.getBindingNames().isEmpty());
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aBindingSet).isEmpty();
+            assertThat(aResult).isExhausted();
         }
     }
 }

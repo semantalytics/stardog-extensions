@@ -9,6 +9,10 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberFormat;
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
+import com.stardog.stark.Literal;
+import com.stardog.stark.Values;
+
+import static com.stardog.stark.Values.literal;
 
 public final class FormatInternational extends AbstractFunction implements UserDefinedFunction {
 
@@ -26,16 +30,20 @@ public final class FormatInternational extends AbstractFunction implements UserD
     @Override
     protected ValueOrError internalEvaluate(final com.stardog.stark.Value... values) {
 
-        final String number = assertStringLiteral(values[0]).stringValue();
-        final String regionCode = assertStringLiteral(values[1]).stringValue();
+        if(assertStringLiteral(values[0]) && assertStringLiteral(values[1])) {
+            final String number = ((Literal)values[0]).label();
+            final String regionCode = ((Literal)values[1]).label();
 
-        try {
-            phoneNumberUtil.parse(number, regionCode, phoneNumber);
-        } catch (NumberParseException e) {
-            throw new ExpressionEvaluationException(e);
+            try {
+                phoneNumberUtil.parse(number, regionCode, phoneNumber);
+            } catch (NumberParseException e) {
+                return ValueOrError.Error;
+            }
+
+            return ValueOrError.General.of(literal(phoneNumberUtil.format(phoneNumber, PhoneNumberFormat.INTERNATIONAL)));
+        } else {
+            return ValueOrError.Error;
         }
-
-        return Values.literal(phoneNumberUtil.format(phoneNumber, PhoneNumberFormat.INTERNATIONAL));
     }
 
     @Override

@@ -6,8 +6,10 @@ import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.stardog.stark.Literal;
 
 import static com.google.i18n.phonenumbers.Phonenumber.*;
+import static com.stardog.stark.Values.literal;
 
 public class IsValidNumber extends AbstractFunction implements UserDefinedFunction {
 
@@ -25,15 +27,19 @@ public class IsValidNumber extends AbstractFunction implements UserDefinedFuncti
     @Override
     protected ValueOrError internalEvaluate(final com.stardog.stark.Value... values) {
 
-        final String number = assertStringLiteral(values[0]).stringValue();
-        final String regionCode = assertStringLiteral(values[1]).stringValue();
+        if(assertStringLiteral(values[0]) && assertStringLiteral(values[1])) {
+            final String number = ((Literal)values[0]).label();
+            final String regionCode = ((Literal)values[1]).label();
 
-        try {
-            phoneNumberUtil.parse(number, regionCode, phoneNumber);
-        } catch (NumberParseException e) {
-            throw new ExpressionEvaluationException(e);
+            try {
+                phoneNumberUtil.parse(number, regionCode, phoneNumber);
+            } catch (NumberParseException e) {
+                return ValueOrError.Error;
+            }
+            return ValueOrError.General.of(literal(phoneNumberUtil.isValidNumber(phoneNumber)));
+        } else {
+            return ValueOrError.Error;
         }
-        return literal(phoneNumberUtil.isValidNumber(phoneNumber));
     }
 
     @Override

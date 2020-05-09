@@ -5,6 +5,9 @@ import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.stardog.stark.Literal;
+
+import static com.stardog.stark.Values.literal;
 
 public final class IsAlphaNumber extends AbstractFunction implements UserDefinedFunction {
 
@@ -21,9 +24,13 @@ public final class IsAlphaNumber extends AbstractFunction implements UserDefined
     @Override
     protected ValueOrError internalEvaluate(final com.stardog.stark.Value... values) {
 
-        final String number = assertStringLiteral(values[0]).stringValue();
+        if(assertStringLiteral(values[0])) {
+            final String number = ((Literal) values[0]).label();
 
-        return literal(phoneNumberUtil.isAlphaNumber(number));
+            return ValueOrError.General.of(literal(phoneNumberUtil.isAlphaNumber(number)));
+        } else {
+            return ValueOrError.Error;
+        }
     }
 
     @Override

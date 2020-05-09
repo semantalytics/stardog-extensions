@@ -19,6 +19,8 @@ import java.net.InetSocketAddress;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
+        TestFormat.class,
+        TestExampleNumber.class
 })
 
 public class PhoneNumberTestSuite extends TestCase {

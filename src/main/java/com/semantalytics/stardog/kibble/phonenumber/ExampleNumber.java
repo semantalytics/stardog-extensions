@@ -6,6 +6,9 @@ import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.Function;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.stardog.stark.Literal;
+
+import static com.stardog.stark.Values.literal;
 
 public final class ExampleNumber extends AbstractFunction implements UserDefinedFunction {
 
@@ -22,9 +25,13 @@ public final class ExampleNumber extends AbstractFunction implements UserDefined
     @Override
     protected ValueOrError internalEvaluate(final com.stardog.stark.Value... values) {
 
-        final String regionCode = assertStringLiteral(values[0]).stringValue();
+        if(assertStringLiteral(values[0])) {
+            final String regionCode = ((Literal)values[0]).label();
+            return ValueOrError.General.of(literal(phoneNumberUtil.getExampleNumber(regionCode).toString()));
+        } else {
+            return ValueOrError.Error;
+        }
 
-        return literal(phoneNumberUtil.getExampleNumber(regionCode).toString());
     }
 
     @Override
