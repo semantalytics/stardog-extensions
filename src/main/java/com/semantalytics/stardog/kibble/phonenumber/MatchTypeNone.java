@@ -1,10 +1,9 @@
 package com.semantalytics.stardog.kibble.phonenumber;
 
-import com.complexible.stardog.plan.filter.ExpressionEvaluationException;
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
+import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
-import org.openrdf.model.Value;
 
 public final class MatchTypeNone extends AbstractFunction implements UserDefinedFunction {
 
@@ -17,8 +16,8 @@ public final class MatchTypeNone extends AbstractFunction implements UserDefined
     }
 
     @Override
-    protected Value internalEvaluate(final Value... values) throws ExpressionEvaluationException {
-      
+    protected ValueOrError internalEvaluate(final com.stardog.stark.Value... values) {
+
         return null;
     }
 

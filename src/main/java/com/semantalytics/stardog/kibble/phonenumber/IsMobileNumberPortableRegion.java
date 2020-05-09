@@ -1,13 +1,10 @@
 package com.semantalytics.stardog.kibble.phonenumber;
 
-import com.complexible.stardog.plan.filter.ExpressionEvaluationException;
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
+import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import org.openrdf.model.Value;
-
-import static com.complexible.common.rdf.model.Values.literal;
 
 public final class IsMobileNumberPortableRegion extends AbstractFunction implements UserDefinedFunction {
 
@@ -22,7 +19,7 @@ public final class IsMobileNumberPortableRegion extends AbstractFunction impleme
     }
 
     @Override
-    protected Value internalEvaluate(final Value... values) throws ExpressionEvaluationException {
+    protected ValueOrError internalEvaluate(final com.stardog.stark.Value... values) {
 
         final String number = assertStringLiteral(values[0]).stringValue();
 

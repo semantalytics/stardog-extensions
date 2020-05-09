@@ -1,11 +1,11 @@
 package com.semantalytics.stardog.kibble.phonenumber;
 
-import com.complexible.stardog.plan.filter.ExpressionEvaluationException;
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
+import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.Function;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
-import org.openrdf.model.Value;
+import com.stardog.stark.Value;
 
 public final class CanBeInternationallyDialed extends AbstractFunction implements UserDefinedFunction {
 
@@ -18,7 +18,7 @@ public final class CanBeInternationallyDialed extends AbstractFunction implement
     }
 
     @Override
-    protected Value internalEvaluate(final Value... values) throws ExpressionEvaluationException {
+    protected ValueOrError internalEvaluate(final Value... values) {
       
         return null;
     }
