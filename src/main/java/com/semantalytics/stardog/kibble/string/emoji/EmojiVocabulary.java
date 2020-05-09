@@ -1,7 +1,7 @@
 package com.semantalytics.stardog.kibble.string.emoji;
 
-import com.complexible.common.rdf.model.StardogValueFactory;
-import org.openrdf.model.IRI;
+import com.stardog.stark.IRI;
+import com.stardog.stark.Values;
 
 public enum EmojiVocabulary {
 
@@ -23,7 +23,7 @@ public enum EmojiVocabulary {
     public final IRI iri;
 
     EmojiVocabulary() {
-        iri = StardogValueFactory.instance().createIRI(NAMESPACE, name());
+        iri = Values.iri(NAMESPACE, name());
     }
 
     public static String sparqlPrefix(String prefixName) {
@@ -31,6 +31,6 @@ public enum EmojiVocabulary {
     }
 
     public String stringValue() {
-        return iri.stringValue();
+        return iri.toString();
     }
 }

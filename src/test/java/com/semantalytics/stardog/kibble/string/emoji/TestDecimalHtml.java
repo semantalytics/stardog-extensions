@@ -1,10 +1,12 @@
 package com.semantalytics.stardog.kibble.string.emoji;
 
 import com.semantalytics.stardog.kibble.AbstractStardogTest;
+import com.stardog.stark.Literal;
+import com.stardog.stark.query.BindingSet;
+import com.stardog.stark.query.SelectQueryResult;
 import org.junit.*;
-import org.openrdf.query.BindingSet;
-import org.openrdf.query.TupleQueryResult;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
 
 public class TestDecimalHtml extends AbstractStardogTest {
@@ -15,13 +17,13 @@ public class TestDecimalHtml extends AbstractStardogTest {
         final String aQuery = EmojiVocabulary.sparqlPrefix("emoji") +
                     "select ?result where { bind(emoji:decimalHtml(\"dog\") as ?result) }";
 
-            try (final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+            try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
                 assertTrue("Should have a result", aResult.hasNext());
 
-                final String aValue = aResult.next().getValue("result").stringValue();
+                final Literal aLiteral = (Literal)aResult.next().value("result").get();
 
-                assertEquals("&#128054;", aValue);
+                assertEquals("&#128054;", aLiteral.label());
                 assertFalse("Should have no more results", aResult.hasNext());
             }
     }
@@ -32,13 +34,13 @@ public class TestDecimalHtml extends AbstractStardogTest {
         final String aQuery = EmojiVocabulary.sparqlPrefix("emoji") +
                 "select ?result where { bind(emoji:decimalHtml(\"notemoji\") as ?result) }";
 
-        try (final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+        try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
             assertTrue("Should have a result", aResult.hasNext());
 
-            final String aValue = aResult.next().getValue("result").stringValue();
+            final Literal aLiteral = (Literal)aResult.next().value("result").get();
 
-            assertEquals("", aValue);
+            assertEquals("", aLiteral.label());
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }
@@ -49,13 +51,13 @@ public class TestDecimalHtml extends AbstractStardogTest {
         final String aQuery = EmojiVocabulary.sparqlPrefix("emoji") +
                 "select ?result where { bind(emoji:decimalHtml(\"\") as ?result) }";
 
-        try (final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+        try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
             assertTrue("Should have a result", aResult.hasNext());
 
-            final String aValue = aResult.next().getValue("result").stringValue();
+            final Literal aLiteral = (Literal)aResult.next().value("result").get();
 
-            assertEquals("", aValue);
+            assertEquals("", aLiteral.label());
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }
@@ -66,14 +68,14 @@ public class TestDecimalHtml extends AbstractStardogTest {
         final String aQuery = EmojiVocabulary.sparqlPrefix("emoji") +
                 "select ?result where { bind(emoji:decimalHtml(\"one\", \"two\") as ?result) }";
 
-        try(final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+        try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
             assertTrue("Should have a result", aResult.hasNext());
 
             final BindingSet aBindingSet = aResult.next();
 
-            assertTrue("Should have no bindings", aBindingSet.getBindingNames().isEmpty());
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aBindingSet.size()).isZero();
+            assertThat(aResult.hasNext()).isFalse();
         }
     }
 
@@ -83,14 +85,14 @@ public class TestDecimalHtml extends AbstractStardogTest {
         final String aQuery = EmojiVocabulary.sparqlPrefix("emoji") +
                 "select ?result where { bind(emoji:decimalHtml() as ?result) }";
 
-        try(final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+        try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
             assertTrue("Should have a result", aResult.hasNext());
 
             final BindingSet aBindingSet = aResult.next();
 
-            assertTrue("Should have no bindings", aBindingSet.getBindingNames().isEmpty());
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aBindingSet.size()).isZero();
+            assertThat(aResult.hasNext()).isFalse();
         }
     }
 
@@ -100,14 +102,13 @@ public class TestDecimalHtml extends AbstractStardogTest {
         final String aQuery = EmojiVocabulary.sparqlPrefix("emoji") +
                 "select ?result where { bind(emoji:decimalHtml(1) as ?result) }";
 
-        try(final TupleQueryResult aResult = connection.select(aQuery).execute()) {
-
-            assertTrue("Should have a result", aResult.hasNext());
+        try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
+assertTrue("Should have a result", aResult.hasNext());
 
             final BindingSet aBindingSet = aResult.next();
 
-            assertTrue("Should have no bindings", aBindingSet.getBindingNames().isEmpty());
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(aBindingSet.size()).isZero();
+            assertThat(aResult.hasNext()).isFalse();
         }
     }
 }
