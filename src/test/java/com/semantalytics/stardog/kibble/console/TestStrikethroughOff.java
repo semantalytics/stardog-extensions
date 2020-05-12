@@ -26,7 +26,7 @@ public class TestStrikethroughOff extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertEquals("\u001b[29m", aValue);
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[29m");
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }

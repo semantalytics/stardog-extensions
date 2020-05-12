@@ -25,7 +25,7 @@ public class TestNegative extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertEquals("\u001b[7m", aValue);
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[7m");
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }
@@ -42,7 +42,7 @@ public class TestNegative extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertEquals("\u001b[7mStardog\u001b[27m", aValue);
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[7mStardog\u001b[27m");
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }
@@ -59,7 +59,7 @@ public class TestNegative extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertEquals("\u001b[7monetwo\u001b[27m", aValue);
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[7monetwo\u001b[27m");
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }
@@ -76,7 +76,7 @@ public class TestNegative extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertEquals("\u001b[7m\u001b[27m", aValue);
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[7m\u001b[27m");
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }
@@ -93,7 +93,7 @@ public class TestNegative extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertEquals("\u001b[7m1\u001b[27m", aValue);
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[7m1\u001b[27m");
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }

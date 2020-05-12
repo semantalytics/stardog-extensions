@@ -25,7 +25,7 @@ public class TestBackgroundCyan extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertEquals("\u001b[46m", aValue);
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[46m");
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }
@@ -42,7 +42,7 @@ public class TestBackgroundCyan extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertEquals("\u001b[46mStardog\u001b[109m", aValue);
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[46mStardog\u001b[109m");
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }
@@ -59,7 +59,7 @@ public class TestBackgroundCyan extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertEquals("\u001b[46monetwo\u001b[109m", aValue);
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[46monetwo\u001b[109m");
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }
@@ -76,7 +76,7 @@ public class TestBackgroundCyan extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertEquals("\u001b[46m\u001b[109m", aValue);
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[46m\u001b[109m");
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }
@@ -93,7 +93,7 @@ public class TestBackgroundCyan extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertEquals("\u001b[46m1\u001b[109m", aValue);
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[46m1\u001b[109m");
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }

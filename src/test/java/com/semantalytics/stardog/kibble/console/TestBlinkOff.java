@@ -26,7 +26,7 @@ public class TestBlinkOff extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertEquals("\u001b[25m", aValue);
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[25m");
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }

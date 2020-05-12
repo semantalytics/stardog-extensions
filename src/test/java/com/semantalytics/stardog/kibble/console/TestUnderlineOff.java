@@ -26,7 +26,7 @@ public class TestUnderlineOff extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertEquals("\u001b[24m", aValue);
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[24m");
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }

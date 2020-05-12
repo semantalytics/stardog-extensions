@@ -25,7 +25,7 @@ public class TestConsole extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertEquals("\u001b[m", aValue);
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[m");
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }
@@ -42,7 +42,7 @@ public class TestConsole extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertEquals("Stardog\u001b[m", aValue);
+            assertThat(aLiteralValue.label()).isEqualTo("Stardog\u001b[m");
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }
@@ -59,7 +59,7 @@ public class TestConsole extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertEquals("onetwo\u001b[m", aValue);
+            assertThat(aLiteralValue.label()).isEqualTo("onetwo\u001b[m");
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }
@@ -76,7 +76,7 @@ public class TestConsole extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertEquals("\u001b[m", aValue);
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[m");
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }
@@ -93,7 +93,7 @@ public class TestConsole extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertEquals("1\u001b[m", aValue);
+            assertThat(aLiteralValue.label()).isEqualTo("1\u001b[m");
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }

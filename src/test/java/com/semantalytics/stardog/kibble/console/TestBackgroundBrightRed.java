@@ -24,7 +24,7 @@ public class TestBackgroundBrightRed extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertThat(aLiteralValue).isEqualTo("\u001b[101m");
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[101m");
             assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
     }
@@ -41,7 +41,7 @@ public class TestBackgroundBrightRed extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertThat(aLiteralValue).isEqualTo("\u001b[101mStardog\u001b[109m");
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[101mStardog\u001b[109m");
             assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
     }
@@ -58,7 +58,7 @@ public class TestBackgroundBrightRed extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertThat(aLiteralValue).isEqualTo("\u001b[101monetwo\u001b[109m");
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[101monetwo\u001b[109m");
             assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
     }
@@ -75,7 +75,7 @@ public class TestBackgroundBrightRed extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertThat(aLiteralValue).isEqualTo("\u001b[101m\u001b[109m");
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[101m\u001b[109m");
             assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
     }
@@ -92,7 +92,7 @@ public class TestBackgroundBrightRed extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertThat(aLiteralValue).isEqualTo("\u001b[101m1\u001b[109m");
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[101m1\u001b[109m");
             assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
     }

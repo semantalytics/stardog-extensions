@@ -25,7 +25,7 @@ public class TestReset extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertEquals("\u001b[m", aValue);
+            assertThat(aLiteralValue.label()).isEqualTo("\u001b[m");
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }
@@ -42,7 +42,7 @@ public class TestReset extends AbstractStardogTest {
             assertThat(aValue).isInstanceOf(Literal.class);
             final Literal aLiteralValue = (Literal)aValue;
 
-            assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
+            assertThat(aLiteralValue.label()).isEqualTo("jdfdkjfkljfksdajlkfsjl;");
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }
