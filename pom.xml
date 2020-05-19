@@ -46,8 +46,10 @@
 
     <properties>
         <stardog.major.version>7</stardog.major.version>
-        <stardog.version>${stardog.major.version}.2.1</stardog.version>
+        <stardog.version>${stardog.major.version}.3.0</stardog.version>
         <junit.version>4.12</junit.version>
+        <slf4j.version>1.7.21</slf4j.version>
+        <jansi.version>1.16</jansi.version>
         <assertj.version>3.15.0</assertj.version>
         <xmlapis.version>1.4.01</xmlapis.version>
         <slf4j.version>1.7.21</slf4j.version>
@@ -103,6 +105,11 @@
             <groupId>com.github.mpkorstanje</groupId>
             <artifactId>simmetrics-core</artifactId>
             <version>${simmetrics-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.fusesource.jansi</groupId>
+            <artifactId>jansi</artifactId>
+            <version>${jansi.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -224,6 +231,7 @@
                         <exclude>**/Test*.java</exclude>
                     </excludes>
                     <includes>
+                        <include>**/ConsoleTestSuite.java</include>
                         <include>**/EmojiTestSuite.java</include>
                         <include>**/StringMetricTestSuite.java</include>
                         <include>**/StringTestSuite.java</include>

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Configuration status="ERROR" name="default-config">
+	<Properties>
+		<Property name="PATTERN">%-5level %d [%t] %c:%M(%L): %m%n</Property>
+	</Properties>
 	<Appenders>
 		<Console name="STDOUT" target="SYSTEM_ERR">
 			<PatternLayout pattern="${PATTERN}"/>
@@ -32,3 +35,4 @@
 		</Logger>
 	</Loggers>
 </Configuration>
+
