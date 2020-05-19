@@ -39,16 +39,10 @@ public class TestForegroundDefault extends AbstractStardogTest {
 
         try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
             assertThat(aResult).hasNext().withFailMessage("Should have a result");
-            final Value aValue = aResult.next().get("result");
-            assertThat(aValue).isInstanceOf(Literal.class);
-            final Literal aLiteralValue = (Literal)aValue;
-
-
-            assertTrue("Should have a result", aResult.hasNext());
 
             final BindingSet aBindingSet = aResult.next();
 
-            assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
+            assertThat(aBindingSet).withFailMessage("Should have no more results").isEmpty();
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }
