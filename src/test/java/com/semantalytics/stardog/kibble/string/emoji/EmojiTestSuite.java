@@ -33,14 +33,13 @@ import java.net.InetSocketAddress;
 })
 
 public class EmojiTestSuite extends TestCase {
-
-	private static Stardog STARDOG;
-	private static Server SERVER;
-	public static final String DB = "test";
-	public static final int TEST_PORT = 5888;
-	private static final String STARDOG_HOME = System.getenv("STARDOG_HOME");
-	protected Connection connection;
-	private static final String STARDOG_LICENCE_KEY_FILE_NAME = "stardog-license-key.bin";
+    private static Stardog STARDOG;
+    private static Server SERVER;
+    public static final String DB = "test";
+    public static final int TEST_PORT = 5888;
+    private static final String STARDOG_HOME = System.getenv("STARDOG_HOME");
+    protected Connection connection;
+    private static final String STARDOG_LICENCE_KEY_FILE_NAME = "stardog-license-key.bin";
 
     @BeforeClass
     public static void beforeClass() throws IOException, ServerException {
