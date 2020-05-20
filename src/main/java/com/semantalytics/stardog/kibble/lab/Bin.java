@@ -1,12 +1,13 @@
-package com.semantalytics.stardog.lab.function;
+package com.semantalytics.stardog.kibble.lab;
 
-import com.complexible.stardog.plan.filter.ExpressionEvaluationException;
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
+import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
-import org.openrdf.model.Value;
+import com.stardog.stark.Literal;
+import com.stardog.stark.Value;
 
-import static com.complexible.common.rdf.model.Values.literal;
+import static com.stardog.stark.Values.literal;
 
 public class Bin extends AbstractFunction implements UserDefinedFunction {
 
@@ -19,11 +20,15 @@ public class Bin extends AbstractFunction implements UserDefinedFunction {
     }
 
     @Override
-    protected Value internalEvaluate(final Value... values) throws ExpressionEvaluationException {
+    protected ValueOrError internalEvaluate(final Value... values) {
 
-        final int i = assertNumericLiteral(values[0]).intValue();
+        if(assertNumericLiteral(values[0])) {
+            final int i = Literal.intValue((Literal)values[0]);
 
-        return literal(Integer.toBinaryString(i));
+            return ValueOrError.General.of(literal(Integer.toBinaryString(i)));
+        } else {
+            return ValueOrError.Error;
+        }
     }
 
     @Override

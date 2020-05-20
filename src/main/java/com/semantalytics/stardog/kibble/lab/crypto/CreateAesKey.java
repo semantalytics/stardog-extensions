@@ -1,4 +1,4 @@
-package com.semantalytics.stardog.lab.function;
+package com.semantalytics.stardog.kibble.lab.crypto;
 
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;

@@ -5,6 +5,7 @@ import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
 import com.google.common.collect.Range;
+import com.stardog.stark.Literal;
 import com.stardog.stark.Value;
 
 import java.time.ZonedDateTime;
@@ -28,34 +29,44 @@ public class ParseDate extends AbstractFunction implements UserDefinedFunction {
     @Override
     protected ValueOrError internalEvaluate(final Value... values) {
 
-        final String string = assertStringLiteral(values[0]).stringValue();
-        final String pattern = assertStringLiteral(values[1]).stringValue();
-        final DateTimeFormatter formatter;
+        if(assertStringLiteral(values[0]) && assertStringLiteral(values[1])) {
+            final String string = ((Literal)values[0]).label();
+            final String pattern = ((Literal)values[1]).label();
+            final DateTimeFormatter formatter;
 
-        switch(values.length) {
+            switch (values.length) {
 
-            case 2: {
-                formatter = DateTimeFormatter.ofPattern(pattern);
-                break;
+                case 2: {
+                    formatter = DateTimeFormatter.ofPattern(pattern);
+                    break;
+                }
+                case 3: {
+                    if(assertStringLiteral(values[2])) {
+                        //TODO check for no lang
+                        Locale locale = Locale.forLanguageTag(((Literal)values[2]).lang().get());
+                        formatter = DateTimeFormatter.ofPattern(pattern, locale);
+                    } else {
+                        return ValueOrError.Error;
+                    }
+                    break;
+
+                }
+                default:
+                    return ValueOrError.Error;
             }
-            case 3: {
-                Locale locale = Locale.forLanguageTag(assertStringLiteral(values[2]).stringValue());
-                formatter = DateTimeFormatter.ofPattern(pattern, locale);
-                break;
-            }
-            default:
+
+            final ZonedDateTime zonedDateTime;
+
+            try {
+                zonedDateTime = ZonedDateTime.parse(string, formatter);
+            } catch (DateTimeParseException e) {
                 return ValueOrError.Error;
-        }
+            }
 
-        final ZonedDateTime zonedDateTime;
-
-        try {
-            zonedDateTime = ZonedDateTime.parse(string, formatter);
-        } catch(DateTimeParseException e) {
+            return ValueOrError.General.of(literal(GregorianCalendar.from(zonedDateTime)));
+        } else {
             return ValueOrError.Error;
         }
-
-        return ValueOrError.General.of(literal(GregorianCalendar.from(zonedDateTime)));
     }
 
     @Override

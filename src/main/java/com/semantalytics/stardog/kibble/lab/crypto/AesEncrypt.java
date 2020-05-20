@@ -1,10 +1,10 @@
-package com.semantalytics.stardog.kibble.lab;
+package com.semantalytics.stardog.kibble.lab.crypto;
 
-import com.complexible.stardog.plan.filter.ExpressionEvaluationException;
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
+import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
-import org.openrdf.model.Value;
+import com.stardog.stark.Value;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
@@ -15,7 +15,7 @@ import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 
-import static com.complexible.common.rdf.model.Values.literal;
+import static com.stardog.stark.Values.literal;
 import static sun.security.x509.CertificateAlgorithmId.ALGORITHM;
 
 public class AesEncrypt extends AbstractFunction implements UserDefinedFunction {
@@ -29,7 +29,7 @@ public class AesEncrypt extends AbstractFunction implements UserDefinedFunction 
     }
 
     @Override
-    protected Value internalEvaluate(final Value... values) throws ExpressionEvaluationException {
+    protected ValueOrError internalEvaluate(final Value... values) {
 
         String encryptedVal;
         try {
@@ -50,10 +50,10 @@ public class AesEncrypt extends AbstractFunction implements UserDefinedFunction 
             final byte[] encValue = c.doFinal(valueEnc.getBytes());
             encryptedVal = new BASE64Encoder().encode(encValue);
         } catch (IOException | InvalidKeyException | BadPaddingException | IllegalBlockSizeException | NoSuchAlgorithmException | NoSuchPaddingException e) {
-            throw new ExpressionEvaluationException(e);
+            return ValueOrError.Error;
         }
 
-        return literal(encryptedVal);
+        return ValueOrError.General.of(literal(encryptedVal));
     }
 
     @Override
