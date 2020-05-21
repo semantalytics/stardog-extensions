@@ -10,45 +10,40 @@ import com.stardog.stark.Literal;
 import com.stardog.stark.Value;
 
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 import static com.stardog.stark.Values.literal;
 
-/**
- * Given the dotted-quad representation of an IPv4 network address as a string, returns an
- * integer that represents the numeric value of the address in network byte order (big endian)
- */
-public class IsLinkLocal extends AbstractFunction implements UserDefinedFunction {
+public class LoopbackAddress extends AbstractFunction implements UserDefinedFunction {
 
-    public IsLinkLocal() {
-        super(1, InternetAddressVocabulary.isLinkLocal.stringValue());
+    public LoopbackAddress() {
+        super(1, InternetAddressVocabulary.isIp4MappedAddress.stringValue());
     }
 
-    private IsLinkLocal(final IsLinkLocal internetAddressToNumber) {
+    private LoopbackAddress(final LoopbackAddress internetAddressToNumber) {
         super(internetAddressToNumber);
     }
 
     @Override
-    protected ValueOrError internalEvaluate(final Value... values) {
+    public ValueOrError internalEvaluate(final Value... values) {
 
         if(assertStringLiteral(values[0])) {
             final String ip = ((Literal)values[0]).label();
             try {
                 final InetAddress inetAddress = InetAddresses.forString(ip);
 
-                return ValueOrError.General.of(literal(inetAddress.isLinkLocalAddress()));
-            } catch(IllegalArgumentException e) {
+                return ValueOrError.General.of(literal(inetAddress.getLocalHost().toString()));
+            } catch(IllegalArgumentException | UnknownHostException e) {
                 return ValueOrError.Error;
             }
-
         } else {
             return ValueOrError.Error;
         }
-
     }
 
     @Override
     public Function copy() {
-        return new IsLinkLocal(this);
+        return new LoopbackAddress(this);
     }
 
     @Override
@@ -58,7 +53,7 @@ public class IsLinkLocal extends AbstractFunction implements UserDefinedFunction
 
     @Override
     public String toString() {
-        return InternetAddressVocabulary.isLinkLocal.name();
+        return InternetAddressVocabulary.isIp4MappedAddress.name();
     }
 
 }

@@ -8,7 +8,7 @@ import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
 import com.stardog.stark.Literal;
 import com.stardog.stark.Value;
 
-import static com.google.common.net.InetAddresses.isMappedIPv4Address;
+import static com.google.common.net.InetAddresses.
 import static com.stardog.stark.Values.literal;
 
 public class DottedQuadToHex extends AbstractFunction implements UserDefinedFunction {
@@ -26,8 +26,9 @@ public class DottedQuadToHex extends AbstractFunction implements UserDefinedFunc
 
         if(assertStringLiteral(values[0])) {
             final String ip = ((Literal)values[0]).label();
+            InetAddresses.
 
-            return ValueOrError.General.of(literal(isMappedIPv4Address(ip)));
+            return ValueOrError.General.of(literal(dottedQuadToHex(ip)));
         } else {
             return ValueOrError.Error;
         }

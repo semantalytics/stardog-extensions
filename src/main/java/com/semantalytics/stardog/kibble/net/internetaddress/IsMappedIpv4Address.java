@@ -11,13 +11,13 @@ import com.stardog.stark.Value;
 import static com.google.common.net.InetAddresses.*;
 import static com.stardog.stark.Values.literal;
 
-public class IsIp4MappedAddress extends AbstractFunction implements UserDefinedFunction {
+public class IsMappedIpv4Address extends AbstractFunction implements UserDefinedFunction {
 
-    public IsIp4MappedAddress() {
+    public IsMappedIpv4Address() {
         super(1, InternetAddressVocabulary.isIp4MappedAddress.stringValue());
     }
 
-    private IsIp4MappedAddress(final IsIp4MappedAddress internetAddressToNumber) {
+    private IsMappedIpv4Address(final IsMappedIpv4Address internetAddressToNumber) {
         super(internetAddressToNumber);
     }
 
@@ -35,7 +35,7 @@ public class IsIp4MappedAddress extends AbstractFunction implements UserDefinedF
 
     @Override
     public Function copy() {
-        return new IsIp4MappedAddress(this);
+        return new IsMappedIpv4Address(this);
     }
 
     @Override
