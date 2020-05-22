@@ -21,6 +21,8 @@ public enum UtilVocabulary {
     dateTimeFormat,
     fromSpokenTime,
     timeFromNow,
+    not,
+    is,
     user;
 
     public static final String NAMESPACE = "http://semantalytics.com/2017/09/ns/stardog/kibble/util/";
