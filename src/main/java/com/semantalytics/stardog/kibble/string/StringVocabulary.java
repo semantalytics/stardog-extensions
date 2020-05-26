@@ -16,6 +16,7 @@ public enum StringVocabulary {
     capitalize,
     caseFormat,
     center,
+    charactersOf,
     chomp,
     commonSuffix,
     chop,

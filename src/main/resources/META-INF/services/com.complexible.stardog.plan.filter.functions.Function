@@ -45,7 +45,6 @@ com.semantalytics.stardog.kibble.console.StrikeThroughOff
 com.semantalytics.stardog.kibble.console.Underline
 com.semantalytics.stardog.kibble.console.UnderlineDouble
 com.semantalytics.stardog.kibble.console.UnderlineOff
-=======
 com.semantalytics.stardog.kibble.string.Abbreviate
 com.semantalytics.stardog.kibble.string.AbbreviateMiddle
 com.semantalytics.stardog.kibble.string.AbbreviateWithMarker
@@ -54,6 +53,7 @@ com.semantalytics.stardog.kibble.string.AppendIfMissingIgnoreCase
 com.semantalytics.stardog.kibble.string.Capitalize
 com.semantalytics.stardog.kibble.string.CaseFormat
 com.semantalytics.stardog.kibble.string.Center
+com.semantalytics.stardog.kibble.string.CharactersOf
 com.semantalytics.stardog.kibble.string.Chomp
 com.semantalytics.stardog.kibble.string.Chop
 com.semantalytics.stardog.kibble.string.CommonPrefix
