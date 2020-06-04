@@ -1,4 +1,4 @@
-package com.semantalytics.stardog.kibble.string.comparison;
+package com.semantalytics.stardog.kibble.array;
 
 import com.complexible.common.protocols.server.Server;
 import com.complexible.common.protocols.server.ServerException;
@@ -20,39 +20,47 @@ import java.net.InetSocketAddress;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-        TestCosineDistance.class,
-        TestCosineSimilarity.class,
-        TestDamerauDistance.class,
-        TestHammingDistance.class,
-        TestISub.class,
-        TestJaroWinklerDistance.class,
-        TestJaroWinklerSimilarity.class,
-        TestLevenshteinDistance.class,
-        TestLongestCommonSubsequence.class,
-        TestLongestCommonSubstring.class,
-        TestMetricLongestCommonSubsequence.class,
-        TestMongeElkan.class,
-        TestNeedlemanWunch.class,
-        TestNGram.class,
-        TestNormalizedLevenshteinDistance.class,
-        TestOverlapsCoefficient.class,
-        TestQGram.class,
-        TestSift4.class,
-        TestSmithWaterman.class,
-        TestSmithWatermanGotoh.class,
-        TestSorensenDiceDistance.class,
-        TestSorensenDiceSimilarity.class,
-        TestWeightedLevenshteinDistance.class
+    TestAppend.class,
+    TestCartesianProduct.class,
+    TestContains.class,
+    TestDistinct.class,
+    TestUniformDatatype.class,
+    TestEquals.class,
+    TestFill.class,
+    TestIndexOfFirst.class,
+    TestFlatten.class,
+    TestIndex.class,
+    TestIndexOf.class,
+    TestIsUniformLiteral.class,
+    TestIsUniformType.class,
+    TestIndexOfLast.class,
+    TestNDims.class,
+    TestOf.class,
+    TestOffset.class,
+    TestOrdinal.class,
+    TestPartition.class,
+    TestRemoveAll.class,
+    TestRemoveLast.class,
+    TestReverse.class,
+    TestShift.class,
+    TestShuffle.class,
+    TestSize.class,
+    TestSub.class,
+    TestSwap.class,
+    TestToString.class,
+    TestZip.class,
+    TestZipWithIndex.class,
 })
-public class StringMetricTestSuite extends TestCase {
 
-    private static Stardog STARDOG;
-    private static Server SERVER;
-    public static final String DB = "test";
-    public static final int TEST_PORT = 5888;
-    private static final String STARDOG_HOME = System.getenv("STARDOG_HOME");
-    protected Connection connection;
-    private static final String STARDOG_LICENCE_KEY_FILE_NAME = "stardog-license-key.bin";
+public class ArrayTestSuite extends TestCase {
+
+	private static Stardog STARDOG;
+	private static Server SERVER;
+	public static final String DB = "test";
+	public static final int TEST_PORT = 5888;
+	private static final String STARDOG_HOME = System.getenv("STARDOG_HOME");
+	protected Connection connection;
+	private static final String STARDOG_LICENCE_KEY_FILE_NAME = "stardog-license-key.bin";
 
     @BeforeClass
     public static void beforeClass() throws IOException, ServerException {

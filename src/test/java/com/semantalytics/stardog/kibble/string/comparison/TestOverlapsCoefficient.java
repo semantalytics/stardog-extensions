@@ -10,7 +10,7 @@ import org.junit.*;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.junit.Assert.*;
 
-public class TestOverlapCoefficient extends AbstractStardogTest {
+public class TestOverlapsCoefficient extends AbstractStardogTest {
 
     @Test
     public void testOverlapCoefficient() {

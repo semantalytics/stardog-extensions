@@ -9,7 +9,7 @@ import org.junit.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
 
-public class TestIndexOf extends AbstractStardogTest {
+public class TestFirstIndexOf extends AbstractStardogTest {
 
     @Test
     public void testTwoArg() {

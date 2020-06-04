@@ -9,13 +9,13 @@ import org.junit.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
 
-public class TestOrdinalIndexOf extends AbstractStardogTest {
+public class TestLastFirstIndexOf extends AbstractStardogTest {
 
     @Test
-    public void testThreeArg() {
+    public void testTwoArg() {
       
         final String aQuery = StringVocabulary.sparqlPrefix("string") +
-                    "select ?result where { bind(string:ordinalIndexOf(\"Stardog\", \"ar\", 1) AS ?result) }";
+                    "select ?result where { bind(string:lastIndexOf(\"aabaabaa\", \"ab\") AS ?result) }";
 
             try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
@@ -23,16 +23,16 @@ public class TestOrdinalIndexOf extends AbstractStardogTest {
 
                 final int aValue = Literal.intValue((Literal) aResult.next().value("result").get());
 
-                assertEquals(2, aValue);
+                assertEquals(4, aValue);
                 assertThat(aResult.hasNext()).isFalse();
             }
     }
 
     @Test
-    public void testEmptyString() {
+    public void testThreeArg() {
       
         final String aQuery = StringVocabulary.sparqlPrefix("string") +
-                    "select ?result where { bind(string:ordinalIndexOf(\"\", \"\", 1) as ?result) }";
+                    "select ?result where { bind(string:lastIndexOf(\"aabaabaa\", \"ab\", 2) as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
            
@@ -40,7 +40,7 @@ public class TestOrdinalIndexOf extends AbstractStardogTest {
 
                 final int aValue = Literal.intValue((Literal) aResult.next().value("result").get());
 
-                assertEquals(0, aValue);
+                assertEquals(1, aValue);
                 assertThat(aResult.hasNext()).isFalse();
             }
     }
@@ -49,7 +49,7 @@ public class TestOrdinalIndexOf extends AbstractStardogTest {
     public void testTooFewArgs() {
       
         final String aQuery = StringVocabulary.sparqlPrefix("string") +
-                    "select ?result where { bind(string:ordinalIndexOf(\"one\") as ?result) }";
+                    "select ?result where { bind(string:lastIndexOf(\"one\") as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
          
@@ -66,7 +66,7 @@ public class TestOrdinalIndexOf extends AbstractStardogTest {
     public void testTooManyArgs() {
 
         final String aQuery = StringVocabulary.sparqlPrefix("string") +
-                    "select ?result where { bind(string:ordinalIndexOf(\"one\", \"two\", \"three\") as ?result) }";
+                    "select ?result where { bind(string:lastIndexOf(\"one\", \"two\", 3, \"four\") as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
@@ -83,7 +83,7 @@ public class TestOrdinalIndexOf extends AbstractStardogTest {
     public void testWrongTypeFirstArg() {
        
         final String aQuery = StringVocabulary.sparqlPrefix("string") +
-                    "select ?result where { bind(string:ordinalIndexOf(1, \"two\") as ?result) }";
+        "select ?result where { bind(string:lastIndexOf(1, \"two\", 3) as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
@@ -100,7 +100,7 @@ public class TestOrdinalIndexOf extends AbstractStardogTest {
     public void testWrongTypeSecondArg() {
      
         final String aQuery = StringVocabulary.sparqlPrefix("string") +
-                    "select ?result where { bind(string:ordinalIndexOf(\"one\", 2) as ?result) }";
+        "select ?result where { bind(string:lastIndexOf(\"one\", 2, 3) as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
@@ -111,5 +111,22 @@ public class TestOrdinalIndexOf extends AbstractStardogTest {
                 assertThat(aBindingSet.size()).isZero();
                 assertThat(aResult.hasNext()).isFalse();
             }
+    }
+
+    @Test
+    public void testWrongTypeThirdArg() {
+
+        final String aQuery = StringVocabulary.sparqlPrefix("string") +
+                "select ?result where { bind(string:lastIndexOf(\"one\", \"two\", \"three\") as ?result) }";
+
+        try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
+
+            assertTrue("Should have a result", aResult.hasNext());
+
+            final BindingSet aBindingSet = aResult.next();
+
+            assertThat(aBindingSet.size()).isZero();
+            assertThat(aResult.hasNext()).isFalse();
+        }
     }
 }
