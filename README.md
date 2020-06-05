@@ -318,7 +318,8 @@ Functions:
 Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/array/
 Suggested prefix: array:
 Functions:
- 	Append
+
+	Append
 	CartesianProduct
 	Contains
 	Distinct
