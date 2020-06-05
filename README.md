@@ -281,7 +281,9 @@ Functions:
 A collection of [Stardog](http://stardog.com) plugins for generating escaped strings in various formats
 
 Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/string/escape/
+
 Suggested prefix: escape:
+
 Functions:
 
     csv
@@ -298,7 +300,9 @@ Functions:
 ## String Unescape
 
 Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/string/unescape/
+
 Suggested prefix: unescape:
+
 Functions:
 
     csv
@@ -316,7 +320,9 @@ Functions:
 ## Array
 
 Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/array/
+
 Suggested prefix: array:
+
 Functions:
 
 	Append
