@@ -311,3 +311,42 @@ Functions:
     xml10
     xml11
     xsi
+
+
+## Array
+
+Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/array/
+Suggested prefix: array:
+Functions:
+ 	Append
+	CartesianProduct
+	Contains
+	Distinct
+	Equals
+	Fill
+	Flatten
+	Index
+	IndexOf
+	IndexOfFirst
+	IndexOfLast
+	IsEmpty
+	IsUniformLiteral
+	IsUniformType
+	NDims
+	Of
+	Offset
+	Ordinal
+	Partition
+	RemoveAll
+	RemoveFirst
+	RemoveLast
+	Reverse
+	Shift
+	Shuffle
+	Size
+	Sub
+	Swap
+	ToString
+	UniformDatatype
+	Zip
+	ZipWithIndex
