@@ -277,7 +277,9 @@ Functions:
 A collection of [Stardog](http://stardog.com) plugins for generating escaped strings in various formats
 
 Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/string/escape/
+
 Suggested prefix: escape:
+
 Functions:
 
     csv
@@ -294,7 +296,9 @@ Functions:
 ## String Unescape
 
 Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/string/unescape/
+
 Suggested prefix: unescape:
+
 Functions:
 
     csv
@@ -332,3 +336,44 @@ property functions:
 
     decode      (?latitude ?longitude) geohash:decode("jkjk43243")
     neighbors   (?top ?bottom ?left ?right) geohash:neighbors("jkjk43243")
+
+## Array
+
+Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/array/
+
+Suggested prefix: array:
+
+Functions:
+
+	Append
+	CartesianProduct
+	Contains
+	Distinct
+	Equals
+	Fill
+	Flatten
+	Index
+	IndexOf
+	IndexOfFirst
+	IndexOfLast
+	IsEmpty
+	IsUniformLiteral
+	IsUniformType
+	NDims
+	Of
+	Offset
+	Ordinal
+	Partition
+	RemoveAll
+	RemoveFirst
+	RemoveLast
+	Reverse
+	Shift
+	Shuffle
+	Size
+	Sub
+	Swap
+	ToString
+	UniformDatatype
+	Zip
+	ZipWithIndex
