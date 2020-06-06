@@ -50,9 +50,9 @@
         <junit.version>4.12</junit.version>
         <slf4j.version>1.7.21</slf4j.version>
         <jansi.version>1.16</jansi.version>
+        <geo.version>0.7.1</geo.version>
         <assertj.version>3.15.0</assertj.version>
         <xmlapis.version>1.4.01</xmlapis.version>
-        <slf4j.version>1.7.21</slf4j.version>
         <maven.version>3.3.9</maven.version>
         <guava.version>23.3-jre</guava.version>
         <commons-text.version>1.7</commons-text.version>
@@ -69,6 +69,11 @@
             <version>${stardog.version}</version>
             <type>pom</type>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.davidmoten</groupId>
+            <artifactId>geo</artifactId>
+            <version>${geo.version}</version>
         </dependency>
         <dependency>
             <groupId>com.complexible.stardog.cache</groupId>
@@ -232,6 +237,7 @@
                     </excludes>
                     <includes>
                         <include>**/ConsoleTestSuite.java</include>
+                        <include>**/GeohashTestSuite.java</include>
                         <include>**/EmojiTestSuite.java</include>
                         <include>**/StringMetricTestSuite.java</include>
                         <include>**/StringTestSuite.java</include>

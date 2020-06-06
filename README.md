@@ -211,10 +211,6 @@ Functions:
     
 ## Emoji
 
-Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/string/emoji/
-
-Suggested prefixes: e:, emj:, emoji:
-
     aliases
     count
     decimalHtml
@@ -311,3 +307,28 @@ Functions:
     xml10
     xml11
     xsi
+
+## Geohash
+
+namespace: "http://semantalytics.com/2017/09/ns/stardog/kibble/geo/hash/
+
+prefix: geohash:
+
+functions:
+
+    right
+    left
+    top
+    bottom
+    encode
+    latitude
+    hashLengthToCoverBoundingBox
+    hashContains
+    heightDegrees
+    longitude
+    widthDegrees
+    
+property functions:
+
+    decode      (?latitude ?longitude) geohash:decode("jkjk43243")
+    neighbors   (?top ?bottom ?left ?right) geohash:neighbors("jkjk43243")
