@@ -29,6 +29,7 @@ public class FromSpokenTime extends AbstractFunction implements UserDefinedFunct
 
     @Override
     protected ValueOrError internalEvaluate(final Value... values) {
+        //TODO use ArrayLiteral to handle multiple dates
         
         if(assertStringLiteral(values[0])) {
             final String time = ((Literal)values[0]).label();

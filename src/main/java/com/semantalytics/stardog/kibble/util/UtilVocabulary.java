@@ -7,12 +7,15 @@ public enum UtilVocabulary {
 
     ordinalize,
     pluralize,
+    call,
     bindPrev,
     isValidXsdLiteral,
     proquint,
+    randomProquint,
     sayNumericOrdinal,
     sayNumber,
     sayOrdinal,
+    sayDuration,
     sayTime,
     sleep,
     slugify,
@@ -30,6 +33,10 @@ public enum UtilVocabulary {
 
     UtilVocabulary() {
         iri = Values.iri(NAMESPACE, name());
+    }
+
+    public static String sparqlPrefix(String prefixName) {
+        return "PREFIX " + prefixName + ": <" + NAMESPACE + "> ";
     }
 
     public String stringValue() {

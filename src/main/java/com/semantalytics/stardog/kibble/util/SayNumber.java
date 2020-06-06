@@ -14,7 +14,7 @@ import java.util.Locale;
 public class SayNumber extends AbstractFunction implements UserDefinedFunction {
 
     public SayNumber() {
-        super(1, UtilVocabulary.sayNumber.toString());
+        super(1, UtilVocabulary.sayNumber.stringValue());
     }
 
     private SayNumber(final SayNumber sayNumber) {
@@ -26,7 +26,8 @@ public class SayNumber extends AbstractFunction implements UserDefinedFunction {
         if(assertNumericLiteral(values[0])) {
             final int value = Literal.intValue((Literal)values[0]);
 
-            //TODO Handle language tag
+            //TODO Handle language tag??
+            //TODO generic speak using datatype???
 
             final String number = new RuleBasedNumberFormat(Locale.US, RuleBasedNumberFormat.SPELLOUT).format(value);
 

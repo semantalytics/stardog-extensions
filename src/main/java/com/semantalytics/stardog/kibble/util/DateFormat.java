@@ -28,7 +28,8 @@ public class DateFormat extends AbstractFunction implements UserDefinedFunction 
             final String pattern = Literal.str((Literal)values[1]);
 
             DateTimeFormatter format = DateTimeFormatter.ofPattern(pattern);
-            return ValueOrError.Calendar.of(LocalDate.parse(time, format));
+            //return ValueOrError.Calendar.of(LocalDate.parse(time, format));
+            return null;
         } else {
             return ValueOrError.Error;
         }

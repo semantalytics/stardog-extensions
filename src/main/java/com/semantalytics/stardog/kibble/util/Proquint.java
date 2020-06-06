@@ -14,8 +14,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.GregorianCalendar;
 
-import static org.apache.sis.internal.jaxb.XmlUtilities.toDate;
-
 public class Proquint extends AbstractFunction implements UserDefinedFunction {
 
     public Proquint() {
@@ -27,25 +25,9 @@ public class Proquint extends AbstractFunction implements UserDefinedFunction {
     }
 
     @Override
-    protected ValueOrError internalEvaluate(Value... values) {
+    protected ValueOrError internalEvaluate(final Value... values) {
 
-        if(assertStringLiteral(values[0]) && assertStringLiteral(values[1])) {
-            final String time = Literal.str((Literal)values[0]);
-            final String pattern = Literal.str((Literal)values[1]);
-
-            final GregorianCalendar calendar = new GregorianCalendar();
-            final XMLGregorianCalendar date;
-            final DateTimeFormatter format = DateTimeFormatter.ofPattern(pattern);
-            calendar.setTime(java.sql.Date.valueOf(LocalDate.parse(time, format)));
-            try {
-                date = DatatypeFactory.newInstance().newXMLGregorianCalendar();
-            } catch (DatatypeConfigurationException e) {
-                return ValueOrError.Error;
-            }
-            return ValueOrError.Calendar.of(date);
-        } else {
-            return ValueOrError.Error;
-        }
+        return null;
     }
 
     @Override

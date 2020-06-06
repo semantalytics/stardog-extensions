@@ -1,36 +1,34 @@
 package com.semantalytics.stardog.kibble.util;
 
 import com.semantalytics.stardog.kibble.AbstractStardogTest;
+import com.stardog.stark.Literal;
+import com.stardog.stark.query.SelectQueryResult;
 import org.junit.*;
-import org.openrdf.query.TupleQueryResult;
 
+import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestStardogVersion  extends AbstractStardogTest {
 
- 
+    final static String sparqlPrefix = UtilVocabulary.sparqlPrefix("util");
+
     @Test
-    public void testStardogVersion() throws Exception {
+    public void testStardogVersion() {
 
-            final String aQuery = "prefix util: <" + UtilVocabulary.NAMESPACE + "> " +
-                    "select ?result where { bind(util:stardogVersion() AS ?result) }";
+            final String aQuery = sparqlPrefix
+                    + "select ?result where { bind(util:stardogVersion() AS ?result) }";
 
+            try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
-            try (final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+                assertThat(aResult).hasNext().withFailMessage("Should have a result");
 
-                assertTrue("Should have a result", aResult.hasNext());
+                final Optional<Literal> aPossibleLiteral = aResult.next().literal("result");
+                assertThat(aPossibleLiteral).isPresent();
+                final Literal aLiteral = aPossibleLiteral.get();
+                assertThat(aLiteral.label()).isEqualTo("7.3.0");
 
-                final String aValue = aResult.next().getValue("result").stringValue();
-
-                assertEquals("5.0.4", aValue);
-
-                assertFalse("Should have no more results", aResult.hasNext());
+                assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
             }
-
-
     }
-
 }

@@ -13,12 +13,12 @@ public class Is extends AbstractFunction implements UserDefinedFunction {
         super(1, UtilVocabulary.is.stringValue());
     }
 
-    private Is(final Is dateTimeFormat) {
-        super(dateTimeFormat);
+    private Is(final Is is) {
+        super(is);
     }
 
     @Override
-    protected ValueOrError internalEvaluate(Value... values) {
+    protected ValueOrError internalEvaluate(final Value... values) {
             return ValueOrError.General.of(values[0]);
     }
 

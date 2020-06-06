@@ -16,7 +16,7 @@ import static com.stardog.stark.Values.literal;
 public class SayTime extends AbstractFunction implements UserDefinedFunction {
 
     public SayTime() {
-        super(Range.closed(1, 2), UtilVocabulary.sayTime.stringValue());
+        super(Range.closed(0, 2), UtilVocabulary.sayTime.stringValue());
     }
 
     private SayTime(final SayTime sayTime) {
@@ -26,6 +26,10 @@ public class SayTime extends AbstractFunction implements UserDefinedFunction {
     @Override
     protected ValueOrError internalEvaluate(final Value... values) {
 
+        /*
+        if(values.length == 0) {
+            return ValueOrError.General.of(literal(new PrettyTime().format))
+        } else {
         //TODO should check datatype
         if(assertLiteral(values[0]) && assertLiteral(values[1])) {
             final Date from = new Date(Literal.calendarValue((Literal)values[0]).getMillisecond());
@@ -37,6 +41,9 @@ public class SayTime extends AbstractFunction implements UserDefinedFunction {
         } else {
             return ValueOrError.Error;
         }
+
+         */
+        return null;
     }
 
     @Override

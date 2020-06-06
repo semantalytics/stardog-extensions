@@ -4,13 +4,13 @@ import com.semantalytics.stardog.kibble.AbstractStardogTest;
 import com.stardog.stark.Literal;
 import com.stardog.stark.Value;
 import com.stardog.stark.query.SelectQueryResult;
-import org.junit.*;
+import org.junit.Test;
 
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class TestSayNumber extends AbstractStardogTest {
+public class TestSayTime extends AbstractStardogTest {
 
     final static String sparqlPrefix = UtilVocabulary.sparqlPrefix("util");
 
@@ -18,7 +18,7 @@ public class TestSayNumber extends AbstractStardogTest {
     public void testOneArg() {
 
             final String aQuery = sparqlPrefix
-                    + "select ?result where { bind(util:sayNumber(532) as ?result) }";
+                    + "select ?result where { bind(util:sayTime(532) as ?result) }";
 
             try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 

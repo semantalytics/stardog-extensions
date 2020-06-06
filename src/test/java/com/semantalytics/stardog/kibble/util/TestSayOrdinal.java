@@ -3,27 +3,27 @@ package com.semantalytics.stardog.kibble.util;
 import com.semantalytics.stardog.kibble.AbstractStardogTest;
 import com.stardog.stark.Literal;
 import com.stardog.stark.query.SelectQueryResult;
-import org.junit.*;
+import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class TestFromSpokenTime extends AbstractStardogTest {
+public class TestSayOrdinal extends AbstractStardogTest {
 
     final static String sparqlPrefix = UtilVocabulary.sparqlPrefix("util");
 
     @Test
-    public void testFromSpokenTime() {
+    public void testSayOrdinal() {
 
             final String aQuery = sparqlPrefix
-                    + "select ?result where { bind(util:fromSpokenTime(\"next week\") as ?result) }";
+                    + "select ?result where { bind(util:sayOrdinal(1) as ?result) }";
 
             try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
                 assertThat(aResult.hasNext()).isTrue().withFailMessage("Should have a result");
 
-                final long aValue = Literal.longValue(aResult.next().literal("result").get());
+                final String aValue = aResult.next().literal("result").get().label();
 
-                assertThat(aValue).isEqualTo(3);
+                assertThat(aValue).isEqualTo("");
 
                 assertThat(aResult.hasNext()).isFalse().withFailMessage("Should have no more results");
             }

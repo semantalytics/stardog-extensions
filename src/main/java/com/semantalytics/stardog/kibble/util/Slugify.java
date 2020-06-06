@@ -16,6 +16,7 @@ public class Slugify extends AbstractFunction implements UserDefinedFunction {
 
     static {
         slug = new com.github.slugify.Slugify();
+        slug.
         slug.withLowerCase(false);
     }
 
@@ -50,6 +51,6 @@ public class Slugify extends AbstractFunction implements UserDefinedFunction {
 
     @Override
     public String toString() {
-        return "slugify";
+        return UtilVocabulary.slugify.name();
     }
 }

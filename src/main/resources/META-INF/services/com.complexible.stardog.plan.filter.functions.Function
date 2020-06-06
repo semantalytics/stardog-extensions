@@ -195,3 +195,10 @@ com.semantalytics.stardog.kibble.string.unescape.Xml
 com.semantalytics.stardog.kibble.string.unescape.Xsi
 com.semantalytics.stardog.kibble.util.Ordinalize
 com.semantalytics.stardog.kibble.util.SayNumber
+com.semantalytics.stardog.kibble.util.Call
+com.semantalytics.stardog.kibble.util.FromSpokenTime
+com.semantalytics.stardog.kibble.util.Ordinalize
+com.semantalytics.stardog.kibble.util.StardogVersion
+com.semantalytics.stardog.kibble.util.SayNumber
+com.semantalytics.stardog.kibble.util.SayOrdinal
+
