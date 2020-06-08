@@ -60,6 +60,7 @@
         <emoji4j.version>5.0</emoji4j.version>
         <simmetrics-core.version>4.1.1</simmetrics-core.version>
         <java-sting-similarity.version>0.24</java-sting-similarity.version>
+        <media-fragments-uri.version>2.4</media-fragments-uri.version>
     </properties>
 
     <dependencies>
@@ -116,6 +117,13 @@
             <artifactId>jansi</artifactId>
             <version>${jansi.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.tkurz</groupId>
+            <artifactId>media-fragments-uri</artifactId>
+            <version>${media-fragments-uri.version}</version>
+        </dependency>
+
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -245,6 +253,7 @@
                         <include>**/EscapeTestSuite.java</include>
                         <include>**/UnescapeTestSuite.java</include>
                         <include>**/ArrayTestSuite.java</include>
+                        <include>**/MultimediafragmentsTestSuite.java</include>
                     </includes>
                 </configuration>
             </plugin>
