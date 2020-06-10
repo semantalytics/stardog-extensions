@@ -10,7 +10,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import static com.complexible.common.rdf.model.Values.literal;
 
-public class Add extends AbstractFunction implements UserDefinedFunction {
+public class Divide extends AbstractFunction implements UserDefinedFunction {
 
         public Add() {
             super(1, UcumVocabulary.add.stringValue());

@@ -45,8 +45,8 @@
     </organization>
 
     <properties>
-        <stardog.major.version>5</stardog.major.version>
-        <stardog.version>5.2.3</stardog.version>
+        <stardog.major.version>7</stardog.major.version>
+        <stardog.version>${stardog.major.version}.3.0</stardog.version>
         <junit.version>4.12</junit.version>
         <slf4j.version>1.7.21</slf4j.version>
         <maven.version>3.3.9</maven.version>
@@ -62,19 +62,19 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.fhir</groupId>
-            <artifactId>ucum</artifactId>
-            <version>1.0.1</version>
+            <groupId>tec.uom.lib</groupId>
+            <artifactId>uom-lib-common</artifactId>
+            <version>1.0.2</version>
         </dependency>
         <dependency>
-            <groupId>com.github.mfomos</groupId>
-            <artifactId>humanize-ucum</artifactId>
-            <version>1.2.2</version>
+            <groupId>javax.measure</groupId>
+            <artifactId>unit-api</artifactId>
+            <version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>system.uom</groupId>
-            <artifactId>systems-ucum-java8</artifactId>
-            <version>0.7.2</version>
+            <groupId>tec.units</groupId>
+            <artifactId>indriya</artifactId>
+            <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>

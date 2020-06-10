@@ -1,20 +1,20 @@
 package com.semantalytics.stardog.kibble.units;
 
-import com.complexible.common.rdf.model.StardogValueFactory;
-import org.openrdf.model.IRI;
+import com.stardog.stark.IRI;
+import com.stardog.stark.Values;
 
-public enum UnitsVocabulary {
+public enum UcumVocabulary {
 
-    ;
+    add;
 
     public static final String NAMESPACE = "http://semantalytics.com/2017/09/ns/stardog/kibble/units/ucum";
     public final IRI iri;
 
-    UnitsVocabulary() {
-        iri = StardogValueFactory.instance().createIRI(NAMESPACE, name());
+    UcumVocabulary() {
+        iri = Values.iri(NAMESPACE, name());
     }
 
     public String stringValue() {
-        return iri.stringValue();
+        return iri.toString();
     }
 }
