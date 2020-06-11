@@ -51,6 +51,6 @@ public class DatabaseProductName extends AbstractFunction implements UserDefined
 
     @Override
     public String toString() {
-        return JdbcVocabulary.isDriverRegistered.name();
+        return JdbcVocabulary.databaseProductName.name();
     }
 }

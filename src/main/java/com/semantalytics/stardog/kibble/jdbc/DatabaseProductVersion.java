@@ -30,6 +30,7 @@ public class DatabaseProductVersion extends AbstractFunction implements UserDefi
         if (iri.isPresent()) {
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
+                metadata.
                 return ValueOrError.General.of(Values.literal(metadata.getDatabaseProductVersion()));
             } catch (SQLException e) {
                 return ValueOrError.Error;
