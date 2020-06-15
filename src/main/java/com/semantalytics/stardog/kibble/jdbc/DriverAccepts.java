@@ -25,7 +25,11 @@ public class DriverAccepts extends AbstractFunction implements UserDefinedFuncti
 
         final Optional<String> iri = JdbcUtils.fromLiteralOrIRI(values[0]);
         try {
-            DriverManager.getDriver(iri.toString()).acceptsURL(iri.toString());
+            if(iri.isPresent()) {
+                DriverManager.getDriver(iri.get()).acceptsURL(iri.toString());
+            } else {
+                return ValueOrError.Error;
+            }
         } catch (SQLException e) {
             return ValueOrError.Boolean.False;
         }

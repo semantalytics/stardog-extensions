@@ -26,11 +26,11 @@ public class DriverMajorVersion extends AbstractFunction implements UserDefinedF
         final Optional<String> iri = JdbcUtils.fromLiteralOrIRI(values[0]);
         if(iri.isPresent()) {
             try {
-                DriverManager.getDriver(iri.get()).;
+                DriverManager.getDriver(iri.get());
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }
-            return literal(true);
+            return ValueOrError.Boolean.True;
         } else {
             return ValueOrError.Error;
         }

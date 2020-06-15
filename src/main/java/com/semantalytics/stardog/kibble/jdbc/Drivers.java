@@ -51,7 +51,7 @@ public class Drivers extends AbstractExpression implements UserDefinedFunction {
         final MappingDictionary mappingDictionary = valueSolution.getDictionary();
         final long[] ids = Collections.list(DriverManager.getDrivers())
                                       .stream()
-                                      .map(Driver::toString)
+                                      .map(d -> d.getClass().getName())
                                       .map(Values::literal)
                                       .mapToLong(mappingDictionary::add)
                                       .toArray();

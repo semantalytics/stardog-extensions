@@ -288,3 +288,5 @@ com.semantalytics.stardog.kibble.array.ZipWithIndex
 com.semantalytics.stardog.kibble.jdbc.DatabaseMajorVersion
 com.semantalytics.stardog.kibble.jdbc.DatabaseMinorVersion
 com.semantalytics.stardog.kibble.jdbc.DatabaseProductName
+com.semantalytics.stardog.kibble.jdbc.Drivers
+com.semantalytics.stardog.kibble.jdbc.AllProceduresAreCallable

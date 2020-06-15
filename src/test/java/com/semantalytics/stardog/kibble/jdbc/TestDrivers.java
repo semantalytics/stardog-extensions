@@ -1,12 +1,19 @@
 package com.semantalytics.stardog.kibble.jdbc;
 
+import com.google.common.collect.ImmutableList;
 import com.semantalytics.stardog.kibble.AbstractStardogTest;
 import com.semantalytics.stardog.kibble.string.emoji.EmojiVocabulary;
+import com.stardog.stark.Literal;
+import com.stardog.stark.query.BindingSet;
+import com.stardog.stark.query.SelectQueryResult;
 import org.junit.Test;
-import org.openrdf.query.BindingSet;
-import org.openrdf.query.TupleQueryResult;
 
+import java.util.List;
+import java.util.Optional;
+
+import static java.util.stream.Collectors.*;
 import static org.junit.Assert.*;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 
 public class TestDrivers extends AbstractStardogTest {
@@ -14,36 +21,17 @@ public class TestDrivers extends AbstractStardogTest {
     @Test
     public void testListDrivers() {
 
-            final String aQuery = JdbcVocabulary.sparqlPrefix("jdbc") +
-                    "select ?result where { unnest(emoji:aliases(\"\uD83D\uDC2D\") as ?result) }";
+            final String aQuery = JdbcVocabulary.sparqlPrefix("jdbc")
+                                  + "select ?result where { unnest(jdbc:drivers() as ?result) }";
 
-            try (final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+            try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
-                assertTrue("Should have a result", aResult.hasNext());
 
-                final String aValue = aResult.next().getValue("result").stringValue();
+                List<BindingSet> results = ImmutableList.copyOf(aResult);
+                String[] drivers = new String[] {"org.apache.calcite.jdbc.Driver", "org.apache.calcite.avatica.remote.Driver", "org.apache.derby.jdbc.AutoloadedDriver40"};
+                assertThat(results.stream().map(b -> b.literal("result")).map(Optional::get).map(Literal::label).collect(toList())).containsExactlyInAnyOrder(drivers);
 
-                assertEquals("mouse", aValue);
-                assertFalse("Should have no more results", aResult.hasNext());
             }
-    }
-
-    @Test
-    public void testEmptyString() {
-
-        final String aQuery = EmojiVocabulary.sparqlPrefix("emoji") +
-                "select ?result where { bind(emoji:aliases(\"\") as ?result) }";
-
-        try (final TupleQueryResult aResult = connection.select(aQuery).execute()) {
-
-            assertTrue("Should have a result", aResult.hasNext());
-
-            final String aValue = aResult.next().getValue("result").stringValue();
-            System.out.println("'" + aValue + "'");
-
-            assertEquals("", aValue);
-            assertFalse("Should have no more results", aResult.hasNext());
-        }
     }
 
     @Test
@@ -52,47 +40,13 @@ public class TestDrivers extends AbstractStardogTest {
         final String aQuery = EmojiVocabulary.sparqlPrefix("emoji") +
                 "select ?result where { bind(emoji:aliases() as ?result) }";
 
-        try(final TupleQueryResult aResult = connection.select(aQuery).execute()) {
+        try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
             assertTrue("Should have a result", aResult.hasNext());
 
             final BindingSet aBindingSet = aResult.next();
 
-            assertTrue("Should have no bindings", aBindingSet.getBindingNames().isEmpty());
-            assertFalse("Should have no more results", aResult.hasNext());
-        }
-    }
-
-    @Test
-    public void testTooManyArgs() {
-
-        final String aQuery = EmojiVocabulary.sparqlPrefix("emoji") +
-                "select ?result where { bind(emoji:aliases(\"star\", \"dog\") as ?result) }";
-
-        try(final TupleQueryResult aResult = connection.select(aQuery).execute()) {
-
-            assertTrue("Should have a result", aResult.hasNext());
-
-            final BindingSet aBindingSet = aResult.next();
-
-            assertTrue("Should have no bindings", aBindingSet.getBindingNames().isEmpty());
-            assertFalse("Should have no more results", aResult.hasNext());
-        }
-    }
-
-    @Test
-    public void testWrongTypeFirstArg() {
-
-        final String aQuery = EmojiVocabulary.sparqlPrefix("emoji") +
-                "select ?result where { bind(emoji:aliases(1) as ?result) }";
-
-        try(final TupleQueryResult aResult = connection.select(aQuery).execute()) {
-
-            assertTrue("Should have a result", aResult.hasNext());
-
-            final BindingSet aBindingSet = aResult.next();
-
-            assertTrue("Should have no bindings", aBindingSet.getBindingNames().isEmpty());
+//            assertTrue("Should have no bindings", aBindingSet.getBindingNames().isEmpty());
             assertFalse("Should have no more results", aResult.hasNext());
         }
     }

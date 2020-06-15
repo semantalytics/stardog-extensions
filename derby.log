@@ -1,0 +1,10 @@
+----------------------------------------------------------------
+Mon Jun 15 09:10:41 EDT 2020:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-0172-b81a-7444-000065d82338 
+on database directory /home/zcw100/git/stardog-functions/derbyDB  with class loader sun.misc.Launcher$AppClassLoader@18b4aac2 
+Loaded from file:/home/zcw100/.m2/repository/org/apache/derby/derby/10.9.1.0/derby-10.9.1.0.jar
+java.vendor=AdoptOpenJDK
+java.runtime.version=1.8.0_242-b08
+user.dir=/home/zcw100/git/stardog-functions
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

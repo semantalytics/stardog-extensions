@@ -5,13 +5,14 @@ import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
 import com.stardog.stark.Value;
-import com.stardog.stark.Values;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Optional;
+
+import static com.stardog.stark.Values.*;
 
 public class DatabaseProductVersion extends AbstractFunction implements UserDefinedFunction {
 
@@ -30,8 +31,7 @@ public class DatabaseProductVersion extends AbstractFunction implements UserDefi
         if (iri.isPresent()) {
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
-                metadata.
-                return ValueOrError.General.of(Values.literal(metadata.getDatabaseProductVersion()));
+                return ValueOrError.General.of(literal(metadata.getDatabaseProductVersion()));
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }

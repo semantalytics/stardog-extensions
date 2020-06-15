@@ -59,7 +59,7 @@
         <slugify.version>2.1.9</slugify.version>
         <slf4j.version>1.7.21</slf4j.version>
         <stardog.major.version>7</stardog.major.version>
-        <stardog.version>${stardog.major.version}.3.0</stardog.version>
+        <stardog.version>${stardog.major.version}.3.1</stardog.version>
         <threeten-extra.version>1.2</threeten-extra.version>
         <tradukisto.version>1.0.0</tradukisto.version>
         <prettytime.version>4.0.0.Final</prettytime.version>
@@ -130,6 +130,7 @@
             <artifactId>jansi</artifactId>
             <version>${jansi.version}</version>
         </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -152,6 +153,11 @@
             <artifactId>xml-apis</artifactId>
             <version>${xmlapis.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <version>10.9.1.0</version>
         </dependency>
     </dependencies>
 
