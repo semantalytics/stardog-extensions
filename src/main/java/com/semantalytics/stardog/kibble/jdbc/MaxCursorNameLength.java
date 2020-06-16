@@ -12,13 +12,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Optional;
 
-public class DataDefinitionIgnoredInTransaction extends AbstractFunction implements UserDefinedFunction {
+public class MaxCursorNameLength extends AbstractFunction implements UserDefinedFunction {
 
-    public DataDefinitionIgnoredInTransaction() {
-        super(1, JdbcVocabulary.dataDefinitionIgnoredInTransaction.stringValue());
+    public MaxCursorNameLength() {
+        super(1, JdbcVocabulary.maxCursorNameLength.stringValue());
     }
 
-    public DataDefinitionIgnoredInTransaction(final DataDefinitionIgnoredInTransaction executeDouble) {
+    public MaxCursorNameLength(final MaxCursorNameLength executeDouble) {
         super(executeDouble);
     }
 
@@ -29,7 +29,7 @@ public class DataDefinitionIgnoredInTransaction extends AbstractFunction impleme
         if (iri.isPresent()) {
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
-                return ValueOrError.Boolean.of(metadata.dataDefinitionIgnoredInTransactions());
+                return ValueOrError.Boolean.of(metadata.getMaxCursorNameLength());
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }
@@ -39,8 +39,8 @@ public class DataDefinitionIgnoredInTransaction extends AbstractFunction impleme
     }
 
     @Override
-    public DataDefinitionIgnoredInTransaction copy() {
-        return new DataDefinitionIgnoredInTransaction(this);
+    public MaxCursorNameLength copy() {
+        return new MaxCursorNameLength(this);
     }
 
     @Override
@@ -50,6 +50,7 @@ public class DataDefinitionIgnoredInTransaction extends AbstractFunction impleme
 
     @Override
     public String toString() {
-        return JdbcVocabulary.dataDefinitionIgnoredInTransaction.name();
+        return JdbcVocabulary.maxCursorNameLength.name();
     }
+
 }
