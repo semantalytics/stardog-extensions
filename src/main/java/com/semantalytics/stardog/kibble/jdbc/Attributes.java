@@ -30,6 +30,7 @@ public class Attributes extends AbstractFunction implements UserDefinedFunction 
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
                 return ValueOrError.Boolean.of(metadata.getAttributes());
+                //returns resultset
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }

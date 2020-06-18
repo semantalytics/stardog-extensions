@@ -29,7 +29,7 @@ public class MaxUserNameLength extends AbstractFunction implements UserDefinedFu
         if (iri.isPresent()) {
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
-                return ValueOrError.Boolean.of(metadata.getMaxUserNameLength());
+                return ValueOrError.Int.of(metadata.getMaxUserNameLength());
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }

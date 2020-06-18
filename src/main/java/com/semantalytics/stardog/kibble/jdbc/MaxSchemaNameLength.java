@@ -29,7 +29,7 @@ public class MaxSchemaNameLength extends AbstractFunction implements UserDefined
         if (iri.isPresent()) {
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
-                return ValueOrError.Boolean.of(metadata.getMaxSchemaNameLength());
+                return ValueOrError.Int.of(metadata.getMaxSchemaNameLength());
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }

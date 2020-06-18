@@ -30,6 +30,7 @@ public class BestRowIdentifier extends AbstractFunction implements UserDefinedFu
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
                 return ValueOrError.Boolean.of(metadata.getBestRowIdentifier());
+                //returns resultset
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }

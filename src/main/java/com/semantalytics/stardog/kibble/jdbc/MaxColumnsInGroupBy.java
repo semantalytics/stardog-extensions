@@ -29,7 +29,7 @@ public class MaxColumnsInGroupBy extends AbstractFunction implements UserDefined
         if (iri.isPresent()) {
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
-                return ValueOrError.Boolean.of(metadata.getMaxColumnsInGroupBy());
+                return ValueOrError.Int.of(metadata.getMaxColumnsInGroupBy());
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }

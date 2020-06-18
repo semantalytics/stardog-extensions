@@ -29,7 +29,8 @@ public class ResultSetHoldability extends AbstractFunction implements UserDefine
         if (iri.isPresent()) {
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
-                return ValueOrError.Boolean.of(metadata.getResultSetHoldability());
+                return ValueOrError.Int.of(metadata.getResultSetHoldability());
+                //TODO return something more informative than an int
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }

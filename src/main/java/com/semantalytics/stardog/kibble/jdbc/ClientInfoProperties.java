@@ -30,6 +30,7 @@ public class ClientInfoProperties extends AbstractFunction implements UserDefine
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
                 return ValueOrError.Boolean.of(metadata.getClientInfoProperties());
+                //returns resultset
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }

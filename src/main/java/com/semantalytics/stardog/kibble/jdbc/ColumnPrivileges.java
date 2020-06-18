@@ -30,6 +30,7 @@ public class ColumnPrivileges extends AbstractFunction implements UserDefinedFun
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
                 return ValueOrError.Boolean.of(metadata.getColumnPrivileges());
+                //returns resultset
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }

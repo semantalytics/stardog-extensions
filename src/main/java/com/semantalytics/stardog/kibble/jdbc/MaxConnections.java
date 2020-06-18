@@ -29,7 +29,7 @@ public class MaxConnections extends AbstractFunction implements UserDefinedFunct
         if (iri.isPresent()) {
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
-                return ValueOrError.Boolean.of(metadata.getMaxConnections());
+                return ValueOrError.Int.of(metadata.getMaxConnections());
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }

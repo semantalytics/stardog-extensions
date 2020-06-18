@@ -12,6 +12,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Optional;
 
+import static com.stardog.stark.Values.literal;
+
 public class MaxLogicalLobSize extends AbstractFunction implements UserDefinedFunction {
 
     public MaxLogicalLobSize() {
@@ -29,7 +31,7 @@ public class MaxLogicalLobSize extends AbstractFunction implements UserDefinedFu
         if (iri.isPresent()) {
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
-                return ValueOrError.Boolean.of(metadata.getMaxLogicalLobSize());
+                return ValueOrError.General.of(literal(metadata.getMaxLogicalLobSize()));
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }

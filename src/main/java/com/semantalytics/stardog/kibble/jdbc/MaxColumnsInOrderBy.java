@@ -29,8 +29,7 @@ public class MaxColumnsInOrderBy extends AbstractFunction implements UserDefined
         if (iri.isPresent()) {
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
-                return ValueOrError.Boolean.of(metadata.getMaxColumnsInOrderBy());
-                fjdkjfkasjl
+                return ValueOrError.Int.of(metadata.getMaxColumnsInOrderBy());
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }

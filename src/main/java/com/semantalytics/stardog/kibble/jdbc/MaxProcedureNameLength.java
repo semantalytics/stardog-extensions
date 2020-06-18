@@ -29,7 +29,7 @@ public class MaxProcedureNameLength extends AbstractFunction implements UserDefi
         if (iri.isPresent()) {
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
-                return ValueOrError.Boolean.of(metadata.getMaxProcedureNameLength());
+                return ValueOrError.Int.of(metadata.getMaxProcedureNameLength());
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }

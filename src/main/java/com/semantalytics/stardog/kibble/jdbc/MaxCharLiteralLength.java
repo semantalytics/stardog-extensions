@@ -29,7 +29,7 @@ public class MaxCharLiteralLength extends AbstractFunction implements UserDefine
         if (iri.isPresent()) {
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
-                return ValueOrError.Boolean.of(metadata.getMaxCharLiteralLength());
+                return ValueOrError.Int.of(metadata.getMaxCharLiteralLength());
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }

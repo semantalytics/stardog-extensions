@@ -29,7 +29,7 @@ public class MaxColumnNameLength extends AbstractFunction implements UserDefined
         if (iri.isPresent()) {
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
-                return ValueOrError.Boolean.of(metadata.getMaxColumnNameLength());
+                return ValueOrError.Int.of(metadata.getMaxColumnNameLength());
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }

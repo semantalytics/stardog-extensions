@@ -29,7 +29,7 @@ public class MaxTableNameLength extends AbstractFunction implements UserDefinedF
         if (iri.isPresent()) {
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
-                return ValueOrError.Boolean.of(metadata.getMaxTableNameLength());
+                return ValueOrError.Int.of(metadata.getMaxTableNameLength());
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }

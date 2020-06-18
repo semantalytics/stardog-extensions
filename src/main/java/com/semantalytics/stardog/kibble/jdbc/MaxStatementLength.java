@@ -29,7 +29,7 @@ public class MaxStatementLength extends AbstractFunction implements UserDefinedF
         if (iri.isPresent()) {
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
-                return ValueOrError.Boolean.of(metadata.getMaxStatementLength());
+                return ValueOrError.Int.of(metadata.getMaxStatementLength());
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }

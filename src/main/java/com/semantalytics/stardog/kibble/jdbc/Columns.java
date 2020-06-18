@@ -30,6 +30,7 @@ public class Columns extends AbstractFunction implements UserDefinedFunction {
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
                 return ValueOrError.Boolean.of(metadata.getColumns());
+                //returns resultset
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }

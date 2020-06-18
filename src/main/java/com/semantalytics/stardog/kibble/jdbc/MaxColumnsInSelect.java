@@ -29,7 +29,7 @@ public class MaxColumnsInSelect extends AbstractFunction implements UserDefinedF
         if (iri.isPresent()) {
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
-                return ValueOrError.Boolean.of(metadata.getMaxColumnsInSelect());
+                return ValueOrError.Int.of(metadata.getMaxColumnsInSelect());
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }

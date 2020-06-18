@@ -30,6 +30,7 @@ public class ExportedKeys extends AbstractFunction implements UserDefinedFunctio
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
                 return ValueOrError.Boolean.of(metadata.getExportedKeys());
+                //returns resultset takes three string args
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }

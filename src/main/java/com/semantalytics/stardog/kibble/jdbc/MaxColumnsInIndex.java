@@ -29,7 +29,7 @@ public class MaxColumnsInIndex extends AbstractFunction implements UserDefinedFu
         if (iri.isPresent()) {
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
-                return ValueOrError.Boolean.of(metadata.getMaxColumnsInIndex());
+                return ValueOrError.Int.of(metadata.getMaxColumnsInIndex());
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }

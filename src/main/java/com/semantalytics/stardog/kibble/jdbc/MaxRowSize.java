@@ -29,7 +29,7 @@ public class MaxRowSize extends AbstractFunction implements UserDefinedFunction 
         if (iri.isPresent()) {
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
-                return ValueOrError.Boolean.of(metadata.getMaxRowSize());
+                return ValueOrError.Int.of(metadata.getMaxRowSize());
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }

@@ -29,7 +29,7 @@ public class MaxStatements extends AbstractFunction implements UserDefinedFuncti
         if (iri.isPresent()) {
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
-                return ValueOrError.Boolean.of(metadata.getMaxStatements());
+                return ValueOrError.Int.of(metadata.getMaxStatements());
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }

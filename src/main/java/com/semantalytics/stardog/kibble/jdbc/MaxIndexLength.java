@@ -29,7 +29,7 @@ public class MaxIndexLength extends AbstractFunction implements UserDefinedFunct
         if (iri.isPresent()) {
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
-                return ValueOrError.Boolean.of(metadata.getMaxIndexLength());
+                return ValueOrError.Int.of(metadata.getMaxIndexLength());
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }

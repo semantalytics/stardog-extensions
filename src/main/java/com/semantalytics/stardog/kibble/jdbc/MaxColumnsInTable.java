@@ -29,8 +29,7 @@ public class MaxColumnsInTable extends AbstractFunction implements UserDefinedFu
         if (iri.isPresent()) {
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
-                return ValueOrError.Boolean.of(metadata.getMaxColumnsInTable());
-                fjdkjfkasjl
+                return ValueOrError.Int.of(metadata.getMaxColumnsInTable());
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }

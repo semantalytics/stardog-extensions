@@ -30,6 +30,7 @@ public class IndexInfo extends AbstractFunction implements UserDefinedFunction {
             try (final Connection connection = DriverManager.getConnection(iri.get())) {
                 final DatabaseMetaData metadata = connection.getMetaData();
                 return ValueOrError.Boolean.of(metadata.getIndexInfo());
+                //returns resultset takes args
             } catch (SQLException e) {
                 return ValueOrError.Error;
             }
