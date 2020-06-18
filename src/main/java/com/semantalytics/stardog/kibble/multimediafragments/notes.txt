@@ -1,0 +1,10 @@
+parql-mm
+
+- https://www.w3.org/2008/WebVideo/Fragments/code/grammar/FragmentGrammar.jj
+- http://www2015.wwwconference.org/documents/proceedings/companion/p721.pdf
+- https://marmotta.apache.org/kiwi/sparql-mm.html
+- https://github.com/tkurz/sparql-mm
+- https://github.com/tkurz/media-fragments-uri
+- https://www.w3.org/TR/media-frags/#collected-syntax-uri
+- http://www2015.wwwconference.org/documents/proceedings/companion/p721.pdf
+
