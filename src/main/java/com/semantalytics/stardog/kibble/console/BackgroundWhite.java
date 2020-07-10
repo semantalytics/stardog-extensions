@@ -18,7 +18,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class BackgroundWhite extends AbstractFunction implements UserDefinedFunction {
 
     public BackgroundWhite() {
-        super(Range.all(), ConsoleVocabulary.backgroundWhite.stringValue());
+        super(Range.all(), ConsoleVocabulary.backgroundWhite.toString());
     }
 
     public BackgroundWhite(final BackgroundWhite console) {
@@ -50,6 +50,6 @@ public class BackgroundWhite extends AbstractFunction implements UserDefinedFunc
 
     @Override
     public String toString() {
-        return ConsoleVocabulary.backgroundWhite.name();
+        return ConsoleVocabulary.backgroundWhite.toString();
     }
 }

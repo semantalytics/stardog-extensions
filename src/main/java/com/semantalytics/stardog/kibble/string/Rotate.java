@@ -46,6 +46,6 @@ public final class Rotate extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.rotate.name();
+        return StringVocabulary.rotate.toString();
     }
 }

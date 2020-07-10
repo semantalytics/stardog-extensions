@@ -17,7 +17,7 @@ public final class LevenshteinDistance extends AbstractFunction implements Strin
     }
 
     protected LevenshteinDistance() {
-        super(2, StringMetricVocabulary.levenshteinDistance.stringValue());
+        super(2, StringMetricVocabulary.levenshteinDistance.toString());
     }
 
     private LevenshteinDistance(final LevenshteinDistance levenshteinDistance) {
@@ -48,6 +48,6 @@ public final class LevenshteinDistance extends AbstractFunction implements Strin
 
     @Override
     public String toString() {
-        return StringMetricVocabulary.levenshteinDistance.name();
+        return StringMetricVocabulary.levenshteinDistance.toString();
     }
 }

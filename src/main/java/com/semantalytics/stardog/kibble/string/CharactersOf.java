@@ -67,6 +67,6 @@ public final class CharactersOf extends AbstractExpression implements StringFunc
 
     @Override
     public String toString() {
-        return StringVocabulary.charactersOf.name();
+        return StringVocabulary.charactersOf.toString();
     }
 }

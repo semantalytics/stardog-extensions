@@ -42,6 +42,6 @@ public final class Shuffle extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return ArrayVocabulary.shuffle.name();
+        return ArrayVocabulary.shuffle.toString();
     };
 }

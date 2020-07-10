@@ -17,7 +17,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class UnderlineDouble extends AbstractFunction implements UserDefinedFunction {
 
     public UnderlineDouble() {
-        super(Range.all(), ConsoleVocabulary.underlineDouble.stringValue());
+        super(Range.all(), ConsoleVocabulary.underlineDouble.toString());
     }
 
     public UnderlineDouble(final UnderlineDouble console) {
@@ -49,6 +49,6 @@ public class UnderlineDouble extends AbstractFunction implements UserDefinedFunc
 
     @Override
     public String toString() {
-        return ConsoleVocabulary.underlineDouble.name();
+        return ConsoleVocabulary.underlineDouble.toString();
     }
 }

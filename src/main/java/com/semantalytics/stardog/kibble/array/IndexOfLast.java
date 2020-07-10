@@ -74,7 +74,7 @@ public final class IndexOfLast extends AbstractExpression implements UserDefined
 
     @Override
     public String toString() {
-        return ArrayVocabulary.indexOfLast.name();
+        return ArrayVocabulary.indexOfLast.toString();
     }
 }
 

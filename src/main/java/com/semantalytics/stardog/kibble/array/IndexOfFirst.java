@@ -74,7 +74,7 @@ public final class IndexOfFirst extends AbstractExpression implements UserDefine
 
     @Override
     public String toString() {
-        return ArrayVocabulary.indexOfFirst.name();
+        return ArrayVocabulary.indexOfFirst.toString();
     }
 }
 

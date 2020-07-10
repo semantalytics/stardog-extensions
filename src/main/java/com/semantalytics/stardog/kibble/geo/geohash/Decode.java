@@ -36,7 +36,7 @@ import static com.stardog.stark.Values.literal;
 
 public final class Decode implements PropertyFunction {
 
-    private static final IRI FUNCTION_IRI = GeoHashVocabulary.decode.iri;
+    private static final IRI FUNCTION_IRI = GeoHashVocabulary.decode;
 
     /**
      * {@inheritDoc}

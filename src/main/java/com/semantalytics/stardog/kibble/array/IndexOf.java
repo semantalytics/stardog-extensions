@@ -88,7 +88,7 @@ public final class IndexOf extends AbstractExpression implements UserDefinedFunc
 
     @Override
     public String toString() {
-        return ArrayVocabulary.indexOf.name();
+        return ArrayVocabulary.indexOf.toString();
     }
 }
 

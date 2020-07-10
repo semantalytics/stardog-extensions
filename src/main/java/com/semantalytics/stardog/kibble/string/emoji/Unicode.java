@@ -16,7 +16,7 @@ import static emoji4j.EmojiUtils.getEmoji;
 public final class Unicode extends AbstractFunction implements StringFunction {
 
     protected Unicode() {
-        super(1, EmojiVocabulary.unicode.stringValue());
+        super(1, EmojiVocabulary.unicode.toString());
     }
 
     private Unicode(final Unicode unicode) {
@@ -47,6 +47,6 @@ public final class Unicode extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return EmojiVocabulary.unicode.name();
+        return EmojiVocabulary.unicode.toString();
     }
 }

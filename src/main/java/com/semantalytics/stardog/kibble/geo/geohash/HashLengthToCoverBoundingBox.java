@@ -13,7 +13,7 @@ import static com.stardog.stark.Values.literal;
 public final class HashLengthToCoverBoundingBox extends AbstractFunction implements UserDefinedFunction {
 
     protected HashLengthToCoverBoundingBox() {
-        super(4, GeoHashVocabulary.hashLengthToCoverBoundingBox.stringValue());
+        super(4, GeoHashVocabulary.hashLengthToCoverBoundingBox.toString());
     }
 
     private HashLengthToCoverBoundingBox(final HashLengthToCoverBoundingBox hashLengthToCoverBoundingBox) {
@@ -51,7 +51,7 @@ public final class HashLengthToCoverBoundingBox extends AbstractFunction impleme
 
     @Override
     public String toString() {
-        return GeoHashVocabulary.hashLengthToCoverBoundingBox.name();
+        return GeoHashVocabulary.hashLengthToCoverBoundingBox.toString();
     }
 
 }

@@ -14,7 +14,7 @@ public class TestIsMixedCase extends AbstractStardogTest {
     @Test
     public void testTrue() {
         
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:isMixedCase(\"Stardog\") AS ?result) }";
 
             try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -31,7 +31,7 @@ public class TestIsMixedCase extends AbstractStardogTest {
     @Test
     public void testFalse() {
 
-        final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+        final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                 "select ?result where { bind(string:isMixedCase(\"stardog\") AS ?result) }";
 
         try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -48,7 +48,7 @@ public class TestIsMixedCase extends AbstractStardogTest {
     @Test
     public void testEmptyString() {
 
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:isMixedCase(\"\") as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -66,7 +66,7 @@ public class TestIsMixedCase extends AbstractStardogTest {
     public void testTooFewArgs() {
 
    
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:isMixedCase() as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -83,7 +83,7 @@ public class TestIsMixedCase extends AbstractStardogTest {
     @Test
     public void testTooManyArgs() {
 
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:isMixedCase(\"one\", \"two\") as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -100,7 +100,7 @@ public class TestIsMixedCase extends AbstractStardogTest {
     @Test
     public void testWrongTypeFirstArg() {
     
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:isMixedCase(1) as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {

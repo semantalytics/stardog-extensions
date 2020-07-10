@@ -13,7 +13,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class ConcealOff extends AbstractFunction implements UserDefinedFunction {
 
     public ConcealOff() {
-        super(0, ConsoleVocabulary.concealOff.stringValue());
+        super(0, ConsoleVocabulary.concealOff.toString());
     }
 
     public ConcealOff(final ConcealOff conceal) {
@@ -37,6 +37,6 @@ public class ConcealOff extends AbstractFunction implements UserDefinedFunction 
 
     @Override
     public String toString() {
-        return ConsoleVocabulary.concealOff.name();
+        return ConsoleVocabulary.concealOff.toString();
     }
 }

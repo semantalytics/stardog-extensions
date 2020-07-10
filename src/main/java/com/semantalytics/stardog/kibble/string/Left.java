@@ -45,6 +45,6 @@ public final class Left extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.left.name();
+        return StringVocabulary.left.toString();
     }
 }

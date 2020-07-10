@@ -44,6 +44,6 @@ public final class IsMixedCase extends AbstractFunction implements StringFunctio
 
     @Override
     public String toString() {
-        return StringVocabulary.isMixedCase.name();
+        return StringVocabulary.isMixedCase.toString();
     }
 }

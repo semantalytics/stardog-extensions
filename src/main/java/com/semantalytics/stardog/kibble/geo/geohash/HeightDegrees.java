@@ -13,7 +13,7 @@ import static com.stardog.stark.Values.literal;
 public final class HeightDegrees extends AbstractFunction implements UserDefinedFunction {
 
     protected HeightDegrees() {
-        super(1, GeoHashVocabulary.heightDegrees.stringValue());
+        super(1, GeoHashVocabulary.heightDegrees.toString());
     }
 
     private HeightDegrees(final HeightDegrees heightDegrees) {
@@ -44,7 +44,7 @@ public final class HeightDegrees extends AbstractFunction implements UserDefined
 
     @Override
     public String toString() {
-        return GeoHashVocabulary.heightDegrees.name();
+        return GeoHashVocabulary.heightDegrees.toString();
     }
 
 }

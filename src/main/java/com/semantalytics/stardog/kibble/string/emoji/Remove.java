@@ -13,7 +13,7 @@ import static emoji4j.EmojiUtils.*;
 public final class Remove extends AbstractFunction implements StringFunction {
 
     protected Remove() {
-        super(1, EmojiVocabulary.remove.stringValue());
+        super(1, EmojiVocabulary.remove.toString());
     }
 
     private Remove(final Remove remove) {
@@ -44,6 +44,6 @@ public final class Remove extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return EmojiVocabulary.remove.name();
+        return EmojiVocabulary.remove.toString();
     }
 }

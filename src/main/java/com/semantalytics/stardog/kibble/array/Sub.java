@@ -31,17 +31,17 @@ public final class Sub extends AbstractFunction implements StringFunction {
             final int startIndexInclusive;
             final int endIndexExclusive;
 
-            if (((Literal)values[1]).datatypeIRI() == ArrayVocabulary.ordinalDatatype.iri) {
+            if (((Literal)values[1]).datatypeIRI() == ArrayVocabulary.ordinalDatatype) {
                 startIndexInclusive = Integer.parseInt(((Literal)values[1]).label()) - 1;
-            } else if (((Literal)values[1]).datatypeIRI() == ArrayVocabulary.offsetDatatype.iri) {
+            } else if (((Literal)values[1]).datatypeIRI() == ArrayVocabulary.offsetDatatype) {
                 startIndexInclusive = Integer.parseInt(((Literal)values[1]).label());
             } else {
                 return ValueOrError.Error;
             }
 
-            if (((Literal)values[2]).datatypeIRI() == ArrayVocabulary.ordinalDatatype.iri) {
+            if (((Literal)values[2]).datatypeIRI() == ArrayVocabulary.ordinalDatatype) {
                 endIndexExclusive = Integer.parseInt(((Literal)values[2]).label());
-            } else if (((Literal)values[2]).datatypeIRI() == ArrayVocabulary.offsetDatatype.iri) {
+            } else if (((Literal)values[2]).datatypeIRI() == ArrayVocabulary.offsetDatatype) {
                 endIndexExclusive = Integer.parseInt(((Literal)values[2]).label());
             } else {
                 return ValueOrError.Error;
@@ -69,6 +69,6 @@ public final class Sub extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return ArrayVocabulary.sub.name();
+        return ArrayVocabulary.sub.toString();
     }
 }

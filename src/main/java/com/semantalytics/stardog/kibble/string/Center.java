@@ -65,6 +65,6 @@ public final class Center extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.center.name();
+        return StringVocabulary.center.toString();
     }
 }

@@ -13,7 +13,7 @@ public final class CosineDistance extends AbstractFunction implements StringFunc
     private info.debatty.java.stringsimilarity.Cosine cosine = null;
 
     protected CosineDistance() {
-        super(Range.closed(2, 3), StringMetricVocabulary.cosineDistance.stringValue());
+        super(Range.closed(2, 3), StringMetricVocabulary.cosineDistance.toString());
     }
 
     private CosineDistance(final CosineDistance cosineDistance) {
@@ -65,6 +65,6 @@ public final class CosineDistance extends AbstractFunction implements StringFunc
 
     @Override
     public String toString() {
-        return StringMetricVocabulary.cosineDistance.name();
+        return StringMetricVocabulary.cosineDistance.toString();
     }
 }

@@ -47,6 +47,6 @@ public class UpperCase extends AbstractFunction implements UserDefinedFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.upperCase.name();
+        return StringVocabulary.upperCase.toString();
     }
 }

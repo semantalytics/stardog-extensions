@@ -50,6 +50,6 @@ public final class PadEnd extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.padEnd.name();
+        return StringVocabulary.padEnd.toString();
     }
 }

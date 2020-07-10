@@ -19,7 +19,7 @@ public final class Nysiis extends AbstractFunction implements StringFunction {
     }
 
     protected Nysiis() {
-        super(1, PhoneticVocabulary.nysiis.stringValue());
+        super(1, PhoneticVocabulary.nysiis.toString());
     }
 
     private Nysiis(final Nysiis caverphone2) {
@@ -48,6 +48,6 @@ public final class Nysiis extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return PhoneticVocabulary.nysiis.name();
+        return PhoneticVocabulary.nysiis.toString();
     }
 }

@@ -41,6 +41,6 @@ public final class IsEmpty extends AbstractFunction implements UserDefinedFuncti
 
     @Override
     public String toString() {
-        return ArrayVocabulary.isEmpty.name();
+        return ArrayVocabulary.isEmpty.toString();
     }
 }

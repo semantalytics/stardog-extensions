@@ -47,6 +47,6 @@ public final class CompareIgnoreCase extends AbstractFunction implements StringF
 
     @Override
     public String toString() {
-        return StringVocabulary.compareIgnoreCase.name();
+        return StringVocabulary.compareIgnoreCase.toString();
     }
 }

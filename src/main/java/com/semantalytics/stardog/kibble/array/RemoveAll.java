@@ -72,7 +72,7 @@ public final class RemoveAll extends AbstractExpression implements UserDefinedFu
 
     @Override
     public String toString() {
-        return ArrayVocabulary.removeAll.name();
+        return ArrayVocabulary.removeAll.toString();
     }
 }
 

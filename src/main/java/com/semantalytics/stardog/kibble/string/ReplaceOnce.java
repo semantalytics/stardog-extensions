@@ -47,6 +47,6 @@ public final class ReplaceOnce extends AbstractFunction implements StringFunctio
 
     @Override
     public String toString() {
-        return StringVocabulary.replaceOnce.name();
+        return StringVocabulary.replaceOnce.toString();
     }
 }

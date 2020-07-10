@@ -1,165 +1,155 @@
 package com.semantalytics.stardog.kibble.string;
 
 import com.stardog.stark.IRI;
-import com.stardog.stark.Values;
 
-public enum StringVocabulary {
+import static com.stardog.stark.Values.iri;
 
-    abbreviate,
-    abbreviateWithMarker,
-    abbreviateMiddle,
-    appendIfMissing,
-    appendIfMissingIgnoreCase,
-    array,
-    arrayIndex,
-    arraySeparator,
-    capitalize,
-    caseFormat,
-    center,
-    charactersOf,
-    chomp,
-    commonSuffix,
-    chop,
-    compare,
-    compareIgnoreCase,
-    commonPrefix,
-    containsAny,
-    contains,
-    containsIgnoreCase,
-    containsNone,
-    containsWhitespace,
-    containsOnly,
-    countMatches,
-    deleteWhitespace,
-    difference,
-    defaultIfBlank,
-    defaultIfEmpty,
-    endsWith,
-    endsWithIgnoreCase,
-    equals,
-    equalsAny,
-    equalsIgnoreCase,
-    digits,
-    initials,
-    indexOf,
-    indexOfAny,
-    indexOfAnyBut,
-    indexOfDifference,
-    indexOfIgnoreCase,
-    isAlpha,
-    isAsciiPrintable,
-    isAlphaSpace,
-    isAlphanumeric,
-    isAnyEmpty,
-    isAnyBlank,
-    isAlphanumericSpace,
-    isAllLowerCase,
-    isAllUpperCase,
-    isBlank,
-    isEmpty,
-    isMixedCase,
-    isNoneBlank,
-    isNoneEmpty,
-    isNotEmpty,
-    isNumericSpace,
-    isAllBlank,
-    isAllEmpty,
-    isNotBlank,
-    isNumeric,
-    isWhitespace,
-    join,
-    joinWith,
-    left,
-    length,
-    leftPad,
-    lastIndexOfAny,
-    lastOrdinalIndexOf,
-    lastIndexOfIgnoreCase,
-    lastIndexOf,
-    lowerCaseFully,
-    lowerCase,
-    ordinalIndexOf,
-    overlay,
-    padEnd,
-    pipe,
-    padStart,
-    prependIfMissing,
-    prependIfMissingIgnoreCase,
-    reverseDelimited,
-    removeEndIgnoreCase,
-    repeat,
-    remove,
-    removeIgnoreCase,
-    rotate,
-    reverse,
-    removeEnd,
-    removeAll,
-    removePattern,
-    removeFirst,
-    removeStart,
-    replace,
-    replaceAll,
-    replaceChars,
-    replaceEach,
-    replaceEachRepeatedly,
-    replaceFirst,
-    replaceOnce,
-    replaceOnceIgnoreCase,
-    replaceIgnoreCase,
-    replacePattern,
-    removeStartIgnoreCase,
-    right,
-    rightPad,
-    split,
-    splitByCharacterType,
-    splitByCharacterTypeCamelCase,
-    splitByWholeSeparator,
-    splitByWholeSeparatorPreserveAllTokens,
-    splitPreserveAllTokens,
-    startsWith,
-    startsWithAny,
-    startsWithIgnoreCase,
-    strip,
-    stripAll,
-    stripAccents,
-    stripAllChar,
-    stripAllString,
-    stripEnd,
-    stripStart,
-    substring,
-    substringAfter,
-    substringAfterLast,
-    substringBefore,
-    substringBeforeLast,
-    substringBetween,
-    substringsBetween,
-    swapCase,
-    trim,
-    truncate,
-    toEncodedString,
-    toCodePoints,
-    uncapitalize,
-    unwrap,
-    wrap,
-    wrapIfMissing,
-    mid,
-    normalizeSpace,
-    upperCase,
-    ;
+public class StringVocabulary {
 
-    public static final String NAMESPACE = "http://semantalytics.com/2017/09/ns/stardog/kibble/string/";
-    public final IRI iri;
+    public static final String NS = "http://semantalytics.com/2017/09/ns/stardog/kibble/string/";
 
-    StringVocabulary() {
-        iri = Values.iri(NAMESPACE, name());
-    }
+	public static final IRI abbreviate = iri(NS + "abbreviate");
+	public static final IRI abbreviateWithMarker = iri(NS + "abbreviateWithMarker");
+	public static final IRI abbreviateMiddle = iri(NS + "abbreviateMiddle");
+	public static final IRI appendIfMissing = iri(NS + "appendIfMissing");
+	public static final IRI appendIfMissingIgnoreCase = iri(NS + "appendIfMissingIgnoreCase");
+	public static final IRI array = iri(NS + "array");
+	public static final IRI arrayIndex = iri(NS + "arrayIndex");
+	public static final IRI arraySeparator = iri(NS + "arraySeparator");
+	public static final IRI capitalize = iri(NS + "capitalize");
+	public static final IRI caseFormat = iri(NS + "caseFormat");
+	public static final IRI center = iri(NS + "center");
+	public static final IRI charactersOf = iri(NS + "charactersOf");
+	public static final IRI chomp = iri(NS + "chomp");
+	public static final IRI commonSuffix = iri(NS + "commonSuffix");
+	public static final IRI chop = iri(NS + "chop");
+	public static final IRI compare = iri(NS + "compare");
+	public static final IRI compareIgnoreCase = iri(NS + "compareIgnoreCase");
+	public static final IRI commonPrefix = iri(NS + "commonPrefix");
+	public static final IRI containsAny = iri(NS + "containsAny");
+	public static final IRI contains = iri(NS + "contains");
+	public static final IRI containsIgnoreCase = iri(NS + "containsIgnoreCase");
+	public static final IRI containsNone = iri(NS + "containsNone");
+	public static final IRI containsWhitespace = iri(NS + "containsWhitespace");
+	public static final IRI containsOnly = iri(NS + "containsOnly");
+	public static final IRI countMatches = iri(NS + "countMatches");
+	public static final IRI deleteWhitespace = iri(NS + "deleteWhitespace");
+	public static final IRI difference = iri(NS + "difference");
+	public static final IRI defaultIfBlank = iri(NS + "defaultIfBlank");
+	public static final IRI defaultIfEmpty = iri(NS + "defaultIfEmpty");
+	public static final IRI endsWith = iri(NS + "endsWith");
+	public static final IRI endsWithIgnoreCase = iri(NS + "endsWithIgnoreCase");
+	public static final IRI equals = iri(NS + "equals");
+	public static final IRI equalsAny = iri(NS + "equalsAny");
+	public static final IRI equalsIgnoreCase = iri(NS + "equalsIgnoreCase");
+	public static final IRI digits = iri(NS + "digits");
+	public static final IRI initials = iri(NS + "initials");
+	public static final IRI indexOf = iri(NS + "indexOf");
+	public static final IRI indexOfAny = iri(NS + "indexOfAny");
+	public static final IRI indexOfAnyBut = iri(NS + "indexOfAnyBut");
+	public static final IRI indexOfDifference = iri(NS + "indexOfDifference");
+	public static final IRI indexOfIgnoreCase = iri(NS + "indexOfIgnoreCase");
+	public static final IRI isAlpha = iri(NS + "isAlpha");
+	public static final IRI isAsciiPrintable = iri(NS + "isAsciiPrintable");
+	public static final IRI isAlphaSpace = iri(NS + "isAlphaSpace");
+	public static final IRI isAlphanumeric = iri(NS + "isAlphanumeric");
+	public static final IRI isAnyEmpty = iri(NS + "isAnyEmpty");
+	public static final IRI isAnyBlank = iri(NS + "isAnyBlank");
+	public static final IRI isAlphanumericSpace = iri(NS + "isAlphanumericSpace");
+	public static final IRI isAllLowerCase = iri(NS + "isAllLowerCase");
+	public static final IRI isAllUpperCase = iri(NS + "isAllUpperCase");
+	public static final IRI isBlank = iri(NS + "isBlank");
+	public static final IRI isEmpty = iri(NS + "isEmpty");
+	public static final IRI isMixedCase = iri(NS + "isMixedCase");
+	public static final IRI isNoneBlank = iri(NS + "isNoneBlank");
+	public static final IRI isNoneEmpty = iri(NS + "isNoneEmpty");
+	public static final IRI isNotEmpty = iri(NS + "isNotEmpty");
+	public static final IRI isNumericSpace = iri(NS + "isNumericSpace");
+	public static final IRI isAllBlank = iri(NS + "isAllBlank");
+	public static final IRI isAllEmpty = iri(NS + "isAllEmpty");
+	public static final IRI isNotBlank = iri(NS + "isNotBlank");
+	public static final IRI isNumeric = iri(NS + "isNumeric");
+	public static final IRI isWhitespace = iri(NS + "isWhitespace");
+	public static final IRI join = iri(NS + "join");
+	public static final IRI joinWith = iri(NS + "joinWith");
+	public static final IRI left = iri(NS + "left");
+	public static final IRI length = iri(NS + "length");
+	public static final IRI leftPad = iri(NS + "leftPad");
+	public static final IRI lastIndexOfAny = iri(NS + "lastIndexOfAny");
+	public static final IRI lastOrdinalIndexOf = iri(NS + "lastOrdinalIndexOf");
+	public static final IRI lastIndexOfIgnoreCase = iri(NS + "lastIndexOfIgnoreCase");
+	public static final IRI lastIndexOf = iri(NS + "lastIndexOf");
+	public static final IRI lowerCaseFully = iri(NS + "lowerCaseFully");
+	public static final IRI lowerCase = iri(NS + "lowerCase");
+	public static final IRI ordinalIndexOf = iri(NS + "ordinalIndexOf");
+	public static final IRI overlay = iri(NS + "overlay");
+	public static final IRI padEnd = iri(NS + "padEnd");
+	public static final IRI pipe = iri(NS + "pipe");
+	public static final IRI padStart = iri(NS + "padStart");
+	public static final IRI prependIfMissing = iri(NS + "prependIfMissing");
+	public static final IRI prependIfMissingIgnoreCase = iri(NS + "prependIfMissingIgnoreCase");
+	public static final IRI reverseDelimited = iri(NS + "reverseDelimited");
+	public static final IRI removeEndIgnoreCase = iri(NS + "removeEndIgnoreCase");
+	public static final IRI repeat = iri(NS + "repeat");
+	public static final IRI remove = iri(NS + "remove");
+	public static final IRI removeIgnoreCase = iri(NS + "removeIgnoreCase");
+	public static final IRI rotate = iri(NS + "rotate");
+	public static final IRI reverse = iri(NS + "reverse");
+	public static final IRI removeEnd = iri(NS + "removeEnd");
+	public static final IRI removeAll = iri(NS + "removeAll");
+	public static final IRI removePattern = iri(NS + "removePattern");
+	public static final IRI removeFirst = iri(NS + "removeFirst");
+	public static final IRI removeStart = iri(NS + "removeStart");
+	public static final IRI replace = iri(NS + "replace");
+	public static final IRI replaceAll = iri(NS + "replaceAll");
+	public static final IRI replaceChars = iri(NS + "replaceChars");
+	public static final IRI replaceEach = iri(NS + "replaceEach");
+	public static final IRI replaceEachRepeatedly = iri(NS + "replaceEachRepeatedly");
+	public static final IRI replaceFirst = iri(NS + "replaceFirst");
+	public static final IRI replaceOnce = iri(NS + "replaceOnce");
+	public static final IRI replaceOnceIgnoreCase = iri(NS + "replaceOnceIgnoreCase");
+	public static final IRI replaceIgnoreCase = iri(NS + "replaceIgnoreCase");
+	public static final IRI replacePattern = iri(NS + "replacePattern");
+	public static final IRI removeStartIgnoreCase = iri(NS + "removeStartIgnoreCase");
+	public static final IRI right = iri(NS + "right");
+	public static final IRI rightPad = iri(NS + "rightPad");
+	public static final IRI split = iri(NS + "split");
+	public static final IRI splitByCharacterType = iri(NS + "splitByCharacterType");
+	public static final IRI splitByCharacterTypeCamelCase = iri(NS + "splitByCharacterTypeCamelCase");
+	public static final IRI splitByWholeSeparator = iri(NS + "splitByWholeSeparator");
+	public static final IRI splitByWholeSeparatorPreserveAllTokens = iri(NS + "splitByWholeSeparatorPreserveAllTokens");
+	public static final IRI splitPreserveAllTokens = iri(NS + "splitPreserveAllTokens");
+	public static final IRI startsWith = iri(NS + "startsWith");
+	public static final IRI startsWithAny = iri(NS + "startsWithAny");
+	public static final IRI startsWithIgnoreCase = iri(NS + "startsWithIgnoreCase");
+	public static final IRI strip = iri(NS + "strip");
+	public static final IRI stripAll = iri(NS + "stripAll");
+	public static final IRI stripAccents = iri(NS + "stripAccents");
+	public static final IRI stripAllChar = iri(NS + "stripAllChar");
+	public static final IRI stripAllString = iri(NS + "stripAllString");
+	public static final IRI stripEnd = iri(NS + "stripEnd");
+	public static final IRI stripStart = iri(NS + "stripStart");
+	public static final IRI substring = iri(NS + "substring");
+	public static final IRI substringAfter = iri(NS + "substringAfter");
+	public static final IRI substringAfterLast = iri(NS + "substringAfterLast");
+	public static final IRI substringBefore = iri(NS + "substringBefore");
+	public static final IRI substringBeforeLast = iri(NS + "substringBeforeLast");
+	public static final IRI substringBetween = iri(NS + "substringBetween");
+	public static final IRI substringsBetween = iri(NS + "substringsBetween");
+	public static final IRI swapCase = iri(NS + "swapCase");
+	public static final IRI trim = iri(NS + "trim");
+	public static final IRI truncate = iri(NS + "truncate");
+	public static final IRI toEncodedString = iri(NS + "toEncodedString");
+	public static final IRI toCodePoints = iri(NS + "toCodePoints");
+	public static final IRI uncapitalize = iri(NS + "uncapitalize");
+	public static final IRI unwrap = iri(NS + "unwrap");
+	public static final IRI wrap = iri(NS + "wrap");
+	public static final IRI wrapIfMissing = iri(NS + "wrapIfMissing");
+	public static final IRI mid = iri(NS + "mid");
+	public static final IRI normalizeSpace = iri(NS + "normalizeSpace");
+	public static final IRI upperCase = iri(NS + "upperCase");
 
-    public static String sparqlPrefix(String prefixName) {
-        return "PREFIX " + prefixName + ": <" + NAMESPACE + "> ";
-    }
-
-    @Override
-    public String toString() {
-        return iri.toString();
+    public static String sparqlPrefix(final String prefixName) {
+        return "PREFIX " + prefixName + ": <" + NS + "> ";
     }
 }

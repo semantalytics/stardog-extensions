@@ -14,7 +14,7 @@ public class TestFirstIndexOfIgnoreCase extends AbstractStardogTest {
     @Test
     public void test() {
 
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:indexOfIgnoreCase(\"Stardog\", \"Dog\") AS ?result) }";
 
             try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -31,7 +31,7 @@ public class TestFirstIndexOfIgnoreCase extends AbstractStardogTest {
     @Test
     public void testEmptyString() {
 
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:indexOfIgnoreCase(\"\", \"\") as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -48,7 +48,7 @@ public class TestFirstIndexOfIgnoreCase extends AbstractStardogTest {
     @Test
     public void testTooFewArgs() {
 
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:indexOfIgnoreCase(\"one\") as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -65,7 +65,7 @@ public class TestFirstIndexOfIgnoreCase extends AbstractStardogTest {
     @Test
     public void testTooManyArgs() {
 
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:indexOfIgnoreCase(\"one\", \"two\", \"three\") as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -82,7 +82,7 @@ public class TestFirstIndexOfIgnoreCase extends AbstractStardogTest {
     @Test
     public void testWrongTypeFirstArg() {
 
-        final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+        final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                 "select ?result where { bind(string:indexOfIgnoreCase(1, \"two\") as ?result) }";
 
         try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -99,7 +99,7 @@ public class TestFirstIndexOfIgnoreCase extends AbstractStardogTest {
     @Test
     public void testWrongTypeSecondArg() {
        
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:indexOfIgnoreCase(\"one\", 2) as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {

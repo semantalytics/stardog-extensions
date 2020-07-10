@@ -14,7 +14,7 @@ import static com.stardog.stark.Values.literal;
 public final class Encode extends AbstractFunction implements UserDefinedFunction {
 
     protected Encode() {
-        super(2, GeoHashVocabulary.encode.stringValue());
+        super(2, GeoHashVocabulary.encode.toString());
     }
 
     private Encode(final Encode encode) {
@@ -46,7 +46,7 @@ public final class Encode extends AbstractFunction implements UserDefinedFunctio
 
     @Override
     public String toString() {
-        return GeoHashVocabulary.encode.name();
+        return GeoHashVocabulary.encode.toString();
     }
 
 }

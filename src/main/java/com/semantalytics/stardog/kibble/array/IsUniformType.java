@@ -94,7 +94,7 @@ public final class IsUniformType extends AbstractExpression implements UserDefin
 
     @Override
     public String toString() {
-        return ArrayVocabulary.isUniformType.name();
+        return ArrayVocabulary.isUniformType.toString();
     }
 }
 

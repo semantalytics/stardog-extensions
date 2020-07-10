@@ -13,7 +13,7 @@ import static org.apache.commons.text.StringEscapeUtils.*;
 public final class Csv extends AbstractFunction implements StringFunction {
 
     protected Csv() {
-        super(1, EscapeVocabulary.csv.stringValue());
+        super(1, EscapeVocabulary.csv.toString());
     }
 
     private Csv(final Csv csv) {
@@ -44,6 +44,6 @@ public final class Csv extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return EscapeVocabulary.csv.name();
+        return EscapeVocabulary.csv.toString();
     }
 }

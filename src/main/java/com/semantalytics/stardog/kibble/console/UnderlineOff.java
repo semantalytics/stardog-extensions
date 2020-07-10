@@ -13,7 +13,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class UnderlineOff extends AbstractFunction implements UserDefinedFunction {
 
     public UnderlineOff() {
-        super(0, ConsoleVocabulary.underlineOff.stringValue());
+        super(0, ConsoleVocabulary.underlineOff.toString());
     }
 
     public UnderlineOff(final UnderlineOff console) {
@@ -37,6 +37,6 @@ public class UnderlineOff extends AbstractFunction implements UserDefinedFunctio
 
     @Override
     public String toString() {
-        return ConsoleVocabulary.underlineOff.name();
+        return ConsoleVocabulary.underlineOff.toString();
     }
 }

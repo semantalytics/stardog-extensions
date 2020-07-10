@@ -14,7 +14,7 @@ public final class CosineSimilarity extends AbstractFunction implements StringFu
     private info.debatty.java.stringsimilarity.Cosine cosine;
 
     protected CosineSimilarity() {
-        super(Range.closed(2, 3), StringMetricVocabulary.cosineSimilarity.stringValue());
+        super(Range.closed(2, 3), StringMetricVocabulary.cosineSimilarity.toString());
     }
 
     private CosineSimilarity(final CosineSimilarity cosineSimilarity) {
@@ -66,6 +66,6 @@ public final class CosineSimilarity extends AbstractFunction implements StringFu
 
     @Override
     public String toString() {
-        return StringMetricVocabulary.cosineSimilarity.name();
+        return StringMetricVocabulary.cosineSimilarity.toString();
     }
 }

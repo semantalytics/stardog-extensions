@@ -44,6 +44,6 @@ public final class Shift extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return ArrayVocabulary.shift.name();
+        return ArrayVocabulary.shift.toString();
     };
 }

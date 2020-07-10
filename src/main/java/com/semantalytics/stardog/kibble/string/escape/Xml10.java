@@ -13,7 +13,7 @@ import static org.apache.commons.text.StringEscapeUtils.*;
 public final class Xml10 extends AbstractFunction implements StringFunction {
 
     protected Xml10() {
-        super(1, EscapeVocabulary.xml10.stringValue());
+        super(1, EscapeVocabulary.xml10.toString());
     }
 
     private Xml10(final Xml10 xml10) {
@@ -43,6 +43,6 @@ public final class Xml10 extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return EscapeVocabulary.csv.name();
+        return EscapeVocabulary.csv.toString();
     }
 }

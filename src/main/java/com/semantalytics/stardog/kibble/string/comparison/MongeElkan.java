@@ -14,7 +14,7 @@ public final class MongeElkan extends AbstractFunction implements StringFunction
     private info.debatty.java.stringsimilarity.Cosine cosine;
 
     protected MongeElkan() {
-        super(Range.closed(2, 3), StringMetricVocabulary.mongeElkan.stringValue());
+        super(Range.closed(2, 3), StringMetricVocabulary.mongeElkan.toString());
     }
 
     private MongeElkan(final MongeElkan mongeElkan) {
@@ -64,6 +64,6 @@ public final class MongeElkan extends AbstractFunction implements StringFunction
 
     @Override
     public String toString() {
-        return StringMetricVocabulary.cosineDistance.name();
+        return StringMetricVocabulary.cosineDistance.toString();
     }
 }

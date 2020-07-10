@@ -89,7 +89,7 @@ public final class UniformDatatype extends AbstractExpression implements UserDef
 
     @Override
     public String toString() {
-        return ArrayVocabulary.uniformDatatype.name();
+        return ArrayVocabulary.uniformDatatype.toString();
     }
 }
 

@@ -65,7 +65,7 @@ public final class RemoveLast extends AbstractExpression implements UserDefinedF
 
     @Override
     public String toString() {
-        return ArrayVocabulary.removeLast.name();
+        return ArrayVocabulary.removeLast.toString();
     }
 }
 

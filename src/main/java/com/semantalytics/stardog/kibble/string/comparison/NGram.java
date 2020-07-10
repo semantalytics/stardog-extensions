@@ -15,7 +15,7 @@ public final class NGram extends AbstractFunction implements StringFunction {
     private info.debatty.java.stringsimilarity.NGram nGram;
 
     protected NGram() {
-        super(Range.closed(2, 3), StringMetricVocabulary.ngram.stringValue());
+        super(Range.closed(2, 3), StringMetricVocabulary.ngram.toString());
     }
 
     private NGram(final NGram nGram) {
@@ -32,7 +32,7 @@ public final class NGram extends AbstractFunction implements StringFunction {
 
             if (values.length == 3 && assertNumericLiteral(values[2]) && values[2] instanceof Constant) {
 
-                final int n = Integer.parseInt(((Constant) getArgs().get(2)).getValue().stringValue());
+                final int n = Integer.parseInt(((Constant) getArgs().get(2)).getValue().toString());
                 if(nGram == null) {
                     nGram = new info.debatty.java.stringsimilarity.NGram(n);
                 }
@@ -60,6 +60,6 @@ public final class NGram extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringMetricVocabulary.needlemanWunch.name();
+        return StringMetricVocabulary.needlemanWunch.toString();
     }
 }

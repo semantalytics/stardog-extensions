@@ -45,6 +45,6 @@ public final class SubstringAfterLast extends AbstractFunction implements String
 
     @Override
     public String toString() {
-        return StringVocabulary.substringAfterLast.name();
+        return StringVocabulary.substringAfterLast.toString();
     }
 }

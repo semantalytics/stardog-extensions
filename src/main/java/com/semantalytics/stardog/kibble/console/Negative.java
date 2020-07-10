@@ -18,7 +18,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class Negative extends AbstractFunction implements UserDefinedFunction {
 
     public Negative() {
-        super(Range.all(), ConsoleVocabulary.negative.stringValue());
+        super(Range.all(), ConsoleVocabulary.negative.toString());
     }
 
     public Negative(final Negative console) {
@@ -50,6 +50,6 @@ public class Negative extends AbstractFunction implements UserDefinedFunction {
 
     @Override
     public String toString() {
-        return ConsoleVocabulary.negative.name();
+        return ConsoleVocabulary.negative.toString();
     }
 }

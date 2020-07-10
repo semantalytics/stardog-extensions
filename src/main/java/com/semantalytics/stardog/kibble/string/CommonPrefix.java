@@ -45,6 +45,6 @@ public final class CommonPrefix extends AbstractFunction implements StringFuncti
 
     @Override
     public String toString() {
-        return StringVocabulary.commonPrefix.name();
+        return StringVocabulary.commonPrefix.toString();
     }
 }

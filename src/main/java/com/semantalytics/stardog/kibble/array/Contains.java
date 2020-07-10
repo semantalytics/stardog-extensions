@@ -74,7 +74,7 @@ public final class Contains extends AbstractExpression implements UserDefinedFun
 
     @Override
     public String toString() {
-        return ArrayVocabulary.contains.name();
+        return ArrayVocabulary.contains.toString();
     }
 }
 

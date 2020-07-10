@@ -44,6 +44,6 @@ public final class Reverse extends AbstractFunction implements UserDefinedFuncti
 
     @Override
     public String toString() {
-        return ArrayVocabulary.reverse.name();
+        return ArrayVocabulary.reverse.toString();
     }
 }

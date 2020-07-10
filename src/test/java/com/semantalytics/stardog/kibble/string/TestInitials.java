@@ -15,7 +15,7 @@ public class TestInitials extends AbstractStardogTest {
     @Test
     public void testInitialsOneArg() {
 
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:initials(\"Stardog graph database\") AS ?result) }";
 
             try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -32,7 +32,7 @@ public class TestInitials extends AbstractStardogTest {
     @Test
     public void testInitialsTwoArg() {
 
-        final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+        final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                 "select ?result where { bind(string:initials(\"Stardog,graph,database\", \",\") AS ?result) }";
 
         try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -50,7 +50,7 @@ public class TestInitials extends AbstractStardogTest {
     public void testEmptyString() {
        
 
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:initials(\"\") as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -67,7 +67,7 @@ public class TestInitials extends AbstractStardogTest {
     @Test
     public void testTooFewArgs() {
 
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:initials() as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -85,7 +85,7 @@ public class TestInitials extends AbstractStardogTest {
     public void testTooManyArgs() {
 
        
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:initials(\"one\", \"two\", \"three\") as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -102,7 +102,7 @@ public class TestInitials extends AbstractStardogTest {
     @Test
     public void testWrongTypeFirstArg() {
 
-        final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+        final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                 "select ?result where { bind(string:initials(1, \"two\") as ?result) }";
 
         try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -119,7 +119,7 @@ public class TestInitials extends AbstractStardogTest {
     @Test
     public void testWrongTypeSecondArg() {
        
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:initials(\"one\", 2) as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {

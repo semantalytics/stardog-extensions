@@ -19,7 +19,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class ForegroundWhite extends AbstractFunction implements UserDefinedFunction {
 
     public ForegroundWhite() {
-        super(Range.all(), ConsoleVocabulary.foregroundWhite.stringValue());
+        super(Range.all(), ConsoleVocabulary.foregroundWhite.toString());
     }
 
     public ForegroundWhite(final ForegroundWhite foreground) {
@@ -51,6 +51,6 @@ public class ForegroundWhite extends AbstractFunction implements UserDefinedFunc
 
     @Override
     public String toString() {
-        return ConsoleVocabulary.foregroundWhite.name();
+        return ConsoleVocabulary.foregroundWhite.toString();
     }
 }

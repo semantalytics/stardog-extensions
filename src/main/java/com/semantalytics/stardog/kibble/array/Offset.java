@@ -27,7 +27,7 @@ public final class Offset extends AbstractFunction implements StringFunction {
 
             int index = Literal.intValue((Literal) values[0]);
 
-            return ValueOrError.General.of(literal(String.valueOf(index), ArrayVocabulary.offsetDatatype.iri));
+            return ValueOrError.General.of(literal(String.valueOf(index), ArrayVocabulary.offsetDatatype));
 
         } else {
             return ValueOrError.Error;
@@ -46,6 +46,6 @@ public final class Offset extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return ArrayVocabulary.offset.name();
+        return ArrayVocabulary.offset.toString();
     }
 }

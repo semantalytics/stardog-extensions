@@ -13,7 +13,7 @@ import static com.stardog.stark.Values.literal;
 public final class WidthDegrees extends AbstractFunction implements UserDefinedFunction {
 
     protected WidthDegrees() {
-        super(1, GeoHashVocabulary.widthDegrees.stringValue());
+        super(1, GeoHashVocabulary.widthDegrees.toString());
     }
 
     private WidthDegrees(final WidthDegrees widthDegrees) {
@@ -44,7 +44,7 @@ public final class WidthDegrees extends AbstractFunction implements UserDefinedF
 
     @Override
     public String toString() {
-        return GeoHashVocabulary.widthDegrees.name();
+        return GeoHashVocabulary.widthDegrees.toString();
     }
 
 }

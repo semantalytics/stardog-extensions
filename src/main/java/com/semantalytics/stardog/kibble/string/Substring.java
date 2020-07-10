@@ -46,6 +46,6 @@ public final class Substring extends AbstractFunction implements StringFunction 
 
     @Override
     public String toString() {
-        return StringVocabulary.substring.name();
+        return StringVocabulary.substring.toString();
     }
 }

@@ -47,6 +47,6 @@ public final class Distinct extends AbstractFunction implements UserDefinedFunct
 
     @Override
     public String toString() {
-        return ArrayVocabulary.distinct.name();
+        return ArrayVocabulary.distinct.toString();
     }
 }

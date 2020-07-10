@@ -43,6 +43,6 @@ public final class IsAllUpperCase extends AbstractFunction implements StringFunc
 
     @Override
     public String toString() {
-        return StringVocabulary.isAllUpperCase.name();
+        return StringVocabulary.isAllUpperCase.toString();
     }
 }

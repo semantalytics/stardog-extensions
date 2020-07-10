@@ -16,7 +16,7 @@ import static emoji4j.EmojiUtils.*;
 public final class DecimalSurrogateHtml extends AbstractFunction implements StringFunction {
 
     protected DecimalSurrogateHtml() {
-        super(1, EmojiVocabulary.decimalSurrogateHtml.stringValue());
+        super(1, EmojiVocabulary.decimalSurrogateHtml.toString());
     }
 
     private DecimalSurrogateHtml(final DecimalSurrogateHtml decimalSurrogateHtml) {
@@ -47,6 +47,6 @@ public final class DecimalSurrogateHtml extends AbstractFunction implements Stri
 
     @Override
     public String toString() {
-        return EmojiVocabulary.decimalSurrogateHtml.name();
+        return EmojiVocabulary.decimalSurrogateHtml.toString();
     }
 }

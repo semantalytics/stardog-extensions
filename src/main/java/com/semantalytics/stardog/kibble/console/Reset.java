@@ -12,7 +12,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class Reset extends AbstractFunction implements UserDefinedFunction {
 
     public Reset() {
-        super(0, ConsoleVocabulary.reset.stringValue());
+        super(0, ConsoleVocabulary.reset.toString());
     }
 
     public Reset(final Reset reset) {
@@ -36,6 +36,6 @@ public class Reset extends AbstractFunction implements UserDefinedFunction {
 
     @Override
     public String toString() {
-        return ConsoleVocabulary.reset.name();
+        return ConsoleVocabulary.reset.toString();
     }
 }

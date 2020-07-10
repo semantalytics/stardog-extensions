@@ -46,6 +46,6 @@ public final class RemoveStartIgnoreCase extends AbstractFunction implements Str
 
     @Override
     public String toString() {
-        return StringVocabulary.removeStartIgnoreCase.name();
+        return StringVocabulary.removeStartIgnoreCase.toString();
     }
 }

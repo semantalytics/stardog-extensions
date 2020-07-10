@@ -62,6 +62,6 @@ public final class Abbreviate extends AbstractFunction implements StringFunction
 
     @Override
     public String toString() {
-        return StringVocabulary.abbreviate.name();
+        return StringVocabulary.abbreviate.toString();
     }
 }

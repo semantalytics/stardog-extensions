@@ -49,9 +49,9 @@ public final class Index extends AbstractExpression implements UserDefinedFuncti
                    final Literal secondArgLiteral = (Literal)secondArgValueOrError.value();
                    final int index;
 
-                   if (secondArgLiteral.datatypeIRI() == ArrayVocabulary.ordinalDatatype.iri) {
+                   if (secondArgLiteral.datatypeIRI() == ArrayVocabulary.ordinalDatatype) {
                        index = Integer.parseInt(secondArgLiteral.label()) - 1;
-                   } else if (secondArgLiteral.datatypeIRI() == ArrayVocabulary.offsetDatatype.iri) {
+                   } else if (secondArgLiteral.datatypeIRI() == ArrayVocabulary.offsetDatatype) {
                        index = Integer.parseInt(secondArgLiteral.label());
                    } else {
                        return ValueOrError.Error;
@@ -85,7 +85,7 @@ public final class Index extends AbstractExpression implements UserDefinedFuncti
 
     @Override
     public String toString() {
-        return ArrayVocabulary.index.name();
+        return ArrayVocabulary.index.toString();
     }
 }
 

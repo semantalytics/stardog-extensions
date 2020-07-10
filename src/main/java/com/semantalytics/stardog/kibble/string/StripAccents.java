@@ -44,6 +44,6 @@ public final class StripAccents extends AbstractFunction implements StringFuncti
 
     @Override
     public String toString() {
-        return StringVocabulary.stripAccents.name();
+        return StringVocabulary.stripAccents.toString();
     }
 }

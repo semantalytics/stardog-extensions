@@ -13,7 +13,7 @@ import static com.stardog.stark.Values.literal;
 public final class Left extends AbstractFunction implements UserDefinedFunction {
 
     protected Left() {
-        super(1, GeoHashVocabulary.left.stringValue());
+        super(1, GeoHashVocabulary.left.toString());
     }
 
     private Left(final Left left) {
@@ -44,7 +44,7 @@ public final class Left extends AbstractFunction implements UserDefinedFunction 
 
     @Override
     public String toString() {
-        return GeoHashVocabulary.left.name();
+        return GeoHashVocabulary.left.toString();
     }
 
 }

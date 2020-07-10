@@ -46,6 +46,6 @@ public final class EndsWith extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.endsWith.name();
+        return StringVocabulary.endsWith.toString();
     }
 }

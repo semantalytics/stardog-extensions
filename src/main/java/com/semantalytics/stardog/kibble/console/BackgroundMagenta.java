@@ -18,7 +18,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class BackgroundMagenta extends AbstractFunction implements UserDefinedFunction {
 
     public BackgroundMagenta() {
-        super(Range.all(), ConsoleVocabulary.backgroundMagenta.stringValue());
+        super(Range.all(), ConsoleVocabulary.backgroundMagenta.toString());
     }
 
     public BackgroundMagenta(final BackgroundMagenta console) {
@@ -50,6 +50,6 @@ public class BackgroundMagenta extends AbstractFunction implements UserDefinedFu
 
     @Override
     public String toString() {
-        return ConsoleVocabulary.backgroundMagenta.name();
+        return ConsoleVocabulary.backgroundMagenta.toString();
     }
 }

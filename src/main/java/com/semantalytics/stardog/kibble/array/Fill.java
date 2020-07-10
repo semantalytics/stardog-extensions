@@ -74,7 +74,7 @@ public final class Fill extends AbstractExpression implements UserDefinedFunctio
 
     @Override
     public String toString() {
-        return ArrayVocabulary.fill.name();
+        return ArrayVocabulary.fill.toString();
     }
 }
 

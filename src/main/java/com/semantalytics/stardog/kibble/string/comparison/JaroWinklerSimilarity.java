@@ -13,7 +13,7 @@ public final class JaroWinklerSimilarity extends AbstractFunction implements Str
 
 
     protected JaroWinklerSimilarity() {
-        super(Range.closed(2, 5), StringMetricVocabulary.jaroWinklerSimilarity.stringValue());
+        super(Range.closed(2, 5), StringMetricVocabulary.jaroWinklerSimilarity.toString());
     }
 
     private JaroWinklerSimilarity(final JaroWinklerSimilarity jaroWinklerSimilarity) {
@@ -71,6 +71,6 @@ public final class JaroWinklerSimilarity extends AbstractFunction implements Str
 
     @Override
     public String toString() {
-        return StringMetricVocabulary.jaroWinklerSimilarity.name();
+        return StringMetricVocabulary.jaroWinklerSimilarity.toString();
     }
 }

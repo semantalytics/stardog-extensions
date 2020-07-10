@@ -35,7 +35,7 @@ import static com.stardog.stark.Values.literal;
 
 public final class Neighbors implements PropertyFunction {
 
-    private static final IRI FUNCTION_IRI = GeoHashVocabulary.neighbors.iri;
+    private static final IRI FUNCTION_IRI = GeoHashVocabulary.neighbors;
 
     /**
      * {@inheritDoc}

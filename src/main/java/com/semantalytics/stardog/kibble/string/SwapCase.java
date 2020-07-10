@@ -44,6 +44,6 @@ public final class SwapCase extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.swapCase.name();
+        return StringVocabulary.swapCase.toString();
     }
 }

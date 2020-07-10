@@ -45,6 +45,6 @@ public final class Remove extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.remove.name();
+        return StringVocabulary.remove.toString();
     }
 }

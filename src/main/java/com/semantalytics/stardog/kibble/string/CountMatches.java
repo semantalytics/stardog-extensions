@@ -50,6 +50,6 @@ public final class CountMatches extends AbstractFunction implements StringFuncti
 
     @Override
     public String toString() {
-        return StringVocabulary.countMatches.name();
+        return StringVocabulary.countMatches.toString();
     }
 }

@@ -44,6 +44,6 @@ public final class Uncapitalize extends AbstractFunction implements StringFuncti
 
     @Override
     public String toString() {
-        return StringVocabulary.uncapitalize.name();
+        return StringVocabulary.uncapitalize.toString();
     }
 }

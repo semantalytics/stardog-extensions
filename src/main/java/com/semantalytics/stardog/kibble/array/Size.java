@@ -39,6 +39,6 @@ public final class Size extends AbstractFunction implements UserDefinedFunction 
 
     @Override
     public String toString() {
-        return ArrayVocabulary.size.name();
+        return ArrayVocabulary.size.toString();
     }
 }

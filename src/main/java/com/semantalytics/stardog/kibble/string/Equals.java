@@ -45,6 +45,6 @@ public final class Equals extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.equals.name();
+        return StringVocabulary.equals.toString();
     }
 }

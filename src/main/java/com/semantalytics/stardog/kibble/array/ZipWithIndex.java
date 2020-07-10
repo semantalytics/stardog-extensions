@@ -71,7 +71,7 @@ public final class ZipWithIndex extends AbstractExpression implements UserDefine
 
     @Override
     public String toString() {
-        return ArrayVocabulary.zipWithIndex.name();
+        return ArrayVocabulary.zipWithIndex.toString();
     }
 }
 

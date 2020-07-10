@@ -17,7 +17,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class BlinkSlow extends AbstractFunction implements UserDefinedFunction {
 
     public BlinkSlow() {
-        super(Range.all(), ConsoleVocabulary.blinkSlow.stringValue());
+        super(Range.all(), ConsoleVocabulary.blinkSlow.toString());
     }
 
     public BlinkSlow(final BlinkSlow console) {
@@ -49,6 +49,6 @@ public class BlinkSlow extends AbstractFunction implements UserDefinedFunction {
 
     @Override
     public String toString() {
-        return ConsoleVocabulary.blinkSlow.name();
+        return ConsoleVocabulary.blinkSlow.toString();
     }
 }

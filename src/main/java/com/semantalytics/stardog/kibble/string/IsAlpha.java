@@ -44,6 +44,6 @@ public final class IsAlpha extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.isAlpha.name();
+        return StringVocabulary.isAlpha.toString();
     }
 }

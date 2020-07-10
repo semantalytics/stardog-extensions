@@ -13,7 +13,7 @@ import static com.stardog.stark.Values.literal;
 public final class HashContains extends AbstractFunction implements UserDefinedFunction {
 
     protected HashContains() {
-        super(3, GeoHashVocabulary.hashContains.stringValue());
+        super(3, GeoHashVocabulary.hashContains.toString());
     }
 
     private HashContains(final HashContains hashContains) {
@@ -47,7 +47,7 @@ public final class HashContains extends AbstractFunction implements UserDefinedF
 
     @Override
     public String toString() {
-        return GeoHashVocabulary.hashContains.name();
+        return GeoHashVocabulary.hashContains.toString();
     }
 
 }

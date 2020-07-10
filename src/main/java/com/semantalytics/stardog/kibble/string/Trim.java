@@ -43,6 +43,6 @@ public final class Trim extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.trim.name();
+        return StringVocabulary.trim.toString();
     }
 }

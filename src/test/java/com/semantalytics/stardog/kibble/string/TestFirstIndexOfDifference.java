@@ -14,7 +14,7 @@ public class TestFirstIndexOfDifference extends AbstractStardogTest {
     @Test
     public void test() {
 
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:indexOfDifference(\"Stardog\", \"Starman\") AS ?result) }";
 
             try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -33,7 +33,7 @@ public class TestFirstIndexOfDifference extends AbstractStardogTest {
     public void testEmptyString() {
        
 
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:indexOfDifference(\"\", \"\") as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -51,7 +51,7 @@ public class TestFirstIndexOfDifference extends AbstractStardogTest {
     @Test
     public void testTooFewArgs() {
 
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:indexOfDifference(\"one\") as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -68,7 +68,7 @@ public class TestFirstIndexOfDifference extends AbstractStardogTest {
     @Test
     public void testTooManyArgs() {
 
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:indexOfDifference(\"one\", \"two\", \"three\") as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -85,7 +85,7 @@ public class TestFirstIndexOfDifference extends AbstractStardogTest {
     @Test
     public void testWrongTypeFirstArg() {
 
-        final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+        final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                 "select ?result where { bind(string:indexOfDifference(1, \"two\") as ?result) }";
 
         try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -102,7 +102,7 @@ public class TestFirstIndexOfDifference extends AbstractStardogTest {
     @Test
     public void testWrongTypeSecondArg() {
        
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:indexOfDifference(\"one\", 2) as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {

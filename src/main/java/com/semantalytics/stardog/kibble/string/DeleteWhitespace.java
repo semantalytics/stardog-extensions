@@ -44,6 +44,6 @@ public final class DeleteWhitespace extends AbstractFunction implements StringFu
 
     @Override
     public String toString() {
-        return StringVocabulary.deleteWhitespace.name();
+        return StringVocabulary.deleteWhitespace.toString();
     }
 }
