@@ -81,6 +81,11 @@
             <version>${stardog.version}</version>
             <scope>provided</scope>
         </dependency>
+	<dependency>
+	  <groupId>com.idealista</groupId>
+	  <artifactId>format-preserving-encryption</artifactId>
+	  <version>1.0.0</version>
+	</dependency>
         <dependency>
             <groupId>com.kcthota</groupId>
             <artifactId>emoji4j</artifactId>
