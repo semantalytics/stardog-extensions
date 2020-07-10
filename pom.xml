@@ -71,15 +71,20 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.davidmoten</groupId>
-            <artifactId>geo</artifactId>
-            <version>${geo.version}</version>
-        </dependency>
-        <dependency>
             <groupId>com.complexible.stardog.cache</groupId>
             <artifactId>stardog-cache-core</artifactId>
             <version>${stardog.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.complexible.stardog.bites</groupId>
+            <artifactId>stardog-bites-protocols-embedded</artifactId>
+            <version>${stardog.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.davidmoten</groupId>
+            <artifactId>geo</artifactId>
+            <version>${geo.version}</version>
         </dependency>
         <dependency>
             <groupId>com.kcthota</groupId>
@@ -245,6 +250,7 @@
                         <include>**/EscapeTestSuite.java</include>
                         <include>**/UnescapeTestSuite.java</include>
                         <include>**/ArrayTestSuite.java</include>
+                        <include>**/HashExtractorTestSuite.java</include>
                     </includes>
                 </configuration>
             </plugin>
