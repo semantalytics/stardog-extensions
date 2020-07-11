@@ -44,6 +44,6 @@ public final class Chomp extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.chomp.name();
+        return StringVocabulary.chomp.toString();
     }
 }

@@ -13,7 +13,7 @@ import static org.apache.commons.text.StringEscapeUtils.*;
 public final class EcmaScript extends AbstractFunction implements StringFunction {
 
     protected EcmaScript() {
-        super(1, EscapeVocabulary.ecmaScript.stringValue());
+        super(1, EscapeVocabulary.ecmaScript.toString());
     }
 
     private EcmaScript(final EcmaScript ecmaScript) {
@@ -44,6 +44,6 @@ public final class EcmaScript extends AbstractFunction implements StringFunction
 
     @Override
     public String toString() {
-        return EscapeVocabulary.csv.name();
+        return EscapeVocabulary.csv.toString();
     }
 }

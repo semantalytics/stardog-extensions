@@ -66,6 +66,6 @@ public final class AppendIfMissingIgnoreCase extends AbstractFunction implements
 
     @Override
     public String toString() {
-        return StringVocabulary.appendIfMissingIgnoreCase.name();
+        return StringVocabulary.appendIfMissingIgnoreCase.toString();
     }
 }

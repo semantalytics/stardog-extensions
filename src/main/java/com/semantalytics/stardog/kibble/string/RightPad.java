@@ -52,6 +52,6 @@ public final class RightPad extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.rightPad.name();
+        return StringVocabulary.rightPad.toString();
     }
 }

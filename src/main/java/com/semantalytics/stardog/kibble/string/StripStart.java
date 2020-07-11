@@ -45,6 +45,6 @@ public final class StripStart extends AbstractFunction implements StringFunction
 
     @Override
     public String toString() {
-        return StringVocabulary.stripStart.name();
+        return StringVocabulary.stripStart.toString();
     }
 }

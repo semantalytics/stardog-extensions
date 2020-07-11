@@ -45,6 +45,6 @@ public final class CommonSuffix extends AbstractFunction implements StringFuncti
 
     @Override
     public String toString() {
-        return StringVocabulary.commonSuffix.name();
+        return StringVocabulary.commonSuffix.toString();
     }
 }

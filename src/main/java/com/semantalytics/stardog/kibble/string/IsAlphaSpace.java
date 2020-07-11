@@ -44,6 +44,6 @@ public final class IsAlphaSpace extends AbstractFunction implements StringFuncti
 
     @Override
     public String toString() {
-        return StringVocabulary.isAlphaSpace.name();
+        return StringVocabulary.isAlphaSpace.toString();
     }
 }

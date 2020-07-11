@@ -47,6 +47,6 @@ public final class Replace extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.replace.name();
+        return StringVocabulary.replace.toString();
     }
 }

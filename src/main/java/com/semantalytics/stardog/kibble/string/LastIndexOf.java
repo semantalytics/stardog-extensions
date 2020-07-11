@@ -60,6 +60,6 @@ public final class LastIndexOf extends AbstractFunction implements StringFunctio
 
     @Override
     public String toString() {
-        return StringVocabulary.lastIndexOf.name();
+        return StringVocabulary.lastIndexOf.toString();
     }
 }

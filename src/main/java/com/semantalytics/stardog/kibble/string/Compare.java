@@ -45,6 +45,6 @@ public final class Compare extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.compare.name();
+        return StringVocabulary.compare.toString();
     }
 }

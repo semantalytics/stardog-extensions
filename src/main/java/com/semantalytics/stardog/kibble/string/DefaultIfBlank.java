@@ -45,6 +45,6 @@ public final class DefaultIfBlank extends AbstractFunction implements StringFunc
 
     @Override
     public String toString() {
-        return StringVocabulary.defaultIfBlank.name();
+        return StringVocabulary.defaultIfBlank.toString();
     }
 }

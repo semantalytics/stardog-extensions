@@ -46,6 +46,6 @@ public final class Truncate extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.truncate.name();
+        return StringVocabulary.truncate.toString();
     }
 }

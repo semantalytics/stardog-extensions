@@ -44,6 +44,6 @@ public final class IsNumeric extends AbstractFunction implements StringFunction 
 
     @Override
     public String toString() {
-        return StringVocabulary.isNumeric.name();
+        return StringVocabulary.isNumeric.toString();
     }
 }

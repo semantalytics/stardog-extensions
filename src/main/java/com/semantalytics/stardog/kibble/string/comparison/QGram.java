@@ -14,7 +14,7 @@ public final class QGram extends AbstractFunction implements StringFunction {
     private info.debatty.java.stringsimilarity.QGram qGram;
 
     protected QGram() {
-        super(Range.closed(2, 3), StringMetricVocabulary.qgram.stringValue());
+        super(Range.closed(2, 3), StringMetricVocabulary.qgram.toString());
     }
 
     private QGram(final QGram qGram) {
@@ -62,7 +62,7 @@ public final class QGram extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringMetricVocabulary.qgram.name();
+        return StringMetricVocabulary.qgram.toString();
     }
 }
 

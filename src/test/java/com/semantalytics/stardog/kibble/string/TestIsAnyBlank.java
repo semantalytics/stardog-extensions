@@ -14,7 +14,7 @@ public class TestIsAnyBlank extends AbstractStardogTest {
     @Test
     public void testTrue() {
        
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:isAnyBlank(\"Stardog\", \"graph\", \"database\", \" \") AS ?result) }";
 
 
@@ -34,7 +34,7 @@ public class TestIsAnyBlank extends AbstractStardogTest {
     public void testFalse() {
 
 
-        final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+        final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
         "select ?result where { bind(string:isAnyBlank(\"Stardog\", \"graph\", \"database\") AS ?result) }";
 
 
@@ -53,7 +53,7 @@ public class TestIsAnyBlank extends AbstractStardogTest {
     @Test
     public void testTooFewArgs() {
 
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:isAnyBlank() as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -70,7 +70,7 @@ public class TestIsAnyBlank extends AbstractStardogTest {
     @Test
     public void testWrongTypeFirstArg() {
 
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:isAnyBlank(1) as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -87,7 +87,7 @@ public class TestIsAnyBlank extends AbstractStardogTest {
     @Test
     public void testWrongTypeSecondArg() {
        
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:isAnyBlank(\"one\", 2) as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {

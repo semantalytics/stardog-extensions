@@ -50,6 +50,6 @@ public final class EqualsAny extends AbstractFunction implements StringFunction 
 
     @Override
     public String toString() {
-        return StringVocabulary.equalsAny.name();
+        return StringVocabulary.equalsAny.toString();
     }
 }

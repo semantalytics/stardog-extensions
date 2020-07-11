@@ -44,6 +44,6 @@ public final class IsNumericSpace extends AbstractFunction implements StringFunc
 
     @Override
     public String toString() {
-        return StringVocabulary.isNumericSpace.name();
+        return StringVocabulary.isNumericSpace.toString();
     }
 }

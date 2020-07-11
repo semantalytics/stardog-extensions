@@ -52,6 +52,6 @@ public final class ReplaceEach extends AbstractFunction implements StringFunctio
 
     @Override
     public String toString() {
-        return StringVocabulary.replaceEach.name();
+        return StringVocabulary.replaceEach.toString();
     }
 }

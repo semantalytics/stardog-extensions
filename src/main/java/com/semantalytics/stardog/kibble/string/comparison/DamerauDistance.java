@@ -17,7 +17,7 @@ public final class DamerauDistance extends AbstractFunction implements StringFun
     }
 
     protected DamerauDistance() {
-        super(2, StringMetricVocabulary.damerauDistance.stringValue());
+        super(2, StringMetricVocabulary.damerauDistance.toString());
     }
 
     private DamerauDistance(final DamerauDistance damerauDistance) {
@@ -47,6 +47,6 @@ public final class DamerauDistance extends AbstractFunction implements StringFun
 
     @Override
     public String toString() {
-        return StringMetricVocabulary.damerauDistance.name();
+        return StringMetricVocabulary.damerauDistance.toString();
     }
 }

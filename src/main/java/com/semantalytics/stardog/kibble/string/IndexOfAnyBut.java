@@ -45,6 +45,6 @@ public final class IndexOfAnyBut extends AbstractFunction implements StringFunct
 
     @Override
     public String toString() {
-        return StringVocabulary.indexOfAnyBut.name();
+        return StringVocabulary.indexOfAnyBut.toString();
     }
 }

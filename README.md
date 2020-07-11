@@ -4,7 +4,67 @@
 
 A collection of [Stardog](http://stardog.com) functions
 
-# String
+## Stardog Kibbles Console
+
+A collection of [Stardog](http://stardog.com) plugins for writing ANSI console escape codes
+
+Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/console/
+
+Suggested prefixes: c: , cons:, console:
+
+Functions:
+
+
+    backgroundBlack
+    backgroundBlue
+    backgroundBrightBlack
+    backgroundBrightBlue
+    backgroundBrightCyan
+    backgroundBrightGreen
+    backgroundBrightMagenta
+    backgroundBrightRed
+    backgroundBrightWhite
+    backgroundBrightYellow
+    backgroundCyan
+    backgroundDefault
+    backgroundGreen
+    backgroundMagenta
+    backgroundRed
+    backgroundWhite
+    backgroundYellow
+    blinkFast
+    blinkOff
+    blinkSlow
+    bold
+    boldOff
+    eraseScreen
+    eraseLine
+    conceal
+    concealOff
+    console
+    foregroundBlack
+    foregroundBlue
+    foregroundCyan
+    foregroundDefault
+    foregroundGreen
+    foregroundMagenta
+    foregroundRed
+    foregroundWhite
+    foregroundYellow
+    italic
+    italicOff
+    negative
+    negativeOff
+    render
+    reset
+    strikeThrough
+    strikeThroughOff
+    underline
+    underlineDouble
+    underlineOff
+
+
+## String
 
 Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/string/
 
@@ -149,11 +209,7 @@ Functions:
     normalizeSpace
     upperCase
     
-# Emoji
-
-Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/string/emoji/
-
-Suggested prefixes: e:, emj:, emoji:
+## Emoji
 
     aliases
     count
@@ -169,7 +225,7 @@ Suggested prefixes: e:, emj:, emoji:
     shortCodify
     unicode
     
-# String metrics
+## String metrics
 
 Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/string/metric/
 
@@ -199,7 +255,7 @@ Suggested prefixes: sm: , strm:, stringmetric:
     sorensenDiceDistance
     weightedLevenshteinDistance
     
-# phonetic
+## phonetic
 
 Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/string/phonetic/
 
@@ -216,12 +272,14 @@ Functions:
     refinedSoundex
     soundex
     
-# Stardog Kibbles String Escape
+## String Escape
 
 A collection of [Stardog](http://stardog.com) plugins for generating escaped strings in various formats
 
 Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/string/escape/
+
 Suggested prefix: escape:
+
 Functions:
 
     csv
@@ -235,10 +293,12 @@ Functions:
     xml11
     xsi
     
-# Stardog Kibbles String Unescape
+## String Unescape
 
 Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/string/unescape/
+
 Suggested prefix: unescape:
+
 Functions:
 
     csv
@@ -251,3 +311,69 @@ Functions:
     xml10
     xml11
     xsi
+
+## Geohash
+
+namespace: "http://semantalytics.com/2017/09/ns/stardog/kibble/geo/hash/
+
+prefix: geohash:
+
+functions:
+
+    right
+    left
+    top
+    bottom
+    encode
+    latitude
+    hashLengthToCoverBoundingBox
+    hashContains
+    heightDegrees
+    longitude
+    widthDegrees
+    
+property functions:
+
+    decode      (?latitude ?longitude) geohash:decode("jkjk43243")
+    neighbors   (?top ?bottom ?left ?right) geohash:neighbors("jkjk43243")
+
+## Array
+
+Namespace: http://semantalytics.com/2017/09/ns/stardog/kibble/array/
+
+Suggested prefix: array:
+
+Functions:
+
+	Append
+	CartesianProduct
+	Contains
+	Distinct
+	Equals
+	Fill
+	Flatten
+	Index
+	IndexOf
+	IndexOfFirst
+	IndexOfLast
+	IsEmpty
+	IsUniformLiteral
+	IsUniformType
+	NDims
+	Of
+	Offset
+	Ordinal
+	Partition
+	RemoveAll
+	RemoveFirst
+	RemoveLast
+	Reverse
+	Shift
+	Shuffle
+	Size
+	Sub
+	Swap
+	ToString
+	UniformDatatype
+	Zip
+	ZipWithIndex

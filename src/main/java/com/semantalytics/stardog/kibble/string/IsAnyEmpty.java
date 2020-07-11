@@ -49,6 +49,6 @@ public final class IsAnyEmpty extends AbstractFunction implements StringFunction
 
     @Override
     public String toString() {
-        return StringVocabulary.isAnyEmpty.name();
+        return StringVocabulary.isAnyEmpty.toString();
     }
 }

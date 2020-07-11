@@ -13,7 +13,7 @@ import static org.apache.commons.text.StringEscapeUtils.*;
 public final class Html4 extends AbstractFunction implements StringFunction {
 
     protected Html4() {
-        super(1, EscapeVocabulary.html4.stringValue());
+        super(1, EscapeVocabulary.html4.toString());
     }
 
     private Html4(final Html4 html4) {
@@ -44,6 +44,6 @@ public final class Html4 extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return EscapeVocabulary.csv.name();
+        return EscapeVocabulary.csv.toString();
     }
 }

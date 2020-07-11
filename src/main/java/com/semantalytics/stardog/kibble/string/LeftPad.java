@@ -62,6 +62,6 @@ public final class LeftPad extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.leftPad.name();
+        return StringVocabulary.leftPad.toString();
     }
 }

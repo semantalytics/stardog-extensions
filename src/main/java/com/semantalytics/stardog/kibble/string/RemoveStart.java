@@ -45,6 +45,6 @@ public final class RemoveStart extends AbstractFunction implements StringFunctio
 
     @Override
     public String toString() {
-        return StringVocabulary.removeStart.name();
+        return StringVocabulary.removeStart.toString();
     }
 }

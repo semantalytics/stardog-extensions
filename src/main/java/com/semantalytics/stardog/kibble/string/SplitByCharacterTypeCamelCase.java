@@ -71,6 +71,6 @@ public final class SplitByCharacterTypeCamelCase extends AbstractExpression impl
 
     @Override
     public String toString() {
-        return StringVocabulary.splitByCharacterTypeCamelCase.name();
+        return StringVocabulary.splitByCharacterTypeCamelCase.toString();
     }
 }

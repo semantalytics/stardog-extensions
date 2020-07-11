@@ -44,6 +44,6 @@ public final class IsAlphanumericSpace extends AbstractFunction implements Strin
 
     @Override
     public String toString() {
-        return StringVocabulary.isAlphanumericSpace.name();
+        return StringVocabulary.isAlphanumericSpace.toString();
     }
 }

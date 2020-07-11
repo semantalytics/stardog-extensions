@@ -14,7 +14,7 @@ public class SorensenDiceSimilarity extends AbstractFunction implements StringFu
     private info.debatty.java.stringsimilarity.SorensenDice sorensenDice;
 
     protected SorensenDiceSimilarity() {
-        super(Range.closed(2, 3), StringMetricVocabulary.sorensenDiceSimilarity.stringValue());
+        super(Range.closed(2, 3), StringMetricVocabulary.sorensenDiceSimilarity.toString());
     }
 
     private SorensenDiceSimilarity(final SorensenDiceSimilarity sorensenDiceSimilarity) {
@@ -63,6 +63,6 @@ public class SorensenDiceSimilarity extends AbstractFunction implements StringFu
 
     @Override
     public String toString() {
-        return StringMetricVocabulary.sorensenDiceSimilarity.name();
+        return StringMetricVocabulary.sorensenDiceSimilarity.toString();
     }
 }

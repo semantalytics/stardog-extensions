@@ -44,6 +44,6 @@ public final class Chop extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.chop.name();
+        return StringVocabulary.chop.toString();
     }
 }

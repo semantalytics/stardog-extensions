@@ -13,7 +13,7 @@ import static org.apache.commons.text.StringEscapeUtils.*;
 public final class Html3 extends AbstractFunction implements StringFunction {
 
     protected Html3() {
-        super(1, UnescapeVocabulary.html3.stringValue());
+        super(1, UnescapeVocabulary.html3.toString());
     }
 
     private Html3(final Html3 html3) {
@@ -44,6 +44,6 @@ public final class Html3 extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return UnescapeVocabulary.csv.name();
+        return UnescapeVocabulary.csv.toString();
     }
 }

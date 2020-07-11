@@ -44,6 +44,6 @@ public final class IsNotBlank extends AbstractFunction implements StringFunction
 
     @Override
     public String toString() {
-        return StringVocabulary.isNotBlank.name();
+        return StringVocabulary.isNotBlank.toString();
     }
 }

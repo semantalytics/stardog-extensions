@@ -44,6 +44,6 @@ public final class IsWhitespace extends AbstractFunction implements StringFuncti
 
     @Override
     public String toString() {
-        return StringVocabulary.isWhitespace.name();
+        return StringVocabulary.isWhitespace.toString();
     }
 }

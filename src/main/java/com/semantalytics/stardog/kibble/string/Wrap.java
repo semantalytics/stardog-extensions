@@ -53,6 +53,6 @@ public final class Wrap extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.wrap.name();
+        return StringVocabulary.wrap.toString();
     }
 }

@@ -19,7 +19,7 @@ public class Metaphone extends AbstractFunction implements StringFunction {
     }
 
     protected Metaphone() {
-        super(1, PhoneticVocabulary.metaphone.stringValue());
+        super(1, PhoneticVocabulary.metaphone.toString());
     }
 
     private Metaphone(Metaphone doubleMetaphone) {
@@ -48,6 +48,6 @@ public class Metaphone extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return PhoneticVocabulary.metaphone.name();
+        return PhoneticVocabulary.metaphone.toString();
     }
 }

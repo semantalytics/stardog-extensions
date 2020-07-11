@@ -45,6 +45,6 @@ public final class RemoveAll extends AbstractFunction implements StringFunction 
 
     @Override
     public String toString() {
-        return StringVocabulary.removeAll.name();
+        return StringVocabulary.removeAll.toString();
     }
 }

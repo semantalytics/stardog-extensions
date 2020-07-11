@@ -44,6 +44,6 @@ public class NormalizeSpace extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.normalizeSpace.name();
+        return StringVocabulary.normalizeSpace.toString();
     }
 }

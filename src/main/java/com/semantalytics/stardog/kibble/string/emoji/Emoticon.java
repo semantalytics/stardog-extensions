@@ -58,7 +58,7 @@ public final class Emoticon extends AbstractExpression implements StringFunction
 
     @Override
     public String getName() {
-        return EmojiVocabulary.emoticon.stringValue();
+        return EmojiVocabulary.emoticon.toString();
     }
 
     @Override
@@ -78,6 +78,6 @@ public final class Emoticon extends AbstractExpression implements StringFunction
 
     @Override
     public String toString() {
-        return EmojiVocabulary.emoticon.stringValue();
+        return EmojiVocabulary.emoticon.toString();
     }
 }

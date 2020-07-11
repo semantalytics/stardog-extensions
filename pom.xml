@@ -46,13 +46,15 @@
 
     <properties>
         <stardog.major.version>7</stardog.major.version>
-        <stardog.version>${stardog.major.version}.3.0</stardog.version>
-        <junit.version>4.12</junit.version>
         <commons-validator.version>1.6</commons-validator.version>
         <commons-net.version>3.6</commons-net.version>
+        <stardog.version>${stardog.major.version}.3.2</stardog.version>
+        <junit.version>4.12</junit.version>
+        <slf4j.version>1.7.21</slf4j.version>
+        <jansi.version>1.16</jansi.version>
+        <geo.version>0.7.1</geo.version>
         <assertj.version>3.15.0</assertj.version>
         <xmlapis.version>1.4.01</xmlapis.version>
-        <slf4j.version>1.7.21</slf4j.version>
         <maven.version>3.3.9</maven.version>
         <guava.version>23.3-jre</guava.version>
         <commons-text.version>1.7</commons-text.version>
@@ -69,6 +71,11 @@
             <version>${stardog.version}</version>
             <type>pom</type>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.davidmoten</groupId>
+            <artifactId>geo</artifactId>
+            <version>${geo.version}</version>
         </dependency>
         <dependency>
             <groupId>com.complexible.stardog.cache</groupId>
@@ -105,6 +112,11 @@
             <groupId>com.github.mpkorstanje</groupId>
             <artifactId>simmetrics-core</artifactId>
             <version>${simmetrics-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.fusesource.jansi</groupId>
+            <artifactId>jansi</artifactId>
+            <version>${jansi.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -231,17 +243,20 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.12.4</version>
                 <configuration>
-                    <argLine>-Djava.library.path=${env.STARDOG}/lib</argLine>
+                    <argLine>-Djava.library.path=/opt/stardog/latest/lib</argLine>
                     <excludes>
                         <exclude>**/Test*.java</exclude>
                     </excludes>
                     <includes>
+                        <include>**/ConsoleTestSuite.java</include>
+                        <include>**/GeohashTestSuite.java</include>
                         <include>**/EmojiTestSuite.java</include>
                         <include>**/StringMetricTestSuite.java</include>
                         <include>**/StringTestSuite.java</include>
                         <include>**/PhoneticTestSuite.java</include>
                         <include>**/EscapeTestSuite.java</include>
                         <include>**/UnescapeTestSuite.java</include>
+                        <include>**/ArrayTestSuite.java</include>
                     </includes>
                 </configuration>
             </plugin>

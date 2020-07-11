@@ -35,7 +35,7 @@ import java.net.InetSocketAddress;
         TestNeedlemanWunch.class,
         TestNGram.class,
         TestNormalizedLevenshteinDistance.class,
-        TestOverlapCoefficient.class,
+        TestOverlapsCoefficient.class,
         TestQGram.class,
         TestSift4.class,
         TestSmithWaterman.class,

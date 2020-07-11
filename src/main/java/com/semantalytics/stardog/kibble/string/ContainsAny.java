@@ -44,6 +44,6 @@ public final class ContainsAny extends AbstractFunction implements StringFunctio
 
     @Override
     public String toString() {
-        return StringVocabulary.containsAny.name();
+        return StringVocabulary.containsAny.toString();
     }
 }
