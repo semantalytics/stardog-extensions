@@ -17,7 +17,7 @@ import static com.stardog.stark.Values.literal;
 public class LoopbackAddress extends AbstractFunction implements UserDefinedFunction {
 
     public LoopbackAddress() {
-        super(1, InternetAddressVocabulary.isIp4MappedAddress.stringValue());
+        super(1, InternetAddressVocabulary.isIp4MappedAddress.toString());
     }
 
     private LoopbackAddress(final LoopbackAddress internetAddressToNumber) {
@@ -53,7 +53,7 @@ public class LoopbackAddress extends AbstractFunction implements UserDefinedFunc
 
     @Override
     public String toString() {
-        return InternetAddressVocabulary.isIp4MappedAddress.name();
+        return InternetAddressVocabulary.isIp4MappedAddress.toString();
     }
 
 }

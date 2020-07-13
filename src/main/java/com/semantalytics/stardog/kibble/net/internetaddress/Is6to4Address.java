@@ -15,7 +15,7 @@ import static com.stardog.stark.Values.literal;
 public class Is6to4Address extends AbstractFunction implements UserDefinedFunction {
 
     public Is6to4Address() {
-        super(1, InternetAddressVocabulary.isIp4MappedAddress.stringValue());
+        super(1, InternetAddressVocabulary.isIp4MappedAddress.toString());
     }
 
     private Is6to4Address(final Is6to4Address internetAddressToNumber) {
@@ -46,7 +46,7 @@ public class Is6to4Address extends AbstractFunction implements UserDefinedFuncti
 
     @Override
     public String toString() {
-        return InternetAddressVocabulary.isIp4MappedAddress.name();
+        return InternetAddressVocabulary.isIp4MappedAddress.toString();
     }
 
 }

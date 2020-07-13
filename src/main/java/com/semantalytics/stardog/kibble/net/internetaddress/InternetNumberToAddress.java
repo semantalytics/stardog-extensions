@@ -15,7 +15,7 @@ import static com.stardog.stark.Values.literal;
 public class InternetNumberToAddress extends AbstractFunction implements UserDefinedFunction {
 
     public InternetNumberToAddress() {
-        super(1, InternetAddressVocabulary.toAddress.stringValue());
+        super(1, InternetAddressVocabulary.toAddress.toString());
     }
 
     private InternetNumberToAddress(InternetNumberToAddress internetNumberToAddress) {
@@ -46,6 +46,6 @@ public class InternetNumberToAddress extends AbstractFunction implements UserDef
 
     @Override
     public String toString() {
-        return InternetAddressVocabulary.toAddress.name();
+        return InternetAddressVocabulary.toAddress.toString();
     }
 }

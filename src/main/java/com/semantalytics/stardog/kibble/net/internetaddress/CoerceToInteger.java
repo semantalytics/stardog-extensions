@@ -10,17 +10,16 @@ import com.stardog.stark.Literal;
 import com.stardog.stark.Value;
 
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 import static com.stardog.stark.Values.literal;
 
-public class CoerceToInetger extends AbstractFunction implements UserDefinedFunction {
+public class CoerceToInteger extends AbstractFunction implements UserDefinedFunction {
 
-    public CoerceToInetger() {
-        super(1, InternetAddressVocabulary.isIp4MappedAddress.stringValue());
+    public CoerceToInteger() {
+        super(1, InternetAddressVocabulary.isIp4MappedAddress.toString());
     }
 
-    private CoerceToInetger(final CoerceToInetger internetAddressToNumber) {
+    private CoerceToInteger(final CoerceToInteger internetAddressToNumber) {
         super(internetAddressToNumber);
     }
 
@@ -33,7 +32,7 @@ public class CoerceToInetger extends AbstractFunction implements UserDefinedFunc
                 final InetAddress inetAddress = InetAddresses.forString(ip);
 
                 return ValueOrError.General.of(literal(InetAddresses.coerceToInteger(inetAddress)));
-            } catch(IllegalArgumentException) {
+            } catch(IllegalArgumentException e) {
                 return ValueOrError.Error;
             }
         } else {
@@ -43,7 +42,7 @@ public class CoerceToInetger extends AbstractFunction implements UserDefinedFunc
 
     @Override
     public Function copy() {
-        return new CoerceToInetger(this);
+        return new CoerceToInteger(this);
     }
 
     @Override
@@ -53,7 +52,7 @@ public class CoerceToInetger extends AbstractFunction implements UserDefinedFunc
 
     @Override
     public String toString() {
-        return InternetAddressVocabulary.isIp4MappedAddress.name();
+        return InternetAddressVocabulary.isIp4MappedAddress.toString();
     }
 
 }

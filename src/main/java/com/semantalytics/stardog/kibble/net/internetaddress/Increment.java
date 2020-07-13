@@ -15,7 +15,7 @@ import static com.stardog.stark.Values.literal;
 public class Increment extends AbstractFunction implements UserDefinedFunction {
 
     public Increment() {
-        super(1, InternetAddressVocabulary.isIp4MappedAddress.stringValue());
+        super(1, InternetAddressVocabulary.isIp4MappedAddress.toString());
     }
 
     private Increment(final Increment internetAddressToNumber) {
@@ -46,7 +46,7 @@ public class Increment extends AbstractFunction implements UserDefinedFunction {
 
     @Override
     public String toString() {
-        return InternetAddressVocabulary.isIp4MappedAddress.name();
+        return InternetAddressVocabulary.isIp4MappedAddress.toString();
     }
 
 }

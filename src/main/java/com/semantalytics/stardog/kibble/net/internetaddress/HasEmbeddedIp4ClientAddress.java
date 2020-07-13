@@ -14,7 +14,7 @@ import static com.stardog.stark.Values.literal;
 public class HasEmbeddedIp4ClientAddress extends AbstractFunction implements UserDefinedFunction {
 
     public HasEmbeddedIp4ClientAddress() {
-        super(1, InternetAddressVocabulary.isIp4MappedAddress.stringValue());
+        super(1, InternetAddressVocabulary.isIp4MappedAddress.toString());
     }
 
     private HasEmbeddedIp4ClientAddress(final HasEmbeddedIp4ClientAddress internetAddressToNumber) {
@@ -45,7 +45,7 @@ public class HasEmbeddedIp4ClientAddress extends AbstractFunction implements Use
 
     @Override
     public String toString() {
-        return InternetAddressVocabulary.isIp4MappedAddress.name();
+        return InternetAddressVocabulary.isIp4MappedAddress.toString();
     }
 
 }

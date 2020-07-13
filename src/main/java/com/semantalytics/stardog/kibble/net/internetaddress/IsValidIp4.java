@@ -14,7 +14,7 @@ import static com.stardog.stark.Values.literal;
 public class IsValidIp4 extends AbstractFunction implements UserDefinedFunction {
 
     public IsValidIp4() {
-        super(1, InternetAddressVocabulary.isValidIp4.stringValue());
+        super(1, InternetAddressVocabulary.isValidIp4.toString());
     }
 
     private IsValidIp4(final IsValidIp4 isValidIp4) {
@@ -45,7 +45,7 @@ public class IsValidIp4 extends AbstractFunction implements UserDefinedFunction 
 
     @Override
     public String toString() {
-        return InternetAddressVocabulary.isValidIp4.name();
+        return InternetAddressVocabulary.isValidIp4.toString();
     }
 
 }

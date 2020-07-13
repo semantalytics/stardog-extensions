@@ -14,7 +14,7 @@ import static com.stardog.stark.Values.literal;
 public class GetIsatapIp4Address extends AbstractFunction implements UserDefinedFunction {
 
     public GetIsatapIp4Address() {
-        super(1, InternetAddressVocabulary.isIp4MappedAddress.stringValue());
+        super(1, InternetAddressVocabulary.isIp4MappedAddress.toString());
     }
 
     private GetIsatapIp4Address(final GetIsatapIp4Address internetAddressToNumber) {
@@ -45,7 +45,7 @@ public class GetIsatapIp4Address extends AbstractFunction implements UserDefined
 
     @Override
     public String toString() {
-        return InternetAddressVocabulary.isIp4MappedAddress.name();
+        return InternetAddressVocabulary.isIp4MappedAddress.toString();
     }
 
 }

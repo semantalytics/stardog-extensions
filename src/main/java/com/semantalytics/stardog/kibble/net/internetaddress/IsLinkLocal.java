@@ -20,7 +20,7 @@ import static com.stardog.stark.Values.literal;
 public class IsLinkLocal extends AbstractFunction implements UserDefinedFunction {
 
     public IsLinkLocal() {
-        super(1, InternetAddressVocabulary.isLinkLocal.stringValue());
+        super(1, InternetAddressVocabulary.isLinkLocal.toString());
     }
 
     private IsLinkLocal(final IsLinkLocal internetAddressToNumber) {
@@ -58,7 +58,7 @@ public class IsLinkLocal extends AbstractFunction implements UserDefinedFunction
 
     @Override
     public String toString() {
-        return InternetAddressVocabulary.isLinkLocal.name();
+        return InternetAddressVocabulary.isLinkLocal.toString();
     }
 
 }

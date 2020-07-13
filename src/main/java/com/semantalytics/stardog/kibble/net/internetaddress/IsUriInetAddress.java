@@ -14,7 +14,7 @@ import static com.stardog.stark.Values.literal;
 public class IsUriInetAddress extends AbstractFunction implements UserDefinedFunction {
 
     public IsUriInetAddress() {
-        super(1, InternetAddressVocabulary.isUriInetAddress.stringValue());
+        super(1, InternetAddressVocabulary.isUriInetAddress.toString());
     }
 
     private IsUriInetAddress(final IsUriInetAddress internetAddressToNumber) {
@@ -45,7 +45,7 @@ public class IsUriInetAddress extends AbstractFunction implements UserDefinedFun
 
     @Override
     public String toString() {
-        return InternetAddressVocabulary.isUriInetAddress.name();
+        return InternetAddressVocabulary.isUriInetAddress.toString();
     }
 
 }

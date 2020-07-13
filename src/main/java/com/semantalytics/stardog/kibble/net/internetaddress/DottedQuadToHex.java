@@ -14,7 +14,7 @@ import static com.stardog.stark.Values.literal;
 public class DottedQuadToHex extends AbstractFunction implements UserDefinedFunction {
 
     public DottedQuadToHex() {
-        super(1, InternetAddressVocabulary.isIp4MappedAddress.stringValue());
+        super(1, InternetAddressVocabulary.isIp4MappedAddress.toString());
     }
 
     private DottedQuadToHex(final DottedQuadToHex internetAddressToNumber) {
@@ -46,7 +46,7 @@ public class DottedQuadToHex extends AbstractFunction implements UserDefinedFunc
 
     @Override
     public String toString() {
-        return InternetAddressVocabulary.isIp4MappedAddress.name();
+        return InternetAddressVocabulary.isIp4MappedAddress.toString();
     }
 
 }
