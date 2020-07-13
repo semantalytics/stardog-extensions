@@ -11,6 +11,7 @@ import com.stardog.stark.Value;
 
 import java.net.InetAddress;
 
+import static com.google.common.net.InetAddresses.*;
 import static com.stardog.stark.Values.literal;
 
 public class CoerceToInteger extends AbstractFunction implements UserDefinedFunction {
@@ -31,7 +32,7 @@ public class CoerceToInteger extends AbstractFunction implements UserDefinedFunc
             try {
                 final InetAddress inetAddress = InetAddresses.forString(ip);
 
-                return ValueOrError.General.of(literal(InetAddresses.coerceToInteger(inetAddress)));
+                return ValueOrError.General.of(literal(coerceToInteger(inetAddress)));
             } catch(IllegalArgumentException e) {
                 return ValueOrError.Error;
             }

@@ -29,7 +29,7 @@ public class IsCompatibleIp4Address extends AbstractFunction implements UserDefi
     public ValueOrError internalEvaluate(final Value... values) {
 
         if(assertStringLiteral(values[0])) {
-            final InetAddress ip = Inet6Address.(((Literal)values[0]).label());
+            final InetAddress ip = Inet6Address.getByAddress().forString(((Literal)values[0]).label()).;
 
             return ValueOrError.General.of(literal(isCompatIPv4Address(ip)));
         } else {
