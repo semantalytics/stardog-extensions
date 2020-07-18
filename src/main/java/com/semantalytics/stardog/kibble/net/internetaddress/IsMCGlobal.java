@@ -5,30 +5,29 @@ import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.Function;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
+import com.google.common.net.InetAddresses;
 import com.stardog.stark.Literal;
 import com.stardog.stark.Value;
 
-import static com.google.common.net.InetAddresses.
-import static com.stardog.stark.Values.literal;
+import java.net.InetAddress;
 
-public class DottedQuadToHex extends AbstractFunction implements UserDefinedFunction {
+public class IsMCGlobal extends AbstractFunction implements UserDefinedFunction {
 
-    public DottedQuadToHex() {
-        super(1, InternetAddressVocabulary.isIp4MappedAddress.toString());
+    public IsMCGlobal() {
+        super(1, InternetAddressVocabulary.isMCGlobal.toString());
     }
 
-    private DottedQuadToHex(final DottedQuadToHex internetAddressToNumber) {
-        super(internetAddressToNumber);
+    private IsMCGlobal(final IsMCGlobal isMaximum) {
+        super(isMaximum);
     }
 
     @Override
     public ValueOrError internalEvaluate(final Value... values) {
 
         if(assertStringLiteral(values[0])) {
-            final String ip = ((Literal)values[0]).label();
-            InetAddresses.
+            final InetAddress inetAddress = InetAddresses.forString(((Literal)values[0]).label());
 
-            return ValueOrError.General.of(literal(dottedQuadToHex(ip)));
+            return ValueOrError.Boolean.of(inetAddress.isMCGlobal());
         } else {
             return ValueOrError.Error;
         }
@@ -36,7 +35,7 @@ public class DottedQuadToHex extends AbstractFunction implements UserDefinedFunc
 
     @Override
     public Function copy() {
-        return new DottedQuadToHex(this);
+        return new IsMCGlobal(this);
     }
 
     @Override
@@ -46,7 +45,7 @@ public class DottedQuadToHex extends AbstractFunction implements UserDefinedFunc
 
     @Override
     public String toString() {
-        return InternetAddressVocabulary.isIp4MappedAddress.toString();
+        return InternetAddressVocabulary.isMCGlobal.toString();
     }
 
 }

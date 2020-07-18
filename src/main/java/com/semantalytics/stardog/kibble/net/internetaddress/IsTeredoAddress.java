@@ -12,17 +12,14 @@ import com.stardog.stark.Value;
 import java.net.Inet6Address;
 import java.net.InetAddress;
 
-import static com.google.common.net.InetAddresses.*;
-import static com.stardog.stark.Values.literal;
+public class IsTeredoAddress extends AbstractFunction implements UserDefinedFunction {
 
-public class HasEmbeddedIp4ClientAddress extends AbstractFunction implements UserDefinedFunction {
-
-    public HasEmbeddedIp4ClientAddress() {
-        super(1, InternetAddressVocabulary.hasEmbeddedIp4ClientAddress.toString());
+    public IsTeredoAddress() {
+        super(1, InternetAddressVocabulary.isTeredoAddress.toString());
     }
 
-    private HasEmbeddedIp4ClientAddress(final HasEmbeddedIp4ClientAddress internetAddressToNumber) {
-        super(internetAddressToNumber);
+    private IsTeredoAddress(final IsTeredoAddress isTeredoAddress) {
+        super(isTeredoAddress);
     }
 
     @Override
@@ -32,7 +29,7 @@ public class HasEmbeddedIp4ClientAddress extends AbstractFunction implements Use
             final InetAddress inetAddress = InetAddresses.forString(((Literal)values[0]).label());
 
             if(inetAddress instanceof Inet6Address) {
-                return ValueOrError.General.of(literal(hasEmbeddedIPv4ClientAddress((Inet6Address)inetAddress)));
+            return ValueOrError.Boolean.of(InetAddresses.isTeredoAddress((Inet6Address)inetAddress));
             } else {
                 return ValueOrError.Error;
             }
@@ -43,7 +40,7 @@ public class HasEmbeddedIp4ClientAddress extends AbstractFunction implements Use
 
     @Override
     public Function copy() {
-        return new HasEmbeddedIp4ClientAddress(this);
+        return new IsTeredoAddress(this);
     }
 
     @Override
@@ -53,7 +50,7 @@ public class HasEmbeddedIp4ClientAddress extends AbstractFunction implements Use
 
     @Override
     public String toString() {
-        return InternetAddressVocabulary.hasEmbeddedIp4ClientAddress.toString();
+        return InternetAddressVocabulary.isTeredoAddress.toString();
     }
 
 }

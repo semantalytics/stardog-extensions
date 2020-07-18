@@ -18,20 +18,24 @@ import static com.stardog.stark.Values.literal;
 public class IsCompatibleIp4Address extends AbstractFunction implements UserDefinedFunction {
 
     public IsCompatibleIp4Address() {
-        super(1, InternetAddressVocabulary.isIp4MappedAddress.toString());
+        super(1, InternetAddressVocabulary.isCompatibleIp4Address.toString());
     }
 
-    private IsCompatibleIp4Address(final IsCompatibleIp4Address internetAddressToNumber) {
-        super(internetAddressToNumber);
+    private IsCompatibleIp4Address(final IsCompatibleIp4Address isCompatibleIp4Address) {
+        super(isCompatibleIp4Address);
     }
 
     @Override
     public ValueOrError internalEvaluate(final Value... values) {
 
         if(assertStringLiteral(values[0])) {
-            final InetAddress ip = Inet6Address.getByAddress().forString(((Literal)values[0]).label()).;
+            final InetAddress inetAddress = InetAddresses.forString(((Literal)values[0]).label());
 
-            return ValueOrError.General.of(literal(isCompatIPv4Address(ip)));
+            if(inetAddress instanceof Inet6Address) {
+                return ValueOrError.General.of(literal(isCompatIPv4Address((Inet6Address) inetAddress)));
+            } else {
+                return ValueOrError.Error;
+            }
         } else {
             return ValueOrError.Error;
         }
@@ -49,7 +53,7 @@ public class IsCompatibleIp4Address extends AbstractFunction implements UserDefi
 
     @Override
     public String toString() {
-        return InternetAddressVocabulary.isIp4MappedAddress.toString();
+        return InternetAddressVocabulary.isCompatibleIp4Address.toString();
     }
 
 }

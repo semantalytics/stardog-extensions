@@ -9,46 +9,36 @@ import com.google.common.net.InetAddresses;
 import com.stardog.stark.Literal;
 import com.stardog.stark.Value;
 
-import java.net.InetAddress;
-
 import static com.stardog.stark.Values.literal;
 
-/**
- * Given the dotted-quad representation of an IPv4 network address as a string, returns an
- * integer that represents the numeric value of the address in network byte order (big endian)
- */
-public class IsLinkLocal extends AbstractFunction implements UserDefinedFunction {
+public class FromInteger extends AbstractFunction implements UserDefinedFunction {
 
-    public IsLinkLocal() {
-        super(1, InternetAddressVocabulary.isLinkLocal.toString());
+    public FromInteger() {
+        super(1, InternetAddressVocabulary.fromInteger.toString());
     }
 
-    private IsLinkLocal(final IsLinkLocal internetAddressToNumber) {
-        super(internetAddressToNumber);
+    private FromInteger(final FromInteger fromInteger) {
+        super(fromInteger);
     }
 
     @Override
-    protected ValueOrError internalEvaluate(final Value... values) {
+    public ValueOrError internalEvaluate(final Value... values) {
 
-        if(assertStringLiteral(values[0])) {
-            final String ip = ((Literal)values[0]).label();
+        if(assertNumericLiteral(values[0])) {
+            final int inetAddressInt = Literal.intValue((Literal)values[0]);
             try {
-                final InetAddress inetAddress = InetAddresses.forString(ip);
-
-                return ValueOrError.General.of(literal(inetAddress.isLinkLocalAddress()));
+                return ValueOrError.General.of(literal(InetAddresses.fromInteger(inetAddressInt).toString()));
             } catch(IllegalArgumentException e) {
                 return ValueOrError.Error;
             }
-
         } else {
             return ValueOrError.Error;
         }
-
     }
 
     @Override
     public Function copy() {
-        return new IsLinkLocal(this);
+        return new FromInteger(this);
     }
 
     @Override
@@ -58,7 +48,7 @@ public class IsLinkLocal extends AbstractFunction implements UserDefinedFunction
 
     @Override
     public String toString() {
-        return InternetAddressVocabulary.isLinkLocal.toString();
+        return InternetAddressVocabulary.fromInteger.toString();
     }
 
 }

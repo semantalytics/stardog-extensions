@@ -9,20 +9,21 @@ import com.google.common.net.InetAddresses;
 import com.stardog.stark.Literal;
 import com.stardog.stark.Value;
 
+import java.net.Inet4Address;
 import java.net.Inet6Address;
 import java.net.InetAddress;
 
-import static com.google.common.net.InetAddresses.*;
+import static com.google.common.net.InetAddresses.toAddrString;
 import static com.stardog.stark.Values.literal;
 
-public class HasEmbeddedIp4ClientAddress extends AbstractFunction implements UserDefinedFunction {
+public class ToAddrString extends AbstractFunction implements UserDefinedFunction {
 
-    public HasEmbeddedIp4ClientAddress() {
-        super(1, InternetAddressVocabulary.hasEmbeddedIp4ClientAddress.toString());
+    public ToAddrString() {
+        super(1, InternetAddressVocabulary.convertDottedQuadToHex.toString());
     }
 
-    private HasEmbeddedIp4ClientAddress(final HasEmbeddedIp4ClientAddress internetAddressToNumber) {
-        super(internetAddressToNumber);
+    private ToAddrString(final ToAddrString toAddrString) {
+        super(toAddrString);
     }
 
     @Override
@@ -31,8 +32,11 @@ public class HasEmbeddedIp4ClientAddress extends AbstractFunction implements Use
         if(assertStringLiteral(values[0])) {
             final InetAddress inetAddress = InetAddresses.forString(((Literal)values[0]).label());
 
-            if(inetAddress instanceof Inet6Address) {
-                return ValueOrError.General.of(literal(hasEmbeddedIPv4ClientAddress((Inet6Address)inetAddress)));
+            if(inetAddress instanceof Inet4Address) {
+                return ValueOrError.General.of(literal(toAddrString(inetAddress), InternetAddressVocabulary.ipv4AddressDt));
+            }
+            else if(inetAddress instanceof Inet6Address) {
+                return ValueOrError.General.of(literal(toAddrString(inetAddress), InternetAddressVocabulary.ipv6AddressDt));
             } else {
                 return ValueOrError.Error;
             }
@@ -43,7 +47,7 @@ public class HasEmbeddedIp4ClientAddress extends AbstractFunction implements Use
 
     @Override
     public Function copy() {
-        return new HasEmbeddedIp4ClientAddress(this);
+        return new ToAddrString(this);
     }
 
     @Override
@@ -53,7 +57,7 @@ public class HasEmbeddedIp4ClientAddress extends AbstractFunction implements Use
 
     @Override
     public String toString() {
-        return InternetAddressVocabulary.hasEmbeddedIp4ClientAddress.toString();
+        return InternetAddressVocabulary.convertDottedQuadToHex.toString();
     }
 
 }

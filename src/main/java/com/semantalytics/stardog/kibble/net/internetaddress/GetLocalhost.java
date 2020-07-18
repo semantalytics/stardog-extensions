@@ -9,31 +9,31 @@ import com.google.common.net.InetAddresses;
 import com.stardog.stark.Literal;
 import com.stardog.stark.Value;
 
-import java.net.Inet6Address;
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 
-import static com.google.common.net.InetAddresses.*;
 import static com.stardog.stark.Values.literal;
 
-public class HasEmbeddedIp4ClientAddress extends AbstractFunction implements UserDefinedFunction {
+public class GetLocalhost extends AbstractFunction implements UserDefinedFunction {
 
-    public HasEmbeddedIp4ClientAddress() {
-        super(1, InternetAddressVocabulary.hasEmbeddedIp4ClientAddress.toString());
+    public GetLocalhost() {
+        super(1, InternetAddressVocabulary.getLocalhost.toString());
     }
 
-    private HasEmbeddedIp4ClientAddress(final HasEmbeddedIp4ClientAddress internetAddressToNumber) {
-        super(internetAddressToNumber);
+    private GetLocalhost(final GetLocalhost getLocalhost) {
+        super(getLocalhost);
     }
 
     @Override
     public ValueOrError internalEvaluate(final Value... values) {
 
         if(assertStringLiteral(values[0])) {
-            final InetAddress inetAddress = InetAddresses.forString(((Literal)values[0]).label());
+            final String ip = ((Literal)values[0]).label();
+            try {
+                final InetAddress inetAddress = InetAddresses.forString(ip);
 
-            if(inetAddress instanceof Inet6Address) {
-                return ValueOrError.General.of(literal(hasEmbeddedIPv4ClientAddress((Inet6Address)inetAddress)));
-            } else {
+                return ValueOrError.General.of(literal(inetAddress.getLocalHost().toString()));
+            } catch(IllegalArgumentException | UnknownHostException e) {
                 return ValueOrError.Error;
             }
         } else {
@@ -43,7 +43,7 @@ public class HasEmbeddedIp4ClientAddress extends AbstractFunction implements Use
 
     @Override
     public Function copy() {
-        return new HasEmbeddedIp4ClientAddress(this);
+        return new GetLocalhost(this);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class HasEmbeddedIp4ClientAddress extends AbstractFunction implements Use
 
     @Override
     public String toString() {
-        return InternetAddressVocabulary.hasEmbeddedIp4ClientAddress.toString();
+        return InternetAddressVocabulary.getLocalhost.toString();
     }
 
 }

@@ -17,8 +17,8 @@ public class IsMappedIpv4Address extends AbstractFunction implements UserDefined
         super(1, InternetAddressVocabulary.isIp4MappedAddress.toString());
     }
 
-    private IsMappedIpv4Address(final IsMappedIpv4Address internetAddressToNumber) {
-        super(internetAddressToNumber);
+    private IsMappedIpv4Address(final IsMappedIpv4Address isMappedIpv4Address) {
+        super(isMappedIpv4Address);
     }
 
     @Override
