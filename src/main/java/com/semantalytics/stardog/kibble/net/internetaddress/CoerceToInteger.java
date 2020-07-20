@@ -17,32 +17,27 @@ import static com.stardog.stark.Values.literal;
 public class CoerceToInteger extends AbstractFunction implements UserDefinedFunction {
 
     public CoerceToInteger() {
-        super(1, InternetAddressVocabulary.isIp4MappedAddress.toString());
+        super(1, InternetAddressVocabulary.coerceToInteger.toString());
     }
 
-    private CoerceToInteger(final CoerceToInteger internetAddressToNumber) {
-        super(internetAddressToNumber);
+    private CoerceToInteger(final CoerceToInteger coerceToInteger) {
+        super(coerceToInteger);
     }
 
     @Override
     public ValueOrError internalEvaluate(final Value... values) {
 
         if(assertStringLiteral(values[0])) {
-            final String ip = ((Literal)values[0]).label();
-            try {
-                final InetAddress inetAddress = InetAddresses.forString(ip);
+            final InetAddress inetAddress = InetAddresses.forString(((Literal)values[0]).label());
 
-                return ValueOrError.General.of(literal(coerceToInteger(inetAddress)));
-            } catch(IllegalArgumentException e) {
-                return ValueOrError.Error;
-            }
+            return ValueOrError.General.of(literal(coerceToInteger(inetAddress)));
         } else {
             return ValueOrError.Error;
         }
     }
 
     @Override
-    public Function copy() {
+    public CoerceToInteger copy() {
         return new CoerceToInteger(this);
     }
 
@@ -53,7 +48,7 @@ public class CoerceToInteger extends AbstractFunction implements UserDefinedFunc
 
     @Override
     public String toString() {
-        return InternetAddressVocabulary.isIp4MappedAddress.toString();
+        return InternetAddressVocabulary.coerceToInteger.toString();
     }
 
 }

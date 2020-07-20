@@ -35,6 +35,11 @@ public class InternetAddressVocabulary {
 	public static final IRI isIsatapAddress = iri(NS + "isIsatapAddress");
 	public static final IRI isCompatibleIp4Address = iri(NS + "isCompatibleIp4Address");
 	public static final IRI hasEmbeddedIp4ClientAddress = iri(NS + "hasEmbeddedIp4ClientAddress");
+	public static final IRI coerceToInteger = iri(NS + "coerceToInteger");
+	public static final IRI decrement = iri(NS + "decrement");
+	public static final IRI get6to4IPv4Address = iri(NS + "get6ito4IPv4Address");
+	public static final IRI getAllByName = iri(NS + "getAllByName");
+	public static final IRI getByName = iri(NS + "getByName");
 
     public static String sparqlPrefix(String prefixName) {
         return "PREFIX " + prefixName + ": <" + NS + "> ";

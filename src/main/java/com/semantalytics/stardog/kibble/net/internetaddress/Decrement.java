@@ -6,28 +6,40 @@ import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.Function;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
 import com.google.common.net.InetAddresses;
+import com.stardog.stark.IRI;
 import com.stardog.stark.Literal;
 import com.stardog.stark.Value;
+
+import java.net.Inet4Address;
+import java.net.Inet6Address;
+import java.net.InetAddress;
 
 import static com.stardog.stark.Values.literal;
 
 public class Decrement extends AbstractFunction implements UserDefinedFunction {
 
     public Decrement() {
-        super(1, InternetAddressVocabulary.isIp4MappedAddress.toString());
+        super(1, InternetAddressVocabulary.decrement.toString());
     }
 
-    private Decrement(final Decrement internetAddressToNumber) {
-        super(internetAddressToNumber);
+    private Decrement(final Decrement decrement) {
+        super(decrement);
     }
 
     @Override
     public ValueOrError internalEvaluate(final Value... values) {
 
         if(assertStringLiteral(values[0])) {
-            final String ip = ((Literal)values[0]).label();
-
-        return ValueOrError.General.of(literal(InetAddresses.decrement(InetAddresses.forString(ip)).toString()));
+            final InetAddress inetAddress = InetAddresses.forString(((Literal)values[0]).label());
+            final IRI dt;
+            if(inetAddress instanceof Inet4Address) {
+                dt = InternetAddressVocabulary.ipv4AddressDt;
+            } else if(inetAddress instanceof Inet6Address) {
+                dt = InternetAddressVocabulary.ipv6AddressDt;
+            } else {
+                return ValueOrError.Error;
+            }
+            return ValueOrError.General.of(literal(InetAddresses.decrement(inetAddress).toString(), dt));
         } else {
             return ValueOrError.Error;
         }
@@ -45,7 +57,7 @@ public class Decrement extends AbstractFunction implements UserDefinedFunction {
 
     @Override
     public String toString() {
-        return InternetAddressVocabulary.isIp4MappedAddress.toString();
+        return InternetAddressVocabulary.decrement.toString();
     }
 
 }
