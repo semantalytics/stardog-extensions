@@ -44,8 +44,9 @@ public abstract class AbstractStardogTest {
         final File TEST_HOME = Files.createTempDir();
         TEST_HOME.deleteOnExit();
 
-        Files.copy(new File(STARDOG_HOME + "/" + STARDOG_LICENCE_KEY_FILE_NAME),
+        Files.copy(new File("/opt/stardog/stardog-license-key.bin"),
                 new File(TEST_HOME, STARDOG_LICENCE_KEY_FILE_NAME));
+
 
         try {
             Files.copy(new File(Resources.getResource("log4j2-test.xml").toURI()), new File(TEST_HOME, "log4j2.xml"));

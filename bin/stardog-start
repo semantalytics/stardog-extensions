@@ -1,0 +1,8 @@
+#!/bin/bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+cp $DIR/../target/semantalytics-stardog-functions-*-SNAPSHOT-sd7.jar
+export STARDOG_EXT=$DIR/../stardog_ext
+
+stardog-admin server start --home $DIR/../stardog_home --port 5888

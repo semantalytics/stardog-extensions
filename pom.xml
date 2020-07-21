@@ -82,6 +82,12 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>com.complexible.stardog.bites</groupId>
+            <artifactId>stardog-bites-api</artifactId>
+            <version>7.3.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>com.kcthota</groupId>
             <artifactId>emoji4j</artifactId>
             <version>${emoji4j.version}</version>
@@ -139,6 +145,11 @@
             <version>${xmlapis.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.github.ipfs</groupId>
+            <artifactId>java-ipfs-http-client</artifactId>
+            <version>1.2.3</version>
+        </dependency>
     </dependencies>
 
     <repositories>
@@ -146,6 +157,10 @@
             <id>stardog-maven-repo</id>
             <name>Stardog Maven Repo</name>
             <url>http://maven.stardog.com</url>
+        </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
         </repository>
     </repositories>
 
