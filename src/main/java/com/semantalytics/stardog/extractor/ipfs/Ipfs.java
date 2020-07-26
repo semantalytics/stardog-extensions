@@ -26,7 +26,7 @@ public class Ipfs implements RDFExtractor {
     public StatementSource extract(Connection theConnection, IRI theDocIri, Path theDocContents) throws BitesException {
         try {
             if (theDocContents.toFile().length() > 0L) {
-                io.ipfs.api.IPFS ipfs = new IPFS("/ipv4/127.0.0.1/tcp/5001");
+                io.ipfs.api.IPFS ipfs = new IPFS("/ip4/127.0.0.1/tcp/5001");
 
                 NamedStreamable.FileWrapper file = new NamedStreamable.FileWrapper(theDocContents.toFile());
                 MerkleNode addResult = ipfs.add(file).get(0);
