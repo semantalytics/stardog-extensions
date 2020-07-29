@@ -150,7 +150,7 @@
     </repositories>
 
     <build>
-        <finalName>semantalytics-${project.artifactId}-${project.version}-sd${stardog.major.version}</finalName>
+        <finalName>semantalytics-stardog-${project.artifactId}-${project.version}-sd${stardog.major.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -236,15 +236,7 @@
                         <exclude>**/Test*.java</exclude>
                     </excludes>
                     <includes>
-                        <include>**/ConsoleTestSuite.java</include>
-                        <include>**/GeohashTestSuite.java</include>
-                        <include>**/EmojiTestSuite.java</include>
-                        <include>**/StringMetricTestSuite.java</include>
-                        <include>**/StringTestSuite.java</include>
-                        <include>**/PhoneticTestSuite.java</include>
-                        <include>**/EscapeTestSuite.java</include>
-                        <include>**/UnescapeTestSuite.java</include>
-                        <include>**/ArrayTestSuite.java</include>
+                        <include>**/StardogExtensionsTestSuite.java</include>
                     </includes>
                 </configuration>
             </plugin>
