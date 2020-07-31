@@ -22,8 +22,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import java.util.Iterator;
 import java.util.List;
 
-import static com.complexible.stardog.plan.filter.functions.AbstractFunction.assertArrayLiteral;
-import static com.complexible.stardog.plan.filter.functions.AbstractFunction.assertStringLiteral;
+import static com.complexible.stardog.plan.filter.functions.AbstractFunction.*;
 import static java.util.stream.Collectors.toList;
 
 public final class Exec extends AbstractExpression implements UserDefinedFunction {
@@ -82,8 +81,8 @@ public final class Exec extends AbstractExpression implements UserDefinedFunctio
             final ValueOrError firstArgValue = getFirstArg().evaluate(valueSolution);
             if(!firstArgValue.isError()) {
                 final String functionIri;
-                if(assertStringLiteral(firstArgValue.value())) {
-                    functionIri = ((Literal) firstArgValue).label();
+                if(assertLiteral(firstArgValue.value())) {
+                    functionIri = ((Literal) firstArgValue.value()).label();
                 } else if(firstArgValue instanceof IRI) {
                     functionIri = firstArgValue.toString();
                 } else {

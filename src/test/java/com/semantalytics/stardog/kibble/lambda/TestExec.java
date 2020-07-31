@@ -20,13 +20,12 @@ public class TestExec extends AbstractStardogTest {
     public void testTwoArg() {
 
         final String aQuery = "prefix lambda: <http://semantalytics.com/2020/07/ns/lambda/> " +
-                "select ?result where { bind(lambda:exec(" + StringVocabulary.upperCase + ", \"hello world\" ) as ?result) }";
+                "select ?result where { bind(lambda:exec(\"" + StringVocabulary.capitalize + "\", \"hello world\" ) as ?result) }";
 
         try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
             assertThat(aResult).hasNext().withFailMessage("Should have a result");
-            List<Integer> results = IteratorUtils.toList(aResult).stream().map(b -> b.get("result")).filter(Literal.class::isInstance).map(Literal.class::cast).map(Literal::intValue).collect(toList());
-            assertThat(results).containsExactly(1, 2, 5);
+            assertThat(aResult.next().literal("result").get().label()).isEqualTo("HELLO WORLD");
         }
     }
 }
