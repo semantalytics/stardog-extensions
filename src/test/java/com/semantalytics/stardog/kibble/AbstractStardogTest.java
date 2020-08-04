@@ -3,7 +3,9 @@ package com.semantalytics.stardog.kibble;
 import com.complexible.common.protocols.server.Server;
 import com.complexible.common.protocols.server.ServerException;
 import com.complexible.stardog.Stardog;
+import com.complexible.stardog.StardogConfiguration;
 import com.complexible.stardog.StardogException;
+import com.complexible.stardog.StardogLicense;
 import com.complexible.stardog.api.Connection;
 import com.complexible.stardog.api.ConnectionConfiguration;
 import com.complexible.stardog.api.admin.AdminConnection;
@@ -27,9 +29,8 @@ public abstract class AbstractStardogTest {
     private static Server SERVER;
     private static final String DB = "test";
     private static int TEST_PORT = 5888;
-    private static final String STARDOG_HOME = System.getenv("STARDOG_HOME");
+    private static final String STARDOG_LICENSE_PATH = System.getenv("STARDOG_LICENSE_PATH");
     protected Connection connection;
-    private static final String STARDOG_LICENCE_KEY_FILE_NAME = "stardog-license-key.bin";
 
     @BeforeClass
     public static void beforeClass() throws IOException, ServerException {
@@ -44,31 +45,29 @@ public abstract class AbstractStardogTest {
         final File TEST_HOME = Files.createTempDir();
         TEST_HOME.deleteOnExit();
 
-        Files.copy(new File(STARDOG_HOME + "/" + STARDOG_LICENCE_KEY_FILE_NAME),
-                new File(TEST_HOME, STARDOG_LICENCE_KEY_FILE_NAME));
-
         try {
             Files.copy(new File(Resources.getResource("log4j2-test.xml").toURI()), new File(TEST_HOME, "log4j2.xml"));
         } catch(URISyntaxException e1) {
 
         }
 
-        STARDOG = Stardog.builder().home(TEST_HOME).create();
+        STARDOG = Stardog.builder()
+                         .set(StardogConfiguration.LICENSE_LOCATION, STARDOG_LICENSE_PATH)
+                         .home(TEST_HOME).create();
 
         SERVER = STARDOG.newServer()
-                //.set(ServerOptions.SECURITY_DISABLED, true)
                 .bind(new InetSocketAddress("localhost", TEST_PORT)).start();
-       }
-     
+
         adminConnection = AdminConnectionConfiguration.toEmbeddedServer()
                 .credentials("admin", "admin")
                 .connect();
 
         if (adminConnection.list().contains(DB)) {
             adminConnection.drop(DB);
+        } else {
+            adminConnection.newDatabase(DB).create();
         }
-
-        adminConnection.newDatabase(DB).create();
+       }
     }
 
     @AfterClass

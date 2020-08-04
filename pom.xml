@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.semantalytics.stardog</groupId>
-    <artifactId>functions</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <artifactId>extensions</artifactId>
+    <version>2020.07.28.1</version>
 
     <developers>
         <developer>
@@ -248,20 +248,12 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.12.4</version>
                 <configuration>
-                    <argLine>-Djava.library.path=/opt/stardog/latest/lib</argLine>
+                    <argLine>-Djava.library.path=${env.STARDOG}/lib</argLine>
                     <excludes>
                         <exclude>**/Test*.java</exclude>
                     </excludes>
                     <includes>
-                        <include>**/ConsoleTestSuite.java</include>
-                        <include>**/GeohashTestSuite.java</include>
-                        <include>**/EmojiTestSuite.java</include>
-                        <include>**/StringMetricTestSuite.java</include>
-                        <include>**/StringTestSuite.java</include>
-                        <include>**/PhoneticTestSuite.java</include>
-                        <include>**/EscapeTestSuite.java</include>
-                        <include>**/UnescapeTestSuite.java</include>
-                        <include>**/ArrayTestSuite.java</include>
+                        <include>**/StardogExtensionsTestSuite.java</include>
                     </includes>
                 </configuration>
             </plugin>

@@ -3,6 +3,8 @@ package com.semantalytics.stardog.kibble.array;
 import com.complexible.common.protocols.server.Server;
 import com.complexible.common.protocols.server.ServerException;
 import com.complexible.stardog.Stardog;
+import com.complexible.stardog.StardogConfiguration;
+import com.complexible.stardog.StardogException;
 import com.complexible.stardog.api.Connection;
 import com.complexible.stardog.api.admin.AdminConnection;
 import com.complexible.stardog.api.admin.AdminConnectionConfiguration;
@@ -58,37 +60,42 @@ public class ArrayTestSuite extends TestCase {
 	private static Server SERVER;
 	public static final String DB = "test";
 	public static final int TEST_PORT = 5888;
-	private static final String STARDOG_HOME = System.getenv("STARDOG_HOME");
 	protected Connection connection;
-	private static final String STARDOG_LICENCE_KEY_FILE_NAME = "stardog-license-key.bin";
+    private static final String STARDOG_LICENSE_PATH = System.getenv("STARDOG_LICENSE_PATH");
 
     @BeforeClass
     public static void beforeClass() throws IOException, ServerException {
 
-        final File TEST_HOME;
+        try{
+            AdminConnectionConfiguration.toEmbeddedServer()
+                    .credentials("admin", "admin")
+                    .connect();
+        } catch(StardogException e) {
 
-        TEST_HOME = Files.createTempDir();
-        TEST_HOME.deleteOnExit();
 
-        Files.copy(new File(STARDOG_HOME + "/" + STARDOG_LICENCE_KEY_FILE_NAME),
-                new File(TEST_HOME, STARDOG_LICENCE_KEY_FILE_NAME));
+            final File TEST_HOME;
 
-        STARDOG = Stardog.builder().home(TEST_HOME).create();
+            TEST_HOME = Files.createTempDir();
+            TEST_HOME.deleteOnExit();
 
-        SERVER = STARDOG.newServer()
-                //.set(ServerOptions.SECURITY_DISABLED, true)
-                .bind(new InetSocketAddress("localhost", TEST_PORT))
-                .start();
+            STARDOG = Stardog.builder()
+                    .set(StardogConfiguration.LICENSE_LOCATION, STARDOG_LICENSE_PATH)
+                    .home(TEST_HOME).create();
 
-        final AdminConnection adminConnection = AdminConnectionConfiguration.toEmbeddedServer()
-                .credentials("admin", "admin")
-                .connect();
+            SERVER = STARDOG.newServer()
+                    .bind(new InetSocketAddress("localhost", TEST_PORT))
+                    .start();
 
-        if (adminConnection.list().contains(DB)) {
-            adminConnection.drop(DB);
+            final AdminConnection adminConnection = AdminConnectionConfiguration.toEmbeddedServer()
+                    .credentials("admin", "admin")
+                    .connect();
+
+            if (adminConnection.list().contains(DB)) {
+                adminConnection.drop(DB);
+            }
+
+            adminConnection.newDatabase(DB).create();
         }
-
-        adminConnection.newDatabase(DB).create();
     }
 
     @AfterClass
@@ -96,6 +103,8 @@ public class ArrayTestSuite extends TestCase {
         if (SERVER != null) {
             SERVER.stop();
         }
-        STARDOG.shutdown();
+        if (STARDOG != null) {
+            STARDOG.shutdown();
+        }
     }
 }
