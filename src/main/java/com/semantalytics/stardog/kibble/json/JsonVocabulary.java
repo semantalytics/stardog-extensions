@@ -1,21 +1,21 @@
 package com.semantalytics.stardog.kibble.json;
 
 import com.stardog.stark.IRI;
-import com.stardog.stark.Values;
 
-public enum JsonVocabulary {
+import static com.stardog.stark.Values.iri;
 
-    path,
-    keys;
+public class JsonVocabulary {
 
-    public static final String NAMESPACE = "http://semantalytics.com/2017/09/ns/stardog/kibble/json/";
-    public final IRI iri;
+    public static final String NS = "http://semantalytics.com/2017/09/ns/stardog/kibble/json/";
 
-    JsonVocabulary() {
-        iri = Values.iri(NAMESPACE, name());
-    }
+    public static final IRI path = iri(NS + "path");
+    public static final IRI keys = iri(NS + "keys");
+    public static final IRI array = iri(NS + "array");
+    public static final IRI arrayAppend = iri(NS + "array");
+    public static final IRI jsonDataType = iri(NS + "jsonDataType");
+    public static final IRI bsonDataType = iri(NS + "bsonDataType");
 
-    public String stringValue() {
-        return iri.toString();
+    public static String sparqlPrefix(final String prefixName) {
+        return "PREFIX " + prefixName + ": <" + NS + "> ";
     }
 }

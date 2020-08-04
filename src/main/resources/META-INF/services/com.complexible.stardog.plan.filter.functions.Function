@@ -253,7 +253,7 @@ com.semantalytics.stardog.kibble.string.unescape.Json
 com.semantalytics.stardog.kibble.string.unescape.Xml
 com.semantalytics.stardog.kibble.string.unescape.Xsi
 com.semantalytics.stardog.kibble.array.Size
-com.semantalytics.stardog.kibble.array.Append
+com.semantalytics.stardog.kibble.array.Array
 com.semantalytics.stardog.kibble.array.CartesianProduct
 com.semantalytics.stardog.kibble.array.Contains
 com.semantalytics.stardog.kibble.array.Distinct
