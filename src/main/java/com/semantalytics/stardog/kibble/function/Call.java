@@ -1,23 +1,16 @@
-package com.semantalytics.stardog.kibble.lambda;
+package com.semantalytics.stardog.kibble.function;
 
-import com.complexible.common.rdf.model.ArrayLiteral;
-import com.complexible.stardog.index.dictionary.MappingDictionary;
 import com.complexible.stardog.plan.filter.AbstractExpression;
 import com.complexible.stardog.plan.filter.Expression;
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
 import com.complexible.stardog.plan.filter.ValueSolution;
 import com.complexible.stardog.plan.filter.expr.ValueOrError;
-import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.FunctionDefinition;
 import com.complexible.stardog.plan.filter.functions.FunctionRegistry;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
-import com.complexible.stardog.plan.filter.functions.string.StringFunction;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Range;
 import com.stardog.stark.IRI;
 import com.stardog.stark.Literal;
-import com.stardog.stark.Value;
-import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Iterator;
 import java.util.List;
@@ -25,10 +18,10 @@ import java.util.List;
 import static com.complexible.stardog.plan.filter.functions.AbstractFunction.*;
 import static java.util.stream.Collectors.toList;
 
-public final class Exec extends AbstractExpression implements UserDefinedFunction {
+public final class Call extends AbstractExpression implements UserDefinedFunction {
 
 
-    FunctionRegistry functionRegistry = new FunctionRegistry() {
+    private final FunctionRegistry functionRegistry = new FunctionRegistry() {
 
         @Override
         public Iterator<FunctionDefinition> iterator() {
@@ -46,17 +39,17 @@ public final class Exec extends AbstractExpression implements UserDefinedFunctio
 
     }.getInstance();
 
-    protected Exec() {
+    protected Call() {
         super(new Expression[0]);
     }
 
-    private Exec(final Exec exec) {
-        super(exec);
+    private Call(final Call call) {
+        super(call);
     }
 
     @Override
     public String getName() {
-        return "http://semantalytics.com/2020/07/ns/lambda/exec";
+        return FunctionVocabulary.call.toString();
     }
 
     @Override
@@ -65,8 +58,8 @@ public final class Exec extends AbstractExpression implements UserDefinedFunctio
     }
 
     @Override
-    public Exec copy() {
-        return new Exec(this);
+    public Call copy() {
+        return new Call(this);
     }
 
     @Override
@@ -78,35 +71,31 @@ public final class Exec extends AbstractExpression implements UserDefinedFunctio
     public ValueOrError evaluate(ValueSolution valueSolution) {
 
         if(getArgs().size() >= 1) {
-            final ValueOrError firstArgValue = getFirstArg().evaluate(valueSolution);
-            if(!firstArgValue.isError()) {
-                final String functionIri;
-                if(assertLiteral(firstArgValue.value())) {
-                    functionIri = ((Literal) firstArgValue.value()).label();
-                } else if(firstArgValue instanceof IRI) {
-                    functionIri = firstArgValue.toString();
-                } else {
-                    return ValueOrError.Error;
-                }
-
-                final List<Expression> tail = getArgs().stream().skip(1).collect(toList());
-
-                ValueOrError solution = functionRegistry.get(functionIri, tail, null).evaluate(valueSolution);
-
-                if(solution.isError()) {
-                    return ValueOrError.Error;
-                }
-                    return ValueOrError.General.of(solution.value());
-                } else {
-                    return ValueOrError.Error;
-                }
-            } else {
+            final ValueOrError firstArgValueOrError = getFirstArg().evaluate(valueSolution);
+            if(firstArgValueOrError.isError()) {
                 return ValueOrError.Error;
+            } else {
+                final String functionIri;
+
+                if (assertLiteral(firstArgValueOrError.value())) {
+                    functionIri = ((Literal) firstArgValueOrError.value()).label();
+                } else if (firstArgValueOrError instanceof IRI) {
+                    functionIri = firstArgValueOrError.toString();
+                } else {
+                    return ValueOrError.Error;
+                }
+
+                final List<Expression> functionArgs = getArgs().stream().skip(1).collect(toList());
+
+                return functionRegistry.get(functionIri, functionArgs, null).evaluate(valueSolution);
             }
+        } else {
+            return ValueOrError.Error;
+        }
     }
 
     @Override
     public String toString() {
-        return "";
+        return FunctionVocabulary.call.toString();
     }
 }
