@@ -144,6 +144,11 @@
             <version>${xmlapis.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>de.undercouch</groupId>
+            <artifactId>bson4jackson</artifactId>
+            <version>2.9.2</version>
+        </dependency>
     </dependencies>
 
     <repositories>
