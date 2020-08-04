@@ -64,6 +64,6 @@ public final class AppendIfMissing extends AbstractFunction implements StringFun
 
     @Override
     public String toString() {
-        return StringVocabulary.appendIfMissing.name();
+        return StringVocabulary.appendIfMissing.toString();
     }
 }

@@ -77,6 +77,6 @@ public final class Aliases extends AbstractExpression implements StringFunction 
 
     @Override
     public String getName() {
-        return EmojiVocabulary.aliases.stringValue();
+        return EmojiVocabulary.aliases.toString();
     }
 }

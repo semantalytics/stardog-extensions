@@ -44,6 +44,6 @@ public class IndexOfIgnoreCase extends AbstractFunction implements StringFunctio
 
     @Override
     public String toString() {
-        return StringVocabulary.indexOfIgnoreCase.name();
+        return StringVocabulary.indexOfIgnoreCase.toString();
     }
 }

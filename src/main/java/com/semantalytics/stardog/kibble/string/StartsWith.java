@@ -47,6 +47,6 @@ public final class StartsWith extends AbstractFunction implements StringFunction
 
     @Override
     public String toString() {
-        return StringVocabulary.startsWith.name();
+        return StringVocabulary.startsWith.toString();
     }
 }

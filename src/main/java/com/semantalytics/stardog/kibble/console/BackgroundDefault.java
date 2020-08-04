@@ -18,7 +18,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class BackgroundDefault extends AbstractFunction implements UserDefinedFunction {
 
     public BackgroundDefault() {
-        super(Range.all(), ConsoleVocabulary.backgroundDefault.stringValue());
+        super(Range.all(), ConsoleVocabulary.backgroundDefault.toString());
     }
 
     public BackgroundDefault(final BackgroundDefault console) {
@@ -50,6 +50,6 @@ public class BackgroundDefault extends AbstractFunction implements UserDefinedFu
 
     @Override
     public String toString() {
-        return ConsoleVocabulary.backgroundDefault.name();
+        return ConsoleVocabulary.backgroundDefault.toString();
     }
 }

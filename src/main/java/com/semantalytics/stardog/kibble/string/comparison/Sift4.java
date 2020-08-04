@@ -17,7 +17,7 @@ public final class Sift4 extends AbstractFunction implements StringFunction {
     }
 
     protected Sift4() {
-        super(Range.closed(2, 3), StringMetricVocabulary.sift4.stringValue());
+        super(Range.closed(2, 3), StringMetricVocabulary.sift4.toString());
     }
 
     private Sift4(final Sift4 sift4) {
@@ -58,6 +58,6 @@ public final class Sift4 extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringMetricVocabulary.sift4.name();
+        return StringMetricVocabulary.sift4.toString();
     }
 }

@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.semantalytics.stardog</groupId>
-    <artifactId>functions</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <artifactId>extensions</artifactId>
+    <version>2020.07.28.1</version>
 
     <developers>
         <developer>
@@ -47,13 +47,13 @@
     <properties>
         <json-path.version>2.3.0</json-path.version>
         <stardog.major.version>7</stardog.major.version>
-        <stardog.version>${stardog.major.version}.3.0</stardog.version>
+        <stardog.version>${stardog.major.version}.3.2</stardog.version>
         <junit.version>4.12</junit.version>
         <slf4j.version>1.7.21</slf4j.version>
         <jansi.version>1.16</jansi.version>
+        <geo.version>0.7.1</geo.version>
         <assertj.version>3.15.0</assertj.version>
         <xmlapis.version>1.4.01</xmlapis.version>
-        <slf4j.version>1.7.21</slf4j.version>
         <maven.version>3.3.9</maven.version>
         <guava.version>23.3-jre</guava.version>
         <commons-text.version>1.7</commons-text.version>
@@ -74,6 +74,11 @@
             <groupId>com.jayway.jsonpath</groupId>
             <artifactId>json-path</artifactId>
             <version>${json-path.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.davidmoten</groupId>
+            <artifactId>geo</artifactId>
+            <version>${geo.version}</version>
         </dependency>
         <dependency>
             <groupId>com.complexible.stardog.cache</groupId>
@@ -236,13 +241,7 @@
                         <exclude>**/Test*.java</exclude>
                     </excludes>
                     <includes>
-                        <include>**/ConsoleTestSuite.java</include>
-                        <include>**/EmojiTestSuite.java</include>
-                        <include>**/StringMetricTestSuite.java</include>
-                        <include>**/StringTestSuite.java</include>
-                        <include>**/PhoneticTestSuite.java</include>
-                        <include>**/EscapeTestSuite.java</include>
-                        <include>**/UnescapeTestSuite.java</include>
+                        <include>**/StardogExtensionsTestSuite.java</include>
                     </includes>
                 </configuration>
             </plugin>

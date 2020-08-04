@@ -15,7 +15,7 @@ public class TestJaroWinklerDistance extends AbstractStardogTest {
     @Test
     public void testTwoArg() {
 
-        final String aQuery = "prefix stringmetric: <" + StringMetricVocabulary.NAMESPACE + "> " +
+        final String aQuery = "prefix stringmetric: <" + StringMetricVocabulary.NS + "> " +
                 "select ?dist where { bind(stringmetric:jaroWinklerDistance(\"My string\", \"My tsring\") as ?dist) }";
 
         try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {

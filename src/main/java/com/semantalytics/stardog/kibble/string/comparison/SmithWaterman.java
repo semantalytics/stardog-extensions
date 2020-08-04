@@ -19,7 +19,7 @@ public final class SmithWaterman extends AbstractFunction implements StringFunct
     private org.simmetrics.metrics.SmithWaterman smithWaterman;
 
     protected SmithWaterman() {
-        super(Range.closed(2, 7), StringMetricVocabulary.smithWaterman.stringValue());
+        super(Range.closed(2, 7), StringMetricVocabulary.smithWaterman.toString());
     }
 
     private SmithWaterman(final SmithWaterman smithWaterman) {
@@ -94,7 +94,7 @@ public final class SmithWaterman extends AbstractFunction implements StringFunct
 
     @Override
     public String toString() {
-        return StringMetricVocabulary.smithWaterman.name();
+        return StringMetricVocabulary.smithWaterman.toString();
     }
 
     private static <R> Predicate<R> not(Predicate<R> predicate) {

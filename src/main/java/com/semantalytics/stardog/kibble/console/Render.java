@@ -13,7 +13,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class Render extends AbstractFunction implements UserDefinedFunction {
 
     public Render() {
-        super(1, ConsoleVocabulary.render.stringValue());
+        super(1, ConsoleVocabulary.render.toString());
     }
 
     public Render(final Render render) {
@@ -42,6 +42,6 @@ public class Render extends AbstractFunction implements UserDefinedFunction {
 
     @Override
     public String toString() {
-        return ConsoleVocabulary.render.name();
+        return ConsoleVocabulary.render.toString();
     }
 }

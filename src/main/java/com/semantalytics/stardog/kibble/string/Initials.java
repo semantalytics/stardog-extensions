@@ -58,6 +58,6 @@ public final class Initials extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.initials.name();
+        return StringVocabulary.initials.toString();
     }
 }

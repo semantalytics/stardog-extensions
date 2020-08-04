@@ -44,6 +44,6 @@ public final class IsNotEmpty extends AbstractFunction implements StringFunction
 
     @Override
     public String toString() {
-        return StringVocabulary.isNotEmpty.name();
+        return StringVocabulary.isNotEmpty.toString();
     }
 }

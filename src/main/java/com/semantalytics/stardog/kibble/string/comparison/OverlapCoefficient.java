@@ -12,7 +12,7 @@ import static org.simmetrics.metrics.StringMetrics.*;
 public final class OverlapCoefficient extends AbstractFunction implements StringFunction {
 
     protected OverlapCoefficient() {
-        super(2, StringMetricVocabulary.overlapCoefficient.stringValue());
+        super(2, StringMetricVocabulary.overlapCoefficient.toString());
     }
 
     private OverlapCoefficient(final OverlapCoefficient overlapCoefficient) {
@@ -45,6 +45,6 @@ public final class OverlapCoefficient extends AbstractFunction implements String
 
     @Override
     public String toString() {
-        return StringMetricVocabulary.overlapCoefficient.name();
+        return StringMetricVocabulary.overlapCoefficient.toString();
     }
 }

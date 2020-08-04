@@ -94,6 +94,6 @@ public final class SplitByWholeSeparator extends AbstractExpression implements S
 
     @Override
     public String toString() {
-        return StringVocabulary.splitByWholeSeparator.name();
+        return StringVocabulary.splitByWholeSeparator.toString();
     }
 }

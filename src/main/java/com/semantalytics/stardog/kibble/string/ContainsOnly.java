@@ -45,6 +45,6 @@ public final class ContainsOnly extends AbstractFunction implements StringFuncti
 
     @Override
     public String toString() {
-        return StringVocabulary.containsOnly.name();
+        return StringVocabulary.containsOnly.toString();
     }
 }

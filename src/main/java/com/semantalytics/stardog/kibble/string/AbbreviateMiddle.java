@@ -46,6 +46,6 @@ public final class AbbreviateMiddle extends AbstractFunction implements StringFu
 
     @Override
     public String toString() {
-        return StringVocabulary.abbreviateMiddle.name();
+        return StringVocabulary.abbreviateMiddle.toString();
     }
 }

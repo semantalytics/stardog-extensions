@@ -13,7 +13,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class ItalicOff extends AbstractFunction implements UserDefinedFunction {
 
     public ItalicOff() {
-        super(0, ConsoleVocabulary.italicOff.stringValue());
+        super(0, ConsoleVocabulary.italicOff.toString());
     }
 
     public ItalicOff(final ItalicOff italicOff) {
@@ -37,6 +37,6 @@ public class ItalicOff extends AbstractFunction implements UserDefinedFunction {
 
     @Override
     public String toString() {
-        return ConsoleVocabulary.italicOff.name();
+        return ConsoleVocabulary.italicOff.toString();
     }
 }

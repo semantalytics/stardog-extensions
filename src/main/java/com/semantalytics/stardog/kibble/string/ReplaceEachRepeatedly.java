@@ -52,6 +52,6 @@ public final class ReplaceEachRepeatedly extends AbstractFunction implements Str
 
     @Override
     public String toString() {
-        return StringVocabulary.replaceEachRepeatedly.name();
+        return StringVocabulary.replaceEachRepeatedly.toString();
     }
 }

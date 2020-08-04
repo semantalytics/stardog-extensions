@@ -45,6 +45,6 @@ public final class RemoveFirst extends AbstractFunction implements StringFunctio
 
     @Override
     public String toString() {
-        return StringVocabulary.removeFirst.name();
+        return StringVocabulary.removeFirst.toString();
     }
 }

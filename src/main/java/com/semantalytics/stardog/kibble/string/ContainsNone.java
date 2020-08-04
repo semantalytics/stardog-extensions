@@ -45,6 +45,6 @@ public final class ContainsNone extends AbstractFunction implements StringFuncti
 
     @Override
     public String toString() {
-        return StringVocabulary.containsNone.name();
+        return StringVocabulary.containsNone.toString();
     }
 }

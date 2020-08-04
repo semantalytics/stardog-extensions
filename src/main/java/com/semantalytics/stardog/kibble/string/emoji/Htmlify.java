@@ -15,7 +15,7 @@ import static emoji4j.EmojiUtils.*;
 public final class Htmlify extends AbstractFunction implements StringFunction {
 
     protected Htmlify() {
-        super(Range.closed(1, 2), EmojiVocabulary.htmlify.stringValue());
+        super(Range.closed(1, 2), EmojiVocabulary.htmlify.toString());
     }
 
     private Htmlify(final Htmlify htmlify) {
@@ -63,6 +63,6 @@ public final class Htmlify extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return EmojiVocabulary.htmlify.name();
+        return EmojiVocabulary.htmlify.toString();
     }
 }

@@ -12,7 +12,7 @@ import com.stardog.stark.Value;
 public final class JaroWinklerDistance extends AbstractFunction implements StringFunction {
 
     protected JaroWinklerDistance() {
-        super(Range.closed(2, 5), StringMetricVocabulary.jaroWinklerDistance.stringValue());
+        super(Range.closed(2, 5), StringMetricVocabulary.jaroWinklerDistance.toString());
     }
 
     private JaroWinklerDistance(final JaroWinklerDistance jaroWinklerDistance) {
@@ -72,6 +72,6 @@ public final class JaroWinklerDistance extends AbstractFunction implements Strin
 
     @Override
     public String toString() {
-        return StringMetricVocabulary.jaroWinklerDistance.name();
+        return StringMetricVocabulary.jaroWinklerDistance.toString();
     }
 }

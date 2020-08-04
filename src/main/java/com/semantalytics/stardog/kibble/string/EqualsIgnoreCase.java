@@ -45,6 +45,6 @@ public final class EqualsIgnoreCase extends AbstractFunction implements StringFu
 
     @Override
     public String toString() {
-        return StringVocabulary.equalsIgnoreCase.name();
+        return StringVocabulary.equalsIgnoreCase.toString();
     }
 }

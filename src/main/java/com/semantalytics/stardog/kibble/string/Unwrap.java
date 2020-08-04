@@ -46,6 +46,6 @@ public final class Unwrap extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.unwrap.name();
+        return StringVocabulary.unwrap.toString();
     }
 }

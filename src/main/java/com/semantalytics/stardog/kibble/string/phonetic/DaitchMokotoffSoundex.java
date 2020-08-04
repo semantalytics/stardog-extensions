@@ -19,7 +19,7 @@ public class DaitchMokotoffSoundex extends AbstractFunction implements StringFun
     }
 
     protected DaitchMokotoffSoundex() {
-        super(1, PhoneticVocabulary.daitchMokotoffSoundex.stringValue());
+        super(1, PhoneticVocabulary.daitchMokotoffSoundex.toString());
     }
 
     private DaitchMokotoffSoundex(final DaitchMokotoffSoundex daitchMokotoffSoundex) {
@@ -49,7 +49,7 @@ public class DaitchMokotoffSoundex extends AbstractFunction implements StringFun
 
     @Override
     public String toString() {
-        return PhoneticVocabulary.daitchMokotoffSoundex.name();
+        return PhoneticVocabulary.daitchMokotoffSoundex.toString();
     }
 }
 

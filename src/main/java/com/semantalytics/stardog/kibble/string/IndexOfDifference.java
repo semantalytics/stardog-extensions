@@ -45,6 +45,6 @@ public class IndexOfDifference extends AbstractFunction implements StringFunctio
 
     @Override
     public String toString() {
-        return StringVocabulary.indexOfDifference.name();
+        return StringVocabulary.indexOfDifference.toString();
     }
 }

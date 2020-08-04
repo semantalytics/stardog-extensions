@@ -17,7 +17,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class Conceal extends AbstractFunction implements UserDefinedFunction {
 
     public Conceal() {
-        super(Range.all(), ConsoleVocabulary.conceal.stringValue());
+        super(Range.all(), ConsoleVocabulary.conceal.toString());
     }
 
     public Conceal(final Conceal conceal) {
@@ -49,6 +49,6 @@ public class Conceal extends AbstractFunction implements UserDefinedFunction {
 
     @Override
     public String toString() {
-        return ConsoleVocabulary.conceal.name();
+        return ConsoleVocabulary.conceal.toString();
     }
 }

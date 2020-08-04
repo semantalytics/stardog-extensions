@@ -17,7 +17,7 @@ import static org.fusesource.jansi.Ansi.*;
 public class Console extends AbstractFunction implements UserDefinedFunction {
 
         public Console() {
-            super(Range.all(), ConsoleVocabulary.console.stringValue());
+            super(Range.all(), ConsoleVocabulary.console.toString());
         }
 
         public Console(final Console console) {
@@ -45,6 +45,6 @@ public class Console extends AbstractFunction implements UserDefinedFunction {
 
         @Override
         public String toString() {
-            return ConsoleVocabulary.console.name();
+            return ConsoleVocabulary.console.toString();
         }
 }

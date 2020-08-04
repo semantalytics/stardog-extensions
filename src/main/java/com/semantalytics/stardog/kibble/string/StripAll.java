@@ -50,6 +50,6 @@ public final class StripAll extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.stripAll.name();
+        return StringVocabulary.stripAll.toString();
     }
 }

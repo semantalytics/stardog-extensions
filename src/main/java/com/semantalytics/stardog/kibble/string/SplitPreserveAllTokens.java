@@ -94,6 +94,6 @@ public final class SplitPreserveAllTokens extends AbstractExpression implements 
 
     @Override
     public String toString() {
-        return StringVocabulary.splitPreserveAllTokens.name();
+        return StringVocabulary.splitPreserveAllTokens.toString();
     }
 }

@@ -44,6 +44,6 @@ public final class IsAllLowerCase extends AbstractFunction implements StringFunc
 
     @Override
     public String toString() {
-        return StringVocabulary.isAllLowerCase.name();
+        return StringVocabulary.isAllLowerCase.toString();
     }
 }

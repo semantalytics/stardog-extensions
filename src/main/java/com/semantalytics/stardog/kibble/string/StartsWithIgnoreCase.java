@@ -47,6 +47,6 @@ public final class StartsWithIgnoreCase extends AbstractFunction implements Stri
 
     @Override
     public String toString() {
-        return StringVocabulary.startsWithIgnoreCase.name();
+        return StringVocabulary.startsWithIgnoreCase.toString();
     }
 }

@@ -14,7 +14,7 @@ import static org.apache.commons.codec.language.Soundex.*;
 public final class Soundex extends AbstractFunction implements StringFunction {
 
     protected Soundex() {
-        super(1, PhoneticVocabulary.soundex.stringValue());
+        super(1, PhoneticVocabulary.soundex.toString());
     }
 
     private Soundex(final Soundex soundex) {
@@ -43,6 +43,6 @@ public final class Soundex extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return PhoneticVocabulary.soundex.name();
+        return PhoneticVocabulary.soundex.toString();
     }
 }

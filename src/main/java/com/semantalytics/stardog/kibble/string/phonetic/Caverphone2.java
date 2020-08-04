@@ -19,7 +19,7 @@ public final class Caverphone2 extends AbstractFunction implements StringFunctio
     }
 
     protected Caverphone2() {
-        super(1, PhoneticVocabulary.carverphone2.stringValue());
+        super(1, PhoneticVocabulary.carverphone2.toString());
     }
 
     private Caverphone2(final Caverphone2 caverphone2) {
@@ -49,6 +49,6 @@ public final class Caverphone2 extends AbstractFunction implements StringFunctio
 
     @Override
     public String toString() {
-        return PhoneticVocabulary.carverphone2.name();
+        return PhoneticVocabulary.carverphone2.toString();
     }
 }

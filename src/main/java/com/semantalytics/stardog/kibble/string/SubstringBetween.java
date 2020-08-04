@@ -45,6 +45,6 @@ public final class SubstringBetween extends AbstractFunction implements StringFu
 
     @Override
     public String toString() {
-        return StringVocabulary.substringBetween.name();
+        return StringVocabulary.substringBetween.toString();
     }
 }

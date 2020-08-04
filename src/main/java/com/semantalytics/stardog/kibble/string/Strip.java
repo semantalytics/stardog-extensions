@@ -44,6 +44,6 @@ public final class Strip extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.strip.name();
+        return StringVocabulary.strip.toString();
     }
 }

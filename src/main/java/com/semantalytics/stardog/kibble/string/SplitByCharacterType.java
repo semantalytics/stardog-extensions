@@ -69,6 +69,6 @@ public final class SplitByCharacterType extends AbstractExpression implements St
 
     @Override
     public String toString() {
-        return StringVocabulary.splitByCharacterType.name();
+        return StringVocabulary.splitByCharacterType.toString();
     }
 }

@@ -13,7 +13,7 @@ import static emoji4j.EmojiUtils.*;
 public final class IsEmoji extends AbstractFunction implements StringFunction {
 
     protected IsEmoji() {
-        super(1, EmojiVocabulary.isEmoji.stringValue());
+        super(1, EmojiVocabulary.isEmoji.toString());
     }
 
     private IsEmoji(final IsEmoji isEmoji) {
@@ -44,6 +44,6 @@ public final class IsEmoji extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return EmojiVocabulary.isEmoji.name();
+        return EmojiVocabulary.isEmoji.toString();
     }
 }

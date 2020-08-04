@@ -43,6 +43,6 @@ public final class Length extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.length.name();
+        return StringVocabulary.length.toString();
     }
 }

@@ -45,6 +45,6 @@ public final class RemovePattern extends AbstractFunction implements StringFunct
 
     @Override
     public String toString() {
-        return StringVocabulary.removePattern.name();
+        return StringVocabulary.removePattern.toString();
     }
 }

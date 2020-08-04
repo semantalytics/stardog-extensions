@@ -45,6 +45,6 @@ public final class SubstringBeforeLast extends AbstractFunction implements Strin
 
     @Override
     public String toString() {
-        return StringVocabulary.substringBeforeLast.name();
+        return StringVocabulary.substringBeforeLast.toString();
     }
 }

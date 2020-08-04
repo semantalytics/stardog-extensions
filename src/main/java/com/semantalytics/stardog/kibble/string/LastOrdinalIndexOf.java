@@ -46,6 +46,6 @@ public final class LastOrdinalIndexOf extends AbstractFunction implements String
 
     @Override
     public String toString() {
-        return StringVocabulary.lastOrdinalIndexOf.name();
+        return StringVocabulary.lastOrdinalIndexOf.toString();
     }
 }

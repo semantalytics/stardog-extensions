@@ -1,1 +1,3 @@
+com.semantalytics.stardog.kibble.geo.geohash.Decode
+com.semantalytics.stardog.kibble.geo.geohash.Neighbors
 com.semantialytics.stardog.kibble.json.PathPropertyFunction

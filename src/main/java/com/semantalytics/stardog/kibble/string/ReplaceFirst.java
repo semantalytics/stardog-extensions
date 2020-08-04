@@ -48,6 +48,6 @@ public final class ReplaceFirst extends AbstractFunction implements StringFuncti
 
     @Override
     public String toString() {
-        return StringVocabulary.replaceFirst.name();
+        return StringVocabulary.replaceFirst.toString();
     }
 }

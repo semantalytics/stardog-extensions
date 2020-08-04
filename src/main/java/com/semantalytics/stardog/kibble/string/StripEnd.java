@@ -45,6 +45,6 @@ public final class StripEnd extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.stripEnd.name();
+        return StringVocabulary.stripEnd.toString();
     }
 }

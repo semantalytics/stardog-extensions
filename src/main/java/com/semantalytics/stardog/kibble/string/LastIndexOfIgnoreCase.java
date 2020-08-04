@@ -59,6 +59,6 @@ public final class LastIndexOfIgnoreCase extends AbstractFunction implements Str
 
     @Override
     public String toString() {
-        return StringVocabulary.lastIndexOfIgnoreCase.name();
+        return StringVocabulary.lastIndexOfIgnoreCase.toString();
     }
 }

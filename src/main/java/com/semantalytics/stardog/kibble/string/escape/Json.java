@@ -13,7 +13,7 @@ import static org.apache.commons.text.StringEscapeUtils.*;
 public final class Json extends AbstractFunction implements StringFunction {
 
     protected Json() {
-        super(1, EscapeVocabulary.json.stringValue());
+        super(1, EscapeVocabulary.json.toString());
     }
 
     private Json(final Json json) {
@@ -43,6 +43,6 @@ public final class Json extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return EscapeVocabulary.csv.name();
+        return EscapeVocabulary.csv.toString();
     }
 }

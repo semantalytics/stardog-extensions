@@ -14,7 +14,7 @@ public class TestIsAllLowerCase extends AbstractStardogTest {
     @Test
     public void testTrue() {
       
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:isAllLowerCase(\"Stardog\") AS ?result) }";
 
             try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -31,7 +31,7 @@ public class TestIsAllLowerCase extends AbstractStardogTest {
     @Test
     public void testFalse() {
 
-        final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+        final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                 "select ?result where { bind(string:isAllLowerCase(\"stardog\") AS ?result) }";
 
         try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -48,7 +48,7 @@ public class TestIsAllLowerCase extends AbstractStardogTest {
     @Test
     public void testEmptyString() {
     
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:isAllLowerCase(\"\") as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -65,7 +65,7 @@ public class TestIsAllLowerCase extends AbstractStardogTest {
     @Test
     public void testTooFewArgs() {
 
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:isAllLowerCase() as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -82,7 +82,7 @@ public class TestIsAllLowerCase extends AbstractStardogTest {
     @Test
     public void testTooManyArgs() {
 
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:isAllLowerCase(\"one\", \"two\") as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -99,7 +99,7 @@ public class TestIsAllLowerCase extends AbstractStardogTest {
     @Test
     public void testWrongTypeFirstArg() {
        
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:isAllLowerCase(1) as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {

@@ -44,6 +44,6 @@ public final class ContainsIgnoreCase extends AbstractFunction implements String
 
     @Override
     public String toString() {
-        return StringVocabulary.containsIgnoreCase.name();
+        return StringVocabulary.containsIgnoreCase.toString();
     }
 }

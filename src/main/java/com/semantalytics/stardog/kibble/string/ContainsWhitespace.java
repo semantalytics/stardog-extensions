@@ -44,6 +44,6 @@ public final class ContainsWhitespace extends AbstractFunction implements String
 
     @Override
     public String toString() {
-        return StringVocabulary.containsWhitespace.name();
+        return StringVocabulary.containsWhitespace.toString();
     }
 }

@@ -13,7 +13,7 @@ import static emoji4j.EmojiUtils.*;
 public final class Count extends AbstractFunction implements StringFunction {
 
     protected Count() {
-        super(1, EmojiVocabulary.count.stringValue());
+        super(1, EmojiVocabulary.count.toString());
     }
 
     private Count(final Count count) {
@@ -44,6 +44,6 @@ public final class Count extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return EmojiVocabulary.count.name();
+        return EmojiVocabulary.count.toString();
     }
 }

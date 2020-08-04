@@ -46,6 +46,6 @@ public final class ReplaceChars extends AbstractFunction implements StringFuncti
 
     @Override
     public String toString() {
-        return StringVocabulary.replaceChars.name();
+        return StringVocabulary.replaceChars.toString();
     }
 }

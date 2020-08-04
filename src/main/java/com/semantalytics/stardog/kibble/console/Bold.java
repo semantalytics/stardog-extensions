@@ -17,7 +17,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class Bold extends AbstractFunction implements UserDefinedFunction {
 
     public Bold() {
-        super(Range.all(), ConsoleVocabulary.bold.stringValue());
+        super(Range.all(), ConsoleVocabulary.bold.toString());
     }
 
     public Bold(final Bold boldOn) {
@@ -49,6 +49,6 @@ public class Bold extends AbstractFunction implements UserDefinedFunction {
 
     @Override
     public String toString() {
-        return ConsoleVocabulary.bold.name();
+        return ConsoleVocabulary.bold.toString();
     }
 }

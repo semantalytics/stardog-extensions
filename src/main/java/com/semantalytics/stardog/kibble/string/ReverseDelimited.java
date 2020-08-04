@@ -49,6 +49,6 @@ public final class ReverseDelimited extends AbstractFunction implements StringFu
 
     @Override
     public String toString() {
-        return StringVocabulary.reverseDelimited.name();
+        return StringVocabulary.reverseDelimited.toString();
     }
 }

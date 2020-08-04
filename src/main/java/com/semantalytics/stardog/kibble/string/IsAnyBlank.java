@@ -48,6 +48,6 @@ public final class IsAnyBlank extends AbstractFunction implements StringFunction
 
     @Override
     public String toString() {
-        return StringVocabulary.isAnyBlank.name();
+        return StringVocabulary.isAnyBlank.toString();
     }
 }

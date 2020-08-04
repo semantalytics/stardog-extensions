@@ -50,6 +50,6 @@ public final class PadStart extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.padStart.name();
+        return StringVocabulary.padStart.toString();
     }
 }

@@ -44,6 +44,6 @@ public final class Digits extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.digits.name();
+        return StringVocabulary.digits.toString();
     }
 }

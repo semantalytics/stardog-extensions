@@ -47,6 +47,6 @@ public final class Right extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.right.name();
+        return StringVocabulary.right.toString();
     }
 }
