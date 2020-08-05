@@ -76,6 +76,7 @@ public final class Memoize extends AbstractExpression implements UserDefinedFunc
     @Override
     public ValueOrError evaluate(ValueSolution valueSolution) {
 
+        //TODO single arg to allow default for cache size
         if(getArgs().size() >= 2) {
             final ValueOrError firstArgValueOrError = getFirstArg().evaluate(valueSolution);
             if(!firstArgValueOrError.isError() && assertIntegerLiteral(firstArgValueOrError.value())) {
@@ -91,15 +92,15 @@ public final class Memoize extends AbstractExpression implements UserDefinedFunc
 
                     final String functionIri;
 
-                    if (assertLiteral(firstArgValueOrError.value())) {
+                    if (assertLiteral(secondArgValueOrError.value())) {
                         functionIri = ((Literal) secondArgValueOrError.value()).label();
-                    } else if (firstArgValueOrError instanceof IRI) {
-                        functionIri = secondArgValueOrError.toString();
+                    } else if (secondArgValueOrError.value() instanceof IRI) {
+                        functionIri = secondArgValueOrError.stringValue();
                     } else {
                         return ValueOrError.Error;
                     }
 
-                    final List<Expression> functionArgs = getArgs().stream().skip(1).collect(toList());
+                    final List<Expression> functionArgs = getArgs().stream().skip(2).collect(toList());
 
                     Optional<ValueOrError> cachedValueOrError = Optional.ofNullable(cache.getIfPresent(Objects.hash(functionIri, functionArgs, valueSolution)));
 

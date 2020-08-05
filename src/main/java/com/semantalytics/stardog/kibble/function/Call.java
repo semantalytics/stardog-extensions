@@ -68,19 +68,17 @@ public final class Call extends AbstractExpression implements UserDefinedFunctio
     }
 
     @Override
-    public ValueOrError evaluate(ValueSolution valueSolution) {
+    public ValueOrError evaluate(final ValueSolution valueSolution) {
 
         if(getArgs().size() >= 1) {
             final ValueOrError firstArgValueOrError = getFirstArg().evaluate(valueSolution);
-            if(firstArgValueOrError.isError()) {
-                return ValueOrError.Error;
-            } else {
+            if (!firstArgValueOrError.isError()) {
                 final String functionIri;
 
                 if (assertLiteral(firstArgValueOrError.value())) {
                     functionIri = ((Literal) firstArgValueOrError.value()).label();
-                } else if (firstArgValueOrError instanceof IRI) {
-                    functionIri = firstArgValueOrError.toString();
+                } else if (firstArgValueOrError.value() instanceof IRI) {
+                    functionIri = firstArgValueOrError.stringValue();
                 } else {
                     return ValueOrError.Error;
                 }
@@ -88,6 +86,8 @@ public final class Call extends AbstractExpression implements UserDefinedFunctio
                 final List<Expression> functionArgs = getArgs().stream().skip(1).collect(toList());
 
                 return functionRegistry.get(functionIri, functionArgs, null).evaluate(valueSolution);
+            } else {
+                return ValueOrError.Error;
             }
         } else {
             return ValueOrError.Error;

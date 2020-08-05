@@ -10,6 +10,7 @@ import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
 import com.google.common.collect.Lists;
 import com.stardog.stark.IRI;
 import com.stardog.stark.Literal;
+import com.stardog.stark.Values;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -91,14 +92,8 @@ public final class Filter extends AbstractExpression implements UserDefinedFunct
 
                     List<ValueOrError> valueOrErrors = Arrays.stream(((ArrayLiteral) secondArgValueOrError.value()).getValues()).mapToObj(dict::getValue).map(Expressions::constant).map(e -> functionRegistry.get(functionIri, Lists.newArrayList(e), null).evaluate(valueSolution)).collect(toList());
 
-                    if(valueOrErrors.stream().anyMatch(ValueOrError::isError)) {
-                        return ValueOrError.Error;
-                    } else {
 
-                    if(valueOrErrors.stream().map(ValueOrError::value).anyMatch(v -> {
-                        assertLiteral
-                    });
-                    }
+                    return ValueOrError.General.of(new ArrayLiteral(valueOrErrors.stream().filter(v -> EvalUtil.ebv(v).isTrue()).map(ValueOrError::value).mapToLong(dict::add).toArray()));
 
                 } else {
                     return ValueOrError.Error;

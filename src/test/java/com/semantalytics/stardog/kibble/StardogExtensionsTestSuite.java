@@ -10,6 +10,7 @@ import com.complexible.stardog.api.admin.AdminConnectionConfiguration;
 import com.google.common.io.Files;
 import com.semantalytics.stardog.kibble.array.ArrayTestSuite;
 import com.semantalytics.stardog.kibble.console.ConsoleTestSuite;
+import com.semantalytics.stardog.kibble.function.FunctionTestSuite;
 import com.semantalytics.stardog.kibble.geo.geohash.GeohashTestSuite;
 import com.semantalytics.stardog.kibble.string.*;
 import com.semantalytics.stardog.kibble.string.comparison.StringMetricTestSuite;
@@ -39,6 +40,7 @@ import java.net.InetSocketAddress;
         PhoneticTestSuite.class,
         UnescapeTestSuite.class,
         StringTestSuite.class,
+        FunctionTestSuite.class,
         })
 
 public class StardogExtensionsTestSuite extends TestCase {
