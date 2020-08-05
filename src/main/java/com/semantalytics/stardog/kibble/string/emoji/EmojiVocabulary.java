@@ -21,6 +21,7 @@ public class EmojiVocabulary {
 	public static final IRI isEmoji = iri(NS + "isEmoji");
 	public static final IRI remove = iri(NS + "remove");
 	public static final IRI shortCodify = iri(NS + "shortCodify");
+	public static final IRI emoji = iri(NS + "emoji");
 
     public static String sparqlPrefix(final String prefixName) {
         return "PREFIX " + prefixName + ": <" + NS + "> ";

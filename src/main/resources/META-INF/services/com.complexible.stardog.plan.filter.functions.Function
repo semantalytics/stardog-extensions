@@ -196,6 +196,7 @@ com.semantalytics.stardog.kibble.string.emoji.DecimalHtml
 com.semantalytics.stardog.kibble.string.emoji.DecimalHtmlShort
 com.semantalytics.stardog.kibble.string.emoji.DecimalSurrogateHtml
 com.semantalytics.stardog.kibble.string.emoji.Emojify
+com.semantalytics.stardog.kibble.string.emoji.Emoji
 com.semantalytics.stardog.kibble.string.emoji.Emoticon
 com.semantalytics.stardog.kibble.string.emoji.HexHtmlify
 com.semantalytics.stardog.kibble.string.emoji.Htmlify
