@@ -213,7 +213,6 @@
                                 <excludes>
                                     <exclude>junit:junit</exclude>
                                     <exclude>org.assertj:assertj-core</exclude>
-                                    <exclude>org.hamcrest:hamcrest-all</exclude>
                                 </excludes>
                             </artifactSet>
                             <transformers>
