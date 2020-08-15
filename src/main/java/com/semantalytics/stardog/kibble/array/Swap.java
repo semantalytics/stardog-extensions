@@ -9,7 +9,7 @@ import com.stardog.stark.Literal;
 import com.stardog.stark.Value;
 import org.apache.commons.lang3.ArrayUtils;
 
-public final class Swap extends AbstractFunction implements StringFunction {
+spublic final class Swap extends AbstractFunction implements StringFunction {
 
     protected Swap() {
         super(3, ArrayVocabulary.swap.toString());
