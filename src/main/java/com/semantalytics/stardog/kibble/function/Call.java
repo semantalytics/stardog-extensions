@@ -20,7 +20,6 @@ import static java.util.stream.Collectors.toList;
 
 public final class Call extends AbstractExpression implements UserDefinedFunction {
 
-
     private final FunctionRegistry functionRegistry = new FunctionRegistry() {
 
         @Override
@@ -78,14 +77,22 @@ public final class Call extends AbstractExpression implements UserDefinedFunctio
                 if (assertLiteral(firstArgValueOrError.value())) {
                     functionIri = ((Literal) firstArgValueOrError.value()).label();
                 } else if (firstArgValueOrError.value() instanceof IRI) {
-                    functionIri = firstArgValueOrError.stringValue();
+                    functionIri = firstArgValueOrError.value().toString();
                 } else {
                     return ValueOrError.Error;
                 }
 
                 final List<Expression> functionArgs = getArgs().stream().skip(1).collect(toList());
 
-                return functionRegistry.get(functionIri, functionArgs, null).evaluate(valueSolution);
+                final Expression function;
+
+                if(Compose.compositionMap.containsKey(functionIri)) {
+                    function = Compose.get(functionIri, functionArgs);
+                } else {
+                    function = functionRegistry.get(functionIri, functionArgs, null);
+                }
+
+                return function.evaluate(valueSolution);
             } else {
                 return ValueOrError.Error;
             }
