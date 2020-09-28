@@ -1,44 +1,20 @@
 package com.semantalytics.stardog.kibble.function;
 
-import com.complexible.stardog.plan.filter.Expression;
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
 import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
-import com.complexible.stardog.plan.filter.functions.FunctionDefinition;
-import com.complexible.stardog.plan.filter.functions.FunctionRegistry;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
 import com.google.common.collect.Range;
-import com.stardog.stark.IRI;
-import com.stardog.stark.Literal;
-import com.stardog.stark.Value;
-import com.stardog.stark.Values;
+import com.stardog.stark.*;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.Map;
+
+import static java.util.stream.Collectors.*;
 
 public final class Compose extends AbstractFunction implements UserDefinedFunction {
 
-    private final FunctionRegistry functionRegistry = new FunctionRegistry() {
-
-        @Override
-        public Iterator<FunctionDefinition> iterator() {
-            return iterator();
-        }
-
-        @Override
-        public FunctionDefinition get(String s) {
-            return get(s);
-        }
-
-        public FunctionRegistry getInstance() {
-            return Instance;
-        }
-
-    }.getInstance();
-
-    static Map<String, FunctionDefinition> compositionMap;
+    static Map<String, List<String>> compositionMap;
 
     public Compose() {
         super(Range.atLeast(2), FunctionVocabulary.compose.toString());
@@ -48,43 +24,20 @@ public final class Compose extends AbstractFunction implements UserDefinedFuncti
         super(compose);
     }
 
-    public static Expression get(final String functionName, final List<Expression> args) {
-        return compositionMap.get(functionName).getExpression(args, null);
-    }
-
     @Override
     protected ValueOrError internalEvaluate(Value... values) {
-        final Value compositeFunction = Values.bnode();
-        final String functionF;
-        final String functionG;
+        final BNode compositeFunction = Values.bnode();
 
-        if (assertLiteral(values[0])) {
-            functionF = ((Literal) values[0]).label();
-        } else if (values[0] instanceof IRI) {
-            functionF = values[0].toString();
-        } else {
-            return ValueOrError.Error;
-        }
+        List<String> functions = Arrays.stream(values).map(v -> {
+            if (assertLiteral(values[0])) {
+                return ((Literal) values[0]).label();
+            } else {
+                return values[0].toString();
+            }
+        }).collect(toList());
 
-        if (assertLiteral(values[1])) {
-            functionG = ((Literal) values[1]).label();
-        } else if (values[1] instanceof IRI) {
-            functionG = values[1].toString();
-        } else {
-            return ValueOrError.Error;
-        }
+        compositionMap.put(compositeFunction.id(), functions);
 
-        final Expression callExpression = functionRegistry.get(FunctionVocabulary.call.toString())
-
-        final Expression function;
-
-        if(Compose.compositionMap.containsKey(functionF)) {
-            function = Compose.compositionMap.get(functionF);
-        } else {
-            function = functionRegistry.get(functionF, functionArgs, null);
-        }
-
-        compositionMap.put(compositeFunction, new Expression(new Expression()));
         return ValueOrError.General.of(compositeFunction);
     }
 

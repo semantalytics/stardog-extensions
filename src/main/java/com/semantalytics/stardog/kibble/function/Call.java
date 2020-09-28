@@ -9,11 +9,12 @@ import com.complexible.stardog.plan.filter.functions.FunctionDefinition;
 import com.complexible.stardog.plan.filter.functions.FunctionRegistry;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
 import com.google.common.collect.Lists;
+import com.stardog.stark.BNode;
 import com.stardog.stark.IRI;
 import com.stardog.stark.Literal;
 
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.complexible.stardog.plan.filter.functions.AbstractFunction.*;
 import static java.util.stream.Collectors.toList;
@@ -78,6 +79,8 @@ public final class Call extends AbstractExpression implements UserDefinedFunctio
                     functionIri = ((Literal) firstArgValueOrError.value()).label();
                 } else if (firstArgValueOrError.value() instanceof IRI) {
                     functionIri = firstArgValueOrError.value().toString();
+                } else if (firstArgValueOrError.value() instanceof BNode) {
+                    functionIri = ((BNode)firstArgValueOrError).id();
                 } else {
                     return ValueOrError.Error;
                 }
@@ -87,7 +90,9 @@ public final class Call extends AbstractExpression implements UserDefinedFunctio
                 final Expression function;
 
                 if(Compose.compositionMap.containsKey(functionIri)) {
-                    function = Compose.get(functionIri, functionArgs);
+                    List<String> functions = Compose.compositionMap.get(functionIri);
+                    Lists.reverse(functions).stream().reduce(getArgs().stream().skip(1).toArray())
+
                 } else {
                     function = functionRegistry.get(functionIri, functionArgs, null);
                 }
