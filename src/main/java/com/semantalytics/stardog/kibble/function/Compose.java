@@ -4,6 +4,7 @@ import com.complexible.stardog.plan.filter.ExpressionVisitor;
 import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Range;
 import com.stardog.stark.*;
 
@@ -36,7 +37,7 @@ public final class Compose extends AbstractFunction implements UserDefinedFuncti
             }
         }).collect(toList());
 
-        compositionMap.put(compositeFunction.id(), functions);
+        compositionMap.put(compositeFunction.id(), Lists.reverse(functions));
 
         return ValueOrError.General.of(compositeFunction);
     }

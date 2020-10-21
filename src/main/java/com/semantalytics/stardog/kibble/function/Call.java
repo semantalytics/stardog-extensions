@@ -15,29 +15,13 @@ import com.stardog.stark.Literal;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.complexible.stardog.plan.filter.functions.AbstractFunction.*;
+import static java.util.Collections.*;
 import static java.util.stream.Collectors.toList;
 
 public final class Call extends AbstractExpression implements UserDefinedFunction {
-
-    private final FunctionRegistry functionRegistry = new FunctionRegistry() {
-
-        @Override
-        public Iterator<FunctionDefinition> iterator() {
-            return iterator();
-        }
-
-        @Override
-        public FunctionDefinition get(String s) {
-            return get(s);
-        }
-
-        public FunctionRegistry getInstance() {
-            return Instance;
-        }
-
-    }.getInstance();
 
     protected Call() {
         super(new Expression[0]);
@@ -87,14 +71,18 @@ public final class Call extends AbstractExpression implements UserDefinedFunctio
 
                 final List<Expression> functionArgs = getArgs().stream().skip(1).collect(toList());
 
-                final Expression function;
+                Expression function = null;
 
                 if(Compose.compositionMap.containsKey(functionIri)) {
-                    List<String> functions = Compose.compositionMap.get(functionIri);
-                    Lists.reverse(functions).stream().reduce(getArgs().stream().skip(1).toArray())
-
+                    for(final String f : Compose.compositionMap.get(functionIri)) {
+                        if (function == null) {
+                            function = FunctionRegistry.Instance.get(f, functionArgs, null);
+                        } else {
+                            function = FunctionRegistry.Instance.get(f, singletonList(function), null);
+                        }
+                    }
                 } else {
-                    function = functionRegistry.get(functionIri, functionArgs, null);
+                    function = FunctionRegistry.Instance.get(functionIri, functionArgs, null);
                 }
 
                 return function.evaluate(valueSolution);
