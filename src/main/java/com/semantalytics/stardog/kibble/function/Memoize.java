@@ -27,24 +27,6 @@ public final class Memoize extends AbstractExpression implements UserDefinedFunc
 
     private Cache<Integer, ValueOrError> cache;
 
-    private final FunctionRegistry functionRegistry = new FunctionRegistry() {
-
-        @Override
-        public Iterator<FunctionDefinition> iterator() {
-            return iterator();
-        }
-
-        @Override
-        public FunctionDefinition get(String s) {
-            return get(s);
-        }
-
-        public FunctionRegistry getInstance() {
-            return Instance;
-        }
-
-    }.getInstance();
-
     protected Memoize() {
         super(new Expression[0]);
     }
@@ -107,7 +89,7 @@ public final class Memoize extends AbstractExpression implements UserDefinedFunc
                     if (cachedValueOrError.isPresent()) {
                         return cachedValueOrError.get();
                     } else {
-                        ValueOrError valueOrError = functionRegistry.get(functionIri, functionArgs, null).evaluate(valueSolution);
+                        ValueOrError valueOrError = FunctionRegistry.Instance.get(functionIri, functionArgs, null).evaluate(valueSolution);
                         cache.put(Objects.hash(functionIri, functionArgs, valueSolution), valueOrError);
                         return valueOrError;
                     }
