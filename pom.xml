@@ -139,6 +139,11 @@
             <version>${xmlapis.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.wasmer</groupId>
+            <artifactId>wasmer-jni-amd64-linux</artifactId>
+            <version>0.2.0</version>
+        </dependency>
     </dependencies>
 
     <repositories>
