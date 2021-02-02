@@ -9,34 +9,19 @@ import com.complexible.stardog.plan.filter.functions.FunctionDefinition;
 import com.complexible.stardog.plan.filter.functions.FunctionRegistry;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
 import com.google.common.collect.Lists;
+import com.stardog.stark.BNode;
 import com.stardog.stark.IRI;
 import com.stardog.stark.Literal;
 
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.complexible.stardog.plan.filter.functions.AbstractFunction.*;
+import static java.util.Collections.*;
 import static java.util.stream.Collectors.toList;
 
 public final class Call extends AbstractExpression implements UserDefinedFunction {
-
-    private final FunctionRegistry functionRegistry = new FunctionRegistry() {
-
-        @Override
-        public Iterator<FunctionDefinition> iterator() {
-            return iterator();
-        }
-
-        @Override
-        public FunctionDefinition get(String s) {
-            return get(s);
-        }
-
-        public FunctionRegistry getInstance() {
-            return Instance;
-        }
-
-    }.getInstance();
 
     protected Call() {
         super(new Expression[0]);
@@ -78,18 +63,26 @@ public final class Call extends AbstractExpression implements UserDefinedFunctio
                     functionIri = ((Literal) firstArgValueOrError.value()).label();
                 } else if (firstArgValueOrError.value() instanceof IRI) {
                     functionIri = firstArgValueOrError.value().toString();
+                } else if (firstArgValueOrError.value() instanceof BNode) {
+                    functionIri = ((BNode)firstArgValueOrError).id();
                 } else {
                     return ValueOrError.Error;
                 }
 
                 final List<Expression> functionArgs = getArgs().stream().skip(1).collect(toList());
 
-                final Expression function;
+                Expression function = null;
 
                 if(Compose.compositionMap.containsKey(functionIri)) {
-                    function = Compose.get(functionIri, functionArgs);
+                    for(final String f : Compose.compositionMap.get(functionIri)) {
+                        if (function == null) {
+                            function = FunctionRegistry.Instance.get(f, functionArgs, null);
+                        } else {
+                            function = FunctionRegistry.Instance.get(f, singletonList(function), null);
+                        }
+                    }
                 } else {
-                    function = functionRegistry.get(functionIri, functionArgs, null);
+                    function = FunctionRegistry.Instance.get(functionIri, functionArgs, null);
                 }
 
                 return function.evaluate(valueSolution);

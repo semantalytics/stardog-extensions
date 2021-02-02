@@ -1,44 +1,21 @@
 package com.semantalytics.stardog.kibble.function;
 
-import com.complexible.stardog.plan.filter.Expression;
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
 import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
-import com.complexible.stardog.plan.filter.functions.FunctionDefinition;
-import com.complexible.stardog.plan.filter.functions.FunctionRegistry;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Range;
-import com.stardog.stark.IRI;
-import com.stardog.stark.Literal;
-import com.stardog.stark.Value;
-import com.stardog.stark.Values;
+import com.stardog.stark.*;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.Map;
+
+import static java.util.stream.Collectors.*;
 
 public final class Compose extends AbstractFunction implements UserDefinedFunction {
 
-    private final FunctionRegistry functionRegistry = new FunctionRegistry() {
-
-        @Override
-        public Iterator<FunctionDefinition> iterator() {
-            return iterator();
-        }
-
-        @Override
-        public FunctionDefinition get(String s) {
-            return get(s);
-        }
-
-        public FunctionRegistry getInstance() {
-            return Instance;
-        }
-
-    }.getInstance();
-
-    static Map<String, FunctionDefinition> compositionMap;
+    static Map<String, List<String>> compositionMap;
 
     public Compose() {
         super(Range.atLeast(2), FunctionVocabulary.compose.toString());
@@ -48,12 +25,9 @@ public final class Compose extends AbstractFunction implements UserDefinedFuncti
         super(compose);
     }
 
-    public static Expression get(final String functionName, final List<Expression> args) {
-        return compositionMap.get(functionName).getExpression(args, null);
-    }
-
     @Override
     protected ValueOrError internalEvaluate(Value... values) {
+
         final Value compositeFunction = Values.bnode();
         final String functionF;
         final String functionG;
@@ -83,6 +57,7 @@ public final class Compose extends AbstractFunction implements UserDefinedFuncti
         }
 
         compositionMap.put(compositeFunction, );
+
         return ValueOrError.General.of(compositeFunction);
     }
 
