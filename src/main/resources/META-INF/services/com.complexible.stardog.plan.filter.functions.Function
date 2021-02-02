@@ -269,6 +269,7 @@ com.semantalytics.stardog.kibble.array.IsUniformLiteral
 com.semantalytics.stardog.kibble.array.IsEmpty
 com.semantalytics.stardog.kibble.array.IndexOfLast
 com.semantalytics.stardog.kibble.array.NDims
+com.semantalytics.stardog.kibble.array.NGram
 com.semantalytics.stardog.kibble.array.Of
 com.semantalytics.stardog.kibble.array.Offset
 com.semantalytics.stardog.kibble.array.Ordinal
