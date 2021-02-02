@@ -74,17 +74,15 @@ public final class Compose extends AbstractFunction implements UserDefinedFuncti
             return ValueOrError.Error;
         }
 
-        final Expression callExpression = functionRegistry.get(FunctionVocabulary.call.toString())
-
         final Expression function;
 
         if(Compose.compositionMap.containsKey(functionF)) {
-            function = Compose.compositionMap.get(functionF);
+            function = Compose.compositionMap.get(functionF).getExpression();
         } else {
-            function = functionRegistry.get(functionF, functionArgs, null);
+            function = functionRegistry.get(functionF).getExpression();
         }
 
-        compositionMap.put(compositeFunction, new Expression(new Expression()));
+        compositionMap.put(compositeFunction, );
         return ValueOrError.General.of(compositeFunction);
     }
 
