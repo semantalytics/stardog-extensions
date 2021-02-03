@@ -92,6 +92,7 @@ import java.net.InetSocketAddress;
     TestLowerCase.class,
     TestMid.class,
     TestNormalizeSpace.class,
+    TestNGram.class,
     TestOrdinalFirstIndexOf.class,
     TestOverlay.class,
     TestPadEnd.class,

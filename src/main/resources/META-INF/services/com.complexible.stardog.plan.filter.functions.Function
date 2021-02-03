@@ -127,6 +127,7 @@ com.semantalytics.stardog.kibble.string.Length
 com.semantalytics.stardog.kibble.string.LowerCase
 com.semantalytics.stardog.kibble.string.Mid
 com.semantalytics.stardog.kibble.string.NormalizeSpace
+com.semantalytics.stardog.kibble.string.NGram
 com.semantalytics.stardog.kibble.string.OrdinalIndexOf
 com.semantalytics.stardog.kibble.string.Overlay
 com.semantalytics.stardog.kibble.string.PadEnd
