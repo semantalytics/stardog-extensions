@@ -1,11 +1,15 @@
 package com.semantalytics.stardog.kibble.geo.geohash;
 
 import com.complexible.stardog.plan.eval.ExecutionException;
-import com.semantalytics.stardog.kibble.AbstractStardogTest;
 import com.stardog.stark.Datatype;
 import com.stardog.stark.Literal;
 import com.stardog.stark.query.BindingSet;
+import com.stardog.stark.query.QueryResults;
 import com.stardog.stark.query.SelectQueryResult;
+
+import com.semantalytics.stardog.kibble.AbstractStardogTest;
+import org.hamcrest.Matchers;
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,25 +23,10 @@ public class TestDecode extends AbstractStardogTest {
     private final String sparqlPrefix = GeoHashVocabulary.sparqlPrefix("geohash");
 
     @Test(expected = ExecutionException.class)
-    public void tooManyResultsThrowsError() {
-
-        final String aQueryStr = sparqlPrefix +
-                " select * where { (?too ?many ?args) geohash:decode (\"gbsuv7ztqzpt\") }";
-
-        final SelectQueryResult aResult = connection.select(aQueryStr).execute();
-        try {
-            fail("Should not have successfully executed");
-        } finally {
-            aResult.close();
-        }
-    }
-
-
-    @Test(expected = ExecutionException.class)
     public void resultTermsWhichAreNotVariablesShouldBeAnError() {
 
         final String aQueryStr = sparqlPrefix +
-                " select * where { (\"no literals allowed\") geohash:decode (\"gbsuv7ztqzpt\") }";
+                " select * where { SERVICE geohash:decode { [] geohash:latitude 'no literals allowed' ; geohash:longitude ?x ; geohash:hash \"gbsuv7ztqzpt\" } }";
 
         final SelectQueryResult aResult = connection.select(aQueryStr).execute();
         try {
@@ -50,7 +39,8 @@ public class TestDecode extends AbstractStardogTest {
     @Test(expected = ExecutionException.class)
     public void tooManyInputsThrowsError() {
         final String aQueryStr = sparqlPrefix +
-                " select * where { (?latitude ?longitude) geohash:decode (\"gbsuv7ztqzpt\" 5) }";
+                                 " select * where { SERVICE geohash:decode { [] geohash:latitude ?lat ; geohash:longitude ?long ; " +
+                                 "geohash:hash \"gbsuv7ztqzpt\" ; geohash:unrecognized 'xyz' } }";
 
 
         final SelectQueryResult aResult = connection.select(aQueryStr).execute();
@@ -63,9 +53,9 @@ public class TestDecode extends AbstractStardogTest {
     }
 
     @Test(expected = ExecutionException.class)
-    public void argCannotBeANonnumericLiteral() {
+    public void argCannotBeANonStringLiteral() {
         final String aQueryStr = sparqlPrefix +
-                " select * where { (?latitude ?longitude) geohash:decode (5) }";
+                " select * where { SERVICE geohash:decode { [] geohash:latitude 'no literals allowed' ; geohash:longitude ?x ; geohash:hash 5 } }";
 
 
         final SelectQueryResult aResult = connection.select(aQueryStr).execute();
@@ -78,8 +68,9 @@ public class TestDecode extends AbstractStardogTest {
 
     @Test(expected = ExecutionException.class)
     public void argCannotBeAnIRI() {
+        // I don't know if it would be more idiomatic to bind ValueOrError.Error to output variables. this is what would happen with a function
         final String aQueryStr = sparqlPrefix +
-                " select * where { (?latitude ?longitude) geohash:decode (<http://example.com>) }";
+                " select * where { SERVICE geohash:decode { [] geohash:latitude ?latitude ; geohash:longitude ?longitude ; geohash:hash <http://example.com>) } }";
 
 
         final SelectQueryResult aResult = connection.select(aQueryStr).execute();
@@ -90,34 +81,38 @@ public class TestDecode extends AbstractStardogTest {
         }
     }
 
-    @Test
+    @Test(expected = ExecutionException.class)
     public void argCannotBeABNode() {
+        // Bnodes are anonymous vars, so we get the same constraint failure as not binding the input var
         final String aQueryStr = sparqlPrefix +
-                " select * where { (?latitude ?longitude) geohash:decode (_:bnode) }";
+                " select * where { SERVICE geohash:decode { [] geohash:latitude ?latitude ; geohash:longitude ?longitude ; geohash:hash _:bnode }  }";
 
         try(final SelectQueryResult aResult = connection.select(aQueryStr).execute()) {
-            assertFalse("Should have no more results", aResult.hasNext());
+            QueryResults.consume(aResult);
         }
     }
 
     @Test
     public void varInputWithNoResultsShouldProduceZeroResults() {
+        // this will throw failure from service constraint rewriter
         final String aQueryStr = sparqlPrefix +
-                " select * where { (?latitude ?longitude) geohash:decode (?input) }";
+                " select * where { SERVICE geohash:decode { [] geohash:latitude ?latitude ; geohash:longitude ?longitude ; geohash:hash ?input } }";
 
 
-        final SelectQueryResult aResult = connection.select(aQueryStr).execute();
-        try {
-            assertFalse(aResult.hasNext());
-        } finally {
-            aResult.close();
+        try (SelectQueryResult aResult = connection.select(aQueryStr).execute()) {
+            aResult.hasNext();
+            fail("Expected exception");
+        }
+        catch (Exception ex) {
+            Assert.assertThat(ex.getMessage(), Matchers.containsString("Unable to bind: input"));
         }
     }
 
     @Test
     public void decodeWithVarInput() {
+        // this is not a great test because values will be inlined before execution and will not use the iterator branch of the service query eval method
         final String aQueryStr = sparqlPrefix +
-                " select * where { (?latitude ?longitude) geohash:decode (?in) . values ?in { \"gbsuv7ztqzpt\"} }";
+                " select * where { SERVICE geohash:decode { [] geohash:latitude ?latitude ; geohash:longitude ?longitude ; geohash:hash \"gbsuv7ztqzpt\" } values ?in { \"gbsuv7ztqzpt\"} }";
 
         BindingSet aBindingSet;
 
@@ -137,7 +132,7 @@ public class TestDecode extends AbstractStardogTest {
     @Test
     public void decodeWithConstInput() {
         final String aQueryStr = sparqlPrefix +
-                " select * where { (?latitude ?longitude) geohash:decode (\"gbsuv7ztqzpt\") }";
+                " select * where { SERVICE geohash:decode { [] geohash:latitude ?latitude ; geohash:longitude ?longitude ; geohash:hash \"gbsuv7ztqzpt\" } }";
 
         BindingSet aBindingSet;
 
@@ -209,7 +204,7 @@ public class TestDecode extends AbstractStardogTest {
     public void shouldRenderACustomExplanation() {
 
         final String aQueryStr = GeoHashVocabulary.sparqlPrefix("geohash") +
-                "select * where { (?latitude ?longitude) geohash:decode (\"gbsuv7ztqzpt\") }";
+                "select * where { SERVICE geohash:decode { [] geohash:latitude ?latitude ; geohash:longitude ?longitude ; geohash:hash \"gbsuv7ztqzpt\" } }";
 
         assertTrue(connection.select(aQueryStr).explain().contains("geohash:decode("));
     }
