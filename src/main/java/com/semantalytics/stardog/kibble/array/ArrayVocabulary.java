@@ -24,6 +24,7 @@ public class ArrayVocabulary {
 	public static final IRI isUniformLiteral = iri(NS + "isUniformLiteral");
 	public static final IRI isEmpty = iri(NS + "isEmpty");
 	public static final IRI nDims = iri(NS + "nDims");
+	public static final IRI ngram = iri(NS + "ngram");
 	public static final IRI partition = iri(NS + "partition");
 	public static final IRI size = iri(NS + "size");
 	public static final IRI shuffle = iri(NS + "shuffle");

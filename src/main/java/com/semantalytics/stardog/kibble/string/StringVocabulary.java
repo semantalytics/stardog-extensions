@@ -81,6 +81,7 @@ public class StringVocabulary {
 	public static final IRI lastIndexOf = iri(NS + "lastIndexOf");
 	public static final IRI lowerCaseFully = iri(NS + "lowerCaseFully");
 	public static final IRI lowerCase = iri(NS + "lowerCase");
+	public static final IRI ngram = iri(NS + "ngram");
 	public static final IRI ordinalIndexOf = iri(NS + "ordinalIndexOf");
 	public static final IRI overlay = iri(NS + "overlay");
 	public static final IRI padEnd = iri(NS + "padEnd");

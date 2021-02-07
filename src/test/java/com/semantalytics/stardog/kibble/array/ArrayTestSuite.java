@@ -37,6 +37,7 @@ import java.net.InetSocketAddress;
     TestIsUniformType.class,
     TestIndexOfLast.class,
     TestNDims.class,
+    TestNGram.class,
     TestOf.class,
     TestOffset.class,
     TestOrdinal.class,

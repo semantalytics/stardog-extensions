@@ -58,34 +58,35 @@ public final class JoinWith extends AbstractExpression implements StringFunction
 
     @Override
     public ValueOrError evaluate(ValueSolution theValueSolution) {
-        if(this.getArgs().size() >= 2) {
-            List<String> pieces = new ArrayList<>();
-            ValueOrError valueOrErrorSeparator = this.getArgs().get(0).evaluate(theValueSolution);
-            final String separator;
-            if(!valueOrErrorSeparator.isError() && assertStringLiteral(valueOrErrorSeparator.value())) {
-                separator = ((Literal)(valueOrErrorSeparator.value())).label();
+        if (this.getArgs().size() >= 2) {
+            final List<String> pieces = new ArrayList<>();
+            final ValueOrError valueOrErrorSeparator = this.getArgs().get(0).evaluate(theValueSolution);
+            if (!valueOrErrorSeparator.isError() && assertStringLiteral(valueOrErrorSeparator.value())) {
+                final String separator = ((Literal) (valueOrErrorSeparator.value())).label();
+                for (final Expression arg : getArgs().subList(1, getArgs().size())) {
+                    final ValueOrError valueOrError = arg.evaluate(theValueSolution);
+                    if (!valueOrError.isError()) {
+                        if (assertArrayLiteral(valueOrError.value())) {
+                            final ArrayLiteral array = ((ArrayLiteral) valueOrError.value());
+                            final List<String> values = Arrays.stream(array.getValues())
+                                    .mapToObj(d -> theValueSolution.getDictionary().getValue(d))
+                                    .map(v -> ((Literal) v).label()).collect(Collectors.toList());
+                            pieces.addAll(values);
+                        } else {
+                            if (assertStringLiteral(valueOrError.value())) {
+                                pieces.add(((Literal) valueOrError.value()).label());
+                            } else {
+                                return ValueOrError.Error;
+                            }
+                        }
+                    } else {
+                        return ValueOrError.Error;
+                    }
+                }
+                return ValueOrError.General.of(literal(joinWith(separator, pieces.toArray())));
             } else {
                 return ValueOrError.Error;
             }
-            for (final Expression arg : getArgs().subList(1, getArgs().size())) {
-                ValueOrError valueOrError = arg.evaluate(theValueSolution);
-                if (!valueOrError.isError()) {
-                    if (assertArrayLiteral(valueOrError.value())) {
-                        ArrayLiteral array = ((ArrayLiteral) arg);
-                        List<String> values = Arrays.stream(array.getValues()).mapToObj(d -> theValueSolution.getDictionary().getValue(d)).map(v -> ((Literal) v).label()).collect(Collectors.toList());
-                        pieces.addAll(values);
-                    } else {
-                        if (assertStringLiteral(valueOrError.value())) {
-                            pieces.add(((Literal) valueOrError.value()).label());
-                        } else {
-                            return ValueOrError.Error;
-                        }
-                    }
-                } else {
-                    return ValueOrError.Error;
-                }
-            }
-            return ValueOrError.General.of(literal(joinWith(separator, pieces.toArray())));
         } else {
             return ValueOrError.Error;
         }
