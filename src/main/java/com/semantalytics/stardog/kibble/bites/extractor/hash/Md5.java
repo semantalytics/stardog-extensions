@@ -1,4 +1,4 @@
-package com.semantalytics.stardog.extractor.hash;
+package com.semantalytics.stardog.kibble.bites.extractor.hash;
 
 import com.complexible.common.rdf.StatementSource;
 import com.complexible.common.rdf.StatementSources;
@@ -20,15 +20,15 @@ import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Sha384 implements RDFExtractor {
+public class Md5 implements RDFExtractor {
 
     @Override
     public StatementSource extract(Connection theConnection, IRI theDocIri, Path theDocContents) throws BitesException {
         try {
             if (theDocContents.toFile().length() > 0L) {
-                HashCode hashCode = Hashing.sha384().newHasher().putBytes(Files.readAllBytes(theDocContents)).hash();
+                HashCode hashCode = Hashing.md5().newHasher().putBytes(Files.readAllBytes(theDocContents)).hash();
                 Set<Statement> aModel = new HashSet();
-                aModel.add(Values.statement(theDocIri, Values.iri("http://stardog.semantalytics.com/2019/11/ns/hash/sha384"), Values.literal(hashCode.toString())));
+                aModel.add(Values.statement(theDocIri, Values.iri("http://stardog.semantalytics.com/2019/11/ns/hash/md5"), Values.literal(hashCode.toString())));
                 return MemoryStatementSource.of(aModel);
             } else {
                 return StatementSources.empty();

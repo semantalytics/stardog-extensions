@@ -1,5 +1,5 @@
-com.semantalytics.stardog.extractor.hash.Md5
-com.semantalytics.stardog.extractor.hash.Sha1
-com.semantalytics.stardog.extractor.hash.Sha256
-com.semantalytics.stardog.extractor.hash.Sha384
-com.semantalytics.stardog.extractor.hash.Sha512
+com.semantalytics.stardog.kibble.bites.extractor.hash.Md5
+com.semantalytics.stardog.kibble.bites.extractor.hash.Sha1
+com.semantalytics.stardog.kibble.bites.extractor.hash.Sha256
+com.semantalytics.stardog.kibble.bites.extractor.hash.Sha384
+com.semantalytics.stardog.kibble.bites.extractor.hash.Sha512

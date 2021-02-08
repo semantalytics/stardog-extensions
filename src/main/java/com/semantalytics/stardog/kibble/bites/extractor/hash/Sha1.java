@@ -1,4 +1,4 @@
-package com.semantalytics.stardog.extractor.hash;
+package com.semantalytics.stardog.kibble.bites.extractor.hash;
 
 import com.complexible.common.rdf.StatementSource;
 import com.complexible.common.rdf.StatementSources;
