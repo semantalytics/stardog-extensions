@@ -1,4 +1,4 @@
-package com.semantalytics.stardog.kibble.string.escape;
+package com.semantalytics.stardog.kibble.function;
 
 import com.complexible.common.protocols.server.Server;
 import com.complexible.common.protocols.server.ServerException;
@@ -9,6 +9,7 @@ import com.complexible.stardog.api.Connection;
 import com.complexible.stardog.api.admin.AdminConnection;
 import com.complexible.stardog.api.admin.AdminConnectionConfiguration;
 import com.google.common.io.Files;
+import com.semantalytics.stardog.kibble.array.*;
 import junit.framework.TestCase;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -22,39 +23,30 @@ import java.net.InetSocketAddress;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-        TestEcmaScript.class,
-        TestHtml3.class,
-        TestHtml4.class,
-        TestJava.class,
-        TestJson.class,
-        TestXml.class,
-        TestXsi.class,
-        TestCsv.class,
-        TestEcmaScript.class,
-        TestHtml3.class,
-        TestHtml4.class,
-        TestJava.class,
-        TestJson.class,
-        TestXml.class,
-        TestXsi.class,
+        TestCall.class,
+        TestCompose.class,
+        TestMemoize.class,
+        TestMap.class
 })
 
-public class EscapeTestSuite extends TestCase {
+public class FunctionTestSuite extends TestCase {
 
-    private static Stardog STARDOG;
-    private static Server SERVER;
-    public static final String DB = "test";
-    public static final int TEST_PORT = 5888;
-    protected Connection connection;
+	private static Stardog STARDOG;
+	private static Server SERVER;
+	public static final String DB = "test";
+	public static final int TEST_PORT = 5888;
+	protected Connection connection;
     private static final String STARDOG_LICENSE_PATH = System.getenv("STARDOG_LICENSE_PATH");
 
     @BeforeClass
     public static void beforeClass() throws IOException, ServerException {
+
         try{
             AdminConnectionConfiguration.toEmbeddedServer()
                     .credentials("admin", "admin")
                     .connect();
         } catch(StardogException e) {
+
 
             final File TEST_HOME;
 
@@ -86,7 +78,7 @@ public class EscapeTestSuite extends TestCase {
         if (SERVER != null) {
             SERVER.stop();
         }
-        if(STARDOG != null) {
+        if (STARDOG != null) {
             STARDOG.shutdown();
         }
     }

@@ -127,6 +127,7 @@ com.semantalytics.stardog.kibble.string.Length
 com.semantalytics.stardog.kibble.string.LowerCase
 com.semantalytics.stardog.kibble.string.Mid
 com.semantalytics.stardog.kibble.string.NormalizeSpace
+com.semantalytics.stardog.kibble.string.NGram
 com.semantalytics.stardog.kibble.string.OrdinalIndexOf
 com.semantalytics.stardog.kibble.string.Overlay
 com.semantalytics.stardog.kibble.string.PadEnd
@@ -269,6 +270,7 @@ com.semantalytics.stardog.kibble.array.IsUniformLiteral
 com.semantalytics.stardog.kibble.array.IsEmpty
 com.semantalytics.stardog.kibble.array.IndexOfLast
 com.semantalytics.stardog.kibble.array.NDims
+com.semantalytics.stardog.kibble.array.NGram
 com.semantalytics.stardog.kibble.array.Of
 com.semantalytics.stardog.kibble.array.Offset
 com.semantalytics.stardog.kibble.array.Ordinal
@@ -285,3 +287,11 @@ com.semantalytics.stardog.kibble.array.Swap
 com.semantalytics.stardog.kibble.array.ToString
 com.semantalytics.stardog.kibble.array.Zip
 com.semantalytics.stardog.kibble.array.ZipWithIndex
+com.semantalytics.stardog.kibble.function.Call
+com.semantalytics.stardog.kibble.function.Memoize
+com.semantalytics.stardog.kibble.function.Compose
+com.semantalytics.stardog.kibble.function.Map
+com.semantalytics.stardog.kibble.function.Reduce
+com.semantalytics.stardog.kibble.function.Filter
+
+

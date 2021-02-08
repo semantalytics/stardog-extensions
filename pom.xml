@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.semantalytics.stardog</groupId>
-    <artifactId>functions</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <artifactId>extensions</artifactId>
+    <version>2021.02.08.1</version>
 
     <developers>
         <developer>
@@ -46,7 +46,7 @@
 
     <properties>
         <stardog.major.version>7</stardog.major.version>
-        <stardog.version>${stardog.major.version}.3.2</stardog.version>
+        <stardog.version>${stardog.major.version}.5.0</stardog.version>
         <junit.version>4.12</junit.version>
         <slf4j.version>1.7.21</slf4j.version>
         <jansi.version>1.16</jansi.version>
@@ -150,7 +150,7 @@
         <repository>
             <id>stardog-maven-repo</id>
             <name>Stardog Maven Repo</name>
-            <url>http://maven.stardog.com</url>
+            <url>https://maven.stardog.com</url>
         </repository>
     </repositories>
 
@@ -236,21 +236,12 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.12.4</version>
                 <configuration>
-                    <argLine>-Djava.library.path=/opt/stardog/latest/lib</argLine>
+                    <argLine>-Djava.library.path=${env.STARDOG}/lib</argLine>
                     <excludes>
                         <exclude>**/Test*.java</exclude>
                     </excludes>
                     <includes>
-                        <include>**/ConsoleTestSuite.java</include>
-                        <include>**/GeohashTestSuite.java</include>
-                        <include>**/EmojiTestSuite.java</include>
-                        <include>**/StringMetricTestSuite.java</include>
-                        <include>**/StringTestSuite.java</include>
-                        <include>**/PhoneticTestSuite.java</include>
-                        <include>**/EscapeTestSuite.java</include>
-                        <include>**/UnescapeTestSuite.java</include>
-                        <include>**/ArrayTestSuite.java</include>
-                        <include>**/HashExtractorTestSuite.java</include>
+                        <include>**/StardogExtensionsTestSuite.java</include>
                     </includes>
                 </configuration>
             </plugin>
