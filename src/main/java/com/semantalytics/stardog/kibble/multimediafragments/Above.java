@@ -3,7 +3,6 @@ package com.semantalytics.stardog.kibble.multimediafragments;
 import com.complexible.stardog.plan.filter.ExpressionVisitor;
 import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.AbstractFunction;
-import com.complexible.stardog.plan.filter.functions.FunctionRegistry;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
 import com.github.tkurz.media.fragments.ParseException;
 import com.github.tkurz.media.fragments.exceptions.MediaFragmentURISyntaxException;

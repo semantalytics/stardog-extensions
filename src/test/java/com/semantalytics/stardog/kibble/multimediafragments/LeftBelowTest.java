@@ -31,14 +31,14 @@ public class LeftBelowTest extends AbstractStardogTest {
         connection.commit();
 
         String query =
-                "PREFIX ma: <http://www.w3.org/ns/ma-ont#>" +
-                        "PREFIX mm: <" + Constants.NAMESPACE + ">" +
-                        "SELECT ?t1 ?t2 (mm:leftBelow(?f1,?f2) AS ?test) WHERE {" +
-                        "   ?f1 rdfs:label \"1_3\";" +
-                        "       rdfs:label ?t1." +
-                        "   ?f2 a ma:MediaFragment;" +
-                        "       rdfs:label ?t2." +
-                        "} ORDER BY ?t2";
+                    " PREFIX ma: <http://www.w3.org/ns/ma-ont#>" +
+                    " PREFIX mm: <" + Constants.NAMESPACE + ">" +
+                    " SELECT ?t1 ?t2 (mm:leftBelow(?f1,?f2) AS ?test) WHERE {" +
+                    "   ?f1 rdfs:label \"1_3\";" +
+                    "       rdfs:label ?t1." +
+                    "   ?f2 a ma:MediaFragment;" +
+                    "       rdfs:label ?t2." +
+                    "} ORDER BY ?t2";
         List<BindingSet> list;
         try (final SelectQueryResult aResult = connection.select(query).execute()) {
 
