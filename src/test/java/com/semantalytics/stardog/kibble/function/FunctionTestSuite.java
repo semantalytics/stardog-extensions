@@ -1,4 +1,4 @@
-package com.semantalytics.stardog.kibble.array;
+package com.semantalytics.stardog.kibble.function;
 
 import com.complexible.common.protocols.server.Server;
 import com.complexible.common.protocols.server.ServerException;
@@ -9,6 +9,7 @@ import com.complexible.stardog.api.Connection;
 import com.complexible.stardog.api.admin.AdminConnection;
 import com.complexible.stardog.api.admin.AdminConnectionConfiguration;
 import com.google.common.io.Files;
+import com.semantalytics.stardog.kibble.array.*;
 import junit.framework.TestCase;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -22,40 +23,13 @@ import java.net.InetSocketAddress;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-    TestAppend.class,
-    TestCartesianProduct.class,
-    TestContains.class,
-    TestDistinct.class,
-    TestUniformDatatype.class,
-    TestEquals.class,
-    TestFill.class,
-    TestIndexOfFirst.class,
-    TestFlatten.class,
-    TestIndex.class,
-    TestIndexOf.class,
-    TestIsUniformLiteral.class,
-    TestIsUniformType.class,
-    TestIndexOfLast.class,
-    TestNDims.class,
-    TestNGram.class,
-    TestOf.class,
-    TestOffset.class,
-    TestOrdinal.class,
-    TestPartition.class,
-    TestRemoveAll.class,
-    TestRemoveLast.class,
-    TestReverse.class,
-    TestShift.class,
-    TestShuffle.class,
-    TestSize.class,
-    TestSub.class,
-    TestSwap.class,
-    TestToString.class,
-    TestZip.class,
-    TestZipWithIndex.class,
+        TestCall.class,
+        TestCompose.class,
+        TestMemoize.class,
+        TestMap.class
 })
 
-public class ArrayTestSuite extends TestCase {
+public class FunctionTestSuite extends TestCase {
 
 	private static Stardog STARDOG;
 	private static Server SERVER;

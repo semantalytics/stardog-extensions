@@ -6,7 +6,7 @@
 
     <groupId>com.semantalytics.stardog</groupId>
     <artifactId>extensions</artifactId>
-    <version>2020.07.28.1</version>
+    <version>2021.02.08.1</version>
 
     <developers>
         <developer>
@@ -49,6 +49,7 @@
         <commons-validator.version>1.6</commons-validator.version>
         <commons-net.version>3.6</commons-net.version>
         <stardog.version>${stardog.major.version}.3.2</stardog.version>
+        <stardog.version>${stardog.major.version}.5.0</stardog.version>
         <junit.version>4.12</junit.version>
         <slf4j.version>1.7.21</slf4j.version>
         <jansi.version>1.16</jansi.version>
@@ -162,7 +163,7 @@
         <repository>
             <id>stardog-maven-repo</id>
             <name>Stardog Maven Repo</name>
-            <url>http://maven.stardog.com</url>
+            <url>https://maven.stardog.com</url>
         </repository>
     </repositories>
 
