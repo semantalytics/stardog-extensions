@@ -47,6 +47,6 @@ public final class ReplaceAll extends AbstractFunction implements StringFunction
 
     @Override
     public String toString() {
-        return StringVocabulary.replaceAll.name();
+        return StringVocabulary.replaceAll.toString();
     }
 }

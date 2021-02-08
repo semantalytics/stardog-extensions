@@ -43,6 +43,6 @@ public final class IsAsciiPrintable extends AbstractFunction implements StringFu
 
     @Override
     public String toString() {
-        return StringVocabulary.isAsciiPrintable.name();
+        return StringVocabulary.isAsciiPrintable.toString();
     }
 }

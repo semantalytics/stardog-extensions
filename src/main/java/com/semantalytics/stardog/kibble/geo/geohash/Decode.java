@@ -36,7 +36,7 @@ import static com.stardog.stark.Values.literal;
 
 public final class Decode implements PropertyFunction {
 
-    private static final IRI FUNCTION_IRI = GeoHashVocabulary.decode.iri;
+    private static final IRI FUNCTION_IRI = GeoHashVocabulary.decode;
 
     /**
      * {@inheritDoc}
@@ -346,7 +346,7 @@ public final class Decode implements PropertyFunction {
                     return endOfData();
                 }
                 else {
-                    final List<Integer> aVars = Lists.newArrayListWithCapacity(2);
+                    final Set<Integer> aVars = Sets.newHashSetWithExpectedSize(2);
 
                     aVars.add(mNode.getLatitudeVar().getName());
                     aVars.add(mNode.getLongitudeVar().getName());

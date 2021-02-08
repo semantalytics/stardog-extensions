@@ -51,6 +51,6 @@ public final class PrependIfMissing extends AbstractFunction implements StringFu
 
     @Override
     public String toString() {
-        return StringVocabulary.prependIfMissing.name();
+        return StringVocabulary.prependIfMissing.toString();
     }
 }

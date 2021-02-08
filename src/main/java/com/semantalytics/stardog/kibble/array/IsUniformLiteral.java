@@ -89,7 +89,7 @@ public final class IsUniformLiteral extends AbstractExpression implements UserDe
 
     @Override
     public String toString() {
-        return ArrayVocabulary.isUniformLiteral.name();
+        return ArrayVocabulary.isUniformLiteral.toString();
     }
 }
 

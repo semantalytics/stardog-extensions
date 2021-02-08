@@ -45,6 +45,6 @@ public final class RemoveEndIgnoreCase extends AbstractFunction implements Strin
 
     @Override
     public String toString() {
-        return StringVocabulary.removeEndIgnoreCase.name();
+        return StringVocabulary.removeEndIgnoreCase.toString();
     }
 }

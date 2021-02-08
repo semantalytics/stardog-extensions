@@ -46,6 +46,6 @@ public final class IndexOfAny extends AbstractFunction implements StringFunction
 
     @Override
     public String toString() {
-        return StringVocabulary.indexOfAny.name();
+        return StringVocabulary.indexOfAny.toString();
     }
 }

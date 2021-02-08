@@ -19,7 +19,7 @@ public final class ColognePhonetic extends AbstractFunction implements StringFun
     }
 
     protected ColognePhonetic() {
-        super(1, PhoneticVocabulary.colognePhonetic.stringValue());
+        super(1, PhoneticVocabulary.colognePhonetic.toString());
     }
 
     private ColognePhonetic(final ColognePhonetic colognePhonetic) {
@@ -49,6 +49,6 @@ public final class ColognePhonetic extends AbstractFunction implements StringFun
 
     @Override
     public String toString() {
-        return PhoneticVocabulary.colognePhonetic.name();
+        return PhoneticVocabulary.colognePhonetic.toString();
     }
 }

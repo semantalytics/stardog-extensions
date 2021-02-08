@@ -18,7 +18,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class Italic extends AbstractFunction implements UserDefinedFunction {
 
     public Italic() {
-        super(Range.all(), ConsoleVocabulary.italic.stringValue());
+        super(Range.all(), ConsoleVocabulary.italic.toString());
     }
 
     public Italic(final Italic console) {
@@ -51,6 +51,6 @@ public class Italic extends AbstractFunction implements UserDefinedFunction {
 
     @Override
     public String toString() {
-        return ConsoleVocabulary.italic.name();
+        return ConsoleVocabulary.italic.toString();
     }
 }

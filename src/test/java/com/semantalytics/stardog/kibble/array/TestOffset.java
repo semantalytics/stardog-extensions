@@ -24,7 +24,7 @@ public class TestOffset extends AbstractStardogTest {
             final Optional<Literal> aPossibleLiteral = aResult.next().literal("result");
             assertThat(aPossibleLiteral).isPresent();
             assertThat(Literal.intValue(aPossibleLiteral.get())).isEqualTo(1);
-            assertThat(aPossibleLiteral.get().datatypeIRI()).isEqualTo(ArrayVocabulary.offsetDatatype.iri);
+            assertThat(aPossibleLiteral.get().datatypeIRI()).isEqualTo(ArrayVocabulary.offsetDatatype);
             assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
     }

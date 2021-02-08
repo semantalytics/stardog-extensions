@@ -46,6 +46,6 @@ public final class ReplaceOnceIgnoreCase extends AbstractFunction implements Str
 
     @Override
     public String toString() {
-        return StringVocabulary.replaceOnceIgnoreCase.name();
+        return StringVocabulary.replaceOnceIgnoreCase.toString();
     }
 }

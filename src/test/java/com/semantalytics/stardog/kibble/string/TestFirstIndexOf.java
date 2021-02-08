@@ -14,7 +14,7 @@ public class TestFirstIndexOf extends AbstractStardogTest {
     @Test
     public void testTwoArg() {
 
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:indexOf(\"Stardog\", \"dog\") AS ?result) }";
 
             try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -31,7 +31,7 @@ public class TestFirstIndexOf extends AbstractStardogTest {
     @Test
     public void testThreeArg() {
 
-        final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+        final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                 "select ?result where { bind(string:indexOf(\"Stardogdog\", \"dog\", 5) AS ?result) }";
 
         try (final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -48,7 +48,7 @@ public class TestFirstIndexOf extends AbstractStardogTest {
     @Test
     public void testTooFewArgs() {
 
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:indexOf(\"one\") as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -65,7 +65,7 @@ public class TestFirstIndexOf extends AbstractStardogTest {
     @Test
     public void testTooManyArgs() {
 
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:indexOf(\"one\", \"two\", \"three\", \"four\") as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -82,7 +82,7 @@ public class TestFirstIndexOf extends AbstractStardogTest {
     @Test
     public void testWrongTypeFirstArg() {
 
-        final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+        final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                 "select ?result where { bind(string:indexOf(1, \"two\") as ?result) }";
 
         try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -99,7 +99,7 @@ public class TestFirstIndexOf extends AbstractStardogTest {
     @Test
     public void testWrongTypeSecondArg() {
        
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:indexOf(\"one\", 2) as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -116,7 +116,7 @@ public class TestFirstIndexOf extends AbstractStardogTest {
     @Test
     public void testWrongTypeThirdArg() {
 
-        final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+        final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                 "select ?result where { bind(string:indexOf(\"one\", \"two\", \"three\") as ?result) }";
 
         try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {

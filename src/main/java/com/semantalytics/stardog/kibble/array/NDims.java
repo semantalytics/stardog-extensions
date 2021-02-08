@@ -77,7 +77,7 @@ public final class NDims extends AbstractExpression implements UserDefinedFuncti
 
     @Override
     public String toString() {
-        return ArrayVocabulary.nDims.name();
+        return ArrayVocabulary.nDims.toString();
     }
 }
 

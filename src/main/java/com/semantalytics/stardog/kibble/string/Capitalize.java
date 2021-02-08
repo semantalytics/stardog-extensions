@@ -44,6 +44,6 @@ public final class Capitalize extends AbstractFunction implements StringFunction
 
     @Override
     public String toString() {
-        return StringVocabulary.capitalize.name();
+        return StringVocabulary.capitalize.toString();
     }
 }

@@ -48,6 +48,6 @@ public final class IsAllEmpty extends AbstractFunction implements StringFunction
 
     @Override
     public String toString() {
-        return StringVocabulary.isAllEmpty.name();
+        return StringVocabulary.isAllEmpty.toString();
     }
 }

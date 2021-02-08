@@ -35,7 +35,7 @@ import static com.stardog.stark.Values.literal;
 
 public final class Neighbors implements PropertyFunction {
 
-    private static final IRI FUNCTION_IRI = GeoHashVocabulary.neighbors.iri;
+    private static final IRI FUNCTION_IRI = GeoHashVocabulary.neighbors;
 
     /**
      * {@inheritDoc}
@@ -358,7 +358,7 @@ public final class Neighbors implements PropertyFunction {
                     return endOfData();
                 }
                 else {
-                    final List<Integer> aVars = Lists.newArrayListWithCapacity(2);
+                    final Set<Integer> aVars = Sets.newHashSetWithExpectedSize(2);
 
                     aVars.add(mNode.getTop().getName());
                     aVars.add(mNode.getBottom().getName());

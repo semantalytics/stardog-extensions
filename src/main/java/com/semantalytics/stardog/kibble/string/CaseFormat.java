@@ -71,7 +71,7 @@ public final class CaseFormat extends AbstractFunction implements StringFunction
 
     @Override
     public String toString() {
-        return StringVocabulary.caseFormat.name();
+        return StringVocabulary.caseFormat.toString();
     }
 
     public Optional<com.google.common.base.CaseFormat> getFromFormatType(final String formatString) {

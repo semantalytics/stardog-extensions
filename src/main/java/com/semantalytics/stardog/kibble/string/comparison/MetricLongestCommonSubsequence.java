@@ -14,7 +14,7 @@ public class MetricLongestCommonSubsequence extends AbstractFunction implements 
     private static final MetricLCS metricLCS = new MetricLCS();
 
     protected MetricLongestCommonSubsequence() {
-        super(2, StringMetricVocabulary.metricLongestCommonSubsequence.stringValue());
+        super(2, StringMetricVocabulary.metricLongestCommonSubsequence.toString());
     }
 
     private MetricLongestCommonSubsequence(final MetricLongestCommonSubsequence metricLongestCommonSubsequence) {
@@ -44,7 +44,7 @@ public class MetricLongestCommonSubsequence extends AbstractFunction implements 
 
     @Override
     public String toString() {
-        return StringMetricVocabulary.metricLongestCommonSubsequence.name();
+        return StringMetricVocabulary.metricLongestCommonSubsequence.toString();
     }
 }
 

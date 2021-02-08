@@ -48,6 +48,6 @@ public final class Overlay extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.overlay.name();
+        return StringVocabulary.overlay.toString();
     }
 }

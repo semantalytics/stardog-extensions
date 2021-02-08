@@ -44,6 +44,6 @@ public final class LowerCase extends AbstractFunction implements StringFunction 
 
     @Override
     public String toString() {
-        return StringVocabulary.lowerCase.name();
+        return StringVocabulary.lowerCase.toString();
     }
 }

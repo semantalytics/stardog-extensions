@@ -14,7 +14,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class ForegroundDefault extends AbstractFunction implements UserDefinedFunction {
 
     public ForegroundDefault() {
-        super(0, ConsoleVocabulary.foregroundDefault.stringValue());
+        super(0, ConsoleVocabulary.foregroundDefault.toString());
     }
 
     public ForegroundDefault(final ForegroundDefault foreground) {
@@ -40,6 +40,6 @@ public class ForegroundDefault extends AbstractFunction implements UserDefinedFu
 
     @Override
     public String toString() {
-        return ConsoleVocabulary.foregroundDefault.name();
+        return ConsoleVocabulary.foregroundDefault.toString();
     }
 }

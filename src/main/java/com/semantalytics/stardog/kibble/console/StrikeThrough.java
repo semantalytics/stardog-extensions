@@ -18,7 +18,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class StrikeThrough extends AbstractFunction implements UserDefinedFunction {
 
     public StrikeThrough() {
-        super(Range.all(), ConsoleVocabulary.strikeThrough.stringValue());
+        super(Range.all(), ConsoleVocabulary.strikeThrough.toString());
     }
 
     public StrikeThrough(final StrikeThrough console) {
@@ -50,6 +50,6 @@ public class StrikeThrough extends AbstractFunction implements UserDefinedFuncti
 
     @Override
     public String toString() {
-        return ConsoleVocabulary.strikeThrough.name();
+        return ConsoleVocabulary.strikeThrough.toString();
     }
 }

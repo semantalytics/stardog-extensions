@@ -18,7 +18,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class BlinkFast extends AbstractFunction implements UserDefinedFunction {
 
     public BlinkFast() {
-        super(Range.all(), ConsoleVocabulary.blinkFast.stringValue());
+        super(Range.all(), ConsoleVocabulary.blinkFast.toString());
     }
 
     public BlinkFast(final BlinkFast console) {
@@ -50,6 +50,6 @@ public class BlinkFast extends AbstractFunction implements UserDefinedFunction {
 
     @Override
     public String toString() {
-        return ConsoleVocabulary.blinkFast.name();
+        return ConsoleVocabulary.blinkFast.toString();
     }
 }

@@ -17,7 +17,7 @@ public final class NeedlemanWunch extends AbstractFunction implements StringFunc
     private static org.simmetrics.metrics.NeedlemanWunch needlemanWunch;
 
     protected NeedlemanWunch() {
-        super(Range.closed(2, 5), StringMetricVocabulary.needlemanWunch.stringValue());
+        super(Range.closed(2, 5), StringMetricVocabulary.needlemanWunch.toString());
     }
 
     private NeedlemanWunch(final NeedlemanWunch needlemanWunch) {
@@ -77,6 +77,6 @@ public final class NeedlemanWunch extends AbstractFunction implements StringFunc
 
     @Override
     public String toString() {
-        return StringMetricVocabulary.needlemanWunch.name();
+        return StringMetricVocabulary.needlemanWunch.toString();
     }
 }

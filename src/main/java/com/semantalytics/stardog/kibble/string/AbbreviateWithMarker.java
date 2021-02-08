@@ -62,6 +62,6 @@ public final class AbbreviateWithMarker extends AbstractFunction implements Stri
 
     @Override
     public String toString() {
-        return StringVocabulary.abbreviateWithMarker.name();
+        return StringVocabulary.abbreviateWithMarker.toString();
     }
 }

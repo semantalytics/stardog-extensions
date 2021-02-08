@@ -45,6 +45,6 @@ public final class RemoveEnd extends AbstractFunction implements StringFunction 
 
     @Override
     public String toString() {
-        return StringVocabulary.removeEnd.name();
+        return StringVocabulary.removeEnd.toString();
     }
 }

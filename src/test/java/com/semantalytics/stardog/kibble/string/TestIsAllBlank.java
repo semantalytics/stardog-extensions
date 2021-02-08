@@ -14,7 +14,7 @@ public class TestIsAllBlank extends AbstractStardogTest {
     @Test
     public void testTrue() {
        
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:isAllBlank(\"     \") AS ?result) }";
 
 
@@ -32,7 +32,7 @@ public class TestIsAllBlank extends AbstractStardogTest {
     @Test
     public void testFalse() {
 
-        final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+        final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                 "select ?result where { bind(string:isAllBlank(\"        Stardog\") AS ?result) }";
 
 
@@ -51,7 +51,7 @@ public class TestIsAllBlank extends AbstractStardogTest {
     public void testEmptyString() {
        
 
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:isAllBlank(\"\") as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -68,7 +68,7 @@ public class TestIsAllBlank extends AbstractStardogTest {
     @Test
     public void testTooFewArgs() {
 
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:isAllBlank() as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -85,7 +85,7 @@ public class TestIsAllBlank extends AbstractStardogTest {
     @Test
     public void testTooManyArgs() {
 
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:isAllBlank(\"one\", \"two\") as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
@@ -102,7 +102,7 @@ public class TestIsAllBlank extends AbstractStardogTest {
     @Test
     public void testWrongTypeFirstArg() {
        
-            final String aQuery = "prefix string: <" + StringVocabulary.NAMESPACE + "> " +
+            final String aQuery = "prefix string: <" + StringVocabulary.NS + "> " +
                     "select ?result where { bind(string:isAllBlank(1) as ?result) }";
 
             try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {

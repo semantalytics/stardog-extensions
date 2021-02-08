@@ -50,6 +50,6 @@ public final class RemoveIgnoreCase extends AbstractFunction implements StringFu
 
     @Override
     public String toString() {
-        return StringVocabulary.removeIgnoreCase.name();
+        return StringVocabulary.removeIgnoreCase.toString();
     }
 }

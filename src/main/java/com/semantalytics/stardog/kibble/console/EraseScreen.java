@@ -13,7 +13,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class EraseScreen extends AbstractFunction implements UserDefinedFunction {
 
     public EraseScreen() {
-        super(Range.all(), ConsoleVocabulary.eraseScreen.stringValue());
+        super(Range.all(), ConsoleVocabulary.eraseScreen.toString());
     }
 
     public EraseScreen(final EraseScreen eraseScreen) {
@@ -37,6 +37,6 @@ public class EraseScreen extends AbstractFunction implements UserDefinedFunction
 
     @Override
     public String toString() {
-        return ConsoleVocabulary.eraseScreen.name();
+        return ConsoleVocabulary.eraseScreen.toString();
     }
 }

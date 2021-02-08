@@ -13,7 +13,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class StrikeThroughOff extends AbstractFunction implements UserDefinedFunction {
 
     public StrikeThroughOff() {
-        super(0, ConsoleVocabulary.strikeThroughOff.stringValue());
+        super(0, ConsoleVocabulary.strikeThroughOff.toString());
     }
 
     public StrikeThroughOff(final StrikeThroughOff console) {
@@ -37,6 +37,6 @@ public class StrikeThroughOff extends AbstractFunction implements UserDefinedFun
 
     @Override
     public String toString() {
-        return ConsoleVocabulary.strikeThroughOff.name();
+        return ConsoleVocabulary.strikeThroughOff.toString();
     }
 }

@@ -13,7 +13,7 @@ import static org.apache.commons.text.StringEscapeUtils.unescapeXSI;
 public final class Xsi extends AbstractFunction implements StringFunction {
 
     protected Xsi() {
-        super(1, UnescapeVocabulary.xsi.stringValue());
+        super(1, UnescapeVocabulary.xsi.toString());
     }
 
     private Xsi(final Xsi xsi) {
@@ -44,6 +44,6 @@ public final class Xsi extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return UnescapeVocabulary.csv.name();
+        return UnescapeVocabulary.csv.toString();
     }
 }

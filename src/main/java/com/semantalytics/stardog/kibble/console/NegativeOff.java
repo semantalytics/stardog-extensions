@@ -13,7 +13,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class NegativeOff extends AbstractFunction implements UserDefinedFunction {
 
     public NegativeOff() {
-        super(0, ConsoleVocabulary.negativeOff.stringValue());
+        super(0, ConsoleVocabulary.negativeOff.toString());
     }
 
     public NegativeOff(final NegativeOff console) {
@@ -37,6 +37,6 @@ public class NegativeOff extends AbstractFunction implements UserDefinedFunction
 
     @Override
     public String toString() {
-        return ConsoleVocabulary.negativeOff.name();
+        return ConsoleVocabulary.negativeOff.toString();
     }
 }

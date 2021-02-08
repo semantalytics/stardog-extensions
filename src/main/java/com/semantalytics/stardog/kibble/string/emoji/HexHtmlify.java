@@ -13,7 +13,7 @@ import static emoji4j.EmojiUtils.*;
 public final class HexHtmlify extends AbstractFunction implements StringFunction {
 
     protected HexHtmlify() {
-        super(1, EmojiVocabulary.hexHtmlify.stringValue());
+        super(1, EmojiVocabulary.hexHtmlify.toString());
     }
 
     private HexHtmlify(final HexHtmlify hexHtmlify) {
@@ -44,6 +44,6 @@ public final class HexHtmlify extends AbstractFunction implements StringFunction
 
     @Override
     public String toString() {
-        return EmojiVocabulary.hexHtmlify.name();
+        return EmojiVocabulary.hexHtmlify.toString();
     }
 }

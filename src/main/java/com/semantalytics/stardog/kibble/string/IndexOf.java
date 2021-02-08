@@ -61,6 +61,6 @@ public class IndexOf extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.indexOf.name();
+        return StringVocabulary.indexOf.toString();
     }
 }

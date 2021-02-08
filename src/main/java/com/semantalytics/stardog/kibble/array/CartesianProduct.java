@@ -81,7 +81,7 @@ public final class CartesianProduct extends AbstractExpression implements UserDe
 
     @Override
     public String toString() {
-        return ArrayVocabulary.cartesianProduct.name();
+        return ArrayVocabulary.cartesianProduct.toString();
     }
 }
 

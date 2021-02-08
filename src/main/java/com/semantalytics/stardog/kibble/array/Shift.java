@@ -22,6 +22,7 @@ public final class Shift extends AbstractFunction implements StringFunction {
     @Override
     protected ValueOrError internalEvaluate(final Value... values) {
 
+        //TODO this should probably hava a single arg with a default shift of 1
         if (assertArrayLiteral(values[0]) && assertNumericLiteral(values[1])) {
             final long[] ids = ((ArrayLiteral) values[0]).getValues();
             final int offset = Literal.intValue((Literal) values[1]);
@@ -44,6 +45,6 @@ public final class Shift extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return ArrayVocabulary.shift.name();
+        return ArrayVocabulary.shift.toString();
     };
 }

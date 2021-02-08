@@ -13,9 +13,9 @@ import static org.apache.commons.text.StringEscapeUtils.unescapeXml;
 public final class Xml extends AbstractFunction implements StringFunction {
 
     protected Xml() {
-        super(1, new String[] {UnescapeVocabulary.xml10.stringValue(),
-                                             UnescapeVocabulary.xml11.stringValue(),
-                                             UnescapeVocabulary.xml.stringValue()});
+        super(1, new String[] {UnescapeVocabulary.xml10.toString(),
+                                             UnescapeVocabulary.xml11.toString(),
+                                             UnescapeVocabulary.xml.toString()});
     }
 
     private Xml(final Xml xml) {
@@ -46,6 +46,6 @@ public final class Xml extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return UnescapeVocabulary.csv.name();
+        return UnescapeVocabulary.csv.toString();
     }
 }

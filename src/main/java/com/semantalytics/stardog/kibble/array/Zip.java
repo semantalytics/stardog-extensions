@@ -84,7 +84,7 @@ public final class Zip extends AbstractExpression implements UserDefinedFunction
 
     @Override
     public String toString() {
-        return ArrayVocabulary.zip.name();
+        return ArrayVocabulary.zip.toString();
     }
 }
 

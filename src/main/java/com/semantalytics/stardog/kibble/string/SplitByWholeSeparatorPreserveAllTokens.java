@@ -94,6 +94,6 @@ public final class SplitByWholeSeparatorPreserveAllTokens extends AbstractExpres
 
     @Override
     public String toString() {
-        return StringVocabulary.splitByWholeSeparatorPreserveAllTokens.name();
+        return StringVocabulary.splitByWholeSeparatorPreserveAllTokens.toString();
     }
 }

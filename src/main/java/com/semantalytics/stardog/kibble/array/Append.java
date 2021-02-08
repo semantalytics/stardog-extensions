@@ -76,7 +76,7 @@ public final class Append extends AbstractExpression implements UserDefinedFunct
 
     @Override
     public String toString() {
-        return ArrayVocabulary.append.name();
+        return ArrayVocabulary.append.toString();
     }
 }
 

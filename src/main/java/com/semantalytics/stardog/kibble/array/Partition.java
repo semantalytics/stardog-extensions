@@ -76,7 +76,7 @@ public final class Partition extends AbstractExpression implements UserDefinedFu
 
     @Override
     public String toString() {
-        return ArrayVocabulary.partition.name();
+        return ArrayVocabulary.partition.toString();
     }
 }
 

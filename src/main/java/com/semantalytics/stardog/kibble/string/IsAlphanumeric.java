@@ -44,6 +44,6 @@ public final class IsAlphanumeric extends AbstractFunction implements StringFunc
 
     @Override
     public String toString() {
-        return StringVocabulary.isAlphanumeric.name();
+        return StringVocabulary.isAlphanumeric.toString();
     }
 }

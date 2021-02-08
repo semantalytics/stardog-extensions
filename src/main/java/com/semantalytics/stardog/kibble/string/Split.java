@@ -103,6 +103,6 @@ public final class Split extends AbstractExpression implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.split.name();
+        return StringVocabulary.split.toString();
     }
 }

@@ -83,7 +83,7 @@ public final class Flatten extends AbstractExpression implements UserDefinedFunc
 
     @Override
     public String toString() {
-        return ArrayVocabulary.flatten.name();
+        return ArrayVocabulary.flatten.toString();
     }
 }
 

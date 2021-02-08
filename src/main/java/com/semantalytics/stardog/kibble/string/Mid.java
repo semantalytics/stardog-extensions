@@ -46,6 +46,6 @@ public final class Mid extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.mid.name();
+        return StringVocabulary.mid.toString();
     }
 }

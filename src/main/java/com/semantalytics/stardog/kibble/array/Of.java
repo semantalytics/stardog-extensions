@@ -58,7 +58,7 @@ public final class Of extends AbstractExpression implements UserDefinedFunction 
 
     @Override
     public String toString() {
-        return ArrayVocabulary.of.name();
+        return ArrayVocabulary.of.toString();
     }
 }
 

@@ -45,6 +45,6 @@ public final class Difference extends AbstractFunction implements StringFunction
 
     @Override
     public String toString() {
-        return StringVocabulary.difference.name();
+        return StringVocabulary.difference.toString();
     }
 }

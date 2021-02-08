@@ -46,6 +46,6 @@ public final class ReplacePattern extends AbstractFunction implements StringFunc
 
     @Override
     public String toString() {
-        return StringVocabulary.replacePattern.name();
+        return StringVocabulary.replacePattern.toString();
     }
 }

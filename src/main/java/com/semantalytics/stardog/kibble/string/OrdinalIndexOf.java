@@ -46,6 +46,6 @@ public final class OrdinalIndexOf extends AbstractFunction implements StringFunc
 
     @Override
     public String toString() {
-        return StringVocabulary.ordinalIndexOf.name();
+        return StringVocabulary.ordinalIndexOf.toString();
     }
 }

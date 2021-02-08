@@ -13,7 +13,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class EraseLine extends AbstractFunction implements UserDefinedFunction {
 
     public EraseLine() {
-        super(Range.all(), ConsoleVocabulary.eraseLine.stringValue());
+        super(Range.all(), ConsoleVocabulary.eraseLine.toString());
     }
 
     public EraseLine(final EraseLine eraseLine) {
@@ -37,6 +37,6 @@ public class EraseLine extends AbstractFunction implements UserDefinedFunction {
 
     @Override
     public String toString() {
-        return ConsoleVocabulary.eraseLine.name();
+        return ConsoleVocabulary.eraseLine.toString();
     }
 }

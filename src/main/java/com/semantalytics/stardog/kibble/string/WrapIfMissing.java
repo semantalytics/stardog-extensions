@@ -50,6 +50,6 @@ public final class WrapIfMissing extends AbstractFunction implements StringFunct
 
     @Override
     public String toString() {
-        return StringVocabulary.wrapIfMissing.name();
+        return StringVocabulary.wrapIfMissing.toString();
     }
 }

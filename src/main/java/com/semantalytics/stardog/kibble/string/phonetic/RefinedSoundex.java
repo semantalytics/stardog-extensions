@@ -19,7 +19,7 @@ public class RefinedSoundex extends AbstractFunction implements StringFunction {
     }
 
     protected RefinedSoundex() {
-        super(1, PhoneticVocabulary.refinedSoundex.stringValue());
+        super(1, PhoneticVocabulary.refinedSoundex.toString());
     }
 
     private RefinedSoundex(RefinedSoundex doubleMetaphone) {
@@ -51,6 +51,6 @@ public class RefinedSoundex extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return PhoneticVocabulary.refinedSoundex.name();
+        return PhoneticVocabulary.refinedSoundex.toString();
     }
 }

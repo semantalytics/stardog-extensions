@@ -68,7 +68,7 @@ public final class RemoveFirst extends AbstractExpression implements UserDefined
 
     @Override
     public String toString() {
-        return ArrayVocabulary.removeFirst.name();
+        return ArrayVocabulary.removeFirst.toString();
     }
 }
 

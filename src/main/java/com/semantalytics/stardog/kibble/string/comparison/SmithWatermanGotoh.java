@@ -17,7 +17,7 @@ public final class SmithWatermanGotoh extends AbstractFunction implements String
     private org.simmetrics.metrics.SmithWatermanGotoh smithWatermanGotoh;
 
     protected SmithWatermanGotoh() {
-        super(Range.closed(2, 5), StringMetricVocabulary.smithWatermanGotoh.stringValue());
+        super(Range.closed(2, 5), StringMetricVocabulary.smithWatermanGotoh.toString());
     }
 
     private SmithWatermanGotoh(final SmithWatermanGotoh smithWatermanGotoh) {
@@ -81,6 +81,6 @@ public final class SmithWatermanGotoh extends AbstractFunction implements String
 
     @Override
     public String toString() {
-        return StringMetricVocabulary.smithWatermanGotoh.name();
+        return StringMetricVocabulary.smithWatermanGotoh.toString();
     }
 }

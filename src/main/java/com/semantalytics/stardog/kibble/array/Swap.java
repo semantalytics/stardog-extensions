@@ -29,17 +29,17 @@ public final class Swap extends AbstractFunction implements StringFunction {
             final int firstIndex;
             final int secondIndex;
 
-            if (((Literal)values[1]).datatypeIRI() == ArrayVocabulary.ordinalDatatype.iri) {
+            if (((Literal)values[1]).datatypeIRI() == ArrayVocabulary.ordinalDatatype) {
                 firstIndex = Integer.parseInt(((Literal)values[1]).label()) - 1;
-            } else if (((Literal)values[1]).datatypeIRI() == ArrayVocabulary.offsetDatatype.iri) {
+            } else if (((Literal)values[1]).datatypeIRI() == ArrayVocabulary.offsetDatatype) {
                 firstIndex = Integer.parseInt(((Literal)values[1]).label());
             } else {
                 return ValueOrError.Error;
             }
 
-            if (((Literal)values[2]).datatypeIRI() == ArrayVocabulary.ordinalDatatype.iri) {
+            if (((Literal)values[2]).datatypeIRI() == ArrayVocabulary.ordinalDatatype) {
                 secondIndex = Integer.parseInt(((Literal)values[2]).label()) - 2;
-            } else if (((Literal)values[2]).datatypeIRI() == ArrayVocabulary.offsetDatatype.iri) {
+            } else if (((Literal)values[2]).datatypeIRI() == ArrayVocabulary.offsetDatatype) {
                 secondIndex = Integer.parseInt(((Literal)values[2]).label());
             } else {
                 return ValueOrError.Error;
@@ -68,6 +68,6 @@ public final class Swap extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return ArrayVocabulary.swap.name();
+        return ArrayVocabulary.swap.toString();
     }
 }

@@ -13,7 +13,7 @@ import static com.stardog.stark.Values.literal;
 public final class Latitude extends AbstractFunction implements UserDefinedFunction {
 
     protected Latitude() {
-        super(1, GeoHashVocabulary.latitude.iri.toString());
+        super(1, GeoHashVocabulary.latitude.toString());
     }
 
     private Latitude(final Latitude latitude) {
@@ -44,7 +44,7 @@ public final class Latitude extends AbstractFunction implements UserDefinedFunct
 
     @Override
     public String toString() {
-        return GeoHashVocabulary.latitude.name();
+        return GeoHashVocabulary.latitude.toString();
     }
 
 }

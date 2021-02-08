@@ -45,6 +45,6 @@ public final class Repeat extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return StringVocabulary.repeat.name();
+        return StringVocabulary.repeat.toString();
     }
 }

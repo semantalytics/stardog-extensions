@@ -80,7 +80,7 @@ public final class ToString extends AbstractExpression implements UserDefinedFun
 
     @Override
     public String toString() {
-        return ArrayVocabulary.toString.name();
+        return ArrayVocabulary.toString.toString();
     }
 }
 

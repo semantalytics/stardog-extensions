@@ -13,7 +13,7 @@ import static emoji4j.EmojiUtils.*;
 public final class ShortCodify extends AbstractFunction implements StringFunction {
 
     protected ShortCodify() {
-        super(1, EmojiVocabulary.shortCodify.stringValue());
+        super(1, EmojiVocabulary.shortCodify.toString());
     }
 
     private ShortCodify(final ShortCodify shortCodify) {
@@ -44,6 +44,6 @@ public final class ShortCodify extends AbstractFunction implements StringFunctio
 
     @Override
     public String toString() {
-        return EmojiVocabulary.shortCodify.name();
+        return EmojiVocabulary.shortCodify.toString();
     }
 }

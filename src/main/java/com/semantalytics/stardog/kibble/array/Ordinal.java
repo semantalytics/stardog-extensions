@@ -28,7 +28,7 @@ public final class Ordinal extends AbstractFunction implements StringFunction {
 
             int index = Literal.intValue((Literal) values[0]);
 
-            return ValueOrError.General.of(literal(String.valueOf(index), ArrayVocabulary.ordinalDatatype.iri));
+            return ValueOrError.General.of(literal(String.valueOf(index), ArrayVocabulary.ordinalDatatype));
 
         } else {
             return ValueOrError.Error;
@@ -47,6 +47,6 @@ public final class Ordinal extends AbstractFunction implements StringFunction {
 
     @Override
     public String toString() {
-        return ArrayVocabulary.ordinal.name();
+        return ArrayVocabulary.ordinal.toString();
     }
 }

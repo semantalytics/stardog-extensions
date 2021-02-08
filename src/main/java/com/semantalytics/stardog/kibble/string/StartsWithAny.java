@@ -50,6 +50,6 @@ public final class StartsWithAny extends AbstractFunction implements StringFunct
 
     @Override
     public String toString() {
-        return StringVocabulary.startsWithAny.name();
+        return StringVocabulary.startsWithAny.toString();
     }
 }

@@ -45,6 +45,6 @@ public final class SubstringBefore extends AbstractFunction implements StringFun
 
     @Override
     public String toString() {
-        return StringVocabulary.substringBefore.name();
+        return StringVocabulary.substringBefore.toString();
     }
 }
