@@ -7,22 +7,19 @@ import com.complexible.stardog.api.Connection;
 import com.complexible.stardog.api.admin.AdminConnection;
 import com.complexible.stardog.api.admin.AdminConnectionConfiguration;
 import com.google.common.io.Files;
+import com.googlecode.junittoolbox.SuiteClasses;
+import com.googlecode.junittoolbox.WildcardPatternSuite;
 import junit.framework.TestCase;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import org.junit.runners.Suite.SuiteClasses;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
-@RunWith(Suite.class)
-@SuiteClasses({
-        TestIsValidIp6.class,
-        TestInternetNumberToAddress.class
-})
+@RunWith(WildcardPatternSuite.class)
+@SuiteClasses("Test*")
 
 public class InternetAddressTestSuite extends TestCase {
 
