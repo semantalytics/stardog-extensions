@@ -145,7 +145,7 @@
         <repository>
             <id>stardog-maven-repo</id>
             <name>Stardog Maven Repo</name>
-            <url>http://maven.stardog.com</url>
+            <url>https://maven.stardog.com</url>
         </repository>
     </repositories>
 

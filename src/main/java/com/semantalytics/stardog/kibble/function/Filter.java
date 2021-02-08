@@ -15,31 +15,13 @@ import com.stardog.stark.Values;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static com.complexible.stardog.plan.filter.functions.AbstractFunction.*;
 import static java.util.stream.Collectors.toList;
 
 public final class Filter extends AbstractExpression implements UserDefinedFunction {
-
-
-    FunctionRegistry functionRegistry = new FunctionRegistry() {
-
-        @Override
-        public Iterator<FunctionDefinition> iterator() {
-            return iterator();
-        }
-
-        @Override
-        public FunctionDefinition get(String s) {
-            return get(s);
-        }
-
-        public FunctionRegistry getInstance() {
-            return Instance;
-        }
-
-    }.getInstance();
 
     protected Filter() {
         super(new Expression[0]);
@@ -51,7 +33,7 @@ public final class Filter extends AbstractExpression implements UserDefinedFunct
 
     @Override
     public String getName() {
-        return FunctionVocabulary.reduce.toString();
+        return FunctionVocabulary.filter.toString();
     }
 
     @Override
@@ -75,25 +57,49 @@ public final class Filter extends AbstractExpression implements UserDefinedFunct
         if(getArgs().size() == 2) {
             final ValueOrError firstArgValueOrError = getFirstArg().evaluate(valueSolution);
             if(!firstArgValueOrError.isError()) {
+                final String functionIri;
+
+                if (assertLiteral(firstArgValueOrError.value())) {
+                    functionIri = ((Literal) firstArgValueOrError.value()).label();
+                } else if (firstArgValueOrError.value() instanceof IRI) {
+                    functionIri = firstArgValueOrError.toString();
+                } else {
+                    return ValueOrError.Error;
+                }
+
                 final ValueOrError secondArgValueOrError = getSecondArg().evaluate(valueSolution);
+
                 if (!secondArgValueOrError.isError() && assertArrayLiteral(secondArgValueOrError.value())) {
 
-                    final String functionIri;
+                    final ArrayLiteral elements = (ArrayLiteral) secondArgValueOrError.value();
+                    final MappingDictionary dictionary = valueSolution.getDictionary();
 
-                    if (assertLiteral(firstArgValueOrError.value())) {
-                        functionIri = ((Literal) firstArgValueOrError.value()).label();
-                    } else if (firstArgValueOrError instanceof IRI) {
-                        functionIri = firstArgValueOrError.toString();
-                    } else {
+                    try {
+                        List<ValueOrError> elementResults = Arrays.stream(elements.getValues())
+                                .mapToObj(dictionary::getValue)
+                                .map(v -> FunctionRegistry.Instance.get(functionIri, Lists.newArrayList(Expressions.constant(v)), null)
+                                        .evaluate(valueSolution))
+                                .collect(toList());
+
+                        if(elementResults.stream().anyMatch(ValueOrError::isError)) {
+                            return ValueOrError.Error;
+                        } else {
+                            long[] elementResultIds = IntStream.range(0, elements.getValues().length).filter(i -> Literal.booleanValue((Literal)elementResults.get(i).value())).mapToLong(i -> elements.getValues()[i]).toArray();
+                            return ValueOrError.General.of(new ArrayLiteral(elementResultIds));
+                        }
+                    } catch(UnsupportedOperationException e) {
+                        return ValueOrError.Error;
+                    }
+/*
+                    try {
+                        List<ValueOrError> valueOrErrors = Arrays.stream(((ArrayLiteral) secondArgValueOrError.value()).getValues()).mapToObj(dict::getValue).map(Expressions::constant).map(e -> FunctionRegistry.Instance.get(functionIri, Lists.newArrayList(e), null).evaluate(valueSolution)).collect(toList());
+
+                        return ValueOrError.General.of(new ArrayLiteral(valueOrErrors.stream().filter(v -> EvalUtil.ebv(v).isTrue()).map(ValueOrError::value).mapToLong(dict::add).toArray()));
+                    } catch(UnsupportedOperationException e) {
                         return ValueOrError.Error;
                     }
 
-                    MappingDictionary dict = valueSolution.getDictionary();
-
-                    List<ValueOrError> valueOrErrors = Arrays.stream(((ArrayLiteral) secondArgValueOrError.value()).getValues()).mapToObj(dict::getValue).map(Expressions::constant).map(e -> functionRegistry.get(functionIri, Lists.newArrayList(e), null).evaluate(valueSolution)).collect(toList());
-
-
-                    return ValueOrError.General.of(new ArrayLiteral(valueOrErrors.stream().filter(v -> EvalUtil.ebv(v).isTrue()).map(ValueOrError::value).mapToLong(dict::add).toArray()));
+ */
 
                 } else {
                     return ValueOrError.Error;

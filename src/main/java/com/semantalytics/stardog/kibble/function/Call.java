@@ -64,7 +64,7 @@ public final class Call extends AbstractExpression implements UserDefinedFunctio
                 } else if (firstArgValueOrError.value() instanceof IRI) {
                     functionIri = firstArgValueOrError.value().toString();
                 } else if (firstArgValueOrError.value() instanceof BNode) {
-                    functionIri = ((BNode)firstArgValueOrError).id();
+                    functionIri = ((BNode)firstArgValueOrError.value()).id();
                 } else {
                     return ValueOrError.Error;
                 }
@@ -73,16 +73,20 @@ public final class Call extends AbstractExpression implements UserDefinedFunctio
 
                 Expression function = null;
 
-                if(Compose.compositionMap.containsKey(functionIri)) {
-                    for(final String f : Compose.compositionMap.get(functionIri)) {
-                        if (function == null) {
-                            function = FunctionRegistry.Instance.get(f, functionArgs, null);
-                        } else {
-                            function = FunctionRegistry.Instance.get(f, singletonList(function), null);
+                try {
+                    if (Compose.compositionMap.containsKey(functionIri)) {
+                        for (final String f : Compose.compositionMap.get(functionIri)) {
+                            if (function == null) {
+                                function = FunctionRegistry.Instance.get(f, functionArgs, null);
+                            } else {
+                                function = FunctionRegistry.Instance.get(f, singletonList(function), null);
+                            }
                         }
+                    } else {
+                        function = FunctionRegistry.Instance.get(functionIri, functionArgs, null);
                     }
-                } else {
-                    function = FunctionRegistry.Instance.get(functionIri, functionArgs, null);
+                } catch(UnsupportedOperationException e) {
+                    return ValueOrError.Error;
                 }
 
                 return function.evaluate(valueSolution);

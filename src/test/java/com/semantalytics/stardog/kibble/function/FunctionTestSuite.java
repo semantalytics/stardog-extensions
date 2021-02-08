@@ -23,7 +23,10 @@ import java.net.InetSocketAddress;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-        TestCall.class
+        TestCall.class,
+        TestCompose.class,
+        TestMemoize.class,
+        TestMap.class
 })
 
 public class FunctionTestSuite extends TestCase {

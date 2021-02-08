@@ -10,6 +10,7 @@ import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
 import com.google.common.collect.Lists;
 import com.stardog.stark.IRI;
 import com.stardog.stark.Literal;
+import com.stardog.stark.Values;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Arrays;
@@ -22,25 +23,6 @@ import static com.complexible.stardog.plan.filter.functions.AbstractFunction.ass
 import static java.util.stream.Collectors.toList;
 
 public final class Reduce extends AbstractExpression implements UserDefinedFunction {
-
-
-    FunctionRegistry functionRegistry = new FunctionRegistry() {
-
-        @Override
-        public Iterator<FunctionDefinition> iterator() {
-            return iterator();
-        }
-
-        @Override
-        public FunctionDefinition get(String s) {
-            return get(s);
-        }
-
-        public FunctionRegistry getInstance() {
-            return Instance;
-        }
-
-    }.getInstance();
 
     protected Reduce() {
         super(new Expression[0]);
@@ -76,30 +58,37 @@ public final class Reduce extends AbstractExpression implements UserDefinedFunct
         if(getArgs().size() == 2) {
             final ValueOrError firstArgValueOrError = getFirstArg().evaluate(valueSolution);
             if(!firstArgValueOrError.isError()) {
+                final String functionIri;
+
+                if (assertLiteral(firstArgValueOrError.value())) {
+                    functionIri = ((Literal) firstArgValueOrError.value()).label();
+                } else if (firstArgValueOrError instanceof IRI) {
+                    functionIri = firstArgValueOrError.toString();
+                } else {
+                    return ValueOrError.Error;
+                }
+
                 final ValueOrError secondArgValueOrError = getSecondArg().evaluate(valueSolution);
                 if (!secondArgValueOrError.isError() && assertArrayLiteral(secondArgValueOrError.value())) {
                     long[] elements = ((ArrayLiteral)secondArgValueOrError.value()).getValues();
-                    if(elements.length != 2) {
-                        return ValueOrError.Error;
-                    }
-
-                    final String functionIri;
-
-                    if (assertLiteral(firstArgValueOrError.value())) {
-                        functionIri = ((Literal) firstArgValueOrError.value()).label();
-                    } else if (firstArgValueOrError instanceof IRI) {
-                        functionIri = firstArgValueOrError.toString();
-                    } else {
+                    if(elements.length < 2) {
                         return ValueOrError.Error;
                     }
 
                     MappingDictionary dict = valueSolution.getDictionary();
 
-                    List<Expression> expressions = Arrays.stream(((ArrayLiteral) secondArgValueOrError.value()).getValues()).mapToObj(i -> dict.getValue(i)).map(Expressions::constant).collect(toList());
-
-                    //TODO need to check for errors
-                    return expressions.stream().skip(2).reduce(functionRegistry.get(functionIri, Lists.newArrayList(expressions.get(0), expressions.get(1)), null),
-                            (result, element) -> functionRegistry.get(functionIri, Lists.newArrayList(result, element), null)).evaluate(valueSolution);
+                    try {
+                        List<Expression> expressions = Arrays.stream(((ArrayLiteral) secondArgValueOrError.value()).getValues()).mapToObj(i -> dict.getValue(i)).map(Expressions::constant).collect(toList());
+                        Expression reducedExpression = FunctionRegistry.Instance.get(functionIri, Lists.newArrayList(expressions.get(0), expressions.get(1)), null);
+                        if (expressions.size() > 2) {
+                            for (final Expression expression : expressions.subList(2, expressions.size())) {
+                                reducedExpression = FunctionRegistry.Instance.get(functionIri, Lists.newArrayList(expression, reducedExpression), null);
+                            }
+                        }
+                        return reducedExpression.evaluate(valueSolution);
+                    } catch(UnsupportedOperationException e) {
+                        return ValueOrError.Error;
+                    }
                 } else {
                     return ValueOrError.Error;
                 }

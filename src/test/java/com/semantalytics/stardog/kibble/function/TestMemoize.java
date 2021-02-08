@@ -16,7 +16,7 @@ public class TestMemoize extends AbstractStardogTest {
     public void testIriFunctionNoArgs() {
 
         final String aQuery = FunctionVocabulary.sparqlPrefix("func")
-                + " SELECT ?result WHERE { BIND(func:memoize(10, func:call(\"PI\" )) AS ?result) }";
+                + " SELECT ?result WHERE { BIND(func:memoize(10, \"PI\") AS ?result) }";
 
         try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
@@ -31,7 +31,7 @@ public class TestMemoize extends AbstractStardogTest {
     public void testIriFunction() {
 
         final String aQuery = String.format(FunctionVocabulary.sparqlPrefix("func")
-         + " SELECT ?result WHERE { BIND(func:memoize(10, func:call(<%s>, \"Hello world\" )) AS ?result) }", StringVocabulary.upperCase);
+         + String.format(" SELECT ?result WHERE { BIND(func:memoize(10, \"%s\", \"Hello world\" ) AS ?result) }", StringVocabulary.upperCase));
 
         try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
@@ -55,6 +55,22 @@ public class TestMemoize extends AbstractStardogTest {
             Optional<Literal> aPossibleLiteral = aResult.next().literal("result");
             assertThat(aPossibleLiteral).isPresent();
             assertThat(aPossibleLiteral.get().label()).isEqualTo("HELLO WORLD");
+        }
+    }
+
+    @Test
+    public void testMemoizeAFunctionComposition() {
+
+        final String aQuery = FunctionVocabulary.sparqlPrefix("func") + " "
+                + StringVocabulary.sparqlPrefix("string")
+                + " SELECT ?result WHERE { BIND(func:memoize(10, func:call, func:compose(string:reverse, string:upperCase), \"Hello world\") AS ?result) }";
+
+        try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
+
+            assertThat(aResult).hasNext().withFailMessage("Should have a result");
+            Optional<Literal> aPossibleLiteral = aResult.next().literal("result");
+            assertThat(aPossibleLiteral).isPresent();
+            assertThat(aPossibleLiteral.get().label()).isEqualTo("DLROW OLLEH");
         }
     }
 }

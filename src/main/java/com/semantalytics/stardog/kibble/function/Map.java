@@ -23,25 +23,6 @@ import static java.util.stream.Collectors.toList;
 
 public final class Map extends AbstractExpression implements UserDefinedFunction {
 
-
-    FunctionRegistry functionRegistry = new FunctionRegistry() {
-
-        @Override
-        public Iterator<FunctionDefinition> iterator() {
-            return iterator();
-        }
-
-        @Override
-        public FunctionDefinition get(String s) {
-            return get(s);
-        }
-
-        public FunctionRegistry getInstance() {
-            return Instance;
-        }
-
-    }.getInstance();
-
     protected Map() {
         super(new Expression[0]);
     }
@@ -71,7 +52,7 @@ public final class Map extends AbstractExpression implements UserDefinedFunction
     }
 
     @Override
-    public ValueOrError evaluate(ValueSolution valueSolution) {
+    public ValueOrError evaluate(final ValueSolution valueSolution) {
 
         if(getArgs().size() == 2) {
             final ValueOrError firstArgValueOrError = getFirstArg().evaluate(valueSolution);
@@ -82,7 +63,7 @@ public final class Map extends AbstractExpression implements UserDefinedFunction
 
                 if (assertLiteral(firstArgValueOrError.value())) {
                     functionIri = ((Literal) firstArgValueOrError.value()).label();
-                } else if (firstArgValueOrError instanceof IRI) {
+                } else if (firstArgValueOrError.value() instanceof IRI) {
                     functionIri = firstArgValueOrError.toString();
                 } else {
                     return ValueOrError.Error;
@@ -94,20 +75,25 @@ public final class Map extends AbstractExpression implements UserDefinedFunction
                 } else {
                     final ArrayLiteral elements;
 
-                    if (assertArrayLiteral(firstArgValueOrError.value())) {
-                        elements = (ArrayLiteral) firstArgValueOrError.value();
+                    if (assertArrayLiteral(secondArgValueOrError.value())) {
+                        elements = (ArrayLiteral) secondArgValueOrError.value();
                         MappingDictionary dictionary = valueSolution.getDictionary();
 
-                        List<ValueOrError> elementResults = Arrays.stream(elements.getValues())
-                                                                  .mapToObj(dictionary::getValue)
-                                                                  .map(e -> functionRegistry.get(functionIri, Lists.newArrayList(Expressions.constant(e)), null)
-                                                                  .evaluate(valueSolution))
-                                                                  .collect(toList());
-                        if(elementResults.stream().anyMatch(ValueOrError::isError)) {
+                        try {
+                            List<ValueOrError> elementResults = Arrays.stream(elements.getValues())
+                                    .mapToObj(dictionary::getValue)
+                                    .map(e -> FunctionRegistry.Instance.get(functionIri, Lists.newArrayList(Expressions.constant(e)), null)
+                                            .evaluate(valueSolution))
+                                    .collect(toList());
+
+                            if(elementResults.stream().anyMatch(ValueOrError::isError)) {
+                                return ValueOrError.Error;
+                            } else {
+                                long[] elementResultIds = elementResults.stream().map(ValueOrError::value).map(dictionary::add).mapToLong(Long::longValue).toArray();
+                                return ValueOrError.General.of(new ArrayLiteral(elementResultIds));
+                            }
+                        } catch(UnsupportedOperationException e) {
                             return ValueOrError.Error;
-                        } else {
-                            long[] elementResultIds = elementResults.stream().map(ValueOrError::value).map(dictionary::add).mapToLong(Long::longValue).toArray();
-                            return ValueOrError.General.of(new ArrayLiteral(elementResultIds));
                         }
                     } else {
                         return ValueOrError.Error;

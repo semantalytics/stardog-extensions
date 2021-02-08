@@ -15,15 +15,16 @@ public class TestCompose extends AbstractStardogTest {
     @Test
     public void testIriFunctionNoArgs() {
 
-        final String aQuery = FunctionVocabulary.sparqlPrefix("func")
-                + " SELECT ?result WHERE { BIND(func:call(func:compose(string:reverse, string:upperCase), \"Hello world\") AS ?result) }";
+        final String aQuery = FunctionVocabulary.sparqlPrefix("func") + " " +
+                StringVocabulary.sparqlPrefix("string") +
+                " SELECT ?result WHERE { BIND(func:call(func:compose(string:reverse, string:upperCase), \"Hello world\") AS ?result) }";
 
         try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
             assertThat(aResult).hasNext().withFailMessage("Should have a result");
             Optional<Literal> aPossibleLiteral = aResult.next().literal("result");
             assertThat(aPossibleLiteral).isPresent();
-            assertThat(aPossibleLiteral.get().label()).isEqualTo("3.141592653589793");
+            assertThat(aPossibleLiteral.get().label()).isEqualTo("DLROW OLLEH");
         }
     }
 

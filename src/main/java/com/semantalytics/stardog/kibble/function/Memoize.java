@@ -89,11 +89,14 @@ public final class Memoize extends AbstractExpression implements UserDefinedFunc
                     if (cachedValueOrError.isPresent()) {
                         return cachedValueOrError.get();
                     } else {
-                        ValueOrError valueOrError = FunctionRegistry.Instance.get(functionIri, functionArgs, null).evaluate(valueSolution);
-                        cache.put(Objects.hash(functionIri, functionArgs, valueSolution), valueOrError);
-                        return valueOrError;
+                        try {
+                            final ValueOrError valueOrError = FunctionRegistry.Instance.get(functionIri, functionArgs, null).evaluate(valueSolution);
+                            cache.put(Objects.hash(functionIri, functionArgs, valueSolution), valueOrError);
+                            return valueOrError;
+                        } catch(UnsupportedOperationException e) {
+                            return ValueOrError.Error;
+                        }
                     }
-
                 } else {
                     return ValueOrError.Error;
                 }

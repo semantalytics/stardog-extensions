@@ -46,8 +46,8 @@ public class TestCall extends AbstractStardogTest {
     @Test
     public void testStringFunction() {
 
-        final String aQuery = String.format(FunctionVocabulary.sparqlPrefix("func")
-                + " SELECT ?result WHERE { BIND(func:call(\"%s\", \"Hello world\" ) AS ?result) }", StringVocabulary.upperCase);
+        final String aQuery = FunctionVocabulary.sparqlPrefix("func") +
+                String.format(" SELECT ?result WHERE { BIND(func:call(\"%s\", \"Hello world\" ) AS ?result) }", StringVocabulary.upperCase);
 
         try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
 
