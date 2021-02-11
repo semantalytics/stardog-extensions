@@ -12,12 +12,16 @@ import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
 import com.google.common.collect.Lists;
 import com.stardog.stark.Literal;
 import com.stardog.stark.Values;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
 import static com.complexible.stardog.plan.filter.functions.AbstractFunction.*;
+import static org.apache.commons.lang3.StringUtils.*;
+import static org.apache.commons.lang3.StringUtils.repeat;
 
 public class NGram extends AbstractExpression implements UserDefinedFunction {
 
@@ -51,14 +55,34 @@ public class NGram extends AbstractExpression implements UserDefinedFunction {
 
     @Override
     public ValueOrError evaluate(final ValueSolution valueSolution) {
-        if(getArgs().size() == 2) {
+        final String leftPad;
+        final String rightPad;
+        if(getArgs().size() == 4) {
+            final ValueOrError thirdArgValueOrError = getThirdArg().evaluate(valueSolution);
+            if(!thirdArgValueOrError.isError() && assertStringLiteral(thirdArgValueOrError.value())) {
+                leftPad = ((Literal)thirdArgValueOrError.value()).label();
+                final ValueOrError fourthArgValueOrError = getArgs().get(2).evaluate(valueSolution);
+                if(!fourthArgValueOrError.isError() && assertStringLiteral(fourthArgValueOrError.value())) {
+                    rightPad = ((Literal)fourthArgValueOrError.value()).label();
+                } else {
+                    return ValueOrError.Error;
+                }
+            } else {
+                return ValueOrError.Error;
+            }
+        } else {
+            leftPad = "";
+            rightPad = "";
+        }
+
+        if(getArgs().size() == 2 || getArgs().size() == 4) {
             final ValueOrError firstArgValueOrError = getFirstArg().evaluate(valueSolution);
             if(!firstArgValueOrError.isError() && assertIntegerLiteral(firstArgValueOrError.value())) {
                 final int n = Literal.intValue((Literal) firstArgValueOrError.value());
 
                 final ValueOrError secondArgValueOrError = getSecondArg().evaluate(valueSolution);
                 if (!secondArgValueOrError.isError() && assertStringLiteral(secondArgValueOrError.value())) {
-                    final char[] tokens = ((Literal) secondArgValueOrError.value()).label().toCharArray();
+                    final char[] tokens = (repeat(leftPad, n-1) + ((Literal) secondArgValueOrError.value()).label() + repeat(rightPad, n-1)).toCharArray();
                     final MappingDictionary mappingDictionary = valueSolution.getDictionary();
                     long[] ngrams = IntStream.rangeClosed(0, tokens.length - n)
                             .mapToLong(i -> mappingDictionary.add(Values.literal(String.valueOf(Arrays.copyOfRange(tokens, i, i + n)))))
