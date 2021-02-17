@@ -24,16 +24,10 @@ import java.net.InetSocketAddress;
 @RunWith(Suite.class)
 @SuiteClasses({
   	TestEncode.class,
-        TestBottom.class,
         TestEncode.class,
         TestHashContains.class,
         TestHashLengthToCoverBoundingBox.class,
         TestHeightDegrees.class,
-        TestLatitude.class,
-        TestLeft.class,
-        TestLongitude.class,
-        TestRight.class,
-        TestTop.class,
         TestWidthDegrees.class,
         TestDecode.class,
         TestNeighbors.class,

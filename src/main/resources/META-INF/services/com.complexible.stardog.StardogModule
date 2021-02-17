@@ -1,1 +1,2 @@
 com.semantalytics.stardog.kibble.geo.geohash.DecodeService$DecodeModule
+com.semantalytics.stardog.kibble.geo.geohash.NeighborsService$NeighborsModule
