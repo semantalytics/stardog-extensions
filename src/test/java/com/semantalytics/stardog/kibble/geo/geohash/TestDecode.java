@@ -70,7 +70,7 @@ public class TestDecode extends AbstractStardogTest {
     public void argCannotBeAnIRI() {
         // I don't know if it would be more idiomatic to bind ValueOrError.Error to output variables. this is what would happen with a function
         final String aQueryStr = sparqlPrefix +
-                " select * where { SERVICE geohash:decode { [] geohash:latitude ?latitude ; geohash:longitude ?longitude ; geohash:hash <http://example.com>) } }";
+                " select * where { SERVICE geohash:decode { [] geohash:latitude ?latitude ; geohash:longitude ?longitude ; geohash:hash <http://example.com> } }";
 
 
         final SelectQueryResult aResult = connection.select(aQueryStr).execute();

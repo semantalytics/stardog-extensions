@@ -2,12 +2,16 @@ package com.semantalytics.stardog.kibble.geo.geohash;
 
 import com.complexible.stardog.plan.eval.ExecutionException;
 import com.semantalytics.stardog.kibble.AbstractStardogTest;
+import com.stardog.stark.Datatype;
 import com.stardog.stark.Literal;
 import com.stardog.stark.query.BindingSet;
+import com.stardog.stark.query.QueryResults;
 import com.stardog.stark.query.SelectQueryResult;
+import org.hamcrest.Matchers;
+import org.junit.Assert;
 import org.junit.Test;
 
-import static com.stardog.stark.Values.literal;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
 
 public class TestNeighbors extends AbstractStardogTest {
@@ -15,25 +19,10 @@ public class TestNeighbors extends AbstractStardogTest {
     private final String sparqlPrefix = GeoHashVocabulary.sparqlPrefix("geohash");
 
     @Test(expected = ExecutionException.class)
-    public void tooManyResultsThrowsError() {
-
-        final String aQueryStr = sparqlPrefix +
-                " select * where { (?one ?two ?three ?four ?five) geohash:neighbors (\"gbsuv7ztqzpt\") }";
-
-        final SelectQueryResult aResult = connection.select(aQueryStr).execute();
-        try {
-            fail("Should not have successfully executed");
-        } finally {
-            aResult.close();
-        }
-    }
-
-
-    @Test(expected = ExecutionException.class)
     public void resultTermsWhichAreNotVariablesShouldBeAnError() {
 
         final String aQueryStr = sparqlPrefix +
-                " select * where { (\"one\" \"two\" \"three\" \"four\") geohash:neighbors (\"gbsuv7ztqzpt\") }";
+                " select * where { SERVICE geohash:neighbors { [] geohash:top 'no literals allowed' ; geohash:bottom ?x ; geohash:hash \"gbsuv7ztqzpt\" } }";
 
         final SelectQueryResult aResult = connection.select(aQueryStr).execute();
         try {
@@ -46,7 +35,8 @@ public class TestNeighbors extends AbstractStardogTest {
     @Test(expected = ExecutionException.class)
     public void tooManyInputsThrowsError() {
         final String aQueryStr = sparqlPrefix +
-                " select * where { ?result geohash:neighbors (\"gbsuv7ztqzpt\" 5) }";
+                                 " select * where { SERVICE geohash:neighbors { [] geohash:top ?top ; geohash:bottom ?bottom ; geohash:left ?left ; geohash:right ?right ; " +
+                                 "geohash:hash \"gbsuv7ztqzpt\" ; geohash:unrecognized 'xyz' } }";
 
 
         final SelectQueryResult aResult = connection.select(aQueryStr).execute();
@@ -59,9 +49,9 @@ public class TestNeighbors extends AbstractStardogTest {
     }
 
     @Test(expected = ExecutionException.class)
-    public void argCannotBeANonnumericLiteral() {
+    public void argCannotBeANonStringLiteral() {
         final String aQueryStr = sparqlPrefix +
-                " select * where { ?result geohash:neighbors (5) }";
+                " select * where { SERVICE geohash:neighbors { [] geohash:top 'no literals allowed' ; geohash:bottom ?x ; geohash:hash 5 } }";
 
 
         final SelectQueryResult aResult = connection.select(aQueryStr).execute();
@@ -74,8 +64,9 @@ public class TestNeighbors extends AbstractStardogTest {
 
     @Test(expected = ExecutionException.class)
     public void argCannotBeAnIRI() {
+        // I don't know if it would be more idiomatic to bind ValueOrError.Error to output variables. this is what would happen with a function
         final String aQueryStr = sparqlPrefix +
-                " select * where { ?result geohash:neighbors (<http://example.com>) }";
+                " select * where { SERVICE geohash:neighbors { [] geohash:top ?top ; geohash:bottom ?bottom ; geohash:hash <http://example.com> } }";
 
 
         final SelectQueryResult aResult = connection.select(aQueryStr).execute();
@@ -86,76 +77,76 @@ public class TestNeighbors extends AbstractStardogTest {
         }
     }
 
-    @Test
+    @Test(expected = ExecutionException.class)
     public void argCannotBeABNode() {
+        // Bnodes are anonymous vars, so we get the same constraint failure as not binding the input var
         final String aQueryStr = sparqlPrefix +
-                " select * where { (?top ?bottom ?left ?right) geohash:neighbors (_:bnode) }";
+                " select * where { SERVICE geohash:neighbors { [] geohash:top ?top ; geohash:bottom ?bottom ; geohash:hash _:bnode }  }";
 
         try(final SelectQueryResult aResult = connection.select(aQueryStr).execute()) {
-            assertFalse("Should have no more results", aResult.hasNext());
+            QueryResults.consume(aResult);
         }
     }
 
     @Test
     public void varInputWithNoResultsShouldProduceZeroResults() {
+        // this will throw failure from service constraint rewriter
         final String aQueryStr = sparqlPrefix +
-                " select * where { (?top ?bottom ?left ?right) geohash:neighbors (?input) }";
+                " select * where { SERVICE geohash:neighbors { [] geohash:top ?top ; geohash:bottom ?bottom ; geohash:hash ?input } }";
 
 
-        final SelectQueryResult aResult = connection.select(aQueryStr).execute();
-        try {
-            assertFalse(aResult.hasNext());
-        } finally {
-            aResult.close();
+        try (SelectQueryResult aResult = connection.select(aQueryStr).execute()) {
+            aResult.hasNext();
+            fail("Expected exception");
+        }
+        catch (Exception ex) {
+            Assert.assertThat(ex.getMessage(), Matchers.containsString("Unable to bind: input"));
         }
     }
 
     @Test
     public void decodeWithVarInput() {
+        // this is not a great test because values will be inlined before execution and will not use the iterator branch of the service query eval method
         final String aQueryStr = sparqlPrefix +
-                " select * where { (?top ?bottom ?left ?right) geohash:neighbors (?in) . values ?in { \"gbsuv7ztqzpt\"} }";
+                " select * where { SERVICE geohash:neighbors { [] geohash:top ?top ; geohash:bottom ?bottom ; geohash:left ?left ; geohash:right ?right ; geohash:hash \"gbsuv7ztqzpt\" } values ?in { \"gbsuv7ztqzpt\"} }";
 
         BindingSet aBindingSet;
 
-        try(final SelectQueryResult aResult = connection.select(aQueryStr).execute()) {
+        try(final SelectQueryResult theResult = connection.select(aQueryStr).execute()) {
 
-            aBindingSet = aResult.next();
+            aBindingSet = theResult.next();
 
-            assertEquals(literal("gbsuv7ztqzpw"), aBindingSet.value("top").get());
-            assertEquals(literal("gbsuv7ztqzps"), aBindingSet.value("bottom").get());
-            assertEquals(literal("gbsuv7ztqzpm"), aBindingSet.value("left").get());
-            assertEquals(literal("gbsuv7ztqzpv"), aBindingSet.value("right").get());
-            //assertEquals(literal(0, StardogValueFactory.Datatype.INTEGER), aBindingSet.value("idx"));
+            assertEquals("gbsuv7ztqzpm", (((Literal)aBindingSet.value("left").get())).label());
+            assertEquals("gbsuv7ztqzpv", (((Literal)aBindingSet.value("right").get())).label());
+            assertEquals("gbsuv7ztqzpw", (((Literal)aBindingSet.value("top").get())).label());
+            assertEquals("gbsuv7ztqzps", (((Literal)aBindingSet.value("bottom").get())).label());
 
-            //aBindingSet = aResult.next();
-
-            //assertEquals(literal("dog"), aBindingSet.value("result"));
-            //assertEquals(literal(1, StardogValueFactory.Datatype.INTEGER), aBindingSet.value("idx"));
-
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(theResult).isExhausted();
         }
     }
 
     @Test
-    public void neighborsWithConstInput() {
+    public void decodeWithConstInput() {
         final String aQueryStr = sparqlPrefix +
-                " select * where { (?top ?bottom ?left ?right) geohash:neighbors (\"gbsuv7ztqzpt\") }";
+                " select * where { SERVICE geohash:neighbors { [] geohash:top ?top ; geohash:bottom ?bottom ; geohash:left ?left ; geohash:right ?right ; geohash:hash \"gbsuv7ztqzpt\" } }";
 
-        try(final SelectQueryResult aResult = connection.select(aQueryStr).execute()) {
+        BindingSet aBindingSet;
 
-            final BindingSet aBindingSet = aResult.next();
+        try(final SelectQueryResult theResult = connection.select(aQueryStr).execute()) {
 
-            assertEquals("gbsuv7ztqzpw", ((Literal)aBindingSet.value("top").get()).label());
-            assertEquals("gbsuv7ztqzps", ((Literal)aBindingSet.value("bottom").get()).label());
+            aBindingSet = theResult.next();
+
             assertEquals("gbsuv7ztqzpm", ((Literal)aBindingSet.value("left").get()).label());
             assertEquals("gbsuv7ztqzpv", ((Literal)aBindingSet.value("right").get()).label());
+            assertEquals("gbsuv7ztqzpw", ((Literal)aBindingSet.value("top").get()).label());
+            assertEquals("gbsuv7ztqzps", ((Literal)aBindingSet.value("bottom").get()).label());
 
             //aBindingSet = aResult.next();
 
-            //assertEquals(literal("dog"), aBindingSet.value("result"));
-            //assertEquals(literal(1, StardogValueFactory.Datatype.INTEGER), aBindingSet.value("idx"));
+            //assertEquals(literal("dog"), aBindingSet.getValue("result"));
+            //assertEquals(literal(1, StardogValueFactory.Datatype.INTEGER), aBindingSet.getValue("idx"));
 
-            assertFalse("Should have no more results", aResult.hasNext());
+            assertThat(theResult).isExhausted();
         }
     }
 
@@ -209,8 +200,8 @@ public class TestNeighbors extends AbstractStardogTest {
     public void shouldRenderACustomExplanation() {
 
         final String aQueryStr = GeoHashVocabulary.sparqlPrefix("geohash") +
-                "select * where { (?top ?bottom ?right ?left) geohash:neighbors (\"gbsuv7ztqzpt\") }";
+                "select * where { SERVICE geohash:neighbors { [] geohash:top ?top ; geohash:bottom ?bottom ; geohash:hash \"gbsuv7ztqzpt\" } }";
 
-        assertTrue(connection.select(aQueryStr).explain().contains("geohashneighbors("));
+        assertTrue(connection.select(aQueryStr).explain().contains("geohash:neighbors("));
     }
 }
