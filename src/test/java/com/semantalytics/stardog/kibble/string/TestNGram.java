@@ -24,7 +24,6 @@ public class TestNGram extends AbstractStardogTest {
             final Optional<Literal> aPossibleLiteral = aResult.next().literal("result");
             assertThat(aPossibleLiteral).isPresent();
             final Literal aLiteral = aPossibleLiteral.get();
-            System.out.println(aLiteral);
             assertThat((aLiteral.label())).isEqualTo("St,ta,ar,rd,do,og");
             assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
@@ -42,7 +41,6 @@ public class TestNGram extends AbstractStardogTest {
             final Optional<Literal> aPossibleLiteral = aResult.next().literal("result");
             assertThat(aPossibleLiteral).isPresent();
             final Literal aLiteral = aPossibleLiteral.get();
-            System.out.println(aLiteral);
             assertThat((aLiteral.label())).isEqualTo("_S,St,ta,ar,rd,do,og,g_");
             assertThat(aResult).isExhausted().withFailMessage("Should have no more results");
         }
