@@ -12,6 +12,7 @@ import com.semantalytics.stardog.kibble.array.ArrayTestSuite;
 import com.semantalytics.stardog.kibble.console.ConsoleTestSuite;
 import com.semantalytics.stardog.kibble.function.FunctionTestSuite;
 import com.semantalytics.stardog.kibble.geo.geohash.GeohashTestSuite;
+import com.semantalytics.stardog.kibble.lang.LanguageDetectTestSuite;
 import com.semantalytics.stardog.kibble.string.*;
 import com.semantalytics.stardog.kibble.string.comparison.StringMetricTestSuite;
 import com.semantalytics.stardog.kibble.string.emoji.EmojiTestSuite;
@@ -41,6 +42,7 @@ import java.net.InetSocketAddress;
         UnescapeTestSuite.class,
         StringTestSuite.class,
         FunctionTestSuite.class,
+        LanguageDetectTestSuite.class,
         })
 
 public class StardogExtensionsTestSuite extends TestCase {

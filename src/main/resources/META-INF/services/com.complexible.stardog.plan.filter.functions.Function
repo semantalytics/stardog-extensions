@@ -287,5 +287,24 @@ com.semantalytics.stardog.kibble.function.Compose
 com.semantalytics.stardog.kibble.function.Map
 com.semantalytics.stardog.kibble.function.Reduce
 com.semantalytics.stardog.kibble.function.Filter
+com.semantalytics.stardog.kibble.lang.Detect
+com.semantalytics.stardog.kibble.lang.DetectableLanguages
+com.semantalytics.stardog.kibble.lang.DetectFrom
+com.semantalytics.stardog.kibble.lang.DetectFromAllExcept
+com.semantalytics.stardog.kibble.lang.DetectFromAllSpoken
+com.semantalytics.stardog.kibble.lang.DetectFromAllWithArabicScript
+com.semantalytics.stardog.kibble.lang.DetectFromAllWithCyrillicScript
+com.semantalytics.stardog.kibble.lang.DetectFromAllWithDevanagariScript
+com.semantalytics.stardog.kibble.lang.DetectFromAllWithLatinScript
+com.semantalytics.stardog.kibble.lang.Score
+com.semantalytics.stardog.kibble.lang.ScoreFrom
+com.semantalytics.stardog.kibble.lang.ScoreFromAllExcept
+com.semantalytics.stardog.kibble.lang.ScoreFromAllSpoken
+com.semantalytics.stardog.kibble.lang.ScoreFromAllWithArabicScript
+com.semantalytics.stardog.kibble.lang.ScoreFromAllWithCyrillicScript
+com.semantalytics.stardog.kibble.lang.ScoreFromAllWithDevanagariScript
+com.semantalytics.stardog.kibble.lang.ScoreFromAllWithLatinScript
+
+
 
 
