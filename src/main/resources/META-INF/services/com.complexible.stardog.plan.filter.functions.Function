@@ -304,7 +304,5 @@ com.semantalytics.stardog.kibble.lang.ScoreFromAllWithArabicScript
 com.semantalytics.stardog.kibble.lang.ScoreFromAllWithCyrillicScript
 com.semantalytics.stardog.kibble.lang.ScoreFromAllWithDevanagariScript
 com.semantalytics.stardog.kibble.lang.ScoreFromAllWithLatinScript
-
-
-
+com.semantalytics.stardog.kibble.http.Get
 
