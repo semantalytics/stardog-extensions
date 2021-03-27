@@ -14,6 +14,8 @@ public class FunctionVocabulary {
     public static final IRI reduce = iri(NS + "reduce");
     public static final IRI map = iri(NS + "map");
     public static final IRI filter = iri(NS + "filter");
+    public static final IRI partial = iri(NS + "partial");
+    public static final IRI var = iri(NS + "var");
 
     public static String sparqlPrefix(final String prefixName) {
         return "PREFIX " + prefixName + ": <" + NS + "> ";

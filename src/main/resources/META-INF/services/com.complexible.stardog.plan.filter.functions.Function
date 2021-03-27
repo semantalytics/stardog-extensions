@@ -287,6 +287,7 @@ com.semantalytics.stardog.kibble.function.Compose
 com.semantalytics.stardog.kibble.function.Map
 com.semantalytics.stardog.kibble.function.Reduce
 com.semantalytics.stardog.kibble.function.Filter
+com.semantalytics.stardog.kibble.function.Partial
 com.semantalytics.stardog.kibble.lang.Detect
 com.semantalytics.stardog.kibble.lang.DetectableLanguages
 com.semantalytics.stardog.kibble.lang.DetectFrom

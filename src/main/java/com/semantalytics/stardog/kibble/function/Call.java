@@ -8,13 +8,13 @@ import com.complexible.stardog.plan.filter.expr.ValueOrError;
 import com.complexible.stardog.plan.filter.functions.FunctionDefinition;
 import com.complexible.stardog.plan.filter.functions.FunctionRegistry;
 import com.complexible.stardog.plan.filter.functions.UserDefinedFunction;
+import com.github.davidmoten.geo.Parity;
 import com.google.common.collect.Lists;
-import com.stardog.stark.BNode;
-import com.stardog.stark.IRI;
-import com.stardog.stark.Literal;
+import com.stardog.stark.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static com.complexible.stardog.plan.filter.functions.AbstractFunction.*;
@@ -54,7 +54,7 @@ public final class Call extends AbstractExpression implements UserDefinedFunctio
     @Override
     public ValueOrError evaluate(final ValueSolution valueSolution) {
 
-        if(getArgs().size() >= 1) {
+        if (getArgs().size() >= 1) {
             final ValueOrError firstArgValueOrError = getFirstArg().evaluate(valueSolution);
             if (!firstArgValueOrError.isError()) {
                 final String functionIri;
@@ -64,7 +64,7 @@ public final class Call extends AbstractExpression implements UserDefinedFunctio
                 } else if (firstArgValueOrError.value() instanceof IRI) {
                     functionIri = firstArgValueOrError.value().toString();
                 } else if (firstArgValueOrError.value() instanceof BNode) {
-                    functionIri = ((BNode)firstArgValueOrError.value()).id();
+                    functionIri = ((BNode) firstArgValueOrError.value()).id();
                 } else {
                     return ValueOrError.Error;
                 }
@@ -82,10 +82,26 @@ public final class Call extends AbstractExpression implements UserDefinedFunctio
                                 function = FunctionRegistry.Instance.get(f, singletonList(function), null);
                             }
                         }
+                    } else if (Partial.partialMap.containsKey(functionIri)) {
+                        List<Expression> partialArgs = Partial.partialMap.get(functionIri);
+                        List<ValueOrError> partialArgsValueOrError = partialArgs.stream().map(e -> e.evaluate(valueSolution)).collect(toList());
+                        if (partialArgsValueOrError.stream().noneMatch(ValueOrError::isError)) {
+                            List<String> partialArgsValueString = partialArgsValueOrError.stream().map(ValueOrError::value).map(Value::toString).collect(toList());
+                            functionArgs.stream().forEach(e -> {
+                                if (partialArgsValueString.indexOf(FunctionVocabulary.var.toString()) != -1) {
+                                    partialArgs.set(partialArgsValueString.indexOf(FunctionVocabulary.var.toString()), e);
+                                } else {
+                                    partialArgs.add(e);
+                                }
+                            });
+                            function = FunctionRegistry.Instance.get(partialArgs.get(0).toString(), partialArgs.stream().skip(1).collect(toList()), null);
+                        } else {
+                            return ValueOrError.Error;
+                        }
                     } else {
                         function = FunctionRegistry.Instance.get(functionIri, functionArgs, null);
                     }
-                } catch(UnsupportedOperationException e) {
+                } catch (UnsupportedOperationException e) {
                     return ValueOrError.Error;
                 }
 
