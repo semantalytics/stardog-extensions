@@ -13,7 +13,7 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 public class TestPartial extends AbstractStardogTest {
 
     @Test
-    public void testIriFunctionNoArgs() {
+    public void testPartial() {
 
         final String aQuery = FunctionVocabulary.sparqlPrefix("func") + " " +
                 StringVocabulary.sparqlPrefix("string") +
@@ -24,54 +24,7 @@ public class TestPartial extends AbstractStardogTest {
             assertThat(aResult).hasNext().withFailMessage("Should have a result");
             Optional<Literal> aPossibleLiteral = aResult.next().literal("result");
             assertThat(aPossibleLiteral).isPresent();
-            assertThat(aPossibleLiteral.get().label()).isEqualTo("DLROW OLLEH");
-        }
-    }
-
-    @Test
-    public void testIriFunction() {
-
-        final String aQuery = FunctionVocabulary.sparqlPrefix("func") + " "
-                + StringVocabulary.sparqlPrefix("string")
-                + " SELECT ?result WHERE { BIND(func:call(string:upperCase, \"Hello world\" ) AS ?result) }";
-
-        try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
-
-            assertThat(aResult).hasNext().withFailMessage("Should have a result");
-            Optional<Literal> aPossibleLiteral = aResult.next().literal("result");
-            assertThat(aPossibleLiteral).isPresent();
-            assertThat(aPossibleLiteral.get().label()).isEqualTo("HELLO WORLD");
-        }
-    }
-
-    @Test
-    public void testStringFunction() {
-
-        final String aQuery = String.format(FunctionVocabulary.sparqlPrefix("func")
-                + " SELECT ?result WHERE { BIND(func:call(\"%s\", \"Hello world\" ) AS ?result) }", StringVocabulary.upperCase);
-
-        try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
-
-            assertThat(aResult).hasNext().withFailMessage("Should have a result");
-            Optional<Literal> aPossibleLiteral = aResult.next().literal("result");
-            assertThat(aPossibleLiteral).isPresent();
-            assertThat(aPossibleLiteral.get().label()).isEqualTo("HELLO WORLD");
-        }
-    }
-
-    @Test
-    public void testStringFunctionAsArg() {
-
-        final String aQuery = FunctionVocabulary.sparqlPrefix("func") + " "
-                + StringVocabulary.sparqlPrefix("string")
-                + " SELECT ?result WHERE { BIND(string:reverse(func:call(string:upperCase, \"Hello world\" )) AS ?result) }";
-
-        try(final SelectQueryResult aResult = connection.select(aQuery).execute()) {
-
-            assertThat(aResult).hasNext().withFailMessage("Should have a result");
-            Optional<Literal> aPossibleLiteral = aResult.next().literal("result");
-            assertThat(aPossibleLiteral).isPresent();
-            assertThat(aPossibleLiteral.get().label()).isEqualTo("DLROW OLLEH");
+            assertThat(aPossibleLiteral.get().label()).isEqualTo("Hello:world");
         }
     }
 }

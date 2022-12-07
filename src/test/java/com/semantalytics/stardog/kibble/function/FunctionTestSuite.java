@@ -25,8 +25,11 @@ import java.net.InetSocketAddress;
 @SuiteClasses({
         TestCall.class,
         TestCompose.class,
+        TestFilter.class,
         TestMemoize.class,
-        TestMap.class
+        TestPartial.class,
+        TestMap.class,
+        TestReduce.class,
 })
 
 public class FunctionTestSuite extends TestCase {

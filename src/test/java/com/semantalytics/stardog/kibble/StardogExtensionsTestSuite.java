@@ -15,7 +15,6 @@ import com.semantalytics.stardog.kibble.geo.geohash.GeohashTestSuite;
 import com.semantalytics.stardog.kibble.lang.LanguageDetectTestSuite;
 import com.semantalytics.stardog.kibble.string.*;
 import com.semantalytics.stardog.kibble.string.comparison.StringMetricTestSuite;
-import com.semantalytics.stardog.kibble.string.emoji.EmojiTestSuite;
 import com.semantalytics.stardog.kibble.string.escape.EscapeTestSuite;
 import com.semantalytics.stardog.kibble.string.phonetic.PhoneticTestSuite;
 import com.semantalytics.stardog.kibble.string.unescape.UnescapeTestSuite;
@@ -36,7 +35,6 @@ import java.net.InetSocketAddress;
         ConsoleTestSuite.class,
         GeohashTestSuite.class,
         StringMetricTestSuite.class,
-        EmojiTestSuite.class,
         EscapeTestSuite.class,
         PhoneticTestSuite.class,
         UnescapeTestSuite.class,

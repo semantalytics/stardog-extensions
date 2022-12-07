@@ -6,7 +6,7 @@
 
     <groupId>com.semantalytics.stardog</groupId>
     <artifactId>extensions</artifactId>
-    <version>2021.02.23.1</version>
+    <version>2022.12.07.1</version>
 
     <developers>
         <developer>
@@ -45,29 +45,11 @@
     </organization>
 
     <properties>
-        <stardog.major.version>7</stardog.major.version>
-        <stardog.version>${stardog.major.version}.6.0</stardog.version>
-        <junit.version>4.12</junit.version>
-        <slf4j.version>1.7.21</slf4j.version>
-        <jansi.version>1.16</jansi.version>
-        <geo.version>0.7.1</geo.version>
-        <assertj.version>3.15.0</assertj.version>
-        <xmlapis.version>1.4.01</xmlapis.version>
-        <maven.version>3.3.9</maven.version>
-        <guava.version>23.3-jre</guava.version>
-        <commons-text.version>1.7</commons-text.version>
-        <commons-lang3.version>3.9</commons-lang3.version>
-        <emoji4j.version>5.0</emoji4j.version>
-        <simmetrics-core.version>4.1.1</simmetrics-core.version>
-        <java-sting-similarity.version>0.24</java-sting-similarity.version>
+        <stardog.major.version>8</stardog.major.version>
+        <stardog.version>${stardog.major.version}.1.1</stardog.version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>failureaccess</artifactId>
-            <version>1.0.1</version>
-        </dependency>
         <dependency>
             <groupId>com.complexible.stardog</groupId>
             <artifactId>server</artifactId>
@@ -78,7 +60,7 @@
         <dependency>
             <groupId>com.github.davidmoten</groupId>
             <artifactId>geo</artifactId>
-            <version>${geo.version}</version>
+            <version>0.7.1</version>
         </dependency>
         <dependency>
             <groupId>com.complexible.stardog.cache</groupId>
@@ -87,68 +69,68 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.kcthota</groupId>
-            <artifactId>emoji4j</artifactId>
-            <version>${emoji4j.version}</version>
-        </dependency>
-        <dependency>
             <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${guava.version}</version>
+            <artifactId>failureaccess</artifactId>
+            <version>1.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>${commons-lang3.version}</version>
+            <version>3.9</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-text</artifactId>
-            <version>${commons-text.version}</version>
+            <version>1.10.0</version>
         </dependency>
         <dependency>
             <groupId>info.debatty</groupId>
             <artifactId>java-string-similarity</artifactId>
-            <version>${java-sting-similarity.version}</version>
+            <version>0.24</version>
         </dependency>
         <dependency>
             <groupId>com.github.mpkorstanje</groupId>
             <artifactId>simmetrics-core</artifactId>
-            <version>${simmetrics-core.version}</version>
+            <version>4.1.1</version>
         </dependency>
         <dependency>
             <groupId>org.fusesource.jansi</groupId>
             <artifactId>jansi</artifactId>
-            <version>${jansi.version}</version>
+            <version>1.16</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
+            <version>4.12</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>${assertj.version}</version>
+            <version>3.15.0</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>${slf4j.version}</version>
+            <version>1.7.21</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>xml-apis</groupId>
             <artifactId>xml-apis</artifactId>
-            <version>${xmlapis.version}</version>
+            <version>1.4.01</version>
             <scope>test</scope>
         </dependency>
 	<dependency>
 	    <groupId>com.github.pemistahl</groupId>
 	    <artifactId>lingua</artifactId>
-	    <version>1.0.3</version>
+	    <version>1.2.2</version>
 	</dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+            <version>1.3</version>
+        </dependency>
     </dependencies>
 
     <repositories>
@@ -176,7 +158,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>2.7</version>
+                <version>3.3.0</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
                 </configuration>
@@ -184,7 +166,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.1</version>
+                <version>3.3.0</version>
                 <configuration>
                     <minimizeJar/>
                     <relocations>

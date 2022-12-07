@@ -107,7 +107,7 @@ public class NeighborsService extends SingleQueryService {
 			}
 			return Collections.emptySet();
 		}
-
+/*
 		@Override
 		public Cardinality estimateCardinality(Costs.CostingContext theCostingContext) {
 			if (mHash.isConstant()) {
@@ -122,6 +122,8 @@ public class NeighborsService extends SingleQueryService {
 		public Cardinality estimateJoinCardinality(Costs.CostingContext theCostingContext, PlanNode joined, int joinKey) {
 			return joined.getCardinality();
 		}
+
+ */
 
 		@Override
 		public String explain(PlanVarInfo theVarInfo) {
